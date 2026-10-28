@@ -1,0 +1,68 @@
+name: 更新徽章資料
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore: ["data/badges.json"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-badges
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 從 Twitch 抓取徽章
+        env:
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          TWITCH_USER_TOKEN: ${{ secrets.TWITCH_USER_TOKEN }}
+        run: node scripts/update.mjs
+
+      - name: 有變化就存檔
+        id: commit
+        run: |
+          git config user.name "badge-bot"
+          git config user.email "badge-bot@users.noreply.github.com"
+          git add data/badges.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "更新徽章資料 $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 準備網站檔案
+        if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
+        run: |
+          mkdir -p _site/data
+          cp index.html _site/
+          cp data/badges.json _site/data/
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
+        with:
+          path: _site
+
+      - id: deploy
+        if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
+        uses: actions/deploy-pages@v4
