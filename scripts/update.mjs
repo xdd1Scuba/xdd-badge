@@ -52,51 +52,88 @@ async function fetchGlobalBadges(token) {
   return out;
 }
 
-// ---- Drops 活動（非官方 GQL；失敗時不影響徽章更新）----
+// ---- Drops 活動（Twitch 網頁內部介面，需要 TWITCH_USER_TOKEN；失敗時不影響徽章更新）----
 const GQL_CLIENT = "kimne78kx3ncx6brgtihcdtnyx";
-async function gql(query, variables = {}) {
+const HASH = {
+  ViewerDropsDashboard: "5a4da2ab3d5b47c9f9ce864e727b2cb346af1e3ea8b897fe8f704a97ff017619",
+  DropCampaignDetails: "039277bf98f3130929262cc7c6efd9c141ca3749cb6dca442fc8ead9a53f77c1",
+};
+async function gqlPost(body) {
   const r = await fetch("https://gql.twitch.tv/gql", {
     method: "POST",
-    headers: { "Client-Id": GQL_CLIENT, Authorization: `OAuth ${USER_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables }),
+    headers: { "Client-Id": GQL_CLIENT, Authorization: `OAuth ${USER_TOKEN.replace(/^OAuth\s+/i, "").trim()}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
   });
-  const j = await r.json();
-  if (!r.ok || j.errors) throw new Error(JSON.stringify(j.errors || j).slice(0, 300));
-  return j.data;
+  const text = await r.text();
+  let j; try { j = JSON.parse(text); } catch { throw new Error(`HTTP ${r.status}：${text.slice(0, 200)}`); }
+  const one = Array.isArray(j) ? j[0] : j;
+  if (!r.ok || one.errors || one.error) throw new Error(`HTTP ${r.status}：${JSON.stringify(one.errors || one.error || one).slice(0, 300)}`);
+  return one.data;
 }
-async function fetchDropCampaigns() {
-  if (!USER_TOKEN) return [];
+const persisted = (op, variables) => gqlPost({ operationName: op, variables, extensions: { persistedQuery: { version: 1, sha256Hash: HASH[op] } } });
+const raw = (query, variables = {}) => gqlPost({ query, variables });
+
+async function listCampaigns() {
   try {
-    const list = await gql(`query { currentUser { id dropCampaigns { id name status startAt endAt game { displayName } } } }`);
-    const user = list.currentUser;
-    const camps = user?.dropCampaigns || [];
+    const d = await persisted("ViewerDropsDashboard", { fetchRewardCampaigns: true });
+    if (!d?.currentUser) throw new Error("沒有 currentUser，token 可能無效或已過期");
+    return { userId: d.currentUser.id, camps: d.currentUser.dropCampaigns || [], rewards: d.rewardCampaignsAvailableToUser || [], via: "persisted" };
+  } catch (e) {
+    console.warn(`  方式一（ViewerDropsDashboard）失敗：${e.message}`);
+  }
+  const d = await raw(`query { currentUser { id dropCampaigns { id name status startAt endAt game { displayName } } } }`);
+  if (!d?.currentUser) throw new Error("沒有 currentUser，token 可能無效或已過期");
+  return { userId: d.currentUser.id, camps: d.currentUser.dropCampaigns || [], rewards: [], via: "raw" };
+}
+let detailWarned = false;
+async function campaignDetail(userId, id) {
+  try {
+    const d = await persisted("DropCampaignDetails", { channelLogin: userId, dropID: id });
+    if (d?.user?.dropCampaign) return d.user.dropCampaign;
+    throw new Error("回應中沒有 dropCampaign");
+  } catch (e) {
+    if (!detailWarned) { console.warn(`  方式一（DropCampaignDetails）失敗，改用方式二：${e.message}`); detailWarned = true; }
+  }
+  const d = await raw(
+    `query($u:ID!,$c:ID!){ user(id:$u){ dropCampaign(id:$c){ id name startAt endAt game { displayName } timeBasedDrops { name requiredMinutesWatched requiredSubs startAt endAt benefitEdges { benefit { name distributionType imageAssetURL } } } } } }`,
+    { u: userId, c: id }
+  );
+  return d?.user?.dropCampaign;
+}
+
+async function fetchDropCampaigns() {
+  if (!USER_TOKEN) { console.log("未設定 TWITCH_USER_TOKEN，略過 Drops 活動時間"); return null; }
+  try {
+    console.log("讀取 Drops 活動…");
+    const ctx = await listCampaigns();
+    const camps = ctx.camps.filter(c => !c.status || ["ACTIVE", "UPCOMING"].includes(c.status));
+    console.log(`  找到 ${camps.length} 個 Drops 活動（${ctx.via}）`);
     const out = [];
     for (const c of camps) {
       try {
-        const d = await gql(
-          `query($u:ID!,$c:ID!){ user(id:$u){ dropCampaign(id:$c){ timeBasedDrops { name requiredMinutesWatched requiredSubs startAt endAt benefitEdges { benefit { name distributionType imageAssetURL } } } } } }`,
-          { u: user.id, c: c.id }
-        );
-        for (const drop of d.user?.dropCampaign?.timeBasedDrops || []) {
+        const d = await campaignDetail(ctx.userId, c.id);
+        for (const drop of d?.timeBasedDrops || []) {
           for (const { benefit } of drop.benefitEdges || []) {
             if (benefit?.distributionType !== "BADGE") continue;
             out.push({
-              reward: benefit.name,
-              campaign: c.name,
-              game: c.game?.displayName || null,
-              start: drop.startAt || c.startAt,
-              end: drop.endAt || c.endAt,
-              minutes: drop.requiredMinutesWatched || null,
-              subs: drop.requiredSubs || null,
-              source: "drops",
+              reward: benefit.name, campaign: c.name, game: c.game?.displayName || d.game?.displayName || null,
+              start: drop.startAt || c.startAt, end: drop.endAt || c.endAt,
+              minutes: drop.requiredMinutesWatched || null, subs: drop.requiredSubs || null, source: "drops",
             });
           }
         }
       } catch (e) {
-        console.warn(`活動 ${c.name} 讀取失敗：${e.message}`);
+        console.warn(`  活動「${c.name}」讀取失敗：${e.message}`);
+      }
+      await new Promise(r => setTimeout(r, 150));
+    }
+    // 非 Drops 的獎勵活動（例如 TwitchCon、官方活動）
+    for (const rc of ctx.rewards) {
+      for (const rw of rc.rewards || []) {
+        out.push({ reward: rw.name, campaign: rc.name, game: rc.game?.displayName || null, start: rc.startsAt || rc.startAt, end: rc.endsAt || rc.endAt, minutes: null, subs: null, source: "drops", maybe: true });
       }
     }
-    console.log(`Drops：找到 ${out.length} 個徽章獎勵`);
+    console.log(`  共 ${out.length} 個徽章獎勵`);
     return out;
   } catch (e) {
     console.warn(`Drops 讀取失敗（不影響徽章更新）：${e.message}`);
@@ -138,12 +175,21 @@ for (const old of prev.badges) {
 
 // 套用 Drops 活動時間（以獎勵名稱比對徽章標題）
 if (drops) {
+  const used = new Set();
+  const live = merged.filter(b => !b.removed_at);
   const byTitle = new Map();
-  for (const d of drops) byTitle.set(norm(d.reward), d);
-  for (const b of merged) {
-    const d = byTitle.get(norm(b.title)) || byTitle.get(norm(b.set_id));
-    if (d) b.campaign = d;
+  for (const b of live) { const k = norm(b.title); if (!byTitle.has(k)) byTitle.set(k, []); byTitle.get(k).push(b); }
+  for (const d of drops) {
+    const n = norm(d.reward);
+    let hits = byTitle.get(n) || live.filter(b => norm(b.set_id) === n);
+    if (!hits.length && n.length >= 6) hits = live.filter(b => { const t = norm(b.title); return t.length >= 6 && (t.includes(n) || n.includes(t)); });
+    if (!hits.length) { if (!d.maybe) console.log(`  未配對：「${d.reward}」（${d.campaign}）`); continue; }
+    // 同名多版本時，取最新偵測到的那一個
+    const b = hits.sort((x, y) => y.first_seen.localeCompare(x.first_seen))[0];
+    const { maybe, ...camp } = d;
+    b.campaign = camp; used.add(key(b.set_id, b.id));
   }
+  console.log(`  已配對 ${used.size} 個徽章的活動時間`);
 }
 // 手動資料最優先：data/campaigns.manual.json 以 "set_id/版本" 為 key
 for (const b of merged) {
