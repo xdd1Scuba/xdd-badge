@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twitch 徽章圖鑑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Twitch 全域聊天徽章資料庫：資料直接來自 Twitch 官方 API，自動更新，時間以你的當地時區顯示。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: 頂部狀態列 → 分頁（時間軸 / 所有徽章）→ 時間軸為橫向捲動的日欄＋活動長條；詳細資料從右側滑出 */
+:root{
+  --bg:#f3f2f7; --surface:#ffffff; --sunk:#e9e7f1; --fg:#191624; --muted:#666079; --line:#dcd8e6;
+  --accent:#7434e6; --accent-ink:#ffffff; --accent-soft:#ece3fd;
+  --now:#e5313f;
+  --live:#0f8a5f; --live-soft:#daf3e8; --soon:#a86200; --soon-soft:#fbecd3;
+  --ended:#77728a; --ended-soft:#ebe9f0; --perm:#2b62c9; --perm-soft:#e0e9fb;
+  --bar-watch:#dfe6f7; --bar-watch-edge:#9fb2df; --bar-sub:#f6e3e6; --bar-sub-edge:#d99aa5; --bar-other:#e9e6f1; --bar-other-edge:#b8b2c9;
+  --tip:#1d1a27; --tip-fg:#f2f0f8;
+  --f-display:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f0e14; --surface:#18161f; --sunk:#211e2b; --fg:#ecebf2; --muted:#9e98b3; --line:#2d2a39;
+  --accent:#a675ff; --accent-ink:#130b22; --accent-soft:#2a1f45; --now:#ff4d5a;
+  --live:#3ad39a; --live-soft:#123528; --soon:#f0b350; --soon-soft:#3a2a10;
+  --ended:#8a859c; --ended-soft:#24222d; --perm:#7aa5ff; --perm-soft:#16233f;
+  --bar-watch:#26324a; --bar-watch-edge:#3e5177; --bar-sub:#3d242c; --bar-sub-edge:#64394a; --bar-other:#2a2735; --bar-other-edge:#433e55;
+  --tip:#2a2635; --tip-fg:#f2f0f8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f0e14; --surface:#18161f; --sunk:#211e2b; --fg:#ecebf2; --muted:#9e98b3; --line:#2d2a39;
+  --accent:#a675ff; --accent-ink:#130b22; --accent-soft:#2a1f45; --now:#ff4d5a;
+  --live:#3ad39a; --live-soft:#123528; --soon:#f0b350; --soon-soft:#3a2a10;
+  --ended:#8a859c; --ended-soft:#24222d; --perm:#7aa5ff; --perm-soft:#16233f;
+  --bar-watch:#26324a; --bar-watch-edge:#3e5177; --bar-sub:#3d242c; --bar-sub-edge:#64394a; --bar-other:#2a2735; --bar-other-edge:#433e55;
+  --tip:#2a2635; --tip-fg:#f2f0f8; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1240px;margin:0 auto;padding-block:24px 64px;display:flex;flex-direction:column;gap:24px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{width:44px;height:44px;border-radius:10px;background:var(--accent);display:grid;place-items:center;flex:none}
+.mark svg{width:26px;height:26px}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,4vw,34px);line-height:1.15;margin:0}
+.sub{color:var(--muted);margin:2px 0 0;font-size:13px}
+.sync{display:inline-flex;align-items:center;gap:6px}
+.sync i{width:7px;height:7px;border-radius:50%;background:var(--live);display:inline-block}
+.sync.stale i{background:var(--soon)}
+.stats{display:flex;gap:22px;color:var(--muted);font-size:13px}
+.stats b{display:block;font-family:var(--f-mono);font-size:22px;color:var(--fg);font-weight:600;line-height:1.2}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tab{border:0;background:transparent;padding:10px 14px;cursor:pointer;color:var(--muted);font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+
+/* ---------- 時間軸 ---------- */
+.tl-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.tl-bar .tz{font-size:13px;color:var(--muted)}
+.tl-bar .tz b{font-family:var(--f-mono);color:var(--fg);font-weight:600}
+.btns{display:flex;gap:6px}
+.btn{height:36px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:10px;border-radius:3px;border:1px solid;display:inline-block}
+
+.tl-scroll{overflow-x:auto;overflow-y:hidden;border-radius:12px;border:1px solid var(--line);background:var(--surface);-webkit-overflow-scrolling:touch}
+.tl{position:relative;--dw:150px}
+.tl-days{display:flex;position:sticky;top:0;z-index:3;background:var(--sunk);border-bottom:1px solid var(--line)}
+.tl-day{flex:none;width:var(--dw);padding:10px 0;text-align:center;border-left:1px solid var(--line);line-height:1.25}
+.tl-day:first-child{border-left:0}
+.tl-day .wd{font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.tl-day .dt{font-weight:700;font-size:15px}
+.tl-day.today{background:var(--accent-soft)}
+.tl-day.today .dt{color:var(--accent)}
+.tl-body{position:relative}
+.tl-grid{position:absolute;inset:0;display:flex;pointer-events:none}
+.tl-grid div{flex:none;width:var(--dw);border-left:1px solid var(--line)}
+.tl-grid div:first-child{border-left:0}
+.tl-grid div.wkend{background:color-mix(in srgb,var(--sunk) 45%,transparent)}
+.lane{position:relative;height:60px}
+.bar{position:absolute;top:8px;height:44px;border-radius:9px;border:1px solid var(--bar-other-edge);background:var(--bar-other);
+  display:flex;align-items:center;gap:8px;padding:0 10px 0 6px;cursor:pointer;text-align:left;overflow:hidden;min-width:44px}
+.bar.watch{background:var(--bar-watch);border-color:var(--bar-watch-edge)}
+.bar.sub{background:var(--bar-sub);border-color:var(--bar-sub-edge)}
+.bar.ended{opacity:.5}
+.bar.cut-l{border-top-left-radius:0;border-bottom-left-radius:0;border-left-style:dashed}
+.bar.cut-r{border-top-right-radius:0;border-bottom-right-radius:0;border-right-style:dashed}
+.bar.open-end{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 60px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 60px),transparent)}
+.bar:hover,.bar:focus-visible{border-color:var(--accent);z-index:2}
+.bar .ic{position:sticky;left:6px;flex:none;width:32px;height:32px;border-radius:6px;overflow:hidden;display:grid;place-items:center;background:var(--sunk)}
+.bar .ic img{width:100%;height:100%;object-fit:contain}
+.bar .lb{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.now-line{position:absolute;top:0;bottom:0;width:2px;background:var(--now);z-index:4;pointer-events:none}
+.now-line::before{content:"";position:absolute;top:-1px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--now)}
+.now-line span{position:absolute;top:-2px;left:8px;font-size:11px;font-weight:700;color:var(--now);font-family:var(--f-mono);white-space:nowrap;background:var(--sunk);padding:0 4px;border-radius:4px}
+.tl-empty{padding:40px 16px;text-align:center;color:var(--muted)}
+
+.tip{position:fixed;z-index:30;pointer-events:none;background:var(--tip);color:var(--tip-fg);border-radius:10px;padding:12px 14px;width:min(300px,calc(100vw - 32px));box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:13px;line-height:1.5}
+.tip .t{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.tip .t img{width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,.08)}
+.tip .t b{display:block;font-size:14px}
+.tip .t small{opacity:.7}
+.tip dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0}
+.tip dt{opacity:.65}.tip dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tip .rem{margin-top:6px;font-family:var(--f-mono);font-weight:600}
+
+/* ---------- 所有徽章 ---------- */
+.controls{display:flex;flex-direction:column;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;border-bottom:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;padding:0 12px;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.search input{border:0;outline:0;background:transparent;flex:1;min-width:0;height:100%}
+.search:focus-within{border-color:var(--accent)}
+select{height:42px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:13px;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.count{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left;padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);cursor:pointer;min-width:0;transition:border-color .15s}
+.card:hover{border-color:var(--accent)}
+.card .nm{font-weight:700;line-height:1.35;overflow-wrap:anywhere}
+.card .gm{font-size:12px;color:var(--muted);line-height:1.3;overflow-wrap:anywhere;margin-top:2px}
+.card .foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;margin-top:auto;width:100%}
+.card .date{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.card .new{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.empty{grid-column:1/-1;padding:48px 16px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.more{display:flex;justify-content:center;margin-top:16px}
+
+.bimg{width:72px;height:72px;flex:none;border-radius:8px;background:var(--sunk);display:grid;place-items:center;overflow:hidden}
+.bimg img{width:100%;height:100%;object-fit:contain}
+.mono-fb{font-family:var(--f-mono);font-weight:600;font-size:14px;color:var(--accent)}
+
+.pill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.st-live{color:var(--live);background:var(--live-soft)}
+.st-soon{color:var(--soon);background:var(--soon-soft)}
+.st-ended,.st-gone{color:var(--ended);background:var(--ended-soft)}
+.st-perm{color:var(--perm);background:var(--perm-soft)}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 6px;line-height:20px;white-space:nowrap}
+
+/* ---------- 詳細 ---------- */
+.scrim{position:fixed;inset:0;background:rgba(10,8,18,.55);z-index:20;display:flex;justify-content:flex-end}
+.panel{width:min(540px,100%);height:100%;overflow-y:auto;background:var(--surface);border-left:1px solid var(--line);
+  padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) 20px;
+  display:flex;flex-direction:column;gap:20px}
+.panel .x{align-self:flex-end;width:36px;height:36px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:18px;line-height:1}
+.d-head{display:flex;gap:16px;align-items:center}
+.d-head .bimg{width:96px;height:96px;border-radius:12px}
+.d-head h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.25;margin:0;overflow-wrap:anywhere}
+.d-head .gm{color:var(--muted);font-size:13px}
+.d-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sizes{display:flex;gap:18px;align-items:flex-end;padding:14px;border-radius:10px;background:var(--sunk)}
+.sizes figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.sizes .bimg{border-radius:4px}
+.s1{width:18px!important;height:18px!important}.s2{width:36px!important;height:36px!important}.s3{width:72px!important;height:72px!important}
+.chatline{background:#18181b;color:#efeff1;border-radius:10px;padding:12px 14px;font-size:13px;line-height:20px}
+.chatline .lbl{display:block;font-size:11px;color:#adadb8;margin-bottom:6px;letter-spacing:.05em}
+.chatline img{width:18px;height:18px;vertical-align:-4px;margin-right:4px}
+.chatline .u{color:#bf94ff;font-weight:700}
+.block h4{font-size:13px;letter-spacing:.08em;color:var(--muted);margin:0 0 8px;font-weight:500}
+.block p{margin:0;max-width:62ch}
+.timebox{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px;margin:0}
+.timebox dt{color:var(--muted)}.timebox dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.timebox .big{grid-column:1/-1;font-family:var(--f-mono);font-size:20px;font-weight:600;margin-top:6px}
+table.raw{width:100%;border-collapse:collapse;font-size:13px}
+table.raw td{padding:6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.raw td:first-child{color:var(--muted);width:7.5em}
+table.raw td:last-child{font-family:var(--f-mono);overflow-wrap:anywhere}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
+.toast-msg{font-size:13px;color:var(--live)}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--tip);color:var(--tip-fg);padding:12px 16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:flex;gap:12px;align-items:center;max-width:calc(100vw - 32px);font-size:14px}
+.toast button{border:0;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:700;white-space:nowrap}
+
+.state{padding:56px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.state b{display:block;color:var(--fg);font-size:17px;margin-bottom:6px}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+footer a{color:var(--accent)}
+@media (max-width:560px){.tl{--dw:104px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:12px}.card .bimg{width:56px;height:56px}.stats{width:100%}.bar .lb{font-size:12px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="2" stroke-linejoin="round"><path d="M12 2l7 3v6c0 5-3 9-7 11-4-2-7-6-7-11V5z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></div>
+      <div>
+        <h1>Twitch 徽章圖鑑</h1>
+        <p class="sub"><span class="sync" id="sync"><i></i><span id="syncTxt">讀取中…</span></span></p>
+      </div>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div><b id="stTotal">–</b>全域徽章</div>
+      <div><b id="stLive">–</b>現在可取得</div>
+      <div><b id="stNew">–</b>近 30 天新增</div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabTl" data-view="timeline" aria-selected="true">時間軸</button>
+    <button class="tab" role="tab" id="tabAll" data-view="all" aria-selected="false">所有徽章</button>
+  </nav>
+
+  <div id="stateBox" hidden></div>
+
+  <section id="vTimeline">
+    <div class="tl-bar">
+      <div class="tz">時間以你的時區顯示：<b id="tzName"></b></div>
+      <div class="btns">
+        <button class="btn" id="tlPrev" aria-label="往前 7 天">‹ 前一週</button>
+        <button class="btn primary" id="tlToday">今天</button>
+        <button class="btn" id="tlNext" aria-label="往後 7 天">下一週 ›</button>
+      </div>
+    </div>
+    <div class="legend" style="margin-block:12px">
+      <span><i style="background:var(--bar-watch);border-color:var(--bar-watch-edge)"></i>觀看即可取得</span>
+      <span><i style="background:var(--bar-sub);border-color:var(--bar-sub-edge)"></i>需要訂閱</span>
+      <span><i style="background:var(--bar-other);border-color:var(--bar-other-edge)"></i>其他條件</span>
+      <span>滑鼠移到長條上看開始與結束時間，點擊看詳細</span>
+    </div>
+    <div class="tl-scroll" id="tlScroll"><div class="tl" id="tl"></div></div>
+  </section>
+
+  <section id="vAll" hidden>
+    <div class="controls">
+      <div class="row">
+        <label class="search" for="q">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="搜尋徽章名稱、遊戲或 set_id" autocomplete="off">
+        </label>
+        <select id="sort" aria-label="排序">
+          <option value="new">最新發現</option>
+          <option value="name">名稱 A–Z</option>
+          <option value="ending">即將結束優先</option>
+        </select>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <div class="chips" id="fTime" role="group" aria-label="篩選">
+          <button class="chip" data-v="all" aria-pressed="true">全部</button>
+          <button class="chip" data-v="live" aria-pressed="false">現在可取得</button>
+          <button class="chip" data-v="soon" aria-pressed="false">即將開始</button>
+          <button class="chip" data-v="new30" aria-pressed="false">近 30 天新增</button>
+          <button class="chip" data-v="ended" aria-pressed="false">活動已結束</button>
+          <button class="chip" data-v="gone" aria-pressed="false">已從 Twitch 移除</button>
+        </div>
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+    <div class="grid" id="grid" style="margin-top:16px"></div>
+    <div class="more"><button class="btn" id="moreBtn" hidden>顯示更多</button></div>
+  </section>
+
+  <footer>徽章名稱、說明與圖片來自 Twitch 官方 API（Get Global Chat Badges），每 10 分鐘自動同步。活動時間來自 Twitch Drops，實際條件以 <a href="https://www.twitch.tv/drops/campaigns" target="_blank" rel="noopener">Twitch Drops 頁面</a>為準。本站與 Twitch 無關聯。</footer>
+</div>
+
+<div class="scrim" id="scrim" hidden><aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="dTitle"></aside></div>
+<div class="tip" id="tip" hidden></div>
+<div class="toast" id="toast" hidden><span id="toastTxt"></span><button id="toastBtn">查看</button></div>
+
+<script>
+const DATA_URL="data/badges.json";
+const POLL_MS=2*60*1000;
+const DAY=864e5;
+const TZ=Intl.DateTimeFormat().resolvedOptions().timeZone||"UTC";
+
+let DB={badges:[],updated_at:null};
+let lastUpdated=null;
+
+/* ---------- 工具 ---------- */
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const keyOf=b=>`${b.set_id}-v${b.id}`;
+const t=s=>s?Date.parse(s):null;
+const now=()=>Date.now();
+const fmtFull=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false,timeZoneName:"short"});
+const fmtDate=new Intl.DateTimeFormat("zh-TW",{year:"numeric",month:"2-digit",day:"2-digit"});
+const fmtRel=new Intl.RelativeTimeFormat("zh-TW",{numeric:"auto"});
+const full=s=>s?fmtFull.format(new Date(s)):"—";
+function ago(ms){const m=Math.round((ms-now())/6e4);if(Math.abs(m)<60)return fmtRel.format(m,"minute");const h=Math.round(m/60);if(Math.abs(h)<48)return fmtRel.format(h,"hour");return fmtRel.format(Math.round(h/24),"day")}
+function dur(ms){if(ms<=0)return "0 分";const d=Math.floor(ms/DAY),h=Math.floor(ms%DAY/36e5),m=Math.floor(ms%36e5/6e4);return d>0?`${d} 天 ${h} 小時`:h>0?`${h} 小時 ${m} 分`:`${m} 分`}
+function countdown(ms){if(ms<=0)return "0";const d=Math.floor(ms/DAY),h=Math.floor(ms%DAY/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
+  return (d?`${d} 天 `:"")+`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`}
+const initials=s=>String(s).replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"?";
+const fb=b=>`this.replaceWith(Object.assign(document.createElement('span'),{className:'mono-fb',textContent:'${initials(b.title)}'}))`;
+const pic=(b,cls="",size=4)=>`<span class="bimg ${cls}"><img src="${esc(b["image_url_"+size+"x"])}" alt="${esc(b.title)}" loading="lazy" onerror="${fb(b)}"></span>`;
+
+function status(b){
+  if(b.removed_at) return {k:"gone",t:"已移除"};
+  const c=b.campaign;
+  if(!c||!c.start) return {k:"perm",t:"無活動資料"};
+  const s=t(c.start),e=t(c.end),n=now();
+  if(n<s) return {k:"soon",t:"即將開始"};
+  if(e&&n>e) return {k:"ended",t:"已結束"};
+  return {k:"live",t:"進行中"};
+}
+const pill=b=>{const s=status(b);return `<span class="pill st-${s.k}">${s.t}</span>`};
+const kind=b=>b.campaign?.subs?"sub":b.campaign?.minutes?"watch":"other";
+const req=c=>!c?"":c.subs?`訂閱或贈送 ${c.subs} 份訂閱`:c.minutes?`觀看 ${c.minutes} 分鐘`:"";
+const isNew=b=>!b.baseline&&now()-t(b.first_seen)<30*DAY;
+
+/* ---------- 資料 ---------- */
+async function load(first){
+  try{
+    const r=await fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok) throw new Error(r.status);
+    const d=await r.json();
+    if(lastUpdated&&d.updated_at!==lastUpdated){
+      const old=new Set(DB.badges.map(keyOf));
+      const fresh=d.badges.filter(b=>!old.has(keyOf(b)));
+      DB=d; renderAll();
+      if(fresh.length) showToast(`有 ${fresh.length} 個新徽章：${fresh.slice(0,3).map(b=>b.title).join("、")}${fresh.length>3?"…":""}`,keyOf(fresh[0]));
+    }else if(first){DB=d; renderAll()}
+    lastUpdated=d.updated_at; setSync(true);
+  }catch(e){
+    if(first) showState("還沒有資料",`找不到 ${DATA_URL}。如果你剛建好網站，請到 GitHub 的 Actions 頁面手動執行一次「更新徽章資料」，約 1 分鐘後重新整理。`);
+    setSync(false);
+  }
+}
+function setSync(ok){
+  const el=document.getElementById("sync"),tx=document.getElementById("syncTxt");
+  el.classList.toggle("stale",!ok);
+  tx.textContent=DB.updated_at?`資料更新於 ${ago(t(DB.updated_at))}・每 10 分鐘同步 Twitch`:(ok?"已連線":"無法讀取資料");
+}
+function showState(title,msg){const s=document.getElementById("stateBox");s.hidden=false;s.className="state";s.innerHTML=`<b>${esc(title)}</b>${esc(msg)}`}
+let toastKey=null;
+function showToast(msg,k){toastKey=k;document.getElementById("toastTxt").textContent=msg;document.getElementById("toast").hidden=false;setTimeout(()=>document.getElementById("toast").hidden=true,15000)}
+document.getElementById("toastBtn").onclick=()=>{document.getElementById("toast").hidden=true;if(toastKey)location.hash="b-"+toastKey};
+
+function renderAll(){
+  document.getElementById("stateBox").hidden=true;
+  const B=DB.badges;
+  document.getElementById("stTotal").textContent=B.filter(b=>!b.removed_at).length.toLocaleString();
+  document.getElementById("stLive").textContent=B.filter(b=>status(b).k==="live").length;
+  document.getElementById("stNew").textContent=B.filter(isNew).length;
+  renderTimeline(); renderGrid(); setSync(true);
+}
+
+/* ---------- 時間軸 ---------- */
+let tlStart=startOfDay(now()-3*DAY); const TL_DAYS=21;
+function startOfDay(ms){const d=new Date(ms);d.setHours(0,0,0,0);return d.getTime()}
+function addDays(ms,n){const d=new Date(ms);d.setDate(d.getDate()+n);return d.getTime()}
+const wdFmt=new Intl.DateTimeFormat("zh-TW",{weekday:"short"}), mdFmt=new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric"});
+function renderTimeline(){
+  const tl=document.getElementById("tl"), dw=parseFloat(getComputedStyle(tl).getPropertyValue("--dw"))||150;
+  const days=[...Array(TL_DAYS)].map((_,i)=>addDays(tlStart,i));
+  const rangeEnd=addDays(tlStart,TL_DAYS);
+  const px=ms=>{ // 依實際日界線換算，夏令時間也正確
+    let i=0; while(i<TL_DAYS-1&&ms>=days[i+1]) i++;
+    const ds=days[i], de=i+1<TL_DAYS?days[i+1]:rangeEnd;
+    return (i+(ms-ds)/(de-ds))*dw;
+  };
+  const items=DB.badges.filter(b=>b.campaign?.start&&!b.removed_at)
+    .map(b=>({b,s:t(b.campaign.start),e:b.campaign.end?t(b.campaign.end):null}))
+    .filter(x=>x.s<rangeEnd&&(x.e===null||x.e>tlStart))
+    .sort((a,b)=>a.s-b.s||(a.e??Infinity)-(b.e??Infinity));
+  const lanes=[];
+  for(const it of items){
+    const ee=it.e??Infinity;
+    let L=lanes.find(l=>l.end+2*36e5<=it.s); // 同一列需間隔 2 小時以上
+    if(!L){L={end:-Infinity,items:[]};lanes.push(L)}
+    L.items.push(it); L.end=ee;
+  }
+  const todayMs=startOfDay(now());
+  const W=TL_DAYS*dw;
+  let html=`<div class="tl-days" style="width:${W}px">${days.map(d=>{const dt=new Date(d);return `<div class="tl-day${d===todayMs?" today":""}"><div class="wd">${wdFmt.format(dt)}</div><div class="dt">${mdFmt.format(dt)}</div></div>`}).join("")}</div>`;
+  html+=`<div class="tl-body" style="width:${W}px"><div class="tl-grid">${days.map(d=>{const w=new Date(d).getDay();return `<div class="${w===0||w===6?"wkend":""}"></div>`}).join("")}</div>`;
+  if(!lanes.length) html+=`<div class="tl-empty">這段期間沒有限時徽章活動。用上方按鈕切換到其他週。</div>`;
+  for(const L of lanes){
+    html+=`<div class="lane">`+L.items.map(({b,s,e})=>{
+      const x1=s<tlStart?0:px(s), x2=e===null||e>=rangeEnd?W:px(e);
+      const st=status(b).k;
+      const cls=["bar",kind(b),st==="ended"?"ended":"",s<tlStart?"cut-l":"",e!==null&&e>=rangeEnd?"cut-r":"",e===null?"open-end":""].join(" ");
+      return `<button class="${cls}" style="left:${x1}px;width:${Math.max(44,x2-x1)}px" data-k="${esc(keyOf(b))}" aria-label="${esc(b.title)}，${esc(full(b.campaign.start))} 到 ${esc(b.campaign.end?full(b.campaign.end):"未公布")}">
+        <span class="ic"><img src="${esc(b.image_url_2x)}" alt="" onerror="${fb(b)}"></span><span class="lb">${esc(b.title)}</span></button>`;
+    }).join("")+`</div>`;
+  }
+  const n=now();
+  if(n>=tlStart&&n<rangeEnd) html+=`<div class="now-line" style="left:${px(n)}px"><span>現在</span></div>`;
+  html+=`</div>`;
+  tl.innerHTML=html;
+}
+function scrollToNow(){
+  const sc=document.getElementById("tlScroll"), line=sc.querySelector(".now-line");
+  if(line) sc.scrollLeft=Math.max(0,parseFloat(line.style.left)-sc.clientWidth*0.25);
+}
+document.getElementById("tlPrev").onclick=()=>{tlStart=addDays(tlStart,-7);renderTimeline();document.getElementById("tlScroll").scrollLeft=0};
+document.getElementById("tlNext").onclick=()=>{tlStart=addDays(tlStart,7);renderTimeline();document.getElementById("tlScroll").scrollLeft=0};
+document.getElementById("tlToday").onclick=()=>{tlStart=startOfDay(now()-3*DAY);renderTimeline();scrollToNow()};
+
+/* 提示框 */
+const tip=document.getElementById("tip");
+function showTip(el,x,y){
+  const b=DB.badges.find(v=>keyOf(v)===el.dataset.k); if(!b) return;
+  const c=b.campaign, st=status(b), s=t(c.start), e=c.end?t(c.end):null, n=now();
+  const rem=st.k==="live"&&e?`剩餘 ${dur(e-n)}`:st.k==="soon"?`${dur(s-n)}後開始`:st.k==="ended"?"活動已結束":"結束時間未公布";
+  tip.innerHTML=`<div class="t"><img src="${esc(b.image_url_2x)}" alt=""><div><b>${esc(b.title)}</b><small>${esc(c.game||"")}${req(c)?"・"+req(c):""}</small></div></div>
+    <dl><dt>開始</dt><dd>${esc(full(c.start))}</dd><dt>結束</dt><dd>${c.end?esc(full(c.end)):"未公布"}</dd><dt>期間</dt><dd>${e?dur(e-s):"—"}</dd></dl>
+    <div class="rem" style="color:var(--${st.k==="live"?"live":st.k==="soon"?"soon":"ended"})">${rem}</div>`;
+  tip.hidden=false; placeTip(x,y);
+}
+function placeTip(x,y){
+  const r=tip.getBoundingClientRect(), pad=12;
+  let L=x+14, T=y+16;
+  if(L+r.width>innerWidth-pad) L=x-r.width-14;
+  if(T+r.height>innerHeight-pad) T=y-r.height-16;
+  tip.style.left=Math.max(pad,L)+"px"; tip.style.top=Math.max(pad,T)+"px";
+}
+const tlEl=document.getElementById("tl");
+tlEl.addEventListener("pointermove",e=>{
+  if(e.pointerType!=="mouse") return;
+  const bar=e.target.closest(".bar"); if(!bar){tip.hidden=true;return}
+  if(tip.hidden||tip.dataset.k!==bar.dataset.k){tip.dataset.k=bar.dataset.k;showTip(bar,e.clientX,e.clientY)} else placeTip(e.clientX,e.clientY);
+});
+tlEl.addEventListener("pointerleave",()=>{tip.hidden=true;tip.dataset.k=""});
+tlEl.addEventListener("focusin",e=>{const bar=e.target.closest(".bar");if(bar){const r=bar.getBoundingClientRect();tip.dataset.k=bar.dataset.k;showTip(bar,r.left+20,r.bottom)}});
+tlEl.addEventListener("focusout",()=>{tip.hidden=true});
+document.getElementById("tlScroll").addEventListener("scroll",()=>{tip.hidden=true},{passive:true});
+
+/* ---------- 所有徽章 ---------- */
+const st={q:"",f:"all",sort:"new",limit:120};
+try{st.sort=localStorage.getItem("bdg-sort")||"new"}catch(_){}
+function match(b){
+  const q=st.q.trim().toLowerCase();
+  if(q&&![b.title,b.set_id,b.campaign?.game,b.description].some(x=>(x||"").toLowerCase().includes(q))) return false;
+  const s=status(b).k;
+  switch(st.f){case "live":return s==="live";case "soon":return s==="soon";case "ended":return s==="ended";case "gone":return s==="gone";case "new30":return isNew(b)}
+  return s!=="gone";
+}
+function cmp(a,b){
+  if(st.sort==="name") return a.title.localeCompare(b.title,"en",{numeric:true});
+  if(st.sort==="ending"){const ea=status(a).k==="live"&&a.campaign?.end?t(a.campaign.end):Infinity,eb=status(b).k==="live"&&b.campaign?.end?t(b.campaign.end):Infinity;if(ea!==eb)return ea-eb}
+  if(a.baseline!==b.baseline) return a.baseline?1:-1;
+  return t(b.first_seen)-t(a.first_seen)||a.set_id.localeCompare(b.set_id)||Number(a.id)-Number(b.id);
+}
+function renderGrid(){
+  const list=DB.badges.filter(match).sort(cmp);
+  document.getElementById("count").textContent=`${list.length.toLocaleString()} 個`;
+  const shown=list.slice(0,st.limit);
+  document.getElementById("grid").innerHTML=shown.length?shown.map(b=>`
+    <button class="card" data-k="${esc(keyOf(b))}">
+      ${pic(b)}
+      <div><div class="nm">${esc(b.title)}</div><div class="gm">${esc(b.campaign?.game||b.set_id)}</div></div>
+      <div class="foot">${status(b).k==="perm"?`<span class="tag">v${esc(b.id)}</span>`:pill(b)}<span class="date">${isNew(b)?`<span class="new">NEW </span>`:""}${b.baseline?"":fmtDate.format(new Date(b.first_seen))}</span></div>
+    </button>`).join(""):`<div class="empty">沒有符合條件的徽章。試著清除搜尋文字，或切回「全部」。</div>`;
+  document.getElementById("moreBtn").hidden=list.length<=st.limit;
+}
+document.getElementById("moreBtn").onclick=()=>{st.limit+=120;renderGrid()};
+document.getElementById("fTime").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;st.f=c.dataset.v;st.limit=120;
+  document.querySelectorAll("#fTime .chip").forEach(x=>x.setAttribute("aria-pressed",x===c));renderGrid()});
+document.getElementById("q").addEventListener("input",e=>{st.q=e.target.value;st.limit=120;renderGrid()});
+const sortSel=document.getElementById("sort");sortSel.value=st.sort;
+sortSel.addEventListener("change",e=>{st.sort=e.target.value;try{localStorage.setItem("bdg-sort",st.sort)}catch(_){};renderGrid()});
+
+/* ---------- 詳細 ---------- */
+const scrim=document.getElementById("scrim"),panel=document.getElementById("panel");
+let lastFocus=null;
+function openDetail(k){
+  const b=DB.badges.find(v=>keyOf(v)===k); if(!b) return;
+  const c=b.campaign, s=status(b);
+  const big=s.k==="live"&&c?.end?`<div class="big" data-to="${esc(c.end)}" data-pre="剩餘 "></div>`:s.k==="soon"?`<div class="big" data-to="${esc(c.start)}" data-pre="距離開始 "></div>`:"";
+  const src={drops:"Twitch Drops（自動）",manual:"手動整理","drops+manual":"Twitch Drops＋手動修正"}[c?.source]||"";
+  panel.innerHTML=`
+    <button class="x" id="dClose" aria-label="關閉">×</button>
+    <div class="d-head">${pic(b)}<div><h3 id="dTitle">${esc(b.title)}</h3><div class="gm">${esc(c?.game||"")}${c?.game?"・":""}${esc(b.set_id)} v${esc(b.id)}</div><div class="d-pills">${pill(b)}${isNew(b)?`<span class="tag">新徽章</span>`:""}</div></div></div>
+    <div class="sizes">${[1,2,4].map((n,i)=>`<figure>${pic(b,"s"+(i+1),n)}<figcaption>${18*(i+1)}px</figcaption></figure>`).join("")}</div>
+    <div class="chatline"><span class="lbl">聊天室中的樣子</span><img src="${esc(b.image_url_1x)}" alt=""><span class="u">viewer</span>: GG</div>
+    <div class="block"><h4>官方說明</h4><p lang="en">${esc(b.description||"—")}</p></div>
+    ${c?.start?`<div class="block"><h4>活動時間（${esc(TZ)}）</h4><dl class="timebox"><dt>開始</dt><dd>${esc(full(c.start))}</dd><dt>結束</dt><dd>${c.end?esc(full(c.end)):"未公布"}</dd>${req(c)?`<dt>條件</dt><dd>${esc(req(c))}</dd>`:""}${big}</dl></div>`:""}
+    <div class="block"><h4>資料</h4><table class="raw"><tbody>
+      <tr><td>set_id</td><td>${esc(b.set_id)}</td></tr><tr><td>版本</td><td>${esc(b.id)}</td></tr>
+      <tr><td>首次偵測</td><td>${b.baseline?"建站前即存在":esc(full(b.first_seen))}</td></tr>
+      ${b.removed_at?`<tr><td>移除時間</td><td>${esc(full(b.removed_at))}</td></tr>`:""}
+      ${src?`<tr><td>活動資料</td><td>${esc(src)}</td></tr>`:""}
+      ${b.click_url?`<tr><td>官方連結</td><td><a href="${esc(b.click_url)}" target="_blank" rel="noopener">${esc(b.click_url)}</a></td></tr>`:""}
+    </tbody></table></div>
+    <div class="actions"><a class="btn" href="https://www.twitch.tv/drops/campaigns" target="_blank" rel="noopener">打開 Twitch Drops</a><button class="btn primary" id="dCopy">複製連結</button><span class="toast-msg" id="dMsg" aria-live="polite"></span></div>`;
+  scrim.hidden=false; tip.hidden=true; document.body.style.overflow="hidden"; tick();
+  document.getElementById("dClose").onclick=()=>closeDetail();
+  document.getElementById("dCopy").onclick=()=>{const url=location.href.split("#")[0]+"#b-"+k,m=document.getElementById("dMsg"),f=()=>{m.textContent=url};
+    try{navigator.clipboard.writeText(url).then(()=>{m.textContent="已複製"},f)}catch(_){f()}};
+  document.getElementById("dClose").focus();
+}
+function closeDetail(){scrim.hidden=true;document.body.style.overflow="";if(location.hash.startsWith("#b-"))history.replaceState(null,"",location.pathname+location.search+"#"+view);lastFocus?.focus?.()}
+document.addEventListener("click",e=>{const el=e.target.closest("[data-k]");if(el&&!e.target.closest(".panel")){lastFocus=el;location.hash="b-"+el.dataset.k;return}if(e.target===scrim)closeDetail()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!scrim.hidden)closeDetail()});
+
+/* ---------- 分頁與網址 ---------- */
+let view="timeline";
+function setView(v){view=v;document.getElementById("vTimeline").hidden=v!=="timeline";document.getElementById("vAll").hidden=v!=="all";
+  document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",x.dataset.view===v));if(v==="timeline")requestAnimationFrame(scrollToNow)}
+document.querySelectorAll(".tab").forEach(x=>x.onclick=()=>{location.hash=x.dataset.view});
+function route(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  if(h.startsWith("b-")){openDetail(h.slice(2));return}
+  if(!scrim.hidden)closeDetail();
+  setView(h==="all"?"all":"timeline");
+}
+window.addEventListener("hashchange",route);
+
+function tick(){document.querySelectorAll("[data-to]").forEach(el=>{el.textContent=(el.dataset.pre||"")+countdown(t(el.dataset.to)-now())})}
+
+/* ---------- 啟動 ---------- */
+document.getElementById("tzName").textContent=TZ+"（"+(new Intl.DateTimeFormat("zh-TW",{timeZoneName:"short"}).formatToParts(new Date()).find(p=>p.type==="timeZoneName")?.value||"")+"）";
+(async()=>{await load(true);route();requestAnimationFrame(scrollToNow)})();
+setInterval(tick,1000);
+setInterval(()=>load(false),POLL_MS);
+setInterval(()=>{if(DB.badges.length){renderTimeline();setSync(true)}},60*1000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)load(false)});
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(DB.badges.length)renderTimeline()},150)});
+</script>
+</body>
+</html>
