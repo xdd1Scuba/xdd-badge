@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>補活動時間</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: 左欄搜尋徽章清單 → 右欄填寫表單＋待存檔清單＋產生的 JSON；手機上改為上下排列 */
+:root{
+  --bg:#f3f2f7; --surface:#ffffff; --sunk:#e9e7f1; --fg:#191624; --muted:#666079; --line:#dcd8e6;
+  --accent:#7434e6; --accent-ink:#ffffff; --accent-soft:#ece3fd; --ok:#0f8a5f; --ok-soft:#daf3e8; --warn:#a86200; --warn-soft:#fbecd3;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f0e14; --surface:#18161f; --sunk:#211e2b; --fg:#ecebf2; --muted:#9e98b3; --line:#2d2a39;
+  --accent:#a675ff; --accent-ink:#130b22; --accent-soft:#2a1f45; --ok:#3ad39a; --ok-soft:#123528; --warn:#f0b350; --warn-soft:#3a2a10; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f0e14; --surface:#18161f; --sunk:#211e2b; --fg:#ecebf2; --muted:#9e98b3; --line:#2d2a39;
+  --accent:#a675ff; --accent-ink:#130b22; --accent-soft:#2a1f45; --ok:#3ad39a; --ok-soft:#123528; --warn:#f0b350; --warn-soft:#3a2a10; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-block:24px 56px;display:flex;flex-direction:column;gap:20px}
+h1{font-size:24px;margin:0;font-weight:700}
+.sub{color:var(--muted);margin:4px 0 0;font-size:14px;max-width:70ch}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:start}
+@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.box h2{font-size:15px;margin:0;font-weight:700;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.box h2 small{font-weight:400;color:var(--muted);font-size:12px}
+input[type=search],input[type=text],input[type=number],input[type=datetime-local],select{height:40px;border:1px solid var(--line);border-radius:9px;background:var(--surface);padding:0 10px;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:30px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.list{display:flex;flex-direction:column;max-height:560px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}
+.item{display:flex;gap:10px;align-items:center;padding:8px 10px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;cursor:pointer;width:100%}
+.item:last-child{border-bottom:0}
+.item:hover{background:var(--sunk)}
+.item[aria-current="true"]{background:var(--accent-soft)}
+.item img{width:36px;height:36px;border-radius:6px;background:var(--sunk);flex:none;object-fit:contain}
+.item .t{min-width:0;flex:1}
+.item .n{font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .s{font-family:var(--f-mono);font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{font-size:11px;font-weight:700;padding:0 6px;border-radius:999px;line-height:20px;white-space:nowrap}
+.b-has{color:var(--ok);background:var(--ok-soft)}.b-pend{color:var(--warn);background:var(--warn-soft)}
+.empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:14px}
+.sel{display:flex;gap:12px;align-items:center}
+.sel img{width:56px;height:56px;border-radius:8px;background:var(--sunk);object-fit:contain}
+.sel b{display:block;font-size:17px}
+.sel span{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.form .full{grid-column:1/-1}
+@media (max-width:480px){.form{grid-template-columns:minmax(0,1fr)}}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{flex:1;height:38px;border:0;background:var(--surface);cursor:pointer;font-size:13px;border-left:1px solid var(--line)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);font-weight:700}
+.hint{font-size:12px;color:var(--muted)}
+.err{font-size:13px;color:var(--warn)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{height:38px;padding:0 14px;border-radius:9px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.btn.ghost{border-color:transparent;color:var(--muted)}
+.pend{display:flex;flex-direction:column;gap:6px}
+.pend div{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;padding:6px 10px;background:var(--sunk);border-radius:8px;min-width:0}
+.pend span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.pend button{border:0;background:transparent;color:var(--muted);cursor:pointer;flex:none}
+textarea{width:100%;min-height:200px;border:1px solid var(--line);border-radius:10px;background:var(--sunk);padding:10px;font-family:var(--f-mono);font-size:12px;line-height:1.5;resize:vertical}
+ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.msg{font-size:13px;color:var(--ok)}
+.mono{font-family:var(--f-mono)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>補活動時間</h1>
+    <p class="sub">從 Twitch Drops 頁面看到活動後，在這裡選徽章、填時間，最後把產生的內容貼進 GitHub 的 <span class="mono">data/campaigns.manual.json</span>。時間依你的時區輸入：<b id="tz" class="mono"></b>，存檔時會自動轉成 UTC。</p>
+  </header>
+
+  <div class="cols">
+    <section class="box">
+      <h2>選擇徽章 <small id="cnt"></small></h2>
+      <input type="search" id="q" placeholder="輸入 Drops 頁面上的徽章名稱，例如 Hunt Red" autocomplete="off">
+      <div class="chips" id="flt">
+        <button class="chip" data-v="none" aria-pressed="true">還沒有時間</button>
+        <button class="chip" data-v="has" aria-pressed="false">已有時間</button>
+        <button class="chip" data-v="all" aria-pressed="false">全部</button>
+      </div>
+      <div class="list" id="list"><div class="empty">讀取徽章資料中…</div></div>
+      <p class="hint">清單依「最近偵測到」排序。建站時已存在的徽章排在後面，用搜尋最快。</p>
+    </section>
+
+    <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+      <section class="box" id="editBox">
+        <h2>活動資料</h2>
+        <div id="noSel" class="empty">從左邊選一個徽章開始。</div>
+        <form id="form" hidden novalidate>
+          <div class="sel" id="sel"></div>
+          <div class="form" style="margin-top:12px">
+            <label class="f full" for="fGame">遊戲或分類
+              <input type="text" id="fGame" placeholder="例如 Hunt: Showdown 1896" list="games">
+              <datalist id="games"></datalist>
+            </label>
+            <label class="f" for="fStart">開始時間
+              <input type="datetime-local" id="fStart" required>
+            </label>
+            <label class="f" for="fEnd">結束時間
+              <input type="datetime-local" id="fEnd">
+              <span class="hint">還沒公布可以留空</span>
+            </label>
+            <div class="f full">取得條件
+              <div class="seg" id="fReq">
+                <button type="button" data-v="minutes" aria-pressed="true">觀看</button>
+                <button type="button" data-v="subs" aria-pressed="false">訂閱</button>
+                <button type="button" data-v="other" aria-pressed="false">其他</button>
+              </div>
+            </div>
+            <label class="f" for="fNum" id="numWrap">觀看分鐘數
+              <input type="number" id="fNum" min="1" step="1" value="15" inputmode="numeric">
+            </label>
+          </div>
+          <p class="err" id="err" hidden></p>
+          <div class="row" style="margin-top:12px">
+            <button type="submit" class="btn primary">加入待存檔</button>
+            <button type="button" class="btn ghost" id="fClear">清除這個徽章的手動資料</button>
+            <span class="msg" id="fMsg" aria-live="polite"></span>
+          </div>
+        </form>
+      </section>
+
+      <section class="box">
+        <h2>待存檔 <small id="pendCnt"></small></h2>
+        <div class="pend" id="pend"></div>
+        <ol class="how">
+          <li>按「複製全部內容」</li>
+          <li>按「到 GitHub 編輯」，在編輯畫面按 Ctrl+A 全選，貼上覆蓋</li>
+          <li>按 Commit changes，約 1 分鐘後網站自動更新</li>
+        </ol>
+        <div class="row">
+          <button class="btn primary" id="copy">複製全部內容</button>
+          <a class="btn" id="ghLink" target="_blank" rel="noopener">到 GitHub 編輯</a>
+          <button class="btn ghost" id="reset">清空待存檔</button>
+          <span class="msg" id="copyMsg" aria-live="polite"></span>
+        </div>
+        <textarea id="out" readonly aria-label="campaigns.manual.json 內容" spellcheck="false"></textarea>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+const K=b=>`${b.set_id}/${b.id}`;
+const TZ=Intl.DateTimeFormat().resolvedOptions().timeZone||"UTC";
+document.getElementById("tz").textContent=TZ;
+
+let BADGES=[], BASE={}, pending={}, cur=null, filter="none", req="minutes";
+try{pending=JSON.parse(localStorage.getItem("manual-pending")||"{}")}catch(_){pending={}}
+const savePending=()=>{try{localStorage.setItem("manual-pending",JSON.stringify(pending))}catch(_){}};
+
+/* GitHub 編輯連結：xdd1scuba.github.io/xdd-badge → github.com/xdd1scuba/xdd-badge */
+(function(){
+  const m=location.hostname.match(/^([^.]+)\.github\.io$/), repo=location.pathname.split("/").filter(Boolean)[0];
+  const a=document.getElementById("ghLink");
+  if(m&&repo) a.href=`https://github.com/${m[1]}/${repo}/edit/main/data/campaigns.manual.json`;
+  else {a.href="https://github.com";a.textContent="到 GitHub（開啟 data/campaigns.manual.json）"}
+})();
+
+/* datetime-local 與 ISO 互轉（依瀏覽器時區） */
+const pad=n=>String(n).padStart(2,"0");
+function toLocalInput(iso){if(!iso)return "";const d=new Date(iso);if(isNaN(d))return "";return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}
+function toISO(v){if(!v)return null;const d=new Date(v);return isNaN(d)?null:d.toISOString().replace(/\.\d{3}Z$/,"Z")}
+const fmt=new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+
+function merged(){const o={...BASE};for(const[k,v]of Object.entries(pending)){if(v===null)delete o[k];else o[k]=v}return o}
+function entryFor(b){const k=K(b);if(k in pending)return pending[k];if(BASE[k])return BASE[k];return b.campaign||null}
+
+async function load(){
+  const bust="?t="+Date.now();
+  try{
+    const [a,m]=await Promise.all([fetch("data/badges.json"+bust,{cache:"no-store"}),fetch("data/campaigns.manual.json"+bust,{cache:"no-store"})]);
+    if(!a.ok) throw new Error("badges");
+    BADGES=(await a.json()).badges.filter(b=>!b.removed_at);
+    BASE=m.ok?await m.json():{};
+  }catch(e){
+    document.getElementById("list").innerHTML=`<div class="empty">讀不到徽章資料。請確認網站已經成功執行過一次「更新徽章資料」。</div>`;
+    return;
+  }
+  // 已經存進 GitHub 的修改，從待存檔移除
+  for(const k of Object.keys(pending)){const v=pending[k];if((v===null&&!BASE[k])||(v&&JSON.stringify(v)===JSON.stringify(BASE[k])))delete pending[k]}
+  savePending();
+  const games=[...new Set(BADGES.map(b=>b.campaign?.game).concat(Object.values(BASE).map(v=>v&&v.game)).filter(Boolean))].sort();
+  document.getElementById("games").innerHTML=games.map(g=>`<option value="${esc(g)}">`).join("");
+  renderList(); renderPending();
+}
+
+function renderList(){
+  const q=norm(document.getElementById("q").value);
+  let L=BADGES.filter(b=>{
+    if(q&&!norm(b.title).includes(q)&&!norm(b.set_id).includes(q))return false;
+    const has=!!entryFor(b)?.start;
+    return filter==="all"||(filter==="has"?has:!has);
+  });
+  L.sort((a,b)=>(a.baseline-b.baseline)||b.first_seen.localeCompare(a.first_seen)||a.title.localeCompare(b.title));
+  document.getElementById("cnt").textContent=`${L.length} 個`;
+  const show=L.slice(0,200);
+  document.getElementById("list").innerHTML=show.length?show.map(b=>{
+    const e=entryFor(b), k=K(b);
+    const tag=k in pending?`<span class="badge b-pend">待存檔</span>`:e?.start?`<span class="badge b-has">${esc(fmt.format(new Date(e.start)))}</span>`:"";
+    return `<button class="item" data-k="${esc(k)}" aria-current="${cur&&K(cur)===k}"><img src="${esc(b.image_url_2x)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="t"><span class="n" style="display:block">${esc(b.title)}</span><span class="s" style="display:block">${esc(k)}</span></span>${tag}</button>`;
+  }).join("")+(L.length>200?`<div class="empty">還有 ${L.length-200} 個，請用搜尋縮小範圍。</div>`:""):`<div class="empty">沒有符合的徽章。換個關鍵字，或切到「全部」。</div>`;
+}
+
+function setReq(v){req=v;document.querySelectorAll("#fReq button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));
+  const w=document.getElementById("numWrap");w.hidden=v==="other";w.firstChild.textContent=v==="subs"?"需要訂閱數":"觀看分鐘數"}
+function pick(k){
+  cur=BADGES.find(b=>K(b)===k); if(!cur) return;
+  const e=entryFor(cur)||{};
+  document.getElementById("noSel").hidden=true; document.getElementById("form").hidden=false;
+  document.getElementById("sel").innerHTML=`<img src="${esc(cur.image_url_4x)}" alt="" onerror="this.style.visibility='hidden'"><div><b>${esc(cur.title)}</b><span>${esc(k)}</span></div>`;
+  document.getElementById("fGame").value=e.game||"";
+  document.getElementById("fStart").value=toLocalInput(e.start);
+  document.getElementById("fEnd").value=toLocalInput(e.end);
+  if(e.subs){setReq("subs");document.getElementById("fNum").value=e.subs}
+  else if(e.minutes){setReq("minutes");document.getElementById("fNum").value=e.minutes}
+  else if(e.start){setReq("other")} else {setReq("minutes");document.getElementById("fNum").value=15}
+  document.getElementById("err").hidden=true; document.getElementById("fMsg").textContent="";
+  renderList(); document.getElementById("fGame").focus();
+}
+document.getElementById("list").addEventListener("click",e=>{const it=e.target.closest(".item");if(it)pick(it.dataset.k)});
+document.getElementById("fReq").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setReq(b.dataset.v)});
+document.getElementById("flt").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;filter=c.dataset.v;document.querySelectorAll("#flt .chip").forEach(x=>x.setAttribute("aria-pressed",x===c));renderList()});
+document.getElementById("q").addEventListener("input",renderList);
+
+document.getElementById("form").addEventListener("submit",e=>{
+  e.preventDefault(); if(!cur) return;
+  const err=document.getElementById("err");
+  const start=toISO(document.getElementById("fStart").value), end=toISO(document.getElementById("fEnd").value);
+  if(!start){err.textContent="請填開始時間。";err.hidden=false;return}
+  if(end&&Date.parse(end)<=Date.parse(start)){err.textContent="結束時間要晚於開始時間。";err.hidden=false;return}
+  const n=parseInt(document.getElementById("fNum").value,10);
+  if(req!=="other"&&!(n>0)){err.textContent=req==="subs"?"請填需要的訂閱數。":"請填觀看分鐘數。";err.hidden=false;return}
+  err.hidden=true;
+  const o={}; const g=document.getElementById("fGame").value.trim(); if(g)o.game=g;
+  o.start=start; if(end)o.end=end; if(req==="minutes")o.minutes=n; if(req==="subs")o.subs=n;
+  pending[K(cur)]=o; savePending();
+  document.getElementById("fMsg").textContent=`已加入：${cur.title}`;
+  renderPending(); renderList();
+});
+document.getElementById("fClear").onclick=()=>{if(!cur)return;const k=K(cur);
+  if(BASE[k])pending[k]=null; else delete pending[k]; savePending();
+  document.getElementById("fMsg").textContent=BASE[k]?"已標記為刪除，存檔後生效":"已清除";renderPending();renderList()};
+
+function renderPending(){
+  const ks=Object.keys(pending);
+  document.getElementById("pendCnt").textContent=ks.length?`${ks.length} 筆`:"";
+  document.getElementById("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];const b=BADGES.find(x=>K(x)===k);
+    return `<div><span>${esc(b?.title||k)}・${v===null?"刪除":esc(fmt.format(new Date(v.start)))+(v.end?" → "+esc(fmt.format(new Date(v.end))):"")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
+    :`<div><span style="color:var(--muted)">還沒有修改。選徽章、填時間後按「加入待存檔」。</span></div>`;
+  const out={}, m=merged();
+  out["_說明"]=BASE["_說明"]||"Drops 讀不到或要修正時，在這裡手動填活動時間。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。";
+  for(const k of Object.keys(m).filter(k=>k!=="_說明").sort()) out[k]=m[k];
+  document.getElementById("out").value=JSON.stringify(out,null,2)+"\n";
+}
+document.getElementById("pend").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b)return;delete pending[b.dataset.del];savePending();renderPending();renderList()});
+document.getElementById("reset").onclick=()=>{pending={};savePending();renderPending();renderList();document.getElementById("copyMsg").textContent="已清空"};
+document.getElementById("copy").onclick=()=>{
+  const ta=document.getElementById("out"),msg=document.getElementById("copyMsg");
+  const fallback=()=>{ta.focus();ta.select();msg.textContent="已選取，請按 Ctrl+C 複製"};
+  try{navigator.clipboard.writeText(ta.value).then(()=>{msg.textContent="已複製"},fallback)}catch(_){fallback()}
+};
+load();
+</script>
+</body>
+</html>
