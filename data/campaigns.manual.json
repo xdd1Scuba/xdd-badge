@@ -6,17 +6,21 @@
     "end": "2026-10-26T06:59:00Z"
   },
   "beagoldfish/1": {
+    "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
-    "end": "2026-11-03T07:59:00Z"
+    "end": "2026-11-03T07:59:00Z",
+    "subs": 1
   },
   "believeinrichmond/1": {
+    "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
-    "end": "2026-11-03T07:59:00Z"
+    "end": "2026-11-03T07:59:00Z",
+    "subs": 1
   },
   "blastoise/1": {
-    "game": "Pokémon",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "note": "!pokemon"
   },
   "bloody-finger-elden-ring/1": {
     "game": "ELDEN RING",
@@ -191,12 +195,16 @@
     "end": "2027-01-30T07:59:00Z"
   },
   "witch-hat/1": {
+    "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
-    "end": "2026-10-31T07:59:00Z"
+    "end": "2026-10-31T07:59:00Z",
+    "subs": 1
   },
   "witchspire-logo/1": {
+    "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
-    "end": "2026-10-31T07:59:00Z"
+    "end": "2026-10-31T07:59:00Z",
+    "minutes": 60
   },
   "wolf-medallion/1": {
     "start": "2026-09-29T10:00:00Z",
