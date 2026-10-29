@@ -53,7 +53,7 @@ async function fetchGlobalBadges(token) {
 }
 
 // ---- Drops 活動（Twitch 網頁內部介面，需要 TWITCH_USER_TOKEN；失敗時不影響徽章更新）----
-const GQL_CLIENT = "kimne78kx3ncx6brgtihcdtnyx";
+let GQL_CLIENT = "kimne78kx3ncx6brgo4mv6wki5h1ko"; // Twitch 網頁版；驗證後會改用憑證實際所屬的 client
 const HASH = {
   ViewerDropsDashboard: "5a4da2ab3d5b47c9f9ce864e727b2cb346af1e3ea8b897fe8f704a97ff017619",
   DropCampaignDetails: "039277bf98f3130929262cc7c6efd9c141ca3749cb6dca442fc8ead9a53f77c1",
@@ -71,7 +71,8 @@ async function validateToken() {
     return false;
   }
   const j = await r.json().catch(() => ({}));
-  console.log(`  驗證結果：有效，帳號 ${j.login || "?"}，client ${j.client_id === GQL_CLIENT ? "Twitch 網頁版（正確）" : (j.client_id || "?") + "（不是網頁版的憑證）"}${j.expires_in ? `，剩餘 ${Math.round(j.expires_in / 86400)} 天` : ""}`);
+  if (j.client_id) GQL_CLIENT = j.client_id; // 憑證與 Client-Id 必須成對
+  console.log(`  驗證結果：有效，帳號 ${j.login || "?"}，client ${j.client_id || "?"}${j.expires_in ? `，剩餘 ${Math.round(j.expires_in / 86400)} 天` : ""}`);
   return true;
 }
 async function gqlPost(body) {
