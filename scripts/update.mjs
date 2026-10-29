@@ -58,10 +58,26 @@ const HASH = {
   ViewerDropsDashboard: "5a4da2ab3d5b47c9f9ce864e727b2cb346af1e3ea8b897fe8f704a97ff017619",
   DropCampaignDetails: "039277bf98f3130929262cc7c6efd9c141ca3749cb6dca442fc8ead9a53f77c1",
 };
+function cleanToken() {
+  return String(USER_TOKEN || "").trim().replace(/^["']|["']$/g, "").replace(/^(OAuth|Bearer)\s+/i, "").trim();
+}
+// 用 Twitch 官方驗證端點確認憑證，只印帳號名稱，不印憑證內容
+async function validateToken() {
+  const tk = cleanToken();
+  console.log(`  憑證長度 ${tk.length} 字元${/^[a-z0-9]+$/.test(tk) ? "" : "（含有英數字以外的字元，可能複製錯了）"}`);
+  const r = await fetch("https://id.twitch.tv/oauth2/validate", { headers: { Authorization: `OAuth ${tk}` } });
+  if (r.status === 401) {
+    console.warn("  驗證結果：Twitch 表示這個憑證無效或已過期。請重新複製 auth-token，或確認該帳號沒有登出。");
+    return false;
+  }
+  const j = await r.json().catch(() => ({}));
+  console.log(`  驗證結果：有效，帳號 ${j.login || "?"}，client ${j.client_id === GQL_CLIENT ? "Twitch 網頁版（正確）" : (j.client_id || "?") + "（不是網頁版的憑證）"}${j.expires_in ? `，剩餘 ${Math.round(j.expires_in / 86400)} 天` : ""}`);
+  return true;
+}
 async function gqlPost(body) {
   const r = await fetch("https://gql.twitch.tv/gql", {
     method: "POST",
-    headers: { "Client-Id": GQL_CLIENT, Authorization: `OAuth ${USER_TOKEN.replace(/^OAuth\s+/i, "").trim()}`, "Content-Type": "application/json" },
+    headers: { "Client-Id": GQL_CLIENT, Authorization: `OAuth ${cleanToken()}`, "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
   const text = await r.text();
@@ -105,6 +121,7 @@ async function fetchDropCampaigns() {
   if (!USER_TOKEN) { console.log("未設定 TWITCH_USER_TOKEN，略過 Drops 活動時間"); return null; }
   try {
     console.log("讀取 Drops 活動…");
+    if (!(await validateToken())) return null;
     const ctx = await listCampaigns();
     const camps = ctx.camps.filter(c => !c.status || ["ACTIVE", "UPCOMING"].includes(c.status));
     console.log(`  找到 ${camps.length} 個 Drops 活動（${ctx.via}）`);
