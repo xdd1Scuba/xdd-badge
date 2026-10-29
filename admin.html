@@ -206,6 +206,9 @@ async function load(){
   const games=[...new Set(BADGES.map(b=>b.campaign?.game).concat(Object.values(BASE).map(v=>v&&v.game)).filter(Boolean))].sort();
   document.getElementById("games").innerHTML=games.map(g=>`<option value="${esc(g)}">`).join("");
   renderList(); renderPending();
+  // 從 Discord 通知點進來時（admin.html#b=set_id/版本），自動選好該徽章
+  const h=decodeURIComponent(location.hash.slice(1));
+  if(h.startsWith("b=")){const k=h.slice(2);if(BADGES.some(b=>K(b)===k)){filter="all";document.querySelectorAll("#flt .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v==="all"));pick(k)}}
 }
 
 function renderList(){
