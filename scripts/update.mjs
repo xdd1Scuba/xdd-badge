@@ -163,35 +163,49 @@ async function fetchDropCampaigns() {
   }
 }
 
-// ---- Discord 通知：偵測到新徽章時發送 ----
-async function notifyDiscord(list) {
-  if (!WEBHOOK || !list.length) return;
+// ---- Discord 通知 ----
+// kind = "new"：Twitch API 出現新徽章；kind = "live"：活動開始，現在可以解鎖
+const ts = iso => Math.floor(Date.parse(iso) / 1000);
+const reqText = c => (c?.subs ? `訂閱或贈送 ${c.subs} 份訂閱` : c?.minutes ? `觀看 ${c.minutes} 分鐘` : "");
+function embedFor(b, kind) {
+  const c = b.campaign;
+  const links = [
+    kind === "new" && SITE_URL ? `[補活動時間](${SITE_URL}admin.html#b=${encodeURIComponent(`${b.set_id}/${b.id}`)})` : null,
+    SITE_URL ? `[徽章頁面](${SITE_URL}#b-${b.set_id}-v${b.id})` : null,
+    "[Twitch Drops](https://www.twitch.tv/drops/campaigns)",
+  ].filter(Boolean).join("・");
+  const lines = kind === "new"
+    ? [b.description, c?.start ? `活動：<t:${ts(c.start)}:f>${c.end ? ` → <t:${ts(c.end)}:f>` : ""}` : "尚未設定活動時間", links]
+    : [
+        [c.game, reqText(c)].filter(Boolean).join("・"),
+        c.end ? `<t:${ts(c.end)}:R>結束（<t:${ts(c.end)}:f>）` : "結束時間未公布",
+        links,
+      ];
+  return {
+    title: kind === "new" ? b.title : `現在可以取得：${b.title}`,
+    description: lines.filter(Boolean).join("\n\n"),
+    url: SITE_URL ? `${SITE_URL}#b-${b.set_id}-v${b.id}` : undefined,
+    thumbnail: { url: b.image_url_4x },
+    footer: { text: `${b.set_id} · v${b.id}` },
+    color: kind === "new" ? 0x9147ff : 0x00b37e,
+  };
+}
+async function notifyDiscord(list, kind) {
+  if (!WEBHOOK || !list.length) return false;
+  let ok = true;
   for (let i = 0; i < list.length; i += 10) { // Discord 一則訊息最多 10 張卡片
     const chunk = list.slice(i, i + 10);
-    const body = {
-      username: "徽章圖鑑",
-      content: i === 0 ? `偵測到 ${list.length} 個新的 Twitch 全域徽章，記得到 Drops 頁面確認活動時間。` : "",
-      embeds: chunk.map(b => ({
-        title: b.title,
-        description: [
-          b.description || "",
-          b.campaign?.start ? `活動時間已設定：<t:${Math.floor(Date.parse(b.campaign.start) / 1000)}:f>${b.campaign.end ? ` → <t:${Math.floor(Date.parse(b.campaign.end) / 1000)}:f>` : ""}` : "尚未設定活動時間",
-          SITE_URL ? `[補活動時間](${SITE_URL}admin.html#b=${encodeURIComponent(`${b.set_id}/${b.id}`)})・[Twitch Drops](https://www.twitch.tv/drops/campaigns)` : "[Twitch Drops](https://www.twitch.tv/drops/campaigns)",
-        ].filter(Boolean).join("\n\n"),
-        url: SITE_URL ? `${SITE_URL}#b-${b.set_id}-v${b.id}` : undefined,
-        thumbnail: { url: b.image_url_4x },
-        footer: { text: `${b.set_id} · v${b.id}` },
-        color: 0x9147ff,
-        timestamp: b.first_seen,
-      })),
-    };
+    const content = i ? "" : kind === "new"
+      ? `偵測到 ${list.length} 個新的 Twitch 全域徽章，記得到 Drops 頁面確認活動時間。`
+      : `${list.length} 個徽章的活動已經開始，現在可以解鎖。`;
     try {
-      const r = await fetch(WEBHOOK, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      console.log(r.ok ? `Discord 通知已送出（${chunk.length} 個）` : `Discord 通知失敗：HTTP ${r.status} ${await r.text()}`);
-    } catch (e) {
-      console.warn(`Discord 通知失敗：${e.message}`);
-    }
+      const r = await fetch(WEBHOOK, { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: "徽章圖鑑", content, embeds: chunk.map(b => embedFor(b, kind)) }) });
+      if (r.ok) console.log(`Discord 通知已送出（${kind === "new" ? "新徽章" : "開始可取得"} ${chunk.length} 個）`);
+      else { ok = false; console.warn(`Discord 通知失敗：HTTP ${r.status} ${await r.text()}`); }
+    } catch (e) { ok = false; console.warn(`Discord 通知失敗：${e.message}`); }
   }
+  return ok;
 }
 
 // ---- main ----
@@ -217,6 +231,7 @@ for (const b of live) {
     baseline: old ? !!old.baseline : firstRun, // 第一次執行時已存在的徽章，無法得知實際上線日
     removed_at: null,
     campaign: old?.campaign || null,
+    notified: old?.notified || {},
   };
   if (!old) added.push(rec);
   merged.push(rec);
@@ -252,6 +267,21 @@ for (const b of merged) {
 
 merged.sort((a, b) => (b.first_seen.localeCompare(a.first_seen)) || a.set_id.localeCompare(b.set_id) || Number(a.id) - Number(b.id));
 
+// 通知：新徽章，以及活動剛開始的徽章（每個活動開始時間只通知一次）
+const isLive = b => !b.removed_at && b.campaign?.start && Date.parse(b.campaign.start) <= Date.now()
+  && (!b.campaign.end || Date.parse(b.campaign.end) > Date.now());
+const markLive = b => { b.notified = { ...(b.notified || {}), live: b.campaign.start }; };
+const addedKeys = new Set(added.map(b => key(b.set_id, b.id)));
+if (firstRun) {
+  console.log("第一次執行，不發送通知");
+  merged.filter(isLive).forEach(markLive);
+} else {
+  if (added.length) await notifyDiscord(added, "new");
+  merged.filter(b => addedKeys.has(key(b.set_id, b.id)) && isLive(b)).forEach(markLive); // 新徽章通知已含時間，不重複發
+  const startedNow = merged.filter(b => isLive(b) && !addedKeys.has(key(b.set_id, b.id)) && b.notified?.live !== b.campaign.start);
+  if (startedNow.length && (await notifyDiscord(startedNow, "live"))) startedNow.forEach(markLive);
+}
+
 const out = { updated_at: now, count: merged.length, badges: merged };
 const before = JSON.stringify({ ...prev, updated_at: null });
 const after = JSON.stringify({ ...out, updated_at: null });
@@ -260,7 +290,5 @@ if (before === after) {
 } else {
   await mkdir("data", { recursive: true });
   await writeFile(DATA, JSON.stringify(out, null, 1));
-  if (firstRun) console.log("第一次執行，不發送通知");
-  else await notifyDiscord(added);
   console.log(`已更新：共 ${merged.length} 個，新增 ${added.length} 個${added.length ? "：" + added.map(b => b.title).join("、") : ""}`);
 }
