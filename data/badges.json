@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-29T20:11:24.131Z",
+ "updated_at": "2026-10-29T20:16:22.463Z",
  "count": 553,
  "badges": [
   {
@@ -535,7 +535,9 @@
    "campaign": {
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "game": "任意分類",
+    "subs": 1
    },
    "notified": {}
   },
@@ -555,7 +557,9 @@
    "campaign": {
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "game": "任意分類",
+    "subs": 1
    },
    "notified": {}
   },
@@ -1136,7 +1140,8 @@
     "game": "Pokémon",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "note": "!pokemon"
    },
    "notified": {}
   },
@@ -8856,7 +8861,9 @@
    "campaign": {
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "game": "Witchspire",
+    "subs": 1
    },
    "notified": {}
   },
@@ -8876,7 +8883,9 @@
    "campaign": {
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "game": "Witchspire",
+    "minutes": 60
    },
    "notified": {}
   },
