@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-29T01:22:10.311Z",
+ "updated_at": "2026-10-29T19:55:51.808Z",
  "count": 553,
  "badges": [
   {
@@ -2979,9 +2979,10 @@
    "removed_at": null,
    "campaign": {
     "game": "Final Fantasy XIV Online",
-    "start": "2026-10-30T07:01:00Z",
-    "end": "2026-11-02T06:59:00Z",
-    "source": "manual"
+    "start": "2026-10-30T15:00:00Z",
+    "end": "2026-11-02T14:58:00Z",
+    "source": "manual",
+    "minutes": 60
    },
    "notified": {}
   },
@@ -3000,9 +3001,10 @@
    "removed_at": null,
    "campaign": {
     "game": "Final Fantasy XIV Online",
-    "start": "2026-10-30T07:01:00Z",
-    "end": "2026-11-02T06:59:00Z",
-    "source": "manual"
+    "start": "2026-10-30T15:01:00Z",
+    "end": "2026-11-02T14:58:00Z",
+    "source": "manual",
+    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。"
    },
    "notified": {}
   },
@@ -3499,7 +3501,9 @@
    "campaign": {
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "game": "Witchspire",
+    "minutes": 240
    },
    "notified": {}
   },
@@ -3552,7 +3556,8 @@
     "game": "Gray Zone Warfare",
     "start": "2026-10-22T16:00:00Z",
     "end": "2026-11-06T12:58:00Z",
-    "source": "manual"
+    "source": "manual",
+    "subs": 1
    },
    "notified": {}
   },
