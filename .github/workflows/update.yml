@@ -56,7 +56,7 @@ jobs:
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
         run: |
           mkdir -p _site/data
-          cp index.html admin.html _site/
+          cp *.html _site/
           cp data/badges.json data/campaigns.manual.json _site/data/
 
       - uses: actions/upload-pages-artifact@v3
