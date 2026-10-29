@@ -266,7 +266,7 @@ footer a{color:var(--accent)}
     <div class="more"><button class="btn" id="moreBtn" hidden>顯示更多</button></div>
   </section>
 
-  <footer>徽章名稱、說明與圖片來自 Twitch 官方 API（Get Global Chat Badges），每 10 分鐘自動同步。活動時間來自 Twitch Drops，實際條件以 <a href="https://www.twitch.tv/drops/campaigns" target="_blank" rel="noopener">Twitch Drops 頁面</a>為準。本站與 Twitch 無關聯。</footer>
+  <footer>徽章名稱、說明與圖片來自 Twitch 官方 API（Get Global Chat Badges），每分鐘檢查一次，出現新徽章時自動更新。活動時間來自 Twitch Drops，實際條件以 <a href="https://www.twitch.tv/drops/campaigns" target="_blank" rel="noopener">Twitch Drops 頁面</a>為準。本站與 Twitch 無關聯。</footer>
 </div>
 
 <div class="scrim" id="scrim" hidden><aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="dTitle"></aside></div>
@@ -334,7 +334,7 @@ async function load(first){
 function setSync(ok){
   const el=document.getElementById("sync"),tx=document.getElementById("syncTxt");
   el.classList.toggle("stale",!ok);
-  tx.textContent=DB.updated_at?`資料更新於 ${ago(t(DB.updated_at))}・每 10 分鐘同步 Twitch`:(ok?"已連線":"無法讀取資料");
+  tx.textContent=DB.updated_at?`每分鐘檢查 Twitch・最後一次有變動是 ${ago(t(DB.updated_at))}`:(ok?"已連線":"無法讀取資料");
 }
 function showState(title,msg){const s=document.getElementById("stateBox");s.hidden=false;s.className="state";s.innerHTML=`<b>${esc(title)}</b>${esc(msg)}`}
 let toastKey=null;
