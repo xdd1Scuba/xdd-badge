@@ -1,10 +1,50 @@
 {
   "_說明": "Drops 讀不到或要修正時，在這裡手動填活動時間。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。",
-  "hunt-white/1": { "game": "Hunt: Showdown 1896", "start": "2026-10-26T14:54:00Z", "end": "2026-11-09T13:59:00Z", "minutes": 15 },
-  "the-mox/1": { "game": "Cyberpunk 2077", "start": "2026-10-22T10:00:00Z", "end": "2026-11-19T09:59:00Z", "subs": 1 },
-  "edgerunners-talia/1": { "game": "Cyberpunk 2077", "start": "2026-10-19T22:01:00Z", "end": "2026-10-20T22:00:00Z", "minutes": 15 },
-  "streamer-awards-2026-vote/1": { "game": "The Streamer Awards", "start": "2026-10-16T17:00:00Z", "end": "2026-10-17T04:59:00Z", "minutes": 20 },
-  "worlds-2026-supporter/1": { "game": "League of Legends", "start": "2026-10-14T07:00:00Z", "end": "2026-11-15T18:59:00Z", "subs": 1 },
-  "subtember-2026/1": { "game": "Twitch", "start": "2026-08-28T17:00:00Z", "end": "2026-10-01T16:59:00Z" },
-  "pikachu/1": { "game": "Pokémon", "start": "2026-10-06T00:00:00Z", "end": "2027-01-30T23:59:00Z", "minutes": 20 }
+  "edgerunners-talia/1": {
+    "game": "Cyberpunk 2077",
+    "start": "2026-10-19T22:01:00Z",
+    "end": "2026-10-20T22:00:00Z",
+    "minutes": 15
+  },
+  "hunt-red/1": {
+    "game": "Hunt: Showdown 1896",
+    "start": "2026-10-26T14:54:00Z",
+    "end": "2026-11-09T13:59:00Z",
+    "subs": 1
+  },
+  "hunt-white/1": {
+    "game": "Hunt: Showdown 1896",
+    "start": "2026-10-26T14:54:00Z",
+    "end": "2026-11-09T13:59:00Z",
+    "minutes": 15
+  },
+  "pikachu/1": {
+    "game": "Pokémon",
+    "start": "2026-10-06T00:00:00Z",
+    "end": "2027-01-30T23:59:00Z",
+    "minutes": 20
+  },
+  "streamer-awards-2026-vote/1": {
+    "game": "The Streamer Awards",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2026-10-17T04:59:00Z",
+    "minutes": 20
+  },
+  "subtember-2026/1": {
+    "game": "Twitch",
+    "start": "2026-08-28T17:00:00Z",
+    "end": "2026-10-01T16:59:00Z"
+  },
+  "the-mox/1": {
+    "game": "Cyberpunk 2077",
+    "start": "2026-10-22T10:00:00Z",
+    "end": "2026-11-19T09:59:00Z",
+    "subs": 1
+  },
+  "worlds-2026-supporter/1": {
+    "game": "League of Legends",
+    "start": "2026-10-14T07:00:00Z",
+    "end": "2026-11-15T18:59:00Z",
+    "subs": 1
+  }
 }
