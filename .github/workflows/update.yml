@@ -2,8 +2,8 @@ name: 更新徽章資料
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
-  workflow_dispatch:
+    - cron: "*/10 * * * *"   # 每 10 分鐘（GitHub 尖峰時段可能延遲）
+  workflow_dispatch:          # 可在 Actions 頁面手動執行
   push:
     branches: [main]
     paths-ignore: ["data/badges.json"]
@@ -55,8 +55,8 @@ jobs:
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
         run: |
           mkdir -p _site/data
-          cp index.html _site/
-          cp data/badges.json _site/data/
+          cp index.html admin.html _site/
+          cp data/badges.json data/campaigns.manual.json _site/data/
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
