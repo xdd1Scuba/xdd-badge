@@ -68,6 +68,9 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mu
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);font-weight:700}
 .hint{font-size:12px;color:var(--muted)}
 .err{font-size:13px;color:var(--warn)}
+.chk{display:flex;align-items:center;gap:8px;color:var(--fg);font-size:14px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--accent);margin:0}
+#fNote{min-height:96px;font-family:var(--f-body);font-size:14px;background:var(--surface)}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .btn{height:38px;padding:0 14px;border-radius:9px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
 .btn:hover{border-color:var(--accent)}
@@ -95,8 +98,8 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
       <h2>選擇徽章 <small id="cnt"></small></h2>
       <input type="search" id="q" placeholder="輸入 Drops 頁面上的徽章名稱，例如 Hunt Red" autocomplete="off">
       <div class="chips" id="flt">
-        <button class="chip" data-v="none" aria-pressed="true">還沒有時間</button>
-        <button class="chip" data-v="has" aria-pressed="false">已有時間</button>
+        <button class="chip" data-v="none" aria-pressed="true">還沒有資料</button>
+        <button class="chip" data-v="has" aria-pressed="false">已有資料</button>
         <button class="chip" data-v="all" aria-pressed="false">全部</button>
       </div>
       <div class="list" id="list"><div class="empty">讀取徽章資料中…</div></div>
@@ -115,7 +118,7 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
               <datalist id="games"></datalist>
             </label>
             <label class="f" for="fStart">開始時間
-              <input type="datetime-local" id="fStart" required>
+              <input type="datetime-local" id="fStart">
             </label>
             <label class="f" for="fEnd">結束時間
               <input type="datetime-local" id="fEnd">
@@ -131,6 +134,11 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
             <label class="f" for="fNum" id="numWrap">觀看分鐘數
               <input type="number" id="fNum" min="1" step="1" value="15" inputmode="numeric">
             </label>
+            <div class="f full">
+              <label class="chk" for="fNoteOn"><input type="checkbox" id="fNoteOn"> 加上取得方式備註</label>
+              <textarea id="fNote" rows="4" placeholder="例如：需要先擁有 Pichu 徽章，在 Drops 面板裝備後，每天觀看 20 分鐘、累積 3 天即可進化。" hidden></textarea>
+              <span class="hint" id="noteHint" hidden>勾選並輸入內容後，徽章頁面才會顯示這段備註。網址會自動變成連結，換行會保留。</span>
+            </div>
           </div>
           <p class="err" id="err" hidden></p>
           <div class="row" style="margin-top:12px">
@@ -187,6 +195,9 @@ function toISO(v){if(!v)return null;const d=new Date(v);return isNaN(d)?null:d.t
 const fmt=new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
 
 function merged(){const o={...BASE};for(const[k,v]of Object.entries(pending)){if(v===null)delete o[k];else o[k]=v}return o}
+function setNote(on,text){const cb=document.getElementById("fNoteOn"),ta=document.getElementById("fNote");
+  cb.checked=on; if(text!==undefined) ta.value=text; ta.hidden=!on; document.getElementById("noteHint").hidden=!on}
+document.addEventListener("change",e=>{if(e.target.id==="fNoteOn"){setNote(e.target.checked);if(e.target.checked)document.getElementById("fNote").focus()}});
 function entryFor(b){const k=K(b);if(k in pending)return pending[k];if(BASE[k])return BASE[k];return b.campaign||null}
 
 async function load(){
@@ -215,7 +226,7 @@ function renderList(){
   const q=norm(document.getElementById("q").value);
   let L=BADGES.filter(b=>{
     if(q&&!norm(b.title).includes(q)&&!norm(b.set_id).includes(q))return false;
-    const has=!!entryFor(b)?.start;
+    const has=!!(entryFor(b)?.start||entryFor(b)?.note);
     return filter==="all"||(filter==="has"?has:!has);
   });
   L.sort((a,b)=>(a.baseline-b.baseline)||b.first_seen.localeCompare(a.first_seen)||a.title.localeCompare(b.title));
@@ -223,7 +234,7 @@ function renderList(){
   const show=L.slice(0,200);
   document.getElementById("list").innerHTML=show.length?show.map(b=>{
     const e=entryFor(b), k=K(b);
-    const tag=k in pending?`<span class="badge b-pend">待存檔</span>`:e?.start?`<span class="badge b-has">${esc(fmt.format(new Date(e.start)))}</span>`:"";
+    const tag=k in pending?`<span class="badge b-pend">待存檔</span>`:e?.start?`<span class="badge b-has">${esc(fmt.format(new Date(e.start)))}${e.note?"・備註":""}</span>`:e?.note?`<span class="badge b-has">備註</span>`:"";
     return `<button class="item" data-k="${esc(k)}" aria-current="${cur&&K(cur)===k}"><img src="${esc(b.image_url_2x)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="t"><span class="n" style="display:block">${esc(b.title)}</span><span class="s" style="display:block">${esc(k)}</span></span>${tag}</button>`;
   }).join("")+(L.length>200?`<div class="empty">還有 ${L.length-200} 個，請用搜尋縮小範圍。</div>`:""):`<div class="empty">沒有符合的徽章。換個關鍵字，或切到「全部」。</div>`;
 }
@@ -241,6 +252,7 @@ function pick(k){
   if(e.subs){setReq("subs");document.getElementById("fNum").value=e.subs}
   else if(e.minutes){setReq("minutes");document.getElementById("fNum").value=e.minutes}
   else if(e.start){setReq("other")} else {setReq("minutes");document.getElementById("fNum").value=15}
+  setNote(!!e.note, e.note||"");
   document.getElementById("err").hidden=true; document.getElementById("fMsg").textContent="";
   renderList(); document.getElementById("fGame").focus();
 }
@@ -253,13 +265,16 @@ document.getElementById("form").addEventListener("submit",e=>{
   e.preventDefault(); if(!cur) return;
   const err=document.getElementById("err");
   const start=toISO(document.getElementById("fStart").value), end=toISO(document.getElementById("fEnd").value);
-  if(!start){err.textContent="請填開始時間。";err.hidden=false;return}
-  if(end&&Date.parse(end)<=Date.parse(start)){err.textContent="結束時間要晚於開始時間。";err.hidden=false;return}
+  const noteOn=document.getElementById("fNoteOn").checked, note=document.getElementById("fNote").value.trim();
+  if(noteOn&&!note){err.textContent="已勾選備註，請輸入備註內容，或取消勾選。";err.hidden=false;return}
+  if(!start&&!(noteOn&&note)){err.textContent="請填開始時間，或至少加上一段備註。";err.hidden=false;return}
+  if(start&&end&&Date.parse(end)<=Date.parse(start)){err.textContent="結束時間要晚於開始時間。";err.hidden=false;return}
   const n=parseInt(document.getElementById("fNum").value,10);
-  if(req!=="other"&&!(n>0)){err.textContent=req==="subs"?"請填需要的訂閱數。":"請填觀看分鐘數。";err.hidden=false;return}
+  if(start&&req!=="other"&&!(n>0)){err.textContent=req==="subs"?"請填需要的訂閱數。":"請填觀看分鐘數。";err.hidden=false;return}
   err.hidden=true;
   const o={}; const g=document.getElementById("fGame").value.trim(); if(g)o.game=g;
-  o.start=start; if(end)o.end=end; if(req==="minutes")o.minutes=n; if(req==="subs")o.subs=n;
+  if(start){o.start=start; if(end)o.end=end; if(req==="minutes")o.minutes=n; if(req==="subs")o.subs=n}
+  if(noteOn&&note)o.note=note;
   pending[K(cur)]=o; savePending();
   document.getElementById("fMsg").textContent=`已加入：${cur.title}`;
   renderPending(); renderList();
@@ -272,7 +287,7 @@ function renderPending(){
   const ks=Object.keys(pending);
   document.getElementById("pendCnt").textContent=ks.length?`${ks.length} 筆`:"";
   document.getElementById("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];const b=BADGES.find(x=>K(x)===k);
-    return `<div><span>${esc(b?.title||k)}・${v===null?"刪除":esc(fmt.format(new Date(v.start)))+(v.end?" → "+esc(fmt.format(new Date(v.end))):"")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
+    return `<div><span>${esc(b?.title||k)}・${v===null?"刪除":(v.start?esc(fmt.format(new Date(v.start)))+(v.end?" → "+esc(fmt.format(new Date(v.end))):""):"")+(v.note?(v.start?"・":"")+"有備註":"")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
     :`<div><span style="color:var(--muted)">還沒有修改。選徽章、填時間後按「加入待存檔」。</span></div>`;
   const out={}, m=merged();
   out["_說明"]=BASE["_說明"]||"Drops 讀不到或要修正時，在這裡手動填活動時間。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。";
