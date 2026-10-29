@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-29T00:38:27.994Z",
+ "updated_at": "2026-10-29T01:18:21.249Z",
  "count": 553,
  "badges": [
   {
@@ -191,7 +191,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "ACE COMBAT 8",
+    "start": "2026-09-28T22:00:00Z",
+    "end": "2026-10-26T06:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -527,7 +532,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-20T19:00:00Z",
+    "end": "2026-11-03T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -543,7 +552,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-20T19:00:00Z",
+    "end": "2026-11-03T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -1119,7 +1132,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -1135,7 +1153,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "ELDEN RING",
+    "start": "2026-10-01T07:00:00Z",
+    "end": "2026-10-29T06:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -1519,7 +1542,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Castlevania",
+    "start": "2026-10-15T04:00:00Z",
+    "end": "2026-11-02T03:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -1567,7 +1595,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -1599,7 +1632,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -2939,7 +2977,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Final Fantasy XIV Online",
+    "start": "2026-10-30T07:01:00Z",
+    "end": "2026-11-02T06:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -2955,7 +2998,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Final Fantasy XIV Online",
+    "start": "2026-10-30T07:01:00Z",
+    "end": "2026-11-02T06:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3099,7 +3147,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-15T08:00:00Z",
+    "end": "2026-10-29T22:58:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3147,7 +3199,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-08T12:00:00Z",
+    "end": "2026-10-31T10:58:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3291,7 +3347,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3435,7 +3496,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-21T16:00:00Z",
+    "end": "2026-10-31T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3483,7 +3548,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Gray Zone Warfare",
+    "start": "2026-10-22T16:00:00Z",
+    "end": "2026-11-06T12:58:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3547,7 +3617,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3563,7 +3638,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "League of Legends",
+    "start": "2026-10-14T16:00:00Z",
+    "end": "2026-10-27T15:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -3867,7 +3947,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -4443,7 +4528,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Call of Duty",
+    "start": "2026-10-23T17:00:00Z",
+    "end": "2026-11-13T17:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -5229,8 +5319,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Pokémon",
-    "start": "2026-10-06T00:00:00Z",
-    "end": "2027-01-30T23:59:00Z",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
     "minutes": 20,
     "source": "manual"
    },
@@ -5795,7 +5885,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-21T21:00:00Z",
+    "end": "2026-11-18T00:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -6259,7 +6353,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-01T09:00:00Z",
+    "end": "2026-10-29T08:58:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -6291,7 +6389,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-01T09:00:00Z",
+    "end": "2026-10-29T08:58:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -7654,7 +7756,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-08T12:00:00Z",
+    "end": "2026-10-31T10:58:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -7830,7 +7936,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "League of Legends",
+    "start": "2026-10-27T16:00:00Z",
+    "end": "2026-11-07T15:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8054,7 +8165,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "TwitchCon",
+    "start": "2026-07-22T18:00:00Z",
+    "end": "2026-11-13T12:00:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8070,7 +8186,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "TwitchCon",
+    "start": "2026-07-22T18:00:00Z",
+    "end": "2026-11-13T12:00:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8374,7 +8495,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-01T08:00:00Z",
+    "end": "2026-10-29T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8486,7 +8611,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8630,7 +8760,12 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8710,7 +8845,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-21T16:00:00Z",
+    "end": "2026-10-31T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8726,7 +8865,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-10-21T16:00:00Z",
+    "end": "2026-10-31T07:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
@@ -8758,7 +8901,11 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-09-29T10:00:00Z",
+    "end": "2026-10-27T09:59:00Z",
+    "source": "manual"
+   },
    "notified": {}
   },
   {
