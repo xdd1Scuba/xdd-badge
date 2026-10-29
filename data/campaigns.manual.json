@@ -115,9 +115,10 @@
     "end": "2027-01-30T07:59:00Z"
   },
   "modern-warfare-4/1": {
-    "game": "Call of Duty",
+    "game": "Call of Duty Modern Warfare 4",
     "start": "2026-10-23T17:00:00Z",
-    "end": "2026-11-13T17:59:00Z"
+    "end": "2026-11-13T17:59:00Z",
+    "subs": 1
   },
   "pikachu/1": {
     "game": "Pokémon",
@@ -152,7 +153,7 @@
   "the-mox/1": {
     "game": "Cyberpunk 2077",
     "start": "2026-10-22T10:00:00Z",
-    "end": "2026-11-19T09:59:00Z",
+    "end": "2026-11-13T17:59:00Z",
     "subs": 1
   },
   "thedragonsdogma/1": {
@@ -162,7 +163,8 @@
   "true-damage-fan/1": {
     "game": "League of Legends",
     "start": "2026-10-27T16:00:00Z",
-    "end": "2026-11-07T15:59:00Z"
+    "end": "2026-11-07T15:59:00Z",
+    "minutes": 30
   },
   "twitchcon-2026---san-diego---beachball/1": {
     "game": "TwitchCon",
