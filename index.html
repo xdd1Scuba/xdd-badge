@@ -91,8 +91,8 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,4vw,34px);l
 .tl-grid div{flex:none;width:var(--dw);border-left:1px solid var(--line)}
 .tl-grid div:first-child{border-left:0}
 .tl-grid div.wkend{background:color-mix(in srgb,var(--sunk) 45%,transparent)}
-.lane{position:relative;height:60px}
-.bar{position:absolute;top:8px;height:44px;border-radius:9px;border:1px solid var(--bar-other-edge);background:var(--bar-other);
+.lane{position:relative;height:56px}
+.bar{position:absolute;top:6px;height:44px;border-radius:9px;border:1px solid var(--bar-other-edge);background:var(--bar-other);
   display:flex;align-items:center;gap:8px;padding:0 10px 0 6px;cursor:pointer;text-align:left;overflow:hidden;min-width:44px}
 .bar.watch{background:var(--bar-watch);border-color:var(--bar-watch-edge)}
 .bar.sub{background:var(--bar-sub);border-color:var(--bar-sub-edge)}
@@ -171,9 +171,13 @@ select{height:42px;border:1px solid var(--line);border-radius:10px;background:va
 .chatline .lbl{display:block;font-size:11px;color:#adadb8;margin-bottom:6px;letter-spacing:.05em}
 .chatline img{width:18px;height:18px;vertical-align:-4px;margin-right:4px}
 .chatline .u{color:#bf94ff;font-weight:700}
-.block h4{font-size:13px;letter-spacing:.08em;color:var(--muted);margin:0 0 8px;font-weight:500}
-.block p{margin:0;max-width:62ch}
-.timebox{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px;margin:0}
+.block h4{font-size:17px;color:var(--fg);margin:0 0 8px;font-weight:700}
+.block p{margin:0;max-width:62ch;font-size:16px;line-height:1.65}
+.note-box{border:1px solid var(--soon);background:var(--soon-soft);border-radius:10px;padding:12px 14px}
+.note-box h4{color:var(--soon)!important}
+.note-box p{white-space:pre-wrap;overflow-wrap:anywhere}
+.note-box a{color:var(--accent)}
+.timebox{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:16px;margin:0}
 .timebox dt{color:var(--muted)}.timebox dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .timebox .big{grid-column:1/-1;font-family:var(--f-mono);font-size:20px;font-weight:600;margin-top:6px}
 table.raw{width:100%;border-collapse:collapse;font-size:13px}
@@ -311,6 +315,7 @@ function status(b){
 const pill=b=>{const s=status(b);return `<span class="pill st-${s.k}">${s.t}</span>`};
 const kind=b=>b.campaign?.subs?"sub":b.campaign?.minutes?"watch":"other";
 const req=c=>!c?"":c.subs?`訂閱或贈送 ${c.subs} 份訂閱`:c.minutes?`觀看 ${c.minutes} 分鐘`:"";
+const linkify=s=>esc(s).replace(/https?:\/\/[^\s<]+/g,u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
 const isNew=b=>!b.baseline&&now()-t(b.first_seen)<30*DAY;
 
 /* ---------- 資料 ---------- */
@@ -367,14 +372,9 @@ function renderTimeline(){
   const items=DB.badges.filter(b=>b.campaign?.start&&!b.removed_at)
     .map(b=>({b,s:t(b.campaign.start),e:b.campaign.end?t(b.campaign.end):null}))
     .filter(x=>x.s<rangeEnd&&(x.e===null||x.e>tlStart))
-    .sort((a,b)=>a.s-b.s||(a.e??Infinity)-(b.e??Infinity));
-  const lanes=[];
-  for(const it of items){
-    const ee=it.e??Infinity;
-    let L=lanes.find(l=>l.end+2*36e5<=it.s); // 同一列需間隔 2 小時以上
-    if(!L){L={end:-Infinity,items:[]};lanes.push(L)}
-    L.items.push(it); L.end=ee;
-  }
+    // 新出現的徽章在上；建站前就存在的徽章，以活動開始時間較新的在上
+    .sort((a,b)=>(a.b.baseline-b.b.baseline)||t(b.b.first_seen)-t(a.b.first_seen)||b.s-a.s||a.b.title.localeCompare(b.b.title));
+  const lanes=items.map(it=>({items:[it]}));
   const todayMs=startOfDay(now());
   const W=TL_DAYS*dw;
   let html=`<div class="tl-days" style="width:${W}px">${days.map(d=>{const dt=new Date(d);return `<div class="tl-day${d===todayMs?" today":""}"><div class="wd">${wdFmt.format(dt)}</div><div class="dt">${mdFmt.format(dt)}</div></div>`}).join("")}</div>`;
@@ -410,7 +410,7 @@ function showTip(el,x,y){
   const rem=st.k==="live"&&e?`剩餘 ${dur(e-n)}`:st.k==="soon"?`${dur(s-n)}後開始`:st.k==="ended"?"活動已結束":"結束時間未公布";
   tip.innerHTML=`<div class="t"><img src="${esc(b.image_url_2x)}" alt=""><div><b>${esc(b.title)}</b><small>${esc(c.game||"")}${req(c)?"・"+req(c):""}</small></div></div>
     <dl><dt>開始</dt><dd>${esc(full(c.start))}</dd><dt>結束</dt><dd>${c.end?esc(full(c.end)):"未公布"}</dd><dt>期間</dt><dd>${e?dur(e-s):"—"}</dd></dl>
-    <div class="rem" style="color:var(--${st.k==="live"?"live":st.k==="soon"?"soon":"ended"})">${rem}</div>`;
+    <div class="rem" style="color:var(--${st.k==="live"?"live":st.k==="soon"?"soon":"ended"})">${rem}</div>${c.note?`<div style="margin-top:6px;opacity:.8">取得方式特殊，點擊看備註</div>`:""}`;
   tip.hidden=false; placeTip(x,y);
 }
 function placeTip(x,y){
@@ -476,9 +476,10 @@ function openDetail(k){
   const src={drops:"Twitch Drops（自動）",manual:"手動整理","drops+manual":"Twitch Drops＋手動修正"}[c?.source]||"";
   panel.innerHTML=`
     <button class="x" id="dClose" aria-label="關閉">×</button>
-    <div class="d-head">${pic(b)}<div><h3 id="dTitle">${esc(b.title)}</h3><div class="gm">${esc(c?.game||"")}${c?.game?"・":""}${esc(b.set_id)} v${esc(b.id)}</div><div class="d-pills">${pill(b)}${isNew(b)?`<span class="tag">新徽章</span>`:""}</div></div></div>
+    <div class="d-head">${pic(b)}<div><h3 id="dTitle">${esc(b.title)}</h3><div class="gm">${esc(c?.game||"")}${c?.game?"・":""}${esc(b.set_id)} v${esc(b.id)}</div><div class="d-pills">${pill(b)}${c?.note?`<span class="tag">有備註</span>`:""}${isNew(b)?`<span class="tag">新徽章</span>`:""}</div></div></div>
     <div class="sizes">${[1,2,4].map((n,i)=>`<figure>${pic(b,"s"+(i+1),n)}<figcaption>${18*(i+1)}px</figcaption></figure>`).join("")}</div>
     <div class="chatline"><span class="lbl">聊天室中的樣子</span><img src="${esc(b.image_url_1x)}" alt=""><span class="u">viewer</span>: GG</div>
+    ${c?.note?`<div class="block note-box"><h4>取得方式備註</h4><p>${linkify(c.note)}</p></div>`:""}
     <div class="block"><h4>官方說明</h4><p lang="en">${esc(b.description||"—")}</p></div>
     ${c?.start?`<div class="block"><h4>活動時間（${esc(TZ)}）</h4><dl class="timebox"><dt>開始</dt><dd>${esc(full(c.start))}</dd><dt>結束</dt><dd>${c.end?esc(full(c.end)):"未公布"}</dd>${req(c)?`<dt>條件</dt><dd>${esc(req(c))}</dd>`:""}${big}</dl></div>`:""}
     <div class="block"><h4>資料</h4><table class="raw"><tbody>
