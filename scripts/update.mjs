@@ -6,7 +6,11 @@ import { existsSync } from "node:fs";
 
 const DATA = "data/badges.json";
 const MANUAL = "data/campaigns.manual.json";
-const { TWITCH_CLIENT_ID: CID, TWITCH_CLIENT_SECRET: SECRET, TWITCH_USER_TOKEN: USER_TOKEN } = process.env;
+const { TWITCH_CLIENT_ID: CID, TWITCH_CLIENT_SECRET: SECRET, TWITCH_USER_TOKEN: USER_TOKEN, DISCORD_WEBHOOK_URL: WEBHOOK } = process.env;
+// 網站網址：可用 SITE_URL 指定；否則依 GitHub 儲存庫推算（帳號/儲存庫 → 帳號.github.io/儲存庫/）
+const SITE_URL = (process.env.SITE_URL || (process.env.GITHUB_REPOSITORY
+  ? `https://${process.env.GITHUB_REPOSITORY.split("/")[0].toLowerCase()}.github.io/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+  : "")).replace(/\/?$/, "/");
 
 if (!CID || !SECRET) {
   console.error("缺少 TWITCH_CLIENT_ID 或 TWITCH_CLIENT_SECRET");
@@ -159,6 +163,37 @@ async function fetchDropCampaigns() {
   }
 }
 
+// ---- Discord 通知：偵測到新徽章時發送 ----
+async function notifyDiscord(list) {
+  if (!WEBHOOK || !list.length) return;
+  for (let i = 0; i < list.length; i += 10) { // Discord 一則訊息最多 10 張卡片
+    const chunk = list.slice(i, i + 10);
+    const body = {
+      username: "徽章圖鑑",
+      content: i === 0 ? `偵測到 ${list.length} 個新的 Twitch 全域徽章，記得到 Drops 頁面確認活動時間。` : "",
+      embeds: chunk.map(b => ({
+        title: b.title,
+        description: [
+          b.description || "",
+          b.campaign?.start ? `活動時間已設定：<t:${Math.floor(Date.parse(b.campaign.start) / 1000)}:f>${b.campaign.end ? ` → <t:${Math.floor(Date.parse(b.campaign.end) / 1000)}:f>` : ""}` : "尚未設定活動時間",
+          SITE_URL ? `[補活動時間](${SITE_URL}admin.html#b=${encodeURIComponent(`${b.set_id}/${b.id}`)})・[Twitch Drops](https://www.twitch.tv/drops/campaigns)` : "[Twitch Drops](https://www.twitch.tv/drops/campaigns)",
+        ].filter(Boolean).join("\n\n"),
+        url: SITE_URL ? `${SITE_URL}#b-${b.set_id}-v${b.id}` : undefined,
+        thumbnail: { url: b.image_url_4x },
+        footer: { text: `${b.set_id} · v${b.id}` },
+        color: 0x9147ff,
+        timestamp: b.first_seen,
+      })),
+    };
+    try {
+      const r = await fetch(WEBHOOK, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      console.log(r.ok ? `Discord 通知已送出（${chunk.length} 個）` : `Discord 通知失敗：HTTP ${r.status} ${await r.text()}`);
+    } catch (e) {
+      console.warn(`Discord 通知失敗：${e.message}`);
+    }
+  }
+}
+
 // ---- main ----
 const now = new Date().toISOString();
 const prev = await readJSON(DATA, { badges: [] });
@@ -225,5 +260,7 @@ if (before === after) {
 } else {
   await mkdir("data", { recursive: true });
   await writeFile(DATA, JSON.stringify(out, null, 1));
+  if (firstRun) console.log("第一次執行，不發送通知");
+  else await notifyDiscord(added);
   console.log(`已更新：共 ${merged.length} 個，新增 ${added.length} 個${added.length ? "：" + added.map(b => b.title).join("、") : ""}`);
 }
