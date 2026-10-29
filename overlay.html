@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>徽章時刻表</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@500;700;900&family=JetBrains+Mono:wght@600;800&display=swap">
+<style>
+/* Layout: 機場出發時刻表。1920×1080 畫布等比縮放。上方看板標頭 → 左「出發時刻」清單｜中「登機口」聚光介紹（含即將開始橫列）｜右 聊天室保留區 */
+:root{
+  color-scheme:dark;
+  --board:#0b0f15; --panel:#121822; --tile:#1a2230; --tile-hi:#222c3d; --seam:#0a0d12; --line:#243045;
+  --cream:#f2ead8; --muted:#8c96a8; --dim:#5b6578;
+  --amber:#ffb547; --amber-deep:#3a2706;
+  --live:#5ce0a8; --last:#ff6f5e; --soon:#79c2ff;
+  --f-display:"Barlow Condensed","Noto Sans TC",sans-serif;
+  --f-body:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
+  --f-mono:"JetBrains Mono",Consolas,monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--board)}
+html.transparent,html.transparent body{background:transparent}
+body{color:var(--cream);font-family:var(--f-body);padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;padding:26px 30px 30px;display:grid;grid-template-rows:96px 1fr;gap:22px;
+  background:radial-gradient(1200px 700px at 40% 0%,#141c29 0%,transparent 70%)}
+html.transparent #stage{background:none}
+#stage.nochat .cols{grid-template-columns:520px 1fr}
+
+/* 看板標頭 */
+.head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 28px}
+.title{display:flex;align-items:center;gap:18px}
+.plane{width:56px;height:56px;border-radius:12px;background:var(--amber);display:grid;place-items:center;flex:none}
+.plane svg{width:32px;height:32px}
+.title b{display:block;font-family:var(--f-body);font-weight:900;font-size:36px;letter-spacing:.08em;line-height:1}
+.title span{display:block;font-family:var(--f-display);font-weight:600;font-size:19px;letter-spacing:.34em;color:var(--amber);margin-top:6px}
+.legend{display:flex;justify-content:center;gap:26px;font-size:19px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:1px}
+.clock{display:flex;align-items:center;gap:20px}
+.clock .d{text-align:right;font-size:19px;color:var(--muted);line-height:1.35}
+.clock .d b{display:block;color:var(--cream);font-size:21px}
+
+/* 翻牌字卡 */
+.flap{display:inline-flex;gap:4px;align-items:center}
+.flap i{font-style:normal;position:relative;display:inline-grid;place-items:center;min-width:.72em;padding:0 .08em;height:1.32em;border-radius:.14em;
+  background:linear-gradient(180deg,var(--tile-hi) 0 49%,var(--seam) 49% 51%,var(--tile) 51%);color:var(--amber);font-family:var(--f-mono);font-weight:800;line-height:1}
+.flap i.sep{background:none;min-width:auto;padding:0 .02em;color:var(--dim)}
+.flap i.u{background:none;min-width:auto;font-family:var(--f-body);font-weight:700;font-size:.55em;color:var(--muted);padding:0 .25em 0 .1em;align-self:end;height:auto;margin-bottom:.2em}
+.flap i.flip{animation:flip .38s ease-out}
+@keyframes flip{0%{transform:rotateX(-90deg);filter:brightness(1.6)}100%{transform:none}}
+.clock .flap{font-size:40px}
+
+.cols{display:grid;grid-template-columns:500px 1fr 400px;gap:24px;min-height:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.ph{display:flex;justify-content:space-between;align-items:baseline;padding:18px 22px 12px;border-bottom:1px solid var(--line)}
+.ph b{font-size:24px;font-weight:900;letter-spacing:.12em}
+.ph span{font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:.28em;color:var(--dim)}
+.ph em{font-style:normal;font-family:var(--f-mono);font-weight:800;font-size:22px;color:var(--amber)}
+
+/* 左：出發時刻 */
+.rows{position:relative;flex:1;min-height:0;overflow:hidden}
+.rows-in{padding:10px 12px 60px;display:flex;flex-direction:column;gap:6px;transition:transform .9s cubic-bezier(.5,0,.2,1)}
+.row{display:grid;grid-template-columns:44px 1fr;grid-template-rows:auto auto;gap:2px 14px;align-items:center;padding:10px 12px;border-radius:10px;border:1px solid transparent;transition:background .4s,border-color .4s}
+.row .ic{grid-row:span 2;width:44px;height:44px}
+.row .nm{font-size:21px;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .meta{display:flex;align-items:center;gap:10px;min-width:0}
+.row .st{font-size:14px;font-weight:900;letter-spacing:.1em;flex:none}
+.row .flap{font-size:19px}
+.row.on{background:var(--tile);border-color:var(--amber)}
+.st.live{color:var(--live)} .st.last{color:var(--last)} .st.soon{color:var(--soon)}
+
+/* 中：登機口 */
+.gate{position:relative;flex:1;display:grid;grid-template-columns:330px 1fr;gap:40px;padding:36px 40px 26px;min-height:0}
+.gate .fade{transition:opacity .45s,transform .45s}
+.gate.out .fade{opacity:0;transform:translateY(14px)}
+.ring{position:relative;width:300px;height:300px;align-self:start;margin-top:6px}
+.ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.ring .plate{position:absolute;inset:34px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#26324a 0%,#141b27 70%);display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line)}
+.ring .plate .ic{width:150px;height:150px;background:none}
+.ring .plate .ic .fb{font-size:46px}
+.ring .pct{position:absolute;left:0;right:0;bottom:-46px;text-align:center;font-size:17px;color:var(--muted);letter-spacing:.1em}
+.ring .pct b{font-family:var(--f-mono);color:var(--cream);margin-left:6px}
+.info{min-width:0;display:flex;flex-direction:column;gap:22px}
+.tagline{display:flex;align-items:center;gap:14px;font-size:19px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font-weight:900;letter-spacing:.12em;font-size:17px;border:1.5px solid currentColor}
+.chip::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
+.chip.live{color:var(--live)} .chip.last{color:var(--last)} .chip.soon{color:var(--soon)}
+.idx{font-family:var(--f-mono);color:var(--dim);font-size:19px}
+.bname{font-family:var(--f-display);font-weight:700;font-size:70px;line-height:.98;letter-spacing:.01em;text-wrap:balance;overflow-wrap:anywhere;margin:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.fact{background:var(--tile);border-radius:12px;padding:14px 18px;min-width:0}
+.fact small{display:block;font-size:15px;color:var(--muted);letter-spacing:.16em;margin-bottom:6px}
+.fact b{display:block;font-size:24px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.fact b em{font-style:normal;font-family:var(--f-mono);color:var(--amber)}
+.fact .sub{font-family:var(--f-mono);font-size:16px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.big small{display:block;font-size:16px;color:var(--muted);letter-spacing:.2em;margin-bottom:10px}
+.big .flap{font-size:58px}
+.note{font-size:19px;line-height:1.55;color:var(--cream);background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.35);border-radius:12px;padding:12px 16px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line}
+.note b{color:var(--amber);margin-right:8px}
+.timer{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--seam)}
+.timer i{display:block;height:100%;background:var(--amber);width:0}
+.empty-gate{grid-column:1/-1;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:26px;line-height:1.6}
+.empty-gate b{display:block;color:var(--cream);font-size:40px;font-family:var(--f-display);letter-spacing:.06em}
+
+/* 即將開始 */
+.soonbar{border-top:1px solid var(--line);padding:14px 22px 18px;display:flex;flex-direction:column;gap:10px}
+.soonbar .lb{font-size:16px;font-weight:900;letter-spacing:.2em;color:var(--soon)}
+.soonbar .items{display:flex;gap:12px;overflow:hidden}
+.si{display:flex;align-items:center;gap:12px;background:var(--tile);border-radius:10px;padding:8px 14px 8px 8px;flex:none;max-width:420px}
+.si .ic{width:40px;height:40px}
+.si b{display:block;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px}
+.si span{font-family:var(--f-mono);font-size:16px;color:var(--soon)}
+
+/* 圖示 */
+.ic{border-radius:8px;background:var(--tile);display:grid;place-items:center;overflow:hidden;flex:none}
+.ic img{width:100%;height:100%;object-fit:contain}
+.ic .fb{font-family:var(--f-mono);font-weight:800;font-size:14px;color:var(--amber)}
+
+/* 右：聊天室保留區 */
+.chat{background:rgba(18,24,34,.55);border:1px dashed var(--line)}
+.chat .body{flex:1}
+html.transparent .chat{background:transparent}
+@media (prefers-reduced-motion:reduce){.flap i.flip{animation:none}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <header class="head">
+    <div class="title">
+      <div class="plane" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1305" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2l7 3v6c0 5-3 9-7 11-4-2-7-6-7-11V5z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></div>
+      <div><b>徽章時刻表</b><span>TWITCH BADGE DEPARTURES</span></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--live)"></i>可解鎖</span>
+      <span><i style="background:var(--last)"></i>即將結束　24 小時內</span>
+      <span><i style="background:var(--soon)"></i>即將開始</span>
+    </div>
+    <div class="clock"><div class="d" id="cDate"></div><div class="flap" id="cTime"></div></div>
+  </header>
+
+  <div class="cols">
+    <section class="panel">
+      <div class="ph"><b>出發時刻</b><em id="count"></em></div>
+      <div class="rows" id="rows"><div class="rows-in" id="rowsIn"></div></div>
+    </section>
+
+    <section class="panel">
+      <div class="ph"><b>登機口</b><span>NOW BOARDING</span></div>
+      <div class="gate" id="gate"></div>
+      <div class="soonbar" id="soonbar" hidden><div class="lb">即將開始</div><div class="items" id="soonItems"></div></div>
+    </section>
+
+    <section class="panel chat" id="chatPanel">
+      <div class="ph"><b>聊天室</b><span>CHAT</span></div>
+      <div class="body"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+/* 網址參數：?seconds=8（每個徽章介紹幾秒） &chat=0（不保留聊天室） &upcoming=0（不顯示即將開始） &transparent=1（透明背景） */
+const P=new URLSearchParams(location.search);
+const ROT=(+P.get("seconds")||8)*1000, SHOW_SOON=P.get("upcoming")!=="0";
+if(P.get("transparent")==="1") document.documentElement.classList.add("transparent");
+if(P.get("chat")==="0"){document.getElementById("chatPanel").remove();document.getElementById("stage").classList.add("nochat")}
+const DATA_URL="data/badges.json", DAY=864e5;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const t=s=>s?Date.parse(s):null, now=()=>Date.now();
+
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080),st=document.getElementById("stage");st.style.transform=`scale(${s})`;st.style.left=(innerWidth-1920*s)/2+"px";st.style.top=(innerHeight-1080*s)/2+"px"}
+addEventListener("resize",fit);fit();
+
+/* 翻牌字卡：只有改變的字會翻動 */
+function flap(el,parts){
+  // parts: [{t:"12"},{u:"天"},{t:"03"},{s:":"}...]
+  const want=[];for(const p of parts){if(p.u)want.push(["u",p.u]);else if(p.s)want.push(["sep",p.s]);else for(const ch of p.t)want.push(["d",ch])}
+  const kids=el.children;
+  if(kids.length!==want.length||[...kids].some((k,i)=>k.dataset.k!==want[i][0])){
+    el.innerHTML=want.map(([k,v])=>`<i class="${k==="d"?"":k}" data-k="${k}">${esc(v)}</i>`).join("");return;
+  }
+  want.forEach(([k,v],i)=>{const n=kids[i];if(n.textContent!==v){n.textContent=v;if(k==="d"){n.classList.remove("flip");void n.offsetWidth;n.classList.add("flip")}}});
+}
+const p2=n=>String(n).padStart(2,"0");
+function cdParts(ms){
+  if(ms<0) ms=0;
+  const d=Math.floor(ms/DAY),h=Math.floor(ms%DAY/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
+  return d?[{t:String(d)},{u:"天"},{t:p2(h)},{s:":"},{t:p2(m)},{s:":"},{t:p2(s)}]:[{t:p2(h)},{s:":"},{t:p2(m)},{s:":"},{t:p2(s)}];
+}
+function shortLeft(ms){if(ms<=0)return"已結束";const d=Math.floor(ms/DAY),h=Math.floor(ms%DAY/36e5),m=Math.floor(ms%36e5/6e4);return d?`${d} 天 ${h} 小時`:h?`${h} 小時 ${m} 分`:`${m} 分`}
+
+/* 時鐘 */
+const fD=new Intl.DateTimeFormat("zh-TW",{month:"long",day:"numeric",weekday:"long"});
+const tz=new Intl.DateTimeFormat("zh-TW",{timeZoneName:"short"}).formatToParts(new Date()).find(p=>p.type==="timeZoneName")?.value||"";
+function clock(){const d=new Date();document.getElementById("cDate").innerHTML=`<b>${esc(fD.format(d))}</b>${esc(tz)}`;flap(document.getElementById("cTime"),[{t:p2(d.getHours())},{s:":"},{t:p2(d.getMinutes())},{s:":"},{t:p2(d.getSeconds())}])}
+
+/* 資料 */
+let DB=null, live=[], soon=[], cur=0, sig="", rotAt=0;
+const fWhen=new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+const kind=b=>{const e=t(b.campaign.end);return e&&e-now()<DAY?"last":"live"};
+const KIND_ZH={live:"可解鎖",last:"即將結束",soon:"即將開始"};
+const req=c=>c?.subs?`訂閱 <em>${c.subs}</em> 次`:c?.minutes?`觀看 <em>${c.minutes}</em> 分鐘`:"見 Twitch Drops";
+const initials=s=>String(s).replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"?";
+const icon=(b,size=4)=>`<span class="ic"><img src="${esc(b["image_url_"+size+"x"]||b.image_url_4x||"")}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'fb',textContent:'${initials(b.title)}'}))"></span>`;
+const keyOf=b=>b.set_id+"/"+b.id;
+
+async function load(){try{const r=await fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"});if(r.ok){DB=await r.json();refresh()}}catch(_){}}
+function refresh(){
+  const n=now(), L=[], S=[];
+  for(const b of DB?.badges||[]){const c=b.campaign;if(b.removed_at||!c?.start)continue;const s=t(c.start),e=t(c.end);
+    if(n<s){if(SHOW_SOON&&s-n<14*DAY)S.push(b)}else if(!e||n<e)L.push(b)}
+  L.sort((a,b)=>(t(a.campaign.end)??Infinity)-(t(b.campaign.end)??Infinity)||a.title.localeCompare(b.title));
+  S.sort((a,b)=>t(a.campaign.start)-t(b.campaign.start));
+  const s=JSON.stringify([L.map(b=>keyOf(b)+b.campaign.end+b.campaign.note+kind(b)),S.map(keyOf)]);
+  if(s===sig) return; sig=s;
+  const curKey=live[cur]&&keyOf(live[cur]);
+  live=L; soon=S;
+  cur=Math.max(0,live.findIndex(b=>keyOf(b)===curKey));
+  document.getElementById("count").textContent=live.length?`${live.length}`:"";
+  document.getElementById("rowsIn").innerHTML=live.length?live.map((b,i)=>`<div class="row" data-i="${i}">${icon(b,2)}<div class="nm">${esc(b.title)}</div>
+    <div class="meta"><span class="st ${kind(b)}">${KIND_ZH[kind(b)]}</span><span class="flap" data-end="${esc(b.campaign.end||"")}"></span></div></div>`).join("")
+    :`<div class="row"><div class="nm" style="grid-column:1/-1;color:var(--muted)">目前沒有可解鎖的徽章</div></div>`;
+  const bar=document.getElementById("soonbar");bar.hidden=!soon.length;
+  document.getElementById("soonItems").innerHTML=soon.slice(0,4).map(b=>`<div class="si">${icon(b,2)}<div><b>${esc(b.title)}</b><span data-start="${esc(b.campaign.start)}"></span></div></div>`).join("");
+  showGate(false); tickRows();
+}
+
+/* 登機口：輪播介紹 */
+const R=130, C=2*Math.PI*R;
+function showGate(animate){
+  const g=document.getElementById("gate");
+  if(!live.length){g.innerHTML=`<div class="empty-gate"><div><b>NO DEPARTURES</b>目前沒有可解鎖的徽章，<br>新活動開始時會自動出現在這裡。</div></div>`;return}
+  const draw=()=>{
+    const b=live[cur], c=b.campaign, k=kind(b), s=t(c.start), e=t(c.end);
+    const days=e?Math.max(1,Math.round((e-s)/DAY)):null;
+    g.innerHTML=`
+      <div class="ring fade">
+        <svg viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="${R}" fill="none" stroke="#1a2230" stroke-width="14"/>
+          <circle id="arc" cx="150" cy="150" r="${R}" fill="none" stroke="var(--${k==="last"?"last":"amber"})" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>
+        <div class="plate">${icon(b,4)}</div>
+        <div class="pct">活動已進行<b id="pct"></b></div>
+      </div>
+      <div class="info fade">
+        <div class="tagline"><span class="chip ${k}">${KIND_ZH[k]}</span><span class="idx">${String(cur+1).padStart(2,"0")} / ${String(live.length).padStart(2,"0")}</span></div>
+        <h2 class="bname">${esc(b.title)}</h2>
+        <div class="facts">
+          <div class="fact"><small>解鎖方式</small><b>${req(c)}</b></div>
+          <div class="fact"><small>分類</small><b>${esc(c.game||"—")}</b></div>
+          <div class="fact"><small>持續時間</small><b>${days?`<em>${days}</em> 天`:"未公布"}</b><div class="sub">${esc(fWhen.format(new Date(s)))} → ${e?esc(fWhen.format(new Date(e))):"?"}</div></div>
+        </div>
+        <div class="big"><small>距離結束</small><div class="flap" id="bigCd"></div></div>
+        ${c.note?`<div class="note"><b>注意</b>${esc(c.note)}</div>`:""}
+      </div>
+      <div class="timer"><i id="timer"></i></div>`;
+    g.classList.remove("out"); tickGate(true);
+  };
+  if(animate){g.classList.add("out");setTimeout(draw,450)} else draw();
+  // 左側清單：亮起目前這一列並捲到可見位置
+  document.querySelectorAll(".row").forEach(r=>r.classList.toggle("on",+r.dataset.i===cur));
+  const box=document.getElementById("rows"), inner=document.getElementById("rowsIn"), row=inner.querySelector(`.row[data-i="${cur}"]`);
+  if(row){const max=Math.max(0,inner.scrollHeight-box.clientHeight);const y=Math.min(max,Math.max(0,row.offsetTop-box.clientHeight*0.3));inner.style.transform=`translateY(${-y}px)`}
+  rotAt=performance.now();
+}
+function next(){ if(live.length>1){cur=(cur+1)%live.length;showGate(true)} else {rotAt=performance.now()} }
+
+function tickGate(first){
+  const b=live[cur]; if(!b) return; const c=b.campaign, s=t(c.start), e=t(c.end), n=now();
+  const big=document.getElementById("bigCd");
+  if(big){ if(e) flap(big,cdParts(e-n)); else big.innerHTML=`<span style="font-size:32px;color:var(--muted)">結束時間未公布</span>`; }
+  const p=e?Math.min(1,Math.max(0,(n-s)/(e-s))):0, arc=document.getElementById("arc");
+  if(arc){ if(first){arc.style.transition="none";arc.style.strokeDashoffset=C;void arc.getBoundingClientRect();arc.style.transition="stroke-dashoffset 1.2s ease-out"} arc.style.strokeDashoffset=C*(1-p) }
+  const pc=document.getElementById("pct"); if(pc) pc.textContent=e?Math.round(p*100)+"%":"—";
+}
+function tickRows(){
+  const n=now();
+  document.querySelectorAll(".row .flap[data-end]").forEach(el=>{const e=t(el.dataset.end); if(e) flap(el,cdParts(e-n)); else el.textContent="未公布"});
+  document.querySelectorAll(".si span[data-start]").forEach(el=>{el.textContent=shortLeft(t(el.dataset.start)-n)+"後開始"});
+}
+function frame(ts){
+  const tm=document.getElementById("timer"); if(tm) tm.style.width=Math.min(100,(ts-rotAt)/ROT*100)+"%";
+  if(ts-rotAt>=ROT) next();
+  requestAnimationFrame(frame);
+}
+
+clock(); setInterval(()=>{clock();tickRows();tickGate(false)},1000);
+setInterval(()=>{if(DB)refresh()},15*1000); // 活動開始、結束或進入最後 24 小時時才會重畫
+load(); setInterval(load,60*1000);
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
