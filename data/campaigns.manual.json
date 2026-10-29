@@ -52,13 +52,15 @@
   },
   "final-fantasy-xiv-fan-festival-2026-jp---alpha-chat/1": {
     "game": "Final Fantasy XIV Online",
-    "start": "2026-10-30T07:01:00Z",
-    "end": "2026-11-02T06:59:00Z"
+    "start": "2026-10-30T15:00:00Z",
+    "end": "2026-11-02T14:58:00Z",
+    "minutes": 60
   },
   "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat/1": {
     "game": "Final Fantasy XIV Online",
-    "start": "2026-10-30T07:01:00Z",
-    "end": "2026-11-02T06:59:00Z"
+    "start": "2026-10-30T15:01:00Z",
+    "end": "2026-11-02T14:58:00Z",
+    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。"
   },
   "flameborn-sigil/1": {
     "start": "2026-10-15T08:00:00Z",
@@ -74,13 +76,16 @@
     "end": "2027-01-30T07:59:00Z"
   },
   "gold-stamp/1": {
+    "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
-    "end": "2026-10-31T07:59:00Z"
+    "end": "2026-10-31T07:59:00Z",
+    "minutes": 240
   },
   "gray-zone-warfare-gold/1": {
     "game": "Gray Zone Warfare",
     "start": "2026-10-22T16:00:00Z",
-    "end": "2026-11-06T12:58:00Z"
+    "end": "2026-11-06T12:58:00Z",
+    "subs": 1
   },
   "haunter/1": {
     "game": "Pokémon",
