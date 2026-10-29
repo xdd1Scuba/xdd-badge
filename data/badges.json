@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-29T01:18:21.249Z",
+ "updated_at": "2026-10-29T01:22:10.311Z",
  "count": 553,
  "badges": [
   {
@@ -5888,7 +5888,8 @@
    "campaign": {
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
-    "source": "manual"
+    "source": "manual",
+    "minutes": 60
    },
    "notified": {}
   },
