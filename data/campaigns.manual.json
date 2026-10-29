@@ -1,5 +1,11 @@
 {
   "_說明": "Drops 讀不到或要修正時，在這裡手動填活動時間。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。",
+  "dbd-halloween-2026/1": {
+    "game": "Dead by Daylight",
+    "start": "2026-10-29T21:00:00Z",
+    "end": "2026-10-31T07:59:00Z",
+    "subs": 1
+  },
   "edgerunners-talia/1": {
     "game": "Cyberpunk 2077",
     "start": "2026-10-19T22:01:00Z",
