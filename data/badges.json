@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-29T20:16:22.463Z",
+ "updated_at": "2026-10-29T21:12:19.740Z",
  "count": 553,
  "badges": [
   {
@@ -1996,7 +1996,7 @@
    "removed_at": null,
    "campaign": {
     "game": "Dead by Daylight",
-    "start": "2026-10-29T21:00:00Z",
+    "start": "2026-10-30T13:00:00Z",
     "end": "2026-10-31T07:59:00Z",
     "subs": 1,
     "source": "manual"
