@@ -1,5 +1,43 @@
 {
   "_說明": "Drops 讀不到或要修正時，在這裡手動填活動時間。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。",
+  "ace-combat-8-nugget/1": {
+    "game": "ACE COMBAT 8",
+    "start": "2026-09-28T22:00:00Z",
+    "end": "2026-10-26T06:59:00Z"
+  },
+  "beagoldfish/1": {
+    "start": "2026-10-20T19:00:00Z",
+    "end": "2026-11-03T07:59:00Z"
+  },
+  "believeinrichmond/1": {
+    "start": "2026-10-20T19:00:00Z",
+    "end": "2026-11-03T07:59:00Z"
+  },
+  "blastoise/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "bloody-finger-elden-ring/1": {
+    "game": "ELDEN RING",
+    "start": "2026-10-01T07:00:00Z",
+    "end": "2026-10-29T06:59:00Z"
+  },
+  "castlevania-belmonts-curse/1": {
+    "game": "Castlevania",
+    "start": "2026-10-15T04:00:00Z",
+    "end": "2026-11-02T03:59:00Z"
+  },
+  "charizard/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "charmeleon/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
   "dbd-halloween-2026/1": {
     "game": "Dead by Daylight",
     "start": "2026-10-29T21:00:00Z",
@@ -11,6 +49,48 @@
     "start": "2026-10-19T22:01:00Z",
     "end": "2026-10-20T22:00:00Z",
     "minutes": 15
+  },
+  "final-fantasy-xiv-fan-festival-2026-jp---alpha-chat/1": {
+    "game": "Final Fantasy XIV Online",
+    "start": "2026-10-30T07:01:00Z",
+    "end": "2026-11-02T06:59:00Z"
+  },
+  "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat/1": {
+    "game": "Final Fantasy XIV Online",
+    "start": "2026-10-30T07:01:00Z",
+    "end": "2026-11-02T06:59:00Z"
+  },
+  "flameborn-sigil/1": {
+    "start": "2026-10-15T08:00:00Z",
+    "end": "2026-10-29T22:58:00Z"
+  },
+  "frekifriend/1": {
+    "start": "2026-10-08T12:00:00Z",
+    "end": "2026-10-31T10:58:00Z"
+  },
+  "gengar/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "gold-stamp/1": {
+    "start": "2026-10-21T16:00:00Z",
+    "end": "2026-10-31T07:59:00Z"
+  },
+  "gray-zone-warfare-gold/1": {
+    "game": "Gray Zone Warfare",
+    "start": "2026-10-22T16:00:00Z",
+    "end": "2026-11-06T12:58:00Z"
+  },
+  "haunter/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "heartsteel-fan/1": {
+    "game": "League of Legends",
+    "start": "2026-10-14T16:00:00Z",
+    "end": "2026-10-27T15:59:00Z"
   },
   "hunt-red/1": {
     "game": "Hunt: Showdown 1896",
@@ -24,11 +104,33 @@
     "end": "2026-11-09T13:59:00Z",
     "minutes": 15
   },
+  "ivysaur/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "modern-warfare-4/1": {
+    "game": "Call of Duty",
+    "start": "2026-10-23T17:00:00Z",
+    "end": "2026-11-13T17:59:00Z"
+  },
   "pikachu/1": {
     "game": "Pokémon",
-    "start": "2026-10-06T00:00:00Z",
-    "end": "2027-01-30T23:59:00Z",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z",
     "minutes": 20
+  },
+  "qsmp2/1": {
+    "start": "2026-10-21T21:00:00Z",
+    "end": "2026-11-18T00:59:00Z"
+  },
+  "seegson-synthetics/1": {
+    "start": "2026-10-01T09:00:00Z",
+    "end": "2026-10-29T08:58:00Z"
+  },
+  "sevastopol-station/1": {
+    "start": "2026-10-01T09:00:00Z",
+    "end": "2026-10-29T08:58:00Z"
   },
   "streamer-awards-2026-vote/1": {
     "game": "The Streamer Awards",
@@ -46,6 +148,51 @@
     "start": "2026-10-22T10:00:00Z",
     "end": "2026-11-19T09:59:00Z",
     "subs": 1
+  },
+  "thedragonsdogma/1": {
+    "start": "2026-10-08T12:00:00Z",
+    "end": "2026-10-31T10:58:00Z"
+  },
+  "true-damage-fan/1": {
+    "game": "League of Legends",
+    "start": "2026-10-27T16:00:00Z",
+    "end": "2026-11-07T15:59:00Z"
+  },
+  "twitchcon-2026---san-diego---beachball/1": {
+    "game": "TwitchCon",
+    "start": "2026-07-22T18:00:00Z",
+    "end": "2026-11-13T12:00:00Z"
+  },
+  "twitchcon-2026---san-diego---taco/1": {
+    "game": "TwitchCon",
+    "start": "2026-07-22T18:00:00Z",
+    "end": "2026-11-13T12:00:00Z"
+  },
+  "ultramarine/1": {
+    "start": "2026-10-01T08:00:00Z",
+    "end": "2026-10-29T07:59:00Z"
+  },
+  "venusaur/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "wartortle/1": {
+    "game": "Pokémon",
+    "start": "2026-10-16T17:00:00Z",
+    "end": "2027-01-30T07:59:00Z"
+  },
+  "witch-hat/1": {
+    "start": "2026-10-21T16:00:00Z",
+    "end": "2026-10-31T07:59:00Z"
+  },
+  "witchspire-logo/1": {
+    "start": "2026-10-21T16:00:00Z",
+    "end": "2026-10-31T07:59:00Z"
+  },
+  "wolf-medallion/1": {
+    "start": "2026-09-29T10:00:00Z",
+    "end": "2026-10-27T09:59:00Z"
   },
   "worlds-2026-supporter/1": {
     "game": "League of Legends",
