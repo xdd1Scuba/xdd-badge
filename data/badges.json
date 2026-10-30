@@ -1,7 +1,23 @@
 {
- "updated_at": "2026-10-29T21:12:19.740Z",
- "count": 553,
+ "updated_at": "2026-10-30T17:04:12.136Z",
+ "count": 554,
  "badges": [
+  {
+   "set_id": "warrior-jar-alexander",
+   "id": "1",
+   "title": "Warrior Jar Alexander",
+   "description": "This badge was earned by subscribing or gifting a sub to a streamer in the ELDEN RING category.",
+   "click_action": null,
+   "click_url": null,
+   "image_url_1x": "https://static-cdn.jtvnw.net/badges/v1/a080167b-6264-404b-b9b1-e5a68348299f/1",
+   "image_url_2x": "https://static-cdn.jtvnw.net/badges/v1/a080167b-6264-404b-b9b1-e5a68348299f/2",
+   "image_url_4x": "https://static-cdn.jtvnw.net/badges/v1/a080167b-6264-404b-b9b1-e5a68348299f/3",
+   "first_seen": "2026-10-30T17:04:12.136Z",
+   "baseline": false,
+   "removed_at": null,
+   "campaign": null,
+   "notified": {}
+  },
   {
    "set_id": "007-gun-barrel",
    "id": "1",
