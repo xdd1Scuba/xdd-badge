@@ -155,7 +155,6 @@
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
-    "cmd": "!HUNT",
     "column": "sub",
     "reviewed": true
   },
@@ -164,7 +163,6 @@
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
     "note": "觀看 15 分鐘解鎖",
-    "cmd": "!HUNT",
     "type": "free",
     "column": "free",
     "reviewed": true
