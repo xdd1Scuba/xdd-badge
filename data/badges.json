@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T18:38:27.133Z",
+ "updated_at": "2026-10-31T18:49:18.038Z",
  "count": 554,
  "badges": [
   {
@@ -15,10 +15,14 @@
    "first_seen": "2026-10-30T17:04:12.136Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "ELDEN RING",
+    "subs": 1,
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "reviewed": false
+   "type": "sub",
+   "reviewed": true
   },
   {
    "set_id": "007-gun-barrel",
