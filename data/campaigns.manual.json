@@ -1,5 +1,8 @@
 {
   "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。_overlay：Overlay 外觀設定。",
+  "_overlay": {
+    "leftWidth": 640
+  },
   "ace-combat-8-nugget/1": {
     "game": "ACE COMBAT 8",
     "start": "2026-09-28T22:00:00Z",
