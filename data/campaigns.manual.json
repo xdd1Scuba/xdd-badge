@@ -36,9 +36,9 @@
     "reviewed": true
   },
   "blastoise/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -58,18 +58,18 @@
     "reviewed": true
   },
   "charizard/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
   },
   "charmeleon/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -115,9 +115,9 @@
     "end": "2026-10-31T10:58:00Z"
   },
   "gengar/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -138,9 +138,9 @@
     "reviewed": true
   },
   "haunter/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -168,9 +168,9 @@
     "reviewed": true
   },
   "ivysaur/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -185,9 +185,9 @@
     "reviewed": true
   },
   "pikachu/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -262,9 +262,9 @@
     "end": "2026-10-29T07:59:00Z"
   },
   "venusaur/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -278,9 +278,9 @@
     "reviewed": true
   },
   "wartortle/1": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
