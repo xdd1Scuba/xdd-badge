@@ -18,13 +18,19 @@
     "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "subs": 1
+    "subs": 1,
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "believeinrichmond/1": {
     "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "subs": 1
+    "subs": 1,
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "blastoise/1": {
     "start": "2026-10-16T17:00:00Z",
@@ -131,7 +137,10 @@
     "game": "Call of Duty Modern Warfare 4",
     "start": "2026-10-23T17:00:00Z",
     "end": "2026-11-13T17:59:00Z",
-    "subs": 1
+    "subs": 1,
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "pikachu/1": {
     "game": "Pokémon",
