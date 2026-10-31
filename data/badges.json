@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:48:09.392Z",
+ "updated_at": "2026-10-31T19:49:51.634Z",
  "count": 554,
  "badges": [
   {
@@ -4232,13 +4232,12 @@
     "game": "Gray Zone Warfare",
     "start": "2026-10-22T16:00:00Z",
     "end": "2026-11-06T12:58:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "grey-zone-warfare",
@@ -4565,9 +4564,9 @@
    "notified": {
     "live": "2026-10-26T14:54:00Z"
    },
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "free",
+   "column": "free",
+   "reviewed": true
   },
   {
    "set_id": "hype-train",
@@ -4697,15 +4696,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "jackbox-party-pack_1",
@@ -6323,18 +6322,17 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "minutes": 20,
     "source": "manual"
    },
    "notified": {
     "live": "2026-10-06T00:00:00Z"
    },
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "pogchamps-6-7",
@@ -7002,9 +7000,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "free",
+   "column": "free",
+   "reviewed": true
   },
   {
    "set_id": "raging-wolf-helm",
@@ -9113,15 +9111,14 @@
     "game": "Cyberpunk 2077",
     "start": "2026-10-22T10:00:00Z",
     "end": "2026-11-13T17:59:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {
     "live": "2026-10-22T10:00:00Z"
    },
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "the-onryos-mask",
@@ -9433,9 +9430,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "free",
+   "column": "free",
+   "reviewed": true
   },
   {
    "set_id": "turbo",
