@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:37:48.026Z",
+ "updated_at": "2026-10-31T19:43:47.626Z",
  "count": 554,
  "badges": [
   {
@@ -1373,9 +1373,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "bloody-finger-elden-ring",
