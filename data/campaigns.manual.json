@@ -1,5 +1,5 @@
 {
-  "_說明": "Drops 讀不到或要修正時，在這裡手動填活動時間。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。",
+  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。_overlay：Overlay 外觀設定。",
   "ace-combat-8-nugget/1": {
     "game": "ACE COMBAT 8",
     "start": "2026-09-28T22:00:00Z",
@@ -188,6 +188,12 @@
     "game": "Pokémon",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z"
+  },
+  "warrior-jar-alexander/1": {
+    "game": "ELDEN RING",
+    "subs": 1,
+    "type": "sub",
+    "reviewed": true
   },
   "wartortle/1": {
     "game": "Pokémon",
