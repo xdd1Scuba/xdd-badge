@@ -164,7 +164,6 @@
     "game": "Call of Duty Modern Warfare 4",
     "start": "2026-10-23T17:00:00Z",
     "end": "2026-11-13T17:59:00Z",
-    "subs": 1,
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -276,6 +275,8 @@
     "game": "League of Legends",
     "start": "2026-10-14T07:00:00Z",
     "end": "2026-11-15T18:59:00Z",
-    "subs": 1
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   }
 }
