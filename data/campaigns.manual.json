@@ -1,5 +1,5 @@
 {
-  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。_overlay：Overlay 外觀設定。",
+  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。",
   "_overlay": {
     "leftWidth": 460,
     "speed": [
@@ -143,6 +143,7 @@
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
+    "cmd": "!HUNY",
     "column": "sub",
     "reviewed": true
   },
