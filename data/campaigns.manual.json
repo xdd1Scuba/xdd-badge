@@ -39,6 +39,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -60,6 +61,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -68,6 +70,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -115,6 +118,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -137,6 +141,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -159,6 +164,7 @@
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
     "minutes": 15,
+    "cmd": "!HUNT",
     "type": "free",
     "column": "free",
     "reviewed": true
@@ -167,6 +173,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -183,6 +190,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -259,6 +267,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -274,6 +283,7 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
     "reviewed": true
