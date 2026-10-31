@@ -12,7 +12,10 @@
       38
     ],
     "fontScale": 1.1,
-    "cmdSize": 20
+    "cmdSize": 20,
+    "colors": {
+      "cmd": "#919191"
+    }
   },
   "ace-combat-8-nugget/1": {
     "game": "ACE COMBAT 8",
