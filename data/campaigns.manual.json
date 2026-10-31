@@ -123,7 +123,8 @@
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
-    "subs": 1
+    "column": "sub",
+    "reviewed": true
   },
   "hunt-white/1": {
     "game": "Hunt: Showdown 1896",
