@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T20:56:11.490Z",
+ "updated_at": "2026-10-31T20:58:40.827Z",
  "count": 554,
  "badges": [
   {
@@ -3734,7 +3734,7 @@
     "game": "Final Fantasy XIV Online",
     "start": "2026-10-30T15:00:00Z",
     "end": "2026-11-02T14:58:00Z",
-    "minutes": 60,
+    "note": "觀看 60 分鐘解鎖",
     "source": "manual"
    },
    "notified": {},
@@ -3760,7 +3760,7 @@
     "game": "Final Fantasy XIV Online",
     "start": "2026-10-30T15:01:00Z",
     "end": "2026-11-02T14:58:00Z",
-    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。",
+    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 2026\" 60 分鐘即可獲得此徽章。",
     "source": "manual"
    },
    "notified": {},
@@ -4787,7 +4787,7 @@
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
-    "minutes": 15,
+    "note": "觀看 15 分鐘解鎖",
     "source": "manual"
    },
    "notified": {
