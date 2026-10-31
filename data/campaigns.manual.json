@@ -127,9 +127,12 @@
     "reviewed": true
   },
   "haunter/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "heartsteel-fan/1": {
     "game": "League of Legends",
@@ -225,23 +228,32 @@
     "reviewed": true
   },
   "twitchcon-2026---san-diego---beachball/1": {
-    "game": "TwitchCon",
+    "game": "購買 TwitchCon 1日通行證",
     "start": "2026-07-22T18:00:00Z",
-    "end": "2026-11-13T12:00:00Z"
+    "end": "2026-11-13T12:00:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "twitchcon-2026---san-diego---taco/1": {
-    "game": "TwitchCon",
+    "game": "購買 TwitchCon 3日通行證",
     "start": "2026-07-22T18:00:00Z",
-    "end": "2026-11-13T12:00:00Z"
+    "end": "2026-11-13T12:00:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "ultramarine/1": {
     "start": "2026-10-01T08:00:00Z",
     "end": "2026-10-29T07:59:00Z"
   },
   "venusaur/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "warrior-jar-alexander/1": {
     "game": "ELDEN RING",
@@ -251,9 +263,12 @@
     "reviewed": true
   },
   "wartortle/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "witch-hat/1": {
     "game": "Witchspire",
