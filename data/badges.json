@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T20:10:32.862Z",
+ "updated_at": "2026-10-31T20:14:01.026Z",
  "count": 554,
  "badges": [
   {
@@ -4310,15 +4310,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "heartsteel-fan",
@@ -9694,15 +9694,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "TwitchCon",
+    "game": "購買 TwitchCon 1日通行證",
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "twitchcon-2026---san-diego---taco",
@@ -9718,15 +9718,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "TwitchCon",
+    "game": "購買 TwitchCon 3日通行證",
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "twitchcon-2026-europe-row-houses",
@@ -10221,15 +10221,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "vga-champ-2017",
@@ -10397,15 +10397,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "waterslug",
