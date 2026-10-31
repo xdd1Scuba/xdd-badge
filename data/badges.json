@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-30T17:04:12.136Z",
+ "updated_at": "2026-10-31T18:38:27.133Z",
  "count": 554,
  "badges": [
   {
@@ -16,7 +16,9 @@
    "baseline": false,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "007-gun-barrel",
@@ -32,7 +34,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "10-years-as-twitch-staff",
@@ -48,7 +52,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "15-years-as-twitch-staff",
@@ -64,7 +70,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "1979-revolution_1",
@@ -80,7 +88,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "2026-bafta-games-awards",
@@ -96,7 +106,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "2026-worlds-costumed-pikachu",
@@ -112,7 +124,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "5-years-as-twitch-staff",
@@ -128,7 +142,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "60-seconds_1",
@@ -144,7 +160,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "60-seconds_2",
@@ -160,7 +178,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "60-seconds_3",
@@ -176,7 +196,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "aang",
@@ -192,7 +214,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ace-combat-8-nugget",
@@ -213,7 +237,9 @@
     "end": "2026-10-26T06:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "admin",
@@ -229,7 +255,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "alone",
@@ -245,7 +273,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "alterra-corporation",
@@ -261,7 +291,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ambassador",
@@ -277,7 +309,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ampersand",
@@ -293,7 +327,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "anomaly-2_1",
@@ -309,7 +345,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "anomaly-warzone-earth_1",
@@ -325,7 +363,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "anonymous-cheerer",
@@ -341,7 +381,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "arc-raiders-launch-2025",
@@ -357,7 +399,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "arcane-season-2-premiere",
@@ -373,7 +417,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "artist-badge",
@@ -389,7 +435,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "assassins-creed-black-flag-resynced",
@@ -405,7 +453,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "axiom-verge_1",
@@ -421,7 +471,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ayane",
@@ -437,7 +489,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "baby-chick-chat-badge",
@@ -453,7 +507,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "battlechefbrigade_1",
@@ -469,7 +525,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "battlechefbrigade_2",
@@ -485,7 +543,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "battlechefbrigade_3",
@@ -501,7 +561,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "battlefield-6",
@@ -517,7 +579,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "battlerite_1",
@@ -533,7 +597,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "beagoldfish",
@@ -549,13 +615,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
+    "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "source": "manual",
-    "game": "任意分類",
-    "subs": 1
+    "subs": 1,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "believeinrichmond",
@@ -571,13 +639,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
+    "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "source": "manual",
-    "game": "任意分類",
-    "subs": 1
+    "subs": 1,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "big-walk",
@@ -593,7 +663,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bingbonglove",
@@ -609,7 +681,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -625,7 +699,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -641,7 +717,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -657,7 +735,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -673,7 +753,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -689,7 +771,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -705,7 +789,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -721,7 +807,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -737,7 +825,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -753,7 +843,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -769,7 +861,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -785,7 +879,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -801,7 +897,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -817,7 +915,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -833,7 +933,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -849,7 +951,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -865,7 +969,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -881,7 +987,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -897,7 +1005,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -913,7 +1023,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -929,7 +1041,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -945,7 +1059,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -961,7 +1077,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -977,7 +1095,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -993,7 +1113,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -1009,7 +1131,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -1025,7 +1149,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -1041,7 +1167,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits",
@@ -1057,7 +1185,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits-charity",
@@ -1073,7 +1203,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits-leader",
@@ -1089,7 +1221,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits-leader",
@@ -1105,7 +1239,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bits-leader",
@@ -1121,7 +1257,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "black-ops-7-global-launch",
@@ -1137,7 +1275,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "blastoise",
@@ -1153,13 +1293,14 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "source": "manual",
-    "note": "!pokemon"
+    "note": "!pokemon",
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bloody-finger-elden-ring",
@@ -1180,7 +1321,9 @@
     "end": "2026-10-29T06:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bloom-badge",
@@ -1196,7 +1339,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bloom-badge",
@@ -1212,7 +1357,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bloom-badge",
@@ -1228,7 +1375,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bloom-badge",
@@ -1244,7 +1393,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "blossom-badge",
@@ -1260,7 +1411,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "blossom-badge",
@@ -1276,7 +1429,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "blossom-badge",
@@ -1292,7 +1447,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "blossom-badge",
@@ -1308,7 +1465,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "blue-creeper-boss",
@@ -1324,7 +1483,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "borderlands-4---c4sh",
@@ -1340,7 +1501,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "borderlands-4-badge---ripper",
@@ -1356,7 +1519,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "borderlands-4-badge---vault-symbol",
@@ -1372,7 +1537,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bot-badge",
@@ -1388,7 +1555,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "brawlhalla_1",
@@ -1404,7 +1573,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "brawlhallawoo",
@@ -1420,7 +1591,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "broadcaster",
@@ -1436,7 +1609,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "broken-age_1",
@@ -1452,7 +1627,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bubsy-4d",
@@ -1468,7 +1645,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bubsy-the-woolies_1",
@@ -1484,7 +1663,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "budz",
@@ -1500,7 +1681,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bulbasaur",
@@ -1516,7 +1699,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bungie-foundation-ally",
@@ -1532,7 +1717,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "bungie-foundation-supporter",
@@ -1548,7 +1735,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "castlevania-belmonts-curse",
@@ -1569,7 +1758,9 @@
     "end": "2026-11-02T03:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "cdawg-cyclethon-5-badge",
@@ -1585,7 +1776,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "chains",
@@ -1601,7 +1794,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "charizard",
@@ -1622,7 +1817,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "charmander",
@@ -1638,7 +1835,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "charmeleon",
@@ -1659,7 +1858,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "chatter-cs-go-2022",
@@ -1675,7 +1876,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "civ-vii---test-of-time",
@@ -1691,7 +1894,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clair-obscur-expedition-33-one-year-anniversary",
@@ -1707,7 +1912,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clip-champ",
@@ -1723,7 +1930,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clip-the-halls",
@@ -1739,7 +1948,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clipped-that",
@@ -1755,7 +1966,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clips-leader",
@@ -1771,7 +1984,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clips-leader",
@@ -1787,7 +2002,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "clips-leader",
@@ -1803,7 +2020,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "cool-cattiva",
@@ -1819,7 +2038,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "crash",
@@ -1835,7 +2056,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "creator-cs-go-2022",
@@ -1851,7 +2074,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "crimson-butterfly",
@@ -1867,7 +2092,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "crimson-desert---crest",
@@ -1883,7 +2110,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "crossworlds-world-championship-2026",
@@ -1899,7 +2128,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "cryana",
@@ -1915,7 +2146,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "cuphead_1",
@@ -1931,7 +2164,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "d20",
@@ -1947,7 +2182,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dallas",
@@ -1963,7 +2200,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "darkest-dungeon_1",
@@ -1979,7 +2218,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dayz-yellow-king",
@@ -1995,7 +2236,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dbd-halloween-2026",
@@ -2017,7 +2260,9 @@
     "subs": 1,
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dead-by-daylight-icon",
@@ -2033,7 +2278,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dead-by-daylight-pride-icon",
@@ -2049,7 +2296,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dead-by-daylight-x-jason-universe",
@@ -2065,7 +2314,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "deceit_1",
@@ -2081,7 +2332,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "default-creator-campaign-reward",
@@ -2097,7 +2350,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "destiny-2-final-shape-raid-race",
@@ -2113,7 +2368,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "destiny-2-the-final-shape-streamer",
@@ -2129,7 +2386,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "detroit-android-triangle",
@@ -2145,7 +2404,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "detroit-blue-led",
@@ -2161,7 +2422,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "devil-may-cry-hd_1",
@@ -2177,7 +2440,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "devil-may-cry-hd_2",
@@ -2193,7 +2458,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "devil-may-cry-hd_3",
@@ -2209,7 +2476,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "devil-may-cry-hd_4",
@@ -2225,7 +2494,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "devilian_1",
@@ -2241,7 +2512,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "diablo",
@@ -2257,7 +2530,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "diablo-30th-anniversary",
@@ -2273,7 +2548,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "diana",
@@ -2289,7 +2566,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ditto",
@@ -2305,7 +2584,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "doa6lr-kasumi",
@@ -2321,7 +2602,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dodomogged",
@@ -2337,7 +2620,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dont-eat-the-mold",
@@ -2353,7 +2638,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dragonscimmy",
@@ -2369,7 +2656,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dream-beyond",
@@ -2385,7 +2674,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dreamcon-2024",
@@ -2401,7 +2692,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dreamers",
@@ -2417,7 +2710,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "dron-e",
@@ -2433,7 +2728,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_1",
@@ -2449,7 +2746,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_2",
@@ -2465,7 +2764,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_3",
@@ -2481,7 +2782,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_4",
@@ -2497,7 +2800,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_5",
@@ -2513,7 +2818,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_6",
@@ -2529,7 +2836,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "duelyst_7",
@@ -2545,7 +2854,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "edgerunners-d",
@@ -2561,7 +2872,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "edgerunners-talia",
@@ -2583,7 +2896,9 @@
     "minutes": 15,
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "edgerunners-weak",
@@ -2599,7 +2914,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "egg",
@@ -2615,7 +2932,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "elden-ring-recluse",
@@ -2631,7 +2950,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "elden-ring-wylder",
@@ -2647,7 +2968,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "enchantedbigboiboxers",
@@ -2663,7 +2986,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "enter-the-gungeon_1",
@@ -2679,7 +3004,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "eso_1",
@@ -2695,7 +3022,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "evo-2025",
@@ -2711,7 +3040,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "evo-las-vegas-2026",
@@ -2727,7 +3058,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-bronze",
@@ -2743,7 +3076,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-co-streamer-bronze",
@@ -2759,7 +3094,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-co-streamer-diamond",
@@ -2775,7 +3112,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-co-streamer-gold",
@@ -2791,7 +3130,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-co-streamer-platinum",
@@ -2807,7 +3148,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-co-streamer-silver",
@@ -2823,7 +3166,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-co-streamer-ultraviolet",
@@ -2839,7 +3184,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-diamond",
@@ -2855,7 +3202,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-gold",
@@ -2871,7 +3220,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-platinum",
@@ -2887,7 +3238,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-silver",
@@ -2903,7 +3256,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ewc-2026-ultraviolet",
@@ -2919,7 +3274,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "extension",
@@ -2935,7 +3292,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "fallout-season-2-ghoul",
@@ -2951,7 +3310,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-eu---content-unlock-quest-chat",
@@ -2967,7 +3328,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-eu---moogle-chat",
@@ -2983,7 +3346,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-jp---alpha-chat",
@@ -3002,10 +3367,12 @@
     "game": "Final Fantasy XIV Online",
     "start": "2026-10-30T15:00:00Z",
     "end": "2026-11-02T14:58:00Z",
-    "source": "manual",
-    "minutes": 60
+    "minutes": 60,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat",
@@ -3024,10 +3391,12 @@
     "game": "Final Fantasy XIV Online",
     "start": "2026-10-30T15:01:00Z",
     "end": "2026-11-02T14:58:00Z",
-    "source": "manual",
-    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。"
+    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。",
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-na---fat-cat",
@@ -3043,7 +3412,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-na---fat-cat-chat",
@@ -3059,7 +3430,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-na---main-scenario-quest-",
@@ -3075,7 +3448,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-na---main-scenario-quest-chat",
@@ -3091,7 +3466,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "firewatch_1",
@@ -3107,7 +3484,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "first-stand-2026-supporter",
@@ -3123,7 +3502,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "first-stand-2026-viewer",
@@ -3139,7 +3520,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "fischer",
@@ -3155,7 +3538,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "flameborn-sigil",
@@ -3175,7 +3560,9 @@
     "end": "2026-10-29T22:58:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "football-fest-2026",
@@ -3191,7 +3578,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "founder",
@@ -3207,7 +3596,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "frekifriend",
@@ -3227,7 +3618,9 @@
     "end": "2026-10-31T10:58:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "fright-fest-2025",
@@ -3243,7 +3636,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "frog-lantern",
@@ -3259,7 +3654,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "frozen-cortext_1",
@@ -3275,7 +3672,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "frozen-synapse_1",
@@ -3291,7 +3690,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "game-developer",
@@ -3307,7 +3708,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gamerduo",
@@ -3323,7 +3726,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gastly",
@@ -3339,7 +3744,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gears-of-war-superfan-badge",
@@ -3355,7 +3762,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gengar",
@@ -3376,7 +3785,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "getting-over-it_1",
@@ -3392,7 +3803,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "getting-over-it_2",
@@ -3408,7 +3821,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gingko-leaf",
@@ -3424,7 +3839,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "glhf-pledge",
@@ -3440,7 +3857,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "glitchcon2020",
@@ -3456,7 +3875,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "global_mod",
@@ -3472,7 +3893,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gold-pixel-heart",
@@ -3488,7 +3911,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gold-pixel-heart---together-for-good-24",
@@ -3504,7 +3929,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gold-stamp",
@@ -3520,13 +3947,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
+    "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
-    "source": "manual",
-    "game": "Witchspire",
-    "minutes": 240
+    "minutes": 240,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gone-bananas",
@@ -3542,7 +3971,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gp-explorer-3",
@@ -3558,7 +3989,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "gray-zone-warfare-gold",
@@ -3577,10 +4010,12 @@
     "game": "Gray Zone Warfare",
     "start": "2026-10-22T16:00:00Z",
     "end": "2026-11-06T12:58:00Z",
-    "source": "manual",
-    "subs": 1
+    "subs": 1,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "grey-zone-warfare",
@@ -3596,7 +4031,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "H1Z1_1",
@@ -3612,7 +4049,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "harley-mayhem",
@@ -3628,7 +4067,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "haunter",
@@ -3649,7 +4090,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "heartsteel-fan",
@@ -3670,7 +4113,9 @@
     "end": "2026-10-27T15:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "heavy-bullets_1",
@@ -3686,7 +4131,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hello_neighbor_1",
@@ -3702,7 +4149,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hime",
@@ -3718,7 +4167,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "homo-tenta",
@@ -3734,7 +4185,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hornet",
@@ -3750,7 +4203,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hotline",
@@ -3766,7 +4221,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hoxton",
@@ -3782,7 +4239,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hulk",
@@ -3798,7 +4257,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hunt-crosses",
@@ -3814,7 +4275,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hunt-red",
@@ -3838,7 +4301,9 @@
    },
    "notified": {
     "live": "2026-10-26T14:54:00Z"
-   }
+   },
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hunt-white",
@@ -3862,7 +4327,9 @@
    },
    "notified": {
     "live": "2026-10-26T14:54:00Z"
-   }
+   },
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hype-train",
@@ -3878,7 +4345,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hype-train",
@@ -3894,7 +4363,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "hypershot-celestial",
@@ -3910,7 +4381,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "innerspace_1",
@@ -3926,7 +4399,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "innerspace_2",
@@ -3942,7 +4417,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "invincible-vs",
@@ -3958,7 +4435,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ivysaur",
@@ -3979,7 +4458,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "jackbox-party-pack_1",
@@ -3995,7 +4476,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "jasontheween-7-day-survival",
@@ -4011,7 +4494,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "jeff-the-land-shark",
@@ -4027,7 +4512,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "joker-mayhem",
@@ -4043,7 +4530,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "jubilee",
@@ -4059,7 +4548,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "k4sen-con-2025",
@@ -4075,7 +4566,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "kda-fan",
@@ -4091,7 +4584,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "killer-inn",
@@ -4107,7 +4602,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "kingdom-new-lands_1",
@@ -4123,7 +4620,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "kodama",
@@ -4139,7 +4638,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "koromaru",
@@ -4155,7 +4656,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "la-velada-iv",
@@ -4171,7 +4674,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "la-velada-v-badge",
@@ -4187,7 +4692,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "la-velada-vi",
@@ -4203,7 +4710,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "lamby",
@@ -4219,7 +4728,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "lead_moderator",
@@ -4235,7 +4746,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "league-of-legends-classic",
@@ -4251,7 +4764,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "league-of-legends-mid-season-invitational-2025---grey",
@@ -4267,7 +4782,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "league-of-legends-mid-season-invitational-2025---purple",
@@ -4283,7 +4800,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "legendus",
@@ -4299,7 +4818,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "lego-batman-legacy-of-the-dark-knight",
@@ -4315,7 +4836,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "lol-worlds-2025",
@@ -4331,7 +4854,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "lost-ark-anniversary",
@@ -4347,7 +4872,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "low",
@@ -4363,7 +4890,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "marathon-reveal-runner",
@@ -4379,7 +4908,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "marathon-silkworm",
@@ -4395,7 +4926,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "marathon-sub-burger",
@@ -4411,7 +4944,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "marvels-wolverine",
@@ -4427,7 +4962,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "meccha-chameleon",
@@ -4443,7 +4980,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "mel",
@@ -4459,7 +4998,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "meltan",
@@ -4475,7 +5016,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "minecraft-15th-anniversary-celebration",
@@ -4491,7 +5034,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "mint",
@@ -4507,7 +5052,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "mod-founder",
@@ -4523,7 +5070,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moderator",
@@ -4539,7 +5088,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "modern-warfare-4",
@@ -4558,10 +5109,12 @@
     "game": "Call of Duty Modern Warfare 4",
     "start": "2026-10-23T17:00:00Z",
     "end": "2026-11-13T17:59:00Z",
-    "source": "manual",
-    "subs": 1
+    "subs": 1,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4577,7 +5130,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4593,7 +5148,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4609,7 +5166,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4625,7 +5184,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4641,7 +5202,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4657,7 +5220,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4673,7 +5238,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4689,7 +5256,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4705,7 +5274,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4721,7 +5292,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4737,7 +5310,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4753,7 +5328,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4769,7 +5346,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4785,7 +5364,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4801,7 +5382,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4817,7 +5400,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4833,7 +5418,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4849,7 +5436,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4865,7 +5454,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "moments",
@@ -4881,7 +5472,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "mootivation",
@@ -4897,7 +5490,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "morgana",
@@ -4913,7 +5508,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "mouseathon",
@@ -4929,7 +5526,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "mr-raccoon",
@@ -4945,7 +5544,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "msi-2026",
@@ -4961,7 +5562,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "nahobiho",
@@ -4977,7 +5580,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "nasa-artemis-ii",
@@ -4993,7 +5598,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "nasa-roman",
@@ -5009,7 +5616,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "never-grave---witch-hat",
@@ -5025,7 +5634,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "no_audio",
@@ -5041,7 +5652,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "no_video",
@@ -5057,7 +5670,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "nopixel-v-launch",
@@ -5073,7 +5688,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "okhlos_1",
@@ -5089,7 +5706,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "onimusha-armament",
@@ -5105,7 +5724,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_1",
@@ -5121,7 +5742,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2018B",
@@ -5137,7 +5760,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019A",
@@ -5153,7 +5778,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019A",
@@ -5169,7 +5796,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019B",
@@ -5185,7 +5814,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019B",
@@ -5201,7 +5832,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019B",
@@ -5217,7 +5850,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019B",
@@ -5233,7 +5868,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "overwatch-league-insider_2019B",
@@ -5249,7 +5886,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "partner",
@@ -5265,7 +5904,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "path-of-exile-2-badge",
@@ -5281,7 +5922,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pentakill-fan",
@@ -5297,7 +5940,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "perlica",
@@ -5313,7 +5958,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pichu",
@@ -5329,7 +5976,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pikachu",
@@ -5353,7 +6002,9 @@
    },
    "notified": {
     "live": "2026-10-06T00:00:00Z"
-   }
+   },
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pogchamps-6-7",
@@ -5369,7 +6020,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pokemon-30th-anniversary",
@@ -5385,7 +6038,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pokemon-legends-z-a-chikorita",
@@ -5401,7 +6056,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pokemon-legends-z-a-tepig",
@@ -5417,7 +6074,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pokemon-legends-z-a-totodile",
@@ -5433,7 +6092,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "pokemonxp-costumed-pikachu",
@@ -5449,7 +6110,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5465,7 +6128,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5481,7 +6146,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5497,7 +6164,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5513,7 +6182,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5529,7 +6200,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5545,7 +6218,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "power-rangers",
@@ -5561,7 +6236,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5577,7 +6254,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5593,7 +6272,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5609,7 +6290,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5625,7 +6308,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5641,7 +6326,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5657,7 +6344,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5673,7 +6362,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5689,7 +6380,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5705,7 +6398,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5721,7 +6416,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5737,7 +6434,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5753,7 +6452,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5769,7 +6470,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "predictions",
@@ -5785,7 +6488,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "premium",
@@ -5801,7 +6506,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "princessdonutbrown",
@@ -5817,7 +6524,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "princessdonutpink",
@@ -5833,7 +6542,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "psychonauts_1",
@@ -5849,7 +6560,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "puacl2026-finals-charizard",
@@ -5865,7 +6578,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "purple-noob",
@@ -5881,7 +6596,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "purple-pixel-heart---together-for-good-24",
@@ -5897,7 +6614,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "qsmp2",
@@ -5915,10 +6634,12 @@
    "campaign": {
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
-    "source": "manual",
-    "minutes": 60
+    "minutes": 60,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "raging-wolf-helm",
@@ -5934,7 +6655,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "raiden-v-directors-cut_1",
@@ -5950,7 +6673,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "raider-icon-badge",
@@ -5966,7 +6691,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rainbow-six-siege-x-10th-anniversary",
@@ -5982,7 +6709,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "relink-fabicon",
@@ -5998,7 +6727,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-blue-lock",
@@ -6014,7 +6745,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-brazil",
@@ -6030,7 +6763,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-england",
@@ -6046,7 +6781,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-france",
@@ -6062,7 +6799,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-nations-cup",
@@ -6078,7 +6817,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-nations-cup-eng",
@@ -6094,7 +6835,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rematch-us",
@@ -6110,7 +6853,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "resonance-minotaur",
@@ -6126,7 +6871,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "revedtv-stream-awards-2025",
@@ -6142,7 +6889,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rift_1",
@@ -6158,7 +6907,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "road-to-twitchcon-26",
@@ -6174,7 +6925,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rplace-2023",
@@ -6190,7 +6943,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ruby-pixel-heart---together-for-good-24",
@@ -6206,7 +6961,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rudy",
@@ -6222,7 +6979,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "runescape-dragon-dagger",
@@ -6238,7 +6997,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "runescape-dragonwilds-eye",
@@ -6254,7 +7015,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "runescape-shrimp",
@@ -6270,7 +7033,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "runescape-skull",
@@ -6286,7 +7051,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "rustmas-2025",
@@ -6302,7 +7069,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sajam-slam-badge",
@@ -6318,7 +7087,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "samusoffer_beta",
@@ -6334,7 +7105,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sand",
@@ -6350,7 +7123,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "scampuss",
@@ -6366,7 +7141,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "seegson-synthetics",
@@ -6386,7 +7163,9 @@
     "end": "2026-10-29T08:58:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "seeks-eye",
@@ -6402,7 +7181,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sevastopol-station",
@@ -6422,7 +7203,9 @@
     "end": "2026-10-29T08:58:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "share-the-love",
@@ -6438,7 +7221,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "skulls-10th-anniversary",
@@ -6454,7 +7239,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "social-sharing",
@@ -6470,7 +7257,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "social-sharing",
@@ -6486,7 +7275,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "social-sharing",
@@ -6502,7 +7293,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "solasta-2-multiplayer",
@@ -6518,7 +7311,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sonic-racing-crossworlds",
@@ -6534,7 +7329,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sorcerer-rogier-elden-ring",
@@ -6550,7 +7347,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "speedons-5-badge",
@@ -6566,7 +7365,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "speedons-6",
@@ -6582,7 +7383,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "spiderman",
@@ -6598,7 +7401,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "squirtle",
@@ -6614,7 +7419,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "staff",
@@ -6630,7 +7437,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "star-force-mega-man",
@@ -6646,7 +7455,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "starbound_1",
@@ -6662,7 +7473,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "strafe_1",
@@ -6678,7 +7491,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "stream-for-humanity-2-2025",
@@ -6694,7 +7509,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "streamer-awards-2024",
@@ -6710,7 +7527,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "streamer-awards-2026-vote",
@@ -6732,7 +7551,9 @@
     "minutes": 20,
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "streamer-awards-tux",
@@ -6748,7 +7569,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gift-leader",
@@ -6764,7 +7587,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gift-leader",
@@ -6780,7 +7605,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gift-leader",
@@ -6796,7 +7623,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6812,7 +7641,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6828,7 +7659,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6844,7 +7677,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6860,7 +7695,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6876,7 +7713,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6892,7 +7731,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6908,7 +7749,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6924,7 +7767,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6940,7 +7785,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6956,7 +7803,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6972,7 +7821,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -6988,7 +7839,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7004,7 +7857,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7020,7 +7875,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7036,7 +7893,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7052,7 +7911,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7068,7 +7929,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7084,7 +7947,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7100,7 +7965,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7116,7 +7983,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7132,7 +8001,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7148,7 +8019,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7164,7 +8037,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7180,7 +8055,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7196,7 +8073,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7212,7 +8091,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7228,7 +8109,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "sub-gifter",
@@ -7244,7 +8127,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7260,7 +8145,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7276,7 +8163,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7292,7 +8181,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7308,7 +8199,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7324,7 +8217,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7340,7 +8235,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subscriber",
@@ -7356,7 +8253,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subtember-2024",
@@ -7372,7 +8271,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subtember-2025",
@@ -7388,7 +8289,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "subtember-2026",
@@ -7409,7 +8312,9 @@
     "end": "2026-10-01T16:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "superhot_1",
@@ -7425,7 +8330,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "superultracombo-2023",
@@ -7441,7 +8348,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "support-a-streamer-ho26-badge",
@@ -7457,7 +8366,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "survival-cup-4",
@@ -7473,7 +8384,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "team-instinct",
@@ -7489,7 +8402,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "team-mystic",
@@ -7505,7 +8420,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "team-valor",
@@ -7521,7 +8438,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "teddie",
@@ -7537,7 +8456,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "tft-paris-open",
@@ -7553,7 +8474,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-blood-of-dawnwalker-launch",
@@ -7569,7 +8492,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-blood-of-dawnwalker-supporter",
@@ -7585,7 +8510,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-deer",
@@ -7601,7 +8528,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-first-descendant-badge",
@@ -7617,7 +8546,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-game-awards-2023",
@@ -7633,7 +8564,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-golden-predictor-of-the-game-awards-2023",
@@ -7649,7 +8582,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-inverted-man",
@@ -7665,7 +8600,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-man-without-fear",
@@ -7681,7 +8618,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-mox",
@@ -7705,7 +8644,9 @@
    },
    "notified": {
     "live": "2026-10-22T10:00:00Z"
-   }
+   },
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-onryos-mask",
@@ -7721,7 +8662,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-surge_1",
@@ -7737,7 +8680,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-surge_2",
@@ -7753,7 +8698,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "the-surge_3",
@@ -7769,7 +8716,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "thedragonsdogma",
@@ -7789,7 +8738,9 @@
     "end": "2026-10-31T10:58:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "this-war-of-mine_1",
@@ -7805,7 +8756,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "titan-souls_1",
@@ -7821,7 +8774,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "together-for-good-25---good-badge",
@@ -7837,7 +8792,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "together-for-good-25---gooder-badge",
@@ -7853,7 +8810,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "together-for-good-25---goodest-badge",
@@ -7869,7 +8828,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "together-for-good-25---wicked-dub-badge",
@@ -7885,7 +8846,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "total-war-anniversary",
@@ -7901,7 +8864,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "touch-grass",
@@ -7917,7 +8882,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "toxic-zombie",
@@ -7933,7 +8900,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "treasure-adventure-world_1",
@@ -7949,7 +8918,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "true-damage-fan",
@@ -7968,10 +8939,12 @@
     "game": "League of Legends",
     "start": "2026-10-27T16:00:00Z",
     "end": "2026-11-07T15:59:00Z",
-    "source": "manual",
-    "minutes": 30
+    "minutes": 30,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "turbo",
@@ -7987,7 +8960,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-dj",
@@ -8003,7 +8978,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-intern-2022",
@@ -8019,7 +8996,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-intern-2023",
@@ -8035,7 +9014,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-intern-2024",
@@ -8051,7 +9032,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-recap-2023",
@@ -8067,7 +9050,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-recap-2024",
@@ -8083,7 +9068,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitch-recap-2025",
@@ -8099,7 +9086,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchbot",
@@ -8115,7 +9104,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchbot",
@@ -8131,7 +9122,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2024---rotterdam",
@@ -8147,7 +9140,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2024---san-diego",
@@ -8163,7 +9158,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2025---rotterdam",
@@ -8179,7 +9176,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2026---san-diego---beachball",
@@ -8200,7 +9199,9 @@
     "end": "2026-11-13T12:00:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2026---san-diego---taco",
@@ -8221,7 +9222,9 @@
     "end": "2026-11-13T12:00:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2026-europe-row-houses",
@@ -8237,7 +9240,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-2026-europe-windmill",
@@ -8253,7 +9258,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-referral-program-2025-bleedpurple",
@@ -8269,7 +9276,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon-referral-program-2025-chrome-star",
@@ -8285,7 +9294,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon2017",
@@ -8301,7 +9312,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchcon2018",
@@ -8317,7 +9330,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconAmsterdam2020",
@@ -8333,7 +9348,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconEU2019",
@@ -8349,7 +9366,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconEU2022",
@@ -8365,7 +9384,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconEU2023",
@@ -8381,7 +9402,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconNA2019",
@@ -8397,7 +9420,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconNA2020",
@@ -8413,7 +9438,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconNA2022",
@@ -8429,7 +9456,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "twitchconNA2023",
@@ -8445,7 +9474,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "two-point-museum",
@@ -8461,7 +9492,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "two-point-pickle",
@@ -8477,7 +9510,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "tyranny_1",
@@ -8493,7 +9528,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ugly-sweater",
@@ -8509,7 +9546,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "ultramarine",
@@ -8529,7 +9568,9 @@
     "end": "2026-10-29T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "umbrella-corporation",
@@ -8545,7 +9586,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "unicorn-tachanka",
@@ -8561,7 +9604,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "user-anniversary",
@@ -8577,7 +9622,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "vaultbreakers",
@@ -8593,7 +9640,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "vaultbreakers-golden",
@@ -8609,7 +9658,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "vct-paris-2025",
@@ -8625,7 +9676,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "venusaur",
@@ -8646,7 +9699,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "vga-champ-2017",
@@ -8662,7 +9717,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "video-games-day",
@@ -8678,7 +9735,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "vip",
@@ -8694,7 +9753,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "volume-up",
@@ -8710,7 +9771,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "warcraft",
@@ -8726,7 +9789,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "warcraft",
@@ -8742,7 +9807,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "wardog",
@@ -8758,7 +9825,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "warlord",
@@ -8774,7 +9843,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "wartortle",
@@ -8795,7 +9866,9 @@
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "waterslug",
@@ -8811,7 +9884,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "went-outside",
@@ -8827,7 +9902,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "wholesome-direct-2026",
@@ -8843,7 +9920,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "winston-overwatch",
@@ -8859,7 +9938,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "witch-hat",
@@ -8875,13 +9956,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
+    "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
-    "source": "manual",
-    "game": "Witchspire",
-    "subs": 1
+    "subs": 1,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "witchspire-logo",
@@ -8897,13 +9980,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
+    "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
-    "source": "manual",
-    "game": "Witchspire",
-    "minutes": 60
+    "minutes": 60,
+    "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "wolf",
@@ -8919,7 +10004,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "wolf-medallion",
@@ -8939,7 +10026,9 @@
     "end": "2026-10-27T09:59:00Z",
     "source": "manual"
    },
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "worlds-2026-supporter",
@@ -8963,7 +10052,9 @@
    },
    "notified": {
     "live": "2026-10-14T07:00:00Z"
-   }
+   },
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "wsci-2026",
@@ -8979,7 +10070,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "yellow-noob",
@@ -8995,7 +10088,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "yellow-party-hat",
@@ -9011,7 +10106,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "you-got-this",
@@ -9027,7 +10124,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "yuzu",
@@ -9043,7 +10142,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "zevent-2024",
@@ -9059,7 +10160,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "zevent-2026",
@@ -9075,7 +10178,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   },
   {
    "set_id": "zevent25",
@@ -9091,7 +10196,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": null,
-   "notified": {}
+   "notified": {},
+   "type": null,
+   "reviewed": false
   }
  ]
 }
