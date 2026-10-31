@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:45:48.092Z",
+ "updated_at": "2026-10-31T19:48:09.392Z",
  "count": 554,
  "badges": [
   {
@@ -1915,15 +1915,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "charmander",
@@ -1958,15 +1958,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "chatter-cs-go-2022",
@@ -3560,8 +3560,8 @@
    },
    "notified": {},
    "type": null,
-   "column": null,
-   "reviewed": false
+   "column": "free",
+   "reviewed": true
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat",
@@ -3584,9 +3584,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "free",
+   "column": "free",
+   "reviewed": true
   },
   {
    "set_id": "final-fantasy-xiv-fan-festival-2026-na---fat-cat",
@@ -3990,15 +3990,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "getting-over-it_1",
