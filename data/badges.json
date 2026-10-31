@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:44:44.293Z",
+ "updated_at": "2026-10-31T19:45:48.092Z",
  "count": 554,
  "badges": [
   {
@@ -1367,6 +1367,7 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "!pokemon",
