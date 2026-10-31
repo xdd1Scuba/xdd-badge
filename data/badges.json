@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T21:07:08.625Z",
+ "updated_at": "2026-10-31T21:20:54.159Z",
  "count": 554,
  "badges": [
   {
@@ -7351,7 +7351,7 @@
    "campaign": {
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
-    "note": "觀看 QSMP QuackityToo Quackity 任一頻道 60 分鐘解鎖",
+    "note": "觀看 QSMP、QuackityToo、Quackity 其中任一頻道 60 分鐘解鎖",
     "source": "manual"
    },
    "notified": {},
