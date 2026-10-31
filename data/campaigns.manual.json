@@ -35,7 +35,10 @@
   "blastoise/1": {
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "note": "!pokemon"
+    "note": "!pokemon",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "bloody-finger-elden-ring/1": {
     "game": "ELDEN RING",
