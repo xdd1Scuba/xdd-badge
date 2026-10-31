@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T20:40:27.194Z",
+ "updated_at": "2026-10-31T20:41:36.899Z",
  "count": 554,
  "badges": [
   {
@@ -4768,7 +4768,7 @@
    },
    "type": null,
    "column": "sub",
-   "cmd": null,
+   "cmd": "!HUNY",
    "reviewed": true
   },
   {
