@@ -52,14 +52,20 @@
     "end": "2026-11-02T03:59:00Z"
   },
   "charizard/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "charmeleon/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "dbd-halloween-2026/1": {
     "game": "Dead by Daylight",
@@ -77,13 +83,18 @@
     "game": "Final Fantasy XIV Online",
     "start": "2026-10-30T15:00:00Z",
     "end": "2026-11-02T14:58:00Z",
-    "minutes": 60
+    "minutes": 60,
+    "column": "free",
+    "reviewed": true
   },
   "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat/1": {
     "game": "Final Fantasy XIV Online",
     "start": "2026-10-30T15:01:00Z",
     "end": "2026-11-02T14:58:00Z",
-    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。"
+    "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 202\" 60 分鐘即可獲得此徽章。",
+    "type": "free",
+    "column": "free",
+    "reviewed": true
   },
   "flameborn-sigil/1": {
     "start": "2026-10-15T08:00:00Z",
@@ -94,9 +105,12 @@
     "end": "2026-10-31T10:58:00Z"
   },
   "gengar/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "gold-stamp/1": {
     "game": "Witchspire",
