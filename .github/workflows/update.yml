@@ -48,7 +48,12 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "更新徽章資料 $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
+            # 改動：執行期間如果有人上傳檔案或控制台存檔，先把新的 commit 接上再推，最多試 3 次
+            for i in 1 2 3; do
+              if git pull --rebase origin main && git push; then pushed=1; break; fi
+              echo "推送失敗，5 秒後重試（第 $i 次）"; sleep 5
+            done
+            [ "$pushed" = 1 ] || { echo "重試 3 次仍然失敗"; exit 1; }
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
