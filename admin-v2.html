@@ -164,6 +164,16 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
             </div>
             <span class="guess" id="guess"></span>
           </div>
+          <div class="f full">Overlay 位置
+            <div class="seg" id="fCol">
+              <button type="button" data-v="" aria-pressed="true">自動</button>
+              <button type="button" data-v="left" aria-pressed="false">左欄</button>
+              <button type="button" data-v="sub" aria-pressed="false">訂閱欄</button>
+              <button type="button" data-v="free" aria-pressed="false">免費欄</button>
+              <button type="button" data-v="hide" aria-pressed="false">不顯示</button>
+            </div>
+            <span class="guess" id="colGuess"></span>
+          </div>
           <label class="f full" for="fGame">遊戲分類
             <input type="text" id="fGame" placeholder="例如 Hunt: Showdown 1896" list="games">
             <datalist id="games"></datalist>
@@ -218,8 +228,8 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
           <label class="f">寬（px）<input type="number" id="oW" min="640" max="3840" step="10"></label>
           <label class="f">高（px）<input type="number" id="oH" min="360" max="2160" step="10"></label>
         </div>
-        <label class="f">左欄寬度（即將開始・即將結束）
-          <div class="rng"><input type="range" id="oLeft" min="320" max="800" step="10"><output id="oLeftV"></output></div></label>
+        <div class="f">三欄寬度（拖曳右邊預覽裡有三個點的分隔條）
+          <div class="row"><span class="mono" id="oColsV" style="color:var(--fg)"></span><button type="button" class="btn ghost" id="oColsReset">重設欄寬</button></div></div>
         <label class="f">聊天室位置
           <select id="oChat"><option value="bottom">左欄下半</option><option value="top">左欄上半</option><option value="none">不顯示</option></select></label>
         <label class="f">字體大小
@@ -302,10 +312,10 @@ const K=b=>`${b.set_id}/${b.id}`;
 const $=id=>document.getElementById(id);
 const TZ=Intl.DateTimeFormat().resolvedOptions().timeZone||"UTC";
 $("tz").textContent=TZ;
-const DESC_DEFAULT="Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。_overlay：Overlay 外觀設定。";
+const DESC_DEFAULT="Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。_overlay：Overlay 外觀設定。";
 
 /* Overlay 預設值（與 overlay-v2.html 的 DEFAULTS 保持一致） */
-const OV_DEFAULTS={width:1920,height:1080,leftWidth:470,chat:"bottom",speed:[22,30,38],fontScale:1,transparent:false,
+const OV_DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,transparent:false,
   colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b"}};
 const COLOR_ZH={bg:"背景",panel:"面板",text:"文字",accent:"強調（倒數、時鐘）",sub:"訂閱欄",free:"免費欄／可解鎖",soon:"即將開始",last:"即將結束",rec:"直播紅點"};
 
@@ -317,7 +327,7 @@ function autoType(b,c){c=c||{};const d=b.description||"";
   return "free"}
 const TYPE_ZH={sub:"訂閱／贈訂",free:"免費",other:"其他"};
 
-let BADGES=[], BASE={}, pending={}, cur=null, tab="inbox", filter="all", req="other", type="";
+let BADGES=[], BASE={}, pending={}, cur=null, tab="inbox", filter="all", req="other", type="", column="";
 try{pending=JSON.parse(localStorage.getItem("manual-pending")||"{}")}catch(_){pending={}}
 const savePending=()=>{try{localStorage.setItem("manual-pending",JSON.stringify(pending))}catch(_){}};
 
@@ -340,7 +350,9 @@ function merged(){const o={...BASE};for(const[k,v]of Object.entries(pending)){if
 function entryFor(b){const k=K(b);if(k in pending)return pending[k]||{};if(BASE[k])return BASE[k];
   if(b.campaign){const {source,...c}=b.campaign;return c}return {}}
 const isRev=b=>!!entryFor(b).reviewed;
-const inInbox=b=>!b.baseline&&!isRev(b);
+/* 還拿得到的徽章：尚未開始或進行中。沒有時間的只算新偵測到的（建站前就有的舊徽章大多是永久或早已結束） */
+const obtainable=b=>{const st=status(entryFor(b));return st==="live"||st==="soon"||(st==="none"&&!b.baseline)};
+const inInbox=b=>!b.baseline&&!isRev(b)&&obtainable(b);
 function status(e){const n=Date.now(),s=e.start?Date.parse(e.start):null,x=e.end?Date.parse(e.end):null;
   if(!s)return "none"; if(n<s)return "soon"; if(x&&n>=x)return "ended"; return "live"}
 
@@ -383,6 +395,7 @@ function tagsFor(b){
   out.push(`<span class="badge b-${ty}">${TYPE_ZH[ty]}${e.type?"":"?"}</span>`);
   if(e.start) out.push(`<span class="badge b-has">${esc(fmt.format(new Date(e.start)))}</span>`);
   else out.push(`<span class="badge b-miss">缺時間</span>`);
+  if(e.column) out.push(`<span class="badge b-pend">${COL_ZH[e.column]}</span>`);
   if(e.reviewed) out.push(`<span class="badge b-has">✓</span>`);
   return out.join("");
 }
@@ -393,7 +406,7 @@ function renderList(){
     if(q&&!norm(b.title).includes(q)&&!norm(b.set_id).includes(q))return false;
     if(tab==="inbox") return inInbox(b);
     const e=entryFor(b), st=status(e);
-    return filter==="all"||(filter==="notime"&&!e.start)||(filter==="live"&&(st==="live"||st==="soon"))||(filter==="unrev"&&!e.reviewed)||(filter==="rev"&&!!e.reviewed);
+    return filter==="all"||(filter==="notime"&&!e.start)||(filter==="live"&&(st==="live"||st==="soon"))||(filter==="unrev"&&!e.reviewed&&obtainable(b))||(filter==="rev"&&!!e.reviewed);
   });
   L.sort((a,b)=>(a.baseline-b.baseline)||b.first_seen.localeCompare(a.first_seen)||a.title.localeCompare(b.title));
   $("cnt").textContent=`${L.length} 個`;
@@ -413,6 +426,21 @@ document.addEventListener("change",e=>{if(e.target.id==="fNoteOn"){setNote(e.tar
 function setReq(v){req=v;document.querySelectorAll("#fReq button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));
   const w=$("numWrap");w.hidden=v==="other";w.firstChild.textContent=v==="subs"?"需要訂閱數":"觀看分鐘數";updateGuess()}
 function setType(v){type=v;document.querySelectorAll("#fType button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));updateGuess()}
+const COL_ZH={left:"左欄",sub:"訂閱欄",free:"免費欄",hide:"不顯示"};
+function setCol(v){column=v;document.querySelectorAll("#fCol button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));updateColGuess()}
+/* 自動時，說明目前會出現在哪一欄（規則與 overlay-v2.html 的 refresh 相同） */
+function updateColGuess(){if(!cur)return;const el=$("colGuess");
+  if(column==="hide"){el.textContent="Overlay 不會顯示這個徽章。";return}
+  if(column){el.textContent=`固定放在${COL_ZH[column]}，沒有時間也會顯示（倒數處顯示「時間未公布」）。已結束的活動仍會自動消失。`;return}
+  const s=toISO($("fStart").value),e=toISO($("fEnd").value),n=Date.now();
+  const nn=parseInt($("fNum").value,10),ty=type||autoType(cur,req==="subs"?{subs:nn}:req==="minutes"?{minutes:nn}:{});
+  const tyCol=ty==="sub"?"訂閱欄":ty==="free"?"免費欄":null;
+  let m;
+  if(!s) m="目前不會顯示：沒有開始時間。想先放上 Overlay，請選一個欄位。";
+  else if(n<Date.parse(s)) m=Date.parse(s)-n<14*864e5?"目前在左欄（即將開始），開始後移到"+(tyCol||"（類型是其他，不會進訂閱欄或免費欄）"):"開始前 14 天才會出現在左欄。";
+  else if(e&&n>=Date.parse(e)) m="活動已結束，不會顯示。";
+  else m=tyCol?`目前在${tyCol}`+(e&&Date.parse(e)-n<864e5?"，也在左欄（即將結束）":""):"類型是其他，不會進訂閱欄或免費欄。";
+  el.textContent="自動："+m}
 function updateGuess(){if(!cur)return;
   const n=parseInt($("fNum").value,10), c=req==="subs"?{subs:n}:req==="minutes"?{minutes:n}:{};
   const g=autoType(cur,c);
@@ -429,13 +457,15 @@ function pick(k){
   if(e.subs){$("fNum").value=e.subs;setReq("subs")}
   else if(e.minutes){$("fNum").value=e.minutes;setReq("minutes")}
   else {$("fNum").value=15;setReq("other")}
-  setType(e.type||"");
+  setType(e.type||""); setCol(e.column||"");
   setNote(!!e.note, e.note||"");
   $("err").hidden=true; $("fMsg").textContent="";
   renderList();
 }
 $("fReq").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setReq(b.dataset.v)});
-$("fType").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setType(b.dataset.v)});
+$("fType").addEventListener("click",e=>{const b=e.target.closest("button");if(b){setType(b.dataset.v);updateColGuess()}});
+$("fCol").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setCol(b.dataset.v)});
+["fStart","fEnd","fNum"].forEach(id=>$(id).addEventListener("input",updateColGuess));
 $("fNum").addEventListener("input",updateGuess);
 
 $("form").addEventListener("submit",e=>{
@@ -457,6 +487,7 @@ $("form").addEventListener("submit",e=>{
   if(req==="minutes")o.minutes=n; if(req==="subs")o.subs=n;
   if(noteOn&&note)o.note=note;
   if(type)o.type=type;
+  if(column)o.column=column;
   if(reviewed)o.reviewed=true;
   const k=K(cur);
   if(!Object.keys(o).length){ if(BASE[k])pending[k]=null; else delete pending[k]; }
@@ -474,21 +505,24 @@ $("fClear").onclick=()=>{if(!cur)return;const k=K(cur);
 /* ---------- Overlay 外觀 ---------- */
 let OV=null;
 function ovCurrent(){const m=merged()._overlay||{};const c=structuredClone(OV_DEFAULTS);
-  for(const k of Object.keys(OV_DEFAULTS)){if(m[k]==null)continue;if(k==="colors")Object.assign(c.colors,m.colors);else c[k]=structuredClone(m[k])}return c}
+  for(const k of Object.keys(OV_DEFAULTS)){if(m[k]==null)continue;if(k==="colors")Object.assign(c.colors,m.colors);else c[k]=structuredClone(m[k])}
+  // 舊設定 leftWidth（左欄 px）換算成百分比（與 overlay-v2.html 相同），下次存檔會改存 cols
+  if(m.leftWidth&&!m.cols){const l=Math.round(m.leftWidth/(c.width-60-48)*100);c.cols=[l,(100-l)/2,(100-l)/2]}
+  return c}
 function ovLoad(){OV=ovCurrent();
   $("oColors").innerHTML=Object.keys(OV_DEFAULTS.colors).map(k=>`<label><input type="color" data-c="${k}"> ${COLOR_ZH[k]}</label>`).join("");
   ovFill()}
 function ovFill(){
-  $("oW").value=OV.width;$("oH").value=OV.height;$("oLeft").value=OV.leftWidth;$("oChat").value=OV.chat;$("oFs").value=OV.fontScale;
+  $("oW").value=OV.width;$("oH").value=OV.height;$("oChat").value=OV.chat;$("oFs").value=OV.fontScale;
   [1,2,3].forEach(i=>$("oS"+i).value=OV.speed[i-1]);
   document.querySelectorAll("#oColors input").forEach(x=>x.value=OV.colors[x.dataset.c]);
   $("oTrans").checked=!!OV.transparent; ovOut()}
-function ovOut(){$("oLeftV").textContent=OV.leftWidth;$("oFsV").textContent="×"+(+OV.fontScale).toFixed(2);[1,2,3].forEach(i=>$("oS"+i+"V").textContent=OV.speed[i-1]);
+function ovOut(){const tot=OV.cols.reduce((a,b)=>a+b,0);$("oColsV").textContent=OV.cols.map((v,i)=>["左","中","右"][i]+" "+Math.round(v/tot*100)+"%").join("・");$("oFsV").textContent="×"+(+OV.fontScale).toFixed(2);[1,2,3].forEach(i=>$("oS"+i+"V").textContent=OV.speed[i-1]);
   document.querySelectorAll("#ovPreset .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.wh===`${OV.width}x${OV.height}`));
   $("pv").style.aspectRatio=`${OV.width} / ${OV.height}`;
   $("ovState").textContent="_overlay" in pending?"有未存檔的修改":""}
 function ovRead(){
-  OV.width=Math.max(640,+$("oW").value||1920);OV.height=Math.max(360,+$("oH").value||1080);OV.leftWidth=+$("oLeft").value;OV.chat=$("oChat").value;OV.fontScale=+$("oFs").value;
+  OV.width=Math.max(640,+$("oW").value||1920);OV.height=Math.max(360,+$("oH").value||1080);OV.chat=$("oChat").value;OV.fontScale=+$("oFs").value;
   OV.speed=[1,2,3].map(i=>+$("oS"+i).value);
   document.querySelectorAll("#oColors input").forEach(x=>OV.colors[x.dataset.c]=x.value);
   OV.transparent=$("oTrans").checked; ovOut(); pvSendCfg()}
@@ -506,7 +540,11 @@ $("ovReset").onclick=()=>{OV=structuredClone(OV_DEFAULTS);ovFill();pvSendCfg();$
 /* 預覽：iframe 載入 overlay-v2.html?preview=1，用 postMessage 傳設定與待存檔的徽章資料 */
 let pvReady=false;
 function pvInit(){const f=$("pvFrame");if(!f.src)f.src=`${OVERLAY_PAGE}?preview=1&viewers=49`}
-addEventListener("message",e=>{if(e.source!==$("pvFrame").contentWindow)return;if(e.data?.type==="overlay-ready"){pvReady=true;$("pvPh").hidden=true;pvSendCfg();pvSendManual()}});
+addEventListener("message",e=>{if(e.source!==$("pvFrame").contentWindow)return;
+  if(e.data?.type==="overlay-ready"){pvReady=true;$("pvPh").hidden=true;pvSendCfg();pvSendManual()}
+  // 預覽裡拖曳分隔條後，記下新的欄寬
+  if(e.data?.type==="overlay-cols"&&Array.isArray(e.data.cols)){OV.cols=e.data.cols.map(Number);ovOut();$("ovMsg").textContent="欄寬已調整，按「加入待存檔」保存"}});
+$("oColsReset").onclick=()=>{OV.cols=OV_DEFAULTS.cols.slice();ovOut();pvSendCfg()};
 function pvSendCfg(){if(pvReady&&OV)$("pvFrame").contentWindow.postMessage({type:"overlay-config",config:OV},"*")}
 function pvSendManual(){if(pvReady)$("pvFrame").contentWindow.postMessage({type:"overlay-manual",manual:merged()},"*")}
 
@@ -517,7 +555,7 @@ function renderPending(){
   $("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];
     if(k==="_overlay") return `<div><span>Overlay 外觀設定・${v===null?"還原預設":"已修改"}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`;
     const b=BADGES.find(x=>K(x)===k);
-    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",v.note?"有備註":"",v.reviewed?"已確認":""].filter(Boolean);
+    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",v.note?"有備註":"",v.column?"位置："+COL_ZH[v.column]:"",v.reviewed?"已確認":""].filter(Boolean);
     return `<div><span>${esc(b?.title||k)}・${esc(parts.join("・")||"空白")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
     :`<div><span style="color:var(--muted)">還沒有修改。</span></div>`;
   const out={}, m=merged();
@@ -536,7 +574,9 @@ const LS={worker:"badge-admin-worker",pass:"badge-admin-pass"};
 const lsGet=k=>{try{return localStorage.getItem(k)||""}catch(_){return ""}};
 const lsSet=(k,v)=>{try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(_){}};
 let PASS=lsGet(LS.pass);
-const workerURL=()=>lsGet(LS.worker).replace(/\/+$/,"");
+/* 沒打 https:// 時自動補上，否則瀏覽器會把它當成網站底下的路徑 */
+const fixURL=u=>{u=String(u||"").trim().replace(/\/+$/,"");return u&&!/^https?:\/\//i.test(u)?"https://"+u:u};
+const workerURL=()=>fixURL(lsGet(LS.worker));
 /* 設了 Worker 時，直接從 GitHub 讀最新的手動資料（沒有網站部署的延遲）；失敗就退回讀網站上的檔案 */
 async function loadBase(bust){
   const W=workerURL();
@@ -559,7 +599,7 @@ async function callWorker(path,body){
 }
 $("sTest").onclick=async()=>{
   const m=$("sMsg"); m.className="msg"; m.textContent="測試中…";
-  lsSet(LS.worker,$("sWorker").value.trim()); PASS=$("sPass").value; lsSet(LS.pass,$("sRemember").checked?PASS:"");
+  $("sWorker").value=fixURL($("sWorker").value); lsSet(LS.worker,$("sWorker").value); PASS=$("sPass").value; lsSet(LS.pass,$("sRemember").checked?PASS:"");
   try{await callWorker("/auth");m.textContent="連線成功，密碼正確";setState();BASE=await loadBase("?t="+Date.now());renderAll()}
   catch(e){m.className="msg bad";m.textContent=e.message;setState()}
 };

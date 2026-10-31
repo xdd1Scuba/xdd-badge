@@ -60,7 +60,15 @@ html.transparent #stage{background:none}
 @keyframes flip{0%{transform:rotateX(-90deg);filter:brightness(1.6)}100%{transform:none}}
 
 /* 三欄 */
-.cols{display:grid;grid-template-columns:var(--left-w,470px) 1fr 1fr;gap:24px;min-height:0}
+.cols{position:relative;display:grid;grid-template-columns:var(--cols,26fr 37fr 37fr);gap:24px;min-height:0}
+.cols>*{min-width:0}
+/* 欄寬拖曳條（只在控制台預覽出現）：放在欄與欄的間隙中，中間有三個點 */
+.split{position:absolute;top:0;bottom:0;width:24px;margin-left:-12px;cursor:col-resize;z-index:5;display:grid;place-items:center;touch-action:none}
+.split::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;border-radius:1px;background:var(--accent);opacity:0;transition:opacity .15s}
+.split i{position:relative;display:flex;flex-direction:column;gap:6px;padding:12px 6px;border-radius:999px;background:var(--tile-hi);border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.split i b{width:6px;height:6px;border-radius:50%;background:var(--text)}
+.split:hover::before,.split.drag::before{opacity:.6}
+.split:hover i,.split.drag i{background:var(--accent)} .split:hover i b,.split.drag i b{background:var(--bg)}
 .stack{display:grid;grid-template-rows:1fr 1fr;gap:24px;min-height:0}
 #stage.chat-none .stack{grid-template-rows:1fr}
 #stage.chat-top #chatPanel{order:-1}
@@ -86,7 +94,8 @@ html.transparent #stage{background:none}
 .row .cond em{font-style:normal;color:var(--text)}
 .row.last{background:color-mix(in srgb,var(--last) 9%,transparent);box-shadow:inset 3px 0 0 var(--last)}
 .row.soon{background:color-mix(in srgb,var(--soon) 8%,transparent);box-shadow:inset 3px 0 0 var(--soon)}
-.st.live{color:var(--free)} .st.last{color:var(--last)} .st.soon{color:var(--soon)}
+.st.live{color:var(--free)} .st.last{color:var(--last)} .st.soon{color:var(--soon)} .st.tbd{color:var(--muted)}
+.row.tbd{box-shadow:inset 3px 0 0 var(--dim)}
 .narrow .row .nm{font-size:calc(20px*var(--fs))}
 .narrow .cond .g{display:none} /* 窄欄只顯示條件，不顯示分類 */
 .empty{padding:22px;color:var(--muted);font-size:19px}
@@ -151,7 +160,7 @@ html.transparent .chat{background:transparent}
    &transparent=1                   透明背景
    &viewers=49 / viewers=off        （測試用）觀眾人數
    ?preview=1                       給控制台的即時預覽用，接收 postMessage 設定 */
-const DEFAULTS={width:1920,height:1080,leftWidth:470,chat:"bottom",speed:[22,30,38],fontScale:1,transparent:false,
+const DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,transparent:false,
   colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b"}};
 const P=new URLSearchParams(location.search), PREVIEW=P.get("preview")==="1";
 const DATA_URL="data/badges.json", MANUAL_URL="data/campaigns.manual.json", DAY=864e5, SOON_WINDOW=14*DAY;
@@ -161,7 +170,9 @@ const t=s=>s?Date.parse(s):null, now=()=>Date.now();
 /* ---------- 設定 ---------- */
 let CFG=structuredClone(DEFAULTS);
 function mergeCfg(base,o){const c=structuredClone(base);if(!o||typeof o!=="object")return c;
-  for(const k of Object.keys(DEFAULTS)){if(o[k]==null)continue;if(k==="colors")Object.assign(c.colors,o.colors);else if(k==="speed"&&Array.isArray(o.speed))c.speed=DEFAULTS.speed.map((d,i)=>Number.isFinite(+o.speed[i])?+o.speed[i]:d);else c[k]=o[k]}
+  for(const k of Object.keys(DEFAULTS)){if(o[k]==null)continue;if(k==="colors")Object.assign(c.colors,o.colors);else if((k==="speed"||k==="cols")&&Array.isArray(o[k]))c[k]=DEFAULTS[k].map((d,i)=>Number.isFinite(+o[k][i])?+o[k][i]:d);else c[k]=o[k]}
+  // 舊設定 leftWidth（左欄 px）換算成百分比
+  if(o.leftWidth&&!o.cols){const inner=c.width-60-48,l=Math.round(o.leftWidth/inner*100);c.cols=[l,(100-l)/2,(100-l)/2]}
   return c}
 function urlOverrides(c){
   for(const i of [1,2,3]){const v=P.get("speed"+i);if(v!=null&&v!=="")c.speed[i-1]=+v}
@@ -172,12 +183,12 @@ function applyCfg(){
   const st=document.getElementById("stage"), r=document.documentElement.style;
   for(const[k,v]of Object.entries(CFG.colors))r.setProperty("--"+k,v);
   r.setProperty("--fs",CFG.fontScale);
-  r.setProperty("--left-w",CFG.leftWidth+"px");
+  r.setProperty("--cols",CFG.cols.map(v=>v+"fr").join(" "));
   st.style.width=CFG.width+"px"; st.style.height=CFG.height+"px";
   st.classList.toggle("chat-none",CFG.chat==="none"); st.classList.toggle("chat-top",CFG.chat==="top");
   document.getElementById("chatPanel").hidden=CFG.chat==="none";
   document.documentElement.classList.toggle("transparent",!!CFG.transparent);
-  fit(); sig=""; if(DB) refresh();
+  fit(); sig=""; if(DB) refresh(); placeSplits();
 }
 function fit(){const s=Math.min(innerWidth/CFG.width,innerHeight/CFG.height),st=document.getElementById("stage");st.style.transform=`scale(${s})`;st.style.left=(innerWidth-CFG.width*s)/2+"px";st.style.top=(innerHeight-CFG.height*s)/2+"px"}
 addEventListener("resize",()=>{fit();sig="";if(DB)refresh()});
@@ -218,15 +229,18 @@ function autoType(b){const c=b.campaign||{},d=b.description||"";
 let MANUAL={};
 const keyOf=b=>b.set_id+"/"+b.id;
 const typeOf=b=>MANUAL[keyOf(b)]?.type||autoType(b);
+/* 控制台手動指定的位置：left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示；沒有＝依時間與類型自動 */
+const columnOf=b=>MANUAL[keyOf(b)]?.column||"";
 
-const cond=b=>{const c=b.campaign,g=c.game&&c.game!=="任意分類"?`<span class="g">${esc(c.game)}</span>`:"",r=c.subs?`訂閱 <em>${c.subs}</em> 次`:c.minutes?`觀看 <em>${c.minutes}</em> 分鐘`:"";return r&&g?`${r}<span class="g">　・　</span>${g}`:r||g};
+const cond=b=>{const c=b.campaign||{},g=c.game&&c.game!=="任意分類"?`<span class="g">${esc(c.game)}</span>`:"",r=c.subs?`訂閱 <em>${c.subs}</em> 次`:c.minutes?`觀看 <em>${c.minutes}</em> 分鐘`:"";return r&&g?`${r}<span class="g">　・　</span>${g}`:r||g};
 const initials=s=>String(s).replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"?";
 const icon=b=>`<span class="ic"><img src="${esc(b.image_url_2x||b.image_url_4x||"")}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'fb',textContent:'${initials(b.title)}'}))"></span>`;
-const KIND_ZH={live:"可解鎖",last:"即將結束",soon:"即將開始"};
+const KIND_ZH={live:"可解鎖",last:"即將結束",soon:"即將開始",tbd:"時間未公布"};
 function rowHTML(b,k){
-  const c=b.campaign, target=k==="soon"?c.start:c.end;
+  const c=b.campaign||{}, target=k==="soon"?c.start:c.end;
+  const cd=k==="tbd"?"":`<span class="flap" data-t="${esc(target||"")}"></span>`;
   return `<div class="row ${k==="live"?"":k}">${icon(b)}<div class="nm">${esc(b.title)}</div>
-    <div class="meta"><span class="st ${k}">${KIND_ZH[k]}</span><span class="flap" data-t="${esc(target||"")}"></span><span class="cond">${cond(b)}</span></div></div>`;
+    <div class="meta"><span class="st ${k}">${KIND_ZH[k]}</span>${cd}<span class="cond">${cond(b)}</span></div></div>`;
 }
 
 /* ---------- 資料 ---------- */
@@ -244,24 +258,34 @@ async function load(){
   if(!PREVIEW) CFG=urlOverrides(mergeCfg(DEFAULTS,MANUAL._overlay));
   applyCfg();
 }
+/* 狀態：soon 還沒開始｜last 剩不到 24 小時｜live 可解鎖｜tbd 沒有開始時間｜ended 已結束 */
+function kindOf(b,n){const c=b.campaign||{},s=t(c.start),e=t(c.end);
+  if(!s)return "tbd"; if(n<s)return "soon"; if(e&&n>=e)return "ended"; return e&&e-n<DAY?"last":"live"}
 function refresh(){
-  const n=now(), S=[], E=[], SUB=[], FREE=[];
-  for(const b of DB?.badges||[]){const c=b.campaign;if(b.removed_at||!c?.start)continue;const s=t(c.start),e=t(c.end);
-    if(n<s){if(s-n<SOON_WINDOW)S.push(b);continue}
-    if(e&&n>=e)continue;
-    if(e&&e-n<DAY)E.push(b);
-    const ty=typeOf(b); if(ty==="sub")SUB.push(b); else if(ty==="free")FREE.push(b)}
-  const byEnd=(a,b)=>(t(a.campaign.end)??Infinity)-(t(b.campaign.end)??Infinity)||a.title.localeCompare(b.title);
-  S.sort((a,b)=>t(a.campaign.start)-t(b.campaign.start)); E.sort(byEnd); SUB.sort(byEnd); FREE.sort(byEnd);
-  const k=b=>{const e=t(b.campaign.end);return e&&e-n<DAY?"last":"live"};
-  const s=JSON.stringify([S,E,SUB,FREE].map(L=>L.map(b=>keyOf(b)+b.campaign.start+b.campaign.end+b.campaign.subs+b.campaign.minutes+b.campaign.game+k(b))));
+  const n=now(), L=[], SUB=[], FREE=[];
+  for(const b of DB?.badges||[]){
+    if(b.removed_at)continue;
+    const k=kindOf(b,n), col=columnOf(b);
+    if(k==="ended"||col==="hide")continue;
+    if(col){ // 手動指定位置：不看時間，直接放進指定的欄（時間未公布也會顯示）
+      (col==="left"?L:col==="sub"?SUB:col==="free"?FREE:[]).push([b,k]); continue }
+    if(k==="tbd")continue;
+    if(k==="soon"){if(t(b.campaign.start)-n<SOON_WINDOW)L.push([b,k]);continue}
+    if(k==="last")L.push([b,k]);
+    const ty=typeOf(b); if(ty==="sub")SUB.push([b,k]); else if(ty==="free")FREE.push([b,k])}
+  // 排序：即將結束 → 可解鎖（依結束時間）→ 即將開始（依開始時間）→ 時間未公布
+  const ORDER={last:0,live:1,soon:2,tbd:3};
+  const at=([b,k])=>k==="soon"?t(b.campaign.start):(t(b.campaign?.end)??Infinity);
+  const sorter=(x,y)=>ORDER[x[1]]-ORDER[y[1]]||at(x)-at(y)||x[0].title.localeCompare(y[0].title);
+  [L,SUB,FREE].forEach(A=>A.sort(sorter));
+  const s=JSON.stringify([L,SUB,FREE].map(A=>A.map(([b,k])=>{const c=b.campaign||{};return keyOf(b)+c.start+c.end+c.subs+c.minutes+c.game+k})));
   if(s===sig) return; sig=s;
-  document.getElementById("n1").textContent=S.length+E.length||"";
+  document.getElementById("n1").textContent=L.length||"";
   document.getElementById("n2").textContent=SUB.length||"";
   document.getElementById("n3").textContent=FREE.length||"";
-  fill(1,[...E.map(b=>rowHTML(b,"last")),...S.map(b=>rowHTML(b,"soon"))],"目前沒有即將開始或即將結束的活動");
-  fill(2,SUB.map(b=>rowHTML(b,k(b))),"目前沒有可解鎖的訂閱徽章");
-  fill(3,FREE.map(b=>rowHTML(b,k(b))),"目前沒有可解鎖的免費徽章");
+  fill(1,L.map(([b,k])=>rowHTML(b,k)),"目前沒有即將開始或即將結束的活動");
+  fill(2,SUB.map(([b,k])=>rowHTML(b,k)),"目前沒有可解鎖的訂閱徽章");
+  fill(3,FREE.map(([b,k])=>rowHTML(b,k)),"目前沒有可解鎖的免費徽章");
   tick();
 }
 
@@ -285,6 +309,33 @@ function frame(ts){
   requestAnimationFrame(frame);
 }
 function tick(){const n=now();document.querySelectorAll(".row .flap[data-t]").forEach(el=>{const x=t(el.dataset.t);if(x)flap(el,cdParts(x-n));else el.textContent="未公布"})}
+
+/* ---------- 欄寬拖曳條（只在控制台預覽出現，拖完把新寬度傳回控制台） ---------- */
+const colsEl=document.querySelector(".cols"), SPLITS=[];
+const GAP=24, MIN_PCT=12;
+function placeSplits(){if(!SPLITS.length)return;const k=[...colsEl.children].filter(x=>!x.classList.contains("split"));
+  SPLITS.forEach((sp,i)=>{sp.style.left=(k[i].offsetLeft+k[i].offsetWidth+GAP/2)+"px"})}
+if(PREVIEW){
+  for(let i=0;i<2;i++){const sp=document.createElement("div");sp.className="split";sp.title="拖曳調整欄寬";sp.innerHTML="<i><b></b><b></b><b></b></i>";colsEl.appendChild(sp);SPLITS.push(sp);
+    sp.addEventListener("pointerdown",e=>{
+      e.preventDefault(); sp.setPointerCapture(e.pointerId); sp.classList.add("drag");
+      const r=colsEl.getBoundingClientRect(), scale=r.width/colsEl.offsetWidth, W=colsEl.clientWidth-2*GAP;
+      const tot=CFG.cols.reduce((a,b)=>a+b,0), pct=CFG.cols.map(v=>v/tot*100);
+      const move=ev=>{
+        const x=(ev.clientX-r.left)/scale, before=pct.slice(0,i).reduce((a,b)=>a+b,0), pair=pct[i]+pct[i+1];
+        // 滑鼠位置換算成左邊那一欄的寬度（扣掉前面的欄與間隙）
+        let a=((x-i*GAP-GAP/2)/W*100)-before;
+        a=Math.min(pair-MIN_PCT,Math.max(MIN_PCT,a));
+        const next=pct.slice(); next[i]=Math.round(a*10)/10; next[i+1]=Math.round((pair-a)*10)/10;
+        CFG.cols=next; document.documentElement.style.setProperty("--cols",next.map(v=>v+"fr").join(" ")); placeSplits();
+      };
+      const up=()=>{sp.classList.remove("drag");sp.removeEventListener("pointermove",move);sp.removeEventListener("pointerup",up);sp.removeEventListener("pointercancel",up);
+        sig="";if(DB)refresh(); parent.postMessage({type:"overlay-cols",cols:CFG.cols},"*")};
+      sp.addEventListener("pointermove",move);sp.addEventListener("pointerup",up);sp.addEventListener("pointercancel",up);
+    });
+  }
+  addEventListener("resize",placeSplits); document.fonts?.ready.then(placeSplits);
+}
 
 /* ---------- 控制台即時預覽 ---------- */
 if(PREVIEW) addEventListener("message",e=>{const d=e.data;if(!d||typeof d!=="object")return;
