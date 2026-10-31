@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T21:32:32.173Z",
+ "updated_at": "2026-10-31T21:33:19.824Z",
  "count": 554,
  "badges": [
   {
@@ -10188,7 +10188,7 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "購買 TwitchCon 1日通行證",
+    "game": "購買 TwitchCon 1日通行證解鎖",
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
     "source": "manual"
@@ -10213,7 +10213,7 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "購買 TwitchCon 3日通行證",
+    "game": "購買 TwitchCon 3日通行證解鎖",
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
     "source": "manual"
