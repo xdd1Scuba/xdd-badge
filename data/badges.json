@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:37:22.113Z",
+ "updated_at": "2026-10-31T19:37:48.026Z",
  "count": 554,
  "badges": [
   {
@@ -17,7 +17,7 @@
    "removed_at": null,
    "campaign": {
     "game": "ELDEN RING",
-    "minutes": 1,
+    "subs": 1,
     "source": "manual"
    },
    "notified": {},
