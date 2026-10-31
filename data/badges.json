@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T21:02:00.818Z",
+ "updated_at": "2026-10-31T21:07:08.625Z",
  "count": 554,
  "badges": [
   {
@@ -1435,9 +1435,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -2010,9 +2010,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -2055,9 +2055,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -4191,9 +4191,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -4527,9 +4527,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -4932,9 +4932,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -6642,9 +6642,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {
@@ -10744,9 +10744,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
@@ -10929,9 +10929,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
+    "note": "*進化不需要訂閱／贈訂",
     "source": "manual"
    },
    "notified": {},
