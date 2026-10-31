@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Badge Info 控制台</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout：標頭＋分頁（待確認｜所有徽章｜Overlay 外觀）
+   徽章分頁：左欄清單 → 右欄編輯表單；Overlay 分頁：左欄設定 → 右欄即時預覽。
+   最下方共用「待存檔」區（複製 → 貼到 GitHub）。手機上改為上下排列。 */
+:root{
+  --bg:#f3f2f7; --surface:#ffffff; --sunk:#e9e7f1; --fg:#191624; --muted:#666079; --line:#dcd8e6;
+  --accent:#7434e6; --accent-ink:#ffffff; --accent-soft:#ece3fd; --ok:#0f8a5f; --ok-soft:#daf3e8; --warn:#a86200; --warn-soft:#fbecd3;
+  --sub:#7b4fd6; --sub-soft:#ebe2fb; --free:#0f8a5f; --free-soft:#daf3e8;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f0e14; --surface:#18161f; --sunk:#211e2b; --fg:#ecebf2; --muted:#9e98b3; --line:#2d2a39;
+  --accent:#a675ff; --accent-ink:#130b22; --accent-soft:#2a1f45; --ok:#3ad39a; --ok-soft:#123528; --warn:#f0b350; --warn-soft:#3a2a10;
+  --sub:#b79cff; --sub-soft:#2a1f45; --free:#3ad39a; --free-soft:#123528; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f0e14; --surface:#18161f; --sunk:#211e2b; --fg:#ecebf2; --muted:#9e98b3; --line:#2d2a39;
+  --accent:#a675ff; --accent-ink:#130b22; --accent-soft:#2a1f45; --ok:#3ad39a; --ok-soft:#123528; --warn:#f0b350; --warn-soft:#3a2a10;
+  --sub:#b79cff; --sub-soft:#2a1f45; --free:#3ad39a; --free-soft:#123528; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding-block:24px 56px;display:flex;flex-direction:column;gap:20px}
+h1{font-size:24px;margin:0;font-weight:700}
+.sub{color:var(--muted);margin:4px 0 0;font-size:14px;max-width:80ch}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{height:42px;padding:0 16px;border:0;border-bottom:2px solid transparent;background:none;cursor:pointer;font-weight:700;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.tabs .n{font-size:12px;padding:0 7px;border-radius:999px;line-height:20px;background:var(--warn-soft);color:var(--warn)}
+.tabs .n:empty{display:none}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:start}
+.cols.ov{grid-template-columns:minmax(0,380px) minmax(0,1fr)}
+@media (max-width:900px){.cols,.cols.ov{grid-template-columns:minmax(0,1fr)}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.box h2{font-size:15px;margin:0;font-weight:700;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.box h2 small{font-weight:400;color:var(--muted);font-size:12px}
+input[type=search],input[type=text],input[type=number],input[type=datetime-local],select{height:40px;border:1px solid var(--line);border-radius:9px;background:var(--surface);padding:0 10px;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:30px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.list{display:flex;flex-direction:column;max-height:620px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}
+.item{display:flex;gap:10px;align-items:center;padding:8px 10px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;cursor:pointer;width:100%}
+.item:last-child{border-bottom:0}
+.item:hover{background:var(--sunk)}
+.item[aria-current="true"]{background:var(--accent-soft)}
+.item img{width:36px;height:36px;border-radius:6px;background:var(--sunk);flex:none;object-fit:contain}
+.item .t{min-width:0;flex:1}
+.item .n{font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.item .s{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:6px;flex-wrap:wrap}
+.tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;flex:none;max-width:45%}
+.badge{font-size:11px;font-weight:700;padding:0 6px;border-radius:999px;line-height:20px;white-space:nowrap}
+.b-has{color:var(--ok);background:var(--ok-soft)}.b-pend{color:var(--warn);background:var(--warn-soft)}.b-miss{color:var(--muted);background:var(--sunk)}
+.b-sub{color:var(--sub);background:var(--sub-soft)}.b-free{color:var(--free);background:var(--free-soft)}.b-other{color:var(--muted);background:var(--sunk);border:1px dashed var(--line)}
+.empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:14px}
+.sel{display:flex;gap:12px;align-items:center}
+.sel img{width:64px;height:64px;border-radius:8px;background:var(--sunk);object-fit:contain;flex:none}
+.sel b{display:block;font-size:17px}
+.sel .mono{font-size:12px;color:var(--muted)}
+.desc{font-size:13px;color:var(--muted);background:var(--sunk);border-radius:8px;padding:8px 10px;margin:0}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.form .full{grid-column:1/-1}
+@media (max-width:480px){.form{grid-template-columns:minmax(0,1fr)}}
+label.f,.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{flex:1;height:38px;border:0;background:var(--surface);cursor:pointer;font-size:13px;border-left:1px solid var(--line);padding:0 6px}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);font-weight:700}
+.hint{font-size:12px;color:var(--muted)}
+.err{font-size:13px;color:var(--warn);margin:0}
+.chk{display:flex;align-items:center;gap:8px;color:var(--fg);font-size:14px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--accent);margin:0}
+#fNote{min-height:96px;font-family:var(--f-body);font-size:14px;background:var(--surface)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{height:38px;padding:0 14px;border-radius:9px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.btn.ghost{border-color:transparent;color:var(--muted)}
+.pend{display:flex;flex-direction:column;gap:6px}
+.pend div{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;padding:6px 10px;background:var(--sunk);border-radius:8px;min-width:0}
+.pend span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.pend button{border:0;background:transparent;color:var(--muted);cursor:pointer;flex:none}
+textarea{width:100%;min-height:200px;border:1px solid var(--line);border-radius:10px;background:var(--sunk);padding:10px;font-family:var(--f-mono);font-size:12px;line-height:1.5;resize:vertical}
+ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.msg{font-size:13px;color:var(--ok)}
+.mono{font-family:var(--f-mono)}
+.guess{font-size:12px;color:var(--muted)}
+/* Overlay 外觀 */
+.grp{display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.grp:last-of-type{border-bottom:0}
+.grp h3{font-size:13px;margin:0;color:var(--fg)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rng{display:grid;grid-template-columns:1fr 64px;gap:10px;align-items:center}
+.rng input[type=range]{width:100%;accent-color:var(--accent)}
+.rng output{font-family:var(--f-mono);font-size:13px;text-align:right}
+.colors{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.colors label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--fg);cursor:pointer}
+.colors input{width:34px;height:28px;border:1px solid var(--line);border-radius:6px;padding:0;background:none;cursor:pointer;flex:none}
+.pv{position:relative;width:100%;background:#000;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.pv .ph{position:absolute;inset:0;display:grid;place-items:center;color:#aaa;font-size:14px;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Badge Info 控制台</h1>
+    <p class="sub">管理徽章資訊網與 Overlay 的徽章資料：類型（訂閱／免費）、遊戲分類、活動時間、取得條件、備註，以及 Overlay 的外觀。修改會先放在「待存檔」，最後一次貼到 GitHub 的 <span class="mono">data/campaigns.manual.json</span>。時間依你的時區輸入：<b id="tz" class="mono"></b>，存檔時自動轉成 UTC。</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="inbox" aria-selected="true">待確認 <span class="n" id="inboxN"></span></button>
+    <button role="tab" data-tab="all" aria-selected="false">所有徽章</button>
+    <button role="tab" data-tab="overlay" aria-selected="false">Overlay 外觀</button>
+  </nav>
+
+  <!-- 徽章分頁（待確認／所有徽章共用） -->
+  <div class="cols" id="badgeView">
+    <section class="box">
+      <h2 id="listTitle">待確認 <small id="cnt"></small></h2>
+      <p class="hint" id="inboxHint">偵測到但還沒確認的新徽章都在這裡。確認類型、分類、時間與條件後按「確認無誤」，存檔後就會離開這個清單。</p>
+      <input type="search" id="q" placeholder="搜尋徽章名稱或 set_id" autocomplete="off">
+      <div class="chips" id="flt" hidden>
+        <button class="chip" data-v="all" aria-pressed="true">全部</button>
+        <button class="chip" data-v="notime" aria-pressed="false">還沒有時間</button>
+        <button class="chip" data-v="live" aria-pressed="false">進行中／即將開始</button>
+        <button class="chip" data-v="unrev" aria-pressed="false">未確認</button>
+        <button class="chip" data-v="rev" aria-pressed="false">已確認</button>
+      </div>
+      <div class="list" id="list"><div class="empty">讀取徽章資料中…</div></div>
+    </section>
+
+    <section class="box" id="editBox">
+      <h2>徽章資訊</h2>
+      <div id="noSel" class="empty">從左邊選一個徽章開始。</div>
+      <form id="form" hidden novalidate>
+        <div class="sel" id="sel"></div>
+        <p class="desc" id="desc"></p>
+        <div class="form" style="margin-top:4px">
+          <div class="f full">類型（決定 Overlay 放在哪一欄）
+            <div class="seg" id="fType">
+              <button type="button" data-v="" aria-pressed="true">自動</button>
+              <button type="button" data-v="sub" aria-pressed="false">訂閱／贈訂</button>
+              <button type="button" data-v="free" aria-pressed="false">免費</button>
+              <button type="button" data-v="other" aria-pressed="false">其他</button>
+            </div>
+            <span class="guess" id="guess"></span>
+          </div>
+          <label class="f full" for="fGame">遊戲分類
+            <input type="text" id="fGame" placeholder="例如 Hunt: Showdown 1896" list="games">
+            <datalist id="games"></datalist>
+            <span class="hint">留空＝不限分類，或同時適用多個分類。</span>
+          </label>
+          <label class="f" for="fStart">開始時間
+            <input type="datetime-local" id="fStart">
+          </label>
+          <label class="f" for="fEnd">結束時間
+            <input type="datetime-local" id="fEnd">
+            <span class="hint">還沒公布可以留空</span>
+          </label>
+          <div class="f full">取得條件
+            <div class="seg" id="fReq">
+              <button type="button" data-v="minutes" aria-pressed="false">觀看</button>
+              <button type="button" data-v="subs" aria-pressed="false">訂閱</button>
+              <button type="button" data-v="other" aria-pressed="true">其他／不確定</button>
+            </div>
+          </div>
+          <label class="f" for="fNum" id="numWrap" hidden>觀看分鐘數
+            <input type="number" id="fNum" min="1" step="1" value="15" inputmode="numeric">
+          </label>
+          <div class="f full">
+            <label class="chk" for="fNoteOn"><input type="checkbox" id="fNoteOn"> 加上取得方式備註</label>
+            <textarea id="fNote" rows="4" placeholder="例如：需要先擁有 Pichu 徽章，在 Drops 面板裝備後，每天觀看 20 分鐘、累積 3 天即可進化。" hidden></textarea>
+            <span class="hint" id="noteHint" hidden>徽章頁面會顯示這段備註。網址會自動變成連結，換行會保留。</span>
+          </div>
+        </div>
+        <p class="err" id="err" hidden></p>
+        <div class="row" style="margin-top:12px">
+          <button type="submit" class="btn primary" data-rev="1">確認無誤，加入待存檔</button>
+          <button type="submit" class="btn" data-rev="0">先存，之後再確認</button>
+          <button type="button" class="btn ghost" id="fClear">清除手動資料</button>
+          <span class="msg" id="fMsg" aria-live="polite"></span>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Overlay 外觀 -->
+  <div class="cols ov" id="ovView" hidden>
+    <section class="box">
+      <h2>Overlay 外觀 <small id="ovState"></small></h2>
+      <div class="grp">
+        <h3>畫布尺寸</h3>
+        <div class="chips" id="ovPreset">
+          <button class="chip" data-wh="1920x1080" aria-pressed="false">1920×1080</button>
+          <button class="chip" data-wh="2560x1440" aria-pressed="false">2560×1440</button>
+          <button class="chip" data-wh="1280x720" aria-pressed="false">1280×720</button>
+        </div>
+        <div class="two">
+          <label class="f">寬（px）<input type="number" id="oW" min="640" max="3840" step="10"></label>
+          <label class="f">高（px）<input type="number" id="oH" min="360" max="2160" step="10"></label>
+        </div>
+        <label class="f">左欄寬度（即將開始・即將結束）
+          <div class="rng"><input type="range" id="oLeft" min="320" max="800" step="10"><output id="oLeftV"></output></div></label>
+        <label class="f">聊天室位置
+          <select id="oChat"><option value="bottom">左欄下半</option><option value="top">左欄上半</option><option value="none">不顯示</option></select></label>
+        <label class="f">字體大小
+          <div class="rng"><input type="range" id="oFs" min="0.8" max="1.4" step="0.05"><output id="oFsV"></output></div></label>
+      </div>
+      <div class="grp">
+        <h3>滾動速度（每秒 px，0＝不滾動）</h3>
+        <label class="f">即將開始・即將結束<div class="rng"><input type="range" id="oS1" min="0" max="120" step="1"><output id="oS1V"></output></div></label>
+        <label class="f">訂閱／贈訂徽章<div class="rng"><input type="range" id="oS2" min="0" max="120" step="1"><output id="oS2V"></output></div></label>
+        <label class="f">免費徽章<div class="rng"><input type="range" id="oS3" min="0" max="120" step="1"><output id="oS3V"></output></div></label>
+      </div>
+      <div class="grp">
+        <h3>顏色</h3>
+        <div class="colors" id="oColors"></div>
+        <label class="chk"><input type="checkbox" id="oTrans"> 透明背景（只留面板）</label>
+      </div>
+      <div class="row">
+        <button class="btn primary" id="ovSave">加入待存檔</button>
+        <button class="btn ghost" id="ovReset">還原預設</button>
+        <span class="msg" id="ovMsg" aria-live="polite"></span>
+      </div>
+      <p class="hint">OBS 網址上的參數（例如 <span class="mono">?speed3=20</span>）會蓋過這裡的設定。</p>
+    </section>
+    <section class="box">
+      <h2>即時預覽 <small>使用目前的徽章資料與待存檔的修改</small></h2>
+      <div class="pv" id="pv"><div class="ph" id="pvPh">預覽載入中…<br>需要放在網站上（與 overlay-v2.html 同一個資料夾）才看得到。</div><iframe id="pvFrame" title="Overlay 預覽" loading="lazy"></iframe></div>
+    </section>
+  </div>
+
+  <section class="box">
+    <h2>待存檔 <small id="pendCnt"></small></h2>
+    <div class="pend" id="pend"></div>
+    <ol class="how">
+      <li>按「複製全部內容」</li>
+      <li>按「到 GitHub 編輯」，在編輯畫面按 Ctrl+A 全選，貼上覆蓋</li>
+      <li>按 Commit changes，約 1–2 分鐘後網站與 Overlay 自動更新</li>
+    </ol>
+    <div class="row">
+      <button class="btn primary" id="copy">複製全部內容</button>
+      <a class="btn" id="ghLink" target="_blank" rel="noopener">到 GitHub 編輯</a>
+      <button class="btn ghost" id="reset">清空待存檔</button>
+      <span class="msg" id="copyMsg" aria-live="polite"></span>
+    </div>
+    <textarea id="out" readonly aria-label="campaigns.manual.json 內容" spellcheck="false"></textarea>
+  </section>
+</div>
+
+<script>
+const OVERLAY_PAGE="overlay-v2.html";
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+const K=b=>`${b.set_id}/${b.id}`;
+const $=id=>document.getElementById(id);
+const TZ=Intl.DateTimeFormat().resolvedOptions().timeZone||"UTC";
+$("tz").textContent=TZ;
+const DESC_DEFAULT="Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。_overlay：Overlay 外觀設定。";
+
+/* Overlay 預設值（與 overlay-v2.html 的 DEFAULTS 保持一致） */
+const OV_DEFAULTS={width:1920,height:1080,leftWidth:470,chat:"bottom",speed:[22,30,38],fontScale:1,transparent:false,
+  colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b"}};
+const COLOR_ZH={bg:"背景",panel:"面板",text:"文字",accent:"強調（倒數、時鐘）",sub:"訂閱欄",free:"免費欄／可解鎖",soon:"即將開始",last:"即將結束",rec:"直播紅點"};
+
+/* 類型自動判斷（與 overlay-v2.html 的 autoType 保持一致） */
+function autoType(b,c){c=c||{};const d=b.description||"";
+  if(c.subs)return "sub"; if(c.minutes)return "free";
+  if(/subscrib|gift|subbed/i.test(d))return "sub";
+  if(/purchas|ticket/i.test(d))return "other";
+  return "free"}
+const TYPE_ZH={sub:"訂閱／贈訂",free:"免費",other:"其他"};
+
+let BADGES=[], BASE={}, pending={}, cur=null, tab="inbox", filter="all", req="other", type="";
+try{pending=JSON.parse(localStorage.getItem("manual-pending")||"{}")}catch(_){pending={}}
+const savePending=()=>{try{localStorage.setItem("manual-pending",JSON.stringify(pending))}catch(_){}};
+
+/* GitHub 編輯連結：xdd1scuba.github.io/xdd-badge → github.com/xdd1scuba/xdd-badge */
+(function(){
+  const m=location.hostname.match(/^([^.]+)\.github\.io$/), repo=location.pathname.split("/").filter(Boolean)[0];
+  const a=$("ghLink");
+  if(m&&repo) a.href=`https://github.com/${m[1]}/${repo}/edit/main/data/campaigns.manual.json`;
+  else {a.href="https://github.com";a.textContent="到 GitHub（開啟 data/campaigns.manual.json）"}
+})();
+
+/* datetime-local 與 ISO 互轉（依瀏覽器時區） */
+const pad=n=>String(n).padStart(2,"0");
+function toLocalInput(iso){if(!iso)return "";const d=new Date(iso);if(isNaN(d))return "";return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}
+function toISO(v){if(!v)return null;const d=new Date(v);return isNaN(d)?null:d.toISOString().replace(/\.\d{3}Z$/,"Z")}
+const fmt=new Intl.DateTimeFormat("zh-TW",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false});
+
+function merged(){const o={...BASE};for(const[k,v]of Object.entries(pending)){if(v===null)delete o[k];else o[k]=v}return o}
+/* 這個徽章目前的資料：待存檔 > 已存檔 > 自動抓到的活動 */
+function entryFor(b){const k=K(b);if(k in pending)return pending[k]||{};if(BASE[k])return BASE[k];
+  if(b.campaign){const {source,...c}=b.campaign;return c}return {}}
+const isRev=b=>!!entryFor(b).reviewed;
+const inInbox=b=>!b.baseline&&!isRev(b);
+function status(e){const n=Date.now(),s=e.start?Date.parse(e.start):null,x=e.end?Date.parse(e.end):null;
+  if(!s)return "none"; if(n<s)return "soon"; if(x&&n>=x)return "ended"; return "live"}
+
+async function load(){
+  const bust="?t="+Date.now();
+  try{
+    const [a,m]=await Promise.all([fetch("data/badges.json"+bust,{cache:"no-store"}),fetch("data/campaigns.manual.json"+bust,{cache:"no-store"})]);
+    if(!a.ok) throw new Error("badges");
+    BADGES=(await a.json()).badges.filter(b=>!b.removed_at);
+    BASE=m.ok?await m.json():{};
+  }catch(e){
+    $("list").innerHTML=`<div class="empty">讀不到徽章資料。請確認網站已經成功執行過一次「更新徽章資料」。</div>`;
+    return;
+  }
+  // 已經存進 GitHub 的修改，從待存檔移除
+  for(const k of Object.keys(pending)){const v=pending[k];if((v===null&&!BASE[k])||(v&&JSON.stringify(v)===JSON.stringify(BASE[k])))delete pending[k]}
+  savePending();
+  const games=[...new Set(BADGES.map(b=>b.campaign?.game).concat(Object.entries(BASE).filter(([k])=>!k.startsWith("_")).map(([,v])=>v&&v.game)).filter(Boolean))].sort();
+  $("games").innerHTML=games.map(g=>`<option value="${esc(g)}">`).join("");
+  ovLoad(); renderAll();
+  // 從 Discord 通知點進來時（admin.html#b=set_id/版本），自動選好該徽章
+  const h=decodeURIComponent(location.hash.slice(1));
+  if(h.startsWith("b=")){const k=h.slice(2),b=BADGES.find(x=>K(x)===k);if(b){setTab(inInbox(b)?"inbox":"all");pick(k)}}
+}
+function renderAll(){renderList();renderPending();$("inboxN").textContent=BADGES.filter(inInbox).length||""}
+
+/* ---------- 分頁 ---------- */
+function setTab(v){tab=v;document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===v));
+  $("badgeView").hidden=v==="overlay"; $("ovView").hidden=v!=="overlay";
+  $("flt").hidden=v!=="all"; $("inboxHint").hidden=v!=="inbox";
+  $("listTitle").firstChild.textContent=v==="inbox"?"待確認 ":"所有徽章 ";
+  if(v==="overlay") pvInit(); else renderList()}
+document.querySelector(".tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b)setTab(b.dataset.tab)});
+
+/* ---------- 清單 ---------- */
+function tagsFor(b){
+  const e=entryFor(b), k=K(b), out=[];
+  if(k in pending) out.push(`<span class="badge b-pend">待存檔</span>`);
+  const ty=e.type||autoType(b,e);
+  out.push(`<span class="badge b-${ty}">${TYPE_ZH[ty]}${e.type?"":"?"}</span>`);
+  if(e.start) out.push(`<span class="badge b-has">${esc(fmt.format(new Date(e.start)))}</span>`);
+  else out.push(`<span class="badge b-miss">缺時間</span>`);
+  if(e.reviewed) out.push(`<span class="badge b-has">✓</span>`);
+  return out.join("");
+}
+function renderList(){
+  if(tab==="overlay") return;
+  const q=norm($("q").value);
+  let L=BADGES.filter(b=>{
+    if(q&&!norm(b.title).includes(q)&&!norm(b.set_id).includes(q))return false;
+    if(tab==="inbox") return inInbox(b);
+    const e=entryFor(b), st=status(e);
+    return filter==="all"||(filter==="notime"&&!e.start)||(filter==="live"&&(st==="live"||st==="soon"))||(filter==="unrev"&&!e.reviewed)||(filter==="rev"&&!!e.reviewed);
+  });
+  L.sort((a,b)=>(a.baseline-b.baseline)||b.first_seen.localeCompare(a.first_seen)||a.title.localeCompare(b.title));
+  $("cnt").textContent=`${L.length} 個`;
+  const show=L.slice(0,200);
+  $("list").innerHTML=show.length?show.map(b=>{const k=K(b),e=entryFor(b);
+    return `<button class="item" data-k="${esc(k)}" aria-current="${!!cur&&K(cur)===k}"><img src="${esc(b.image_url_2x)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span class="t"><span class="n">${esc(b.title)}</span><span class="s"><span class="mono">${esc(k)}</span>${e.game?`<span>・${esc(e.game)}</span>`:""}</span></span><span class="tags">${tagsFor(b)}</span></button>`;
+  }).join("")+(L.length>200?`<div class="empty">還有 ${L.length-200} 個，請用搜尋縮小範圍。</div>`:"")
+  :`<div class="empty">${tab==="inbox"?"沒有待確認的徽章。偵測到新徽章時會出現在這裡。":"沒有符合的徽章。換個關鍵字或篩選。"}</div>`;
+}
+$("list").addEventListener("click",e=>{const it=e.target.closest(".item");if(it)pick(it.dataset.k)});
+$("flt").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;filter=c.dataset.v;document.querySelectorAll("#flt .chip").forEach(x=>x.setAttribute("aria-pressed",x===c));renderList()});
+$("q").addEventListener("input",renderList);
+
+/* ---------- 編輯表單 ---------- */
+function setNote(on,text){const cb=$("fNoteOn"),ta=$("fNote");cb.checked=on;if(text!==undefined)ta.value=text;ta.hidden=!on;$("noteHint").hidden=!on}
+document.addEventListener("change",e=>{if(e.target.id==="fNoteOn"){setNote(e.target.checked);if(e.target.checked)$("fNote").focus()}});
+function setReq(v){req=v;document.querySelectorAll("#fReq button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));
+  const w=$("numWrap");w.hidden=v==="other";w.firstChild.textContent=v==="subs"?"需要訂閱數":"觀看分鐘數";updateGuess()}
+function setType(v){type=v;document.querySelectorAll("#fType button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===v));updateGuess()}
+function updateGuess(){if(!cur)return;
+  const n=parseInt($("fNum").value,10), c=req==="subs"?{subs:n}:req==="minutes"?{minutes:n}:{};
+  const g=autoType(cur,c);
+  $("guess").textContent=type?"":`自動判斷目前是「${TYPE_ZH[g]}」${g==="other"?"，Overlay 的訂閱欄和免費欄都不會顯示":""}。依據：${c.subs?"條件是訂閱":c.minutes?"條件是觀看":"官方說明的文字"}。`}
+function pick(k){
+  cur=BADGES.find(b=>K(b)===k); if(!cur) return;
+  const e=entryFor(cur);
+  $("noSel").hidden=true; $("form").hidden=false;
+  $("sel").innerHTML=`<img src="${esc(cur.image_url_4x)}" alt="" onerror="this.style.visibility='hidden'"><div><b>${esc(cur.title)}</b><span class="mono">${esc(k)}${cur.baseline?"":"・偵測於 "+esc(fmt.format(new Date(cur.first_seen)))}</span></div>`;
+  $("desc").textContent=cur.description||"（沒有官方說明）";
+  $("fGame").value=e.game||"";
+  $("fStart").value=toLocalInput(e.start);
+  $("fEnd").value=toLocalInput(e.end);
+  if(e.subs){$("fNum").value=e.subs;setReq("subs")}
+  else if(e.minutes){$("fNum").value=e.minutes;setReq("minutes")}
+  else {$("fNum").value=15;setReq("other")}
+  setType(e.type||"");
+  setNote(!!e.note, e.note||"");
+  $("err").hidden=true; $("fMsg").textContent="";
+  renderList();
+}
+$("fReq").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setReq(b.dataset.v)});
+$("fType").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setType(b.dataset.v)});
+$("fNum").addEventListener("input",updateGuess);
+
+$("form").addEventListener("submit",e=>{
+  e.preventDefault(); if(!cur) return;
+  const reviewed=e.submitter?.dataset.rev==="1";
+  const err=$("err"), fail=m=>{err.textContent=m;err.hidden=false};
+  const start=toISO($("fStart").value), end=toISO($("fEnd").value);
+  const noteOn=$("fNoteOn").checked, note=$("fNote").value.trim();
+  if(noteOn&&!note) return fail("已勾選備註，請輸入備註內容，或取消勾選。");
+  if(end&&!start) return fail("有結束時間時，也要填開始時間。");
+  if(start&&end&&Date.parse(end)<=Date.parse(start)) return fail("結束時間要晚於開始時間。");
+  const n=parseInt($("fNum").value,10);
+  if(req!=="other"&&!(n>0)) return fail(req==="subs"?"請填需要的訂閱數，或把條件改成「其他／不確定」。":"請填觀看分鐘數，或把條件改成「其他／不確定」。");
+  err.hidden=true;
+  // 欄位順序固定，方便在 GitHub 上比對差異
+  const o={}; const g=$("fGame").value.trim();
+  if(g)o.game=g;
+  if(start)o.start=start; if(end)o.end=end;
+  if(req==="minutes")o.minutes=n; if(req==="subs")o.subs=n;
+  if(noteOn&&note)o.note=note;
+  if(type)o.type=type;
+  if(reviewed)o.reviewed=true;
+  const k=K(cur);
+  if(!Object.keys(o).length){ if(BASE[k])pending[k]=null; else delete pending[k]; }
+  else pending[k]=o;
+  savePending();
+  $("fMsg").textContent=`已加入：${cur.title}`;
+  renderAll(); pvSendManual();
+  // 在待確認分頁確認後，自動跳到下一個
+  if(tab==="inbox"&&reviewed){const next=BADGES.filter(inInbox).sort((a,b)=>b.first_seen.localeCompare(a.first_seen))[0];if(next)pick(K(next))}
+});
+$("fClear").onclick=()=>{if(!cur)return;const k=K(cur);
+  if(BASE[k])pending[k]=null; else delete pending[k]; savePending();
+  $("fMsg").textContent=BASE[k]?"已標記為刪除，存檔後生效":"已清除";pick(k);renderAll();pvSendManual()};
+
+/* ---------- Overlay 外觀 ---------- */
+let OV=null;
+function ovCurrent(){const m=merged()._overlay||{};const c=structuredClone(OV_DEFAULTS);
+  for(const k of Object.keys(OV_DEFAULTS)){if(m[k]==null)continue;if(k==="colors")Object.assign(c.colors,m.colors);else c[k]=structuredClone(m[k])}return c}
+function ovLoad(){OV=ovCurrent();
+  $("oColors").innerHTML=Object.keys(OV_DEFAULTS.colors).map(k=>`<label><input type="color" data-c="${k}"> ${COLOR_ZH[k]}</label>`).join("");
+  ovFill()}
+function ovFill(){
+  $("oW").value=OV.width;$("oH").value=OV.height;$("oLeft").value=OV.leftWidth;$("oChat").value=OV.chat;$("oFs").value=OV.fontScale;
+  [1,2,3].forEach(i=>$("oS"+i).value=OV.speed[i-1]);
+  document.querySelectorAll("#oColors input").forEach(x=>x.value=OV.colors[x.dataset.c]);
+  $("oTrans").checked=!!OV.transparent; ovOut()}
+function ovOut(){$("oLeftV").textContent=OV.leftWidth;$("oFsV").textContent="×"+(+OV.fontScale).toFixed(2);[1,2,3].forEach(i=>$("oS"+i+"V").textContent=OV.speed[i-1]);
+  document.querySelectorAll("#ovPreset .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.wh===`${OV.width}x${OV.height}`));
+  $("pv").style.aspectRatio=`${OV.width} / ${OV.height}`;
+  $("ovState").textContent="_overlay" in pending?"有未存檔的修改":""}
+function ovRead(){
+  OV.width=Math.max(640,+$("oW").value||1920);OV.height=Math.max(360,+$("oH").value||1080);OV.leftWidth=+$("oLeft").value;OV.chat=$("oChat").value;OV.fontScale=+$("oFs").value;
+  OV.speed=[1,2,3].map(i=>+$("oS"+i).value);
+  document.querySelectorAll("#oColors input").forEach(x=>OV.colors[x.dataset.c]=x.value);
+  OV.transparent=$("oTrans").checked; ovOut(); pvSendCfg()}
+$("ovView").addEventListener("input",e=>{if(e.target.closest("#ovView .box")&&e.target.matches("input,select"))ovRead()});
+$("ovPreset").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;const[w,h]=c.dataset.wh.split("x");$("oW").value=w;$("oH").value=h;ovRead()});
+/* 只存與預設不同的項目，檔案比較乾淨 */
+function ovDiff(){const o={};for(const k of Object.keys(OV_DEFAULTS)){
+  if(k==="colors"){const c={};for(const ck of Object.keys(OV_DEFAULTS.colors))if(OV.colors[ck].toLowerCase()!==OV_DEFAULTS.colors[ck])c[ck]=OV.colors[ck].toLowerCase();if(Object.keys(c).length)o.colors=c}
+  else if(JSON.stringify(OV[k])!==JSON.stringify(OV_DEFAULTS[k]))o[k]=OV[k]}return o}
+$("ovSave").onclick=()=>{const d=ovDiff();
+  if(Object.keys(d).length)pending._overlay=d; else if(BASE._overlay)pending._overlay=null; else delete pending._overlay;
+  savePending();renderPending();ovOut();$("ovMsg").textContent="已加入待存檔"};
+$("ovReset").onclick=()=>{OV=structuredClone(OV_DEFAULTS);ovFill();pvSendCfg();$("ovMsg").textContent="已還原，按「加入待存檔」才會保存"};
+
+/* 預覽：iframe 載入 overlay-v2.html?preview=1，用 postMessage 傳設定與待存檔的徽章資料 */
+let pvReady=false;
+function pvInit(){const f=$("pvFrame");if(!f.src)f.src=`${OVERLAY_PAGE}?preview=1&viewers=49`}
+addEventListener("message",e=>{if(e.source!==$("pvFrame").contentWindow)return;if(e.data?.type==="overlay-ready"){pvReady=true;$("pvPh").hidden=true;pvSendCfg();pvSendManual()}});
+function pvSendCfg(){if(pvReady&&OV)$("pvFrame").contentWindow.postMessage({type:"overlay-config",config:OV},"*")}
+function pvSendManual(){if(pvReady)$("pvFrame").contentWindow.postMessage({type:"overlay-manual",manual:merged()},"*")}
+
+/* ---------- 待存檔 ---------- */
+function renderPending(){
+  const ks=Object.keys(pending);
+  $("pendCnt").textContent=ks.length?`${ks.length} 筆`:"";
+  $("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];
+    if(k==="_overlay") return `<div><span>Overlay 外觀設定・${v===null?"還原預設":"已修改"}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`;
+    const b=BADGES.find(x=>K(x)===k);
+    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",v.note?"有備註":"",v.reviewed?"已確認":""].filter(Boolean);
+    return `<div><span>${esc(b?.title||k)}・${esc(parts.join("・")||"空白")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
+    :`<div><span style="color:var(--muted)">還沒有修改。</span></div>`;
+  const out={}, m=merged();
+  out["_說明"]=DESC_DEFAULT;
+  if(m._overlay) out._overlay=m._overlay;
+  for(const k of Object.keys(m).filter(k=>!k.startsWith("_")).sort()) out[k]=m[k];
+  $("out").value=JSON.stringify(out,null,2)+"\n";
+}
+$("pend").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b)return;delete pending[b.dataset.del];savePending();
+  if(b.dataset.del==="_overlay"){OV=ovCurrent();ovFill();pvSendCfg()}
+  renderAll();pvSendManual();if(cur)pick(K(cur))});
+$("reset").onclick=()=>{pending={};savePending();OV=ovCurrent();ovFill();pvSendCfg();renderAll();pvSendManual();if(cur)pick(K(cur));$("copyMsg").textContent="已清空"};
+$("copy").onclick=()=>{
+  const ta=$("out"),msg=$("copyMsg");
+  const fallback=()=>{ta.focus();ta.select();msg.textContent="已選取，請按 Ctrl+C 複製"};
+  try{navigator.clipboard.writeText(ta.value).then(()=>{msg.textContent="已複製"},fallback)}catch(_){fallback()}
+};
+load();
+</script>
+</body>
+</html>
