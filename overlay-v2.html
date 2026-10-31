@@ -109,7 +109,6 @@ html.transparent #stage{background:none}
 .st.live{color:var(--free)} .st.last{color:var(--last)} .st.soon{color:var(--soon)} .st.tbd{color:var(--muted)}
 .row.tbd{box-shadow:inset 3px 0 0 var(--dim)}
 .narrow .row .nm{font-size:calc(20px*var(--fs))}
-.narrow .cond .g{display:none} /* 窄欄只顯示條件，不顯示分類 */
 .empty{padding:22px;color:var(--muted);font-size:19px}
 
 /* 圖示 */
@@ -259,7 +258,8 @@ const typeOf=b=>MANUAL[keyOf(b)]?.type||autoType(b);
 /* 控制台手動指定的位置：left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示；沒有＝依時間與類型自動 */
 const columnOf=b=>MANUAL[keyOf(b)]?.column||"";
 
-const cond=b=>{const c=b.campaign||{},g=c.game&&c.game!=="任意分類"?`<span class="g">${esc(c.game)}</span>`:"",r=c.subs?`訂閱 <em>${c.subs}</em> 次`:c.minutes?`觀看 <em>${c.minutes}</em> 分鐘`:"";return r&&g?`${r}<span class="g">　・　</span>${g}`:r||g};
+/* 條件・分類：照控制台輸入的內容顯示（有手動資料時以手動資料為準，控制台預覽也能立刻看到）；太長由跑馬燈處理 */
+const cond=b=>{const m=MANUAL[keyOf(b)],c=m||b.campaign||{},g=c.game?`<span class="g">${esc(c.game)}</span>`:"",r=c.subs?`訂閱 <em>${c.subs}</em> 次`:c.minutes?`觀看 <em>${c.minutes}</em> 分鐘`:"";return r&&g?`${r}<span class="g">　・　</span>${g}`:r||g};
 const initials=s=>String(s).replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"?";
 const icon=b=>`<span class="ic"><img src="${esc(b.image_url_2x||b.image_url_4x||"")}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'fb',textContent:'${initials(b.title)}'}))"></span>`;
 const KIND_ZH={live:"可解鎖",last:"即將結束",soon:"即將開始",tbd:"時間未公布"};
@@ -326,7 +326,7 @@ function refresh(){
   const at=([b,k])=>k==="soon"?t(b.campaign.start):(t(b.campaign?.end)??Infinity);
   const sorter=(x,y)=>ORDER[x[1]]-ORDER[y[1]]||at(x)-at(y)||x[0].title.localeCompare(y[0].title);
   [L,SUB,FREE].forEach(A=>A.sort(sorter));
-  const s=JSON.stringify([L,SUB,FREE].map(A=>A.map(([b,k])=>{const c=b.campaign||{},m=MANUAL[keyOf(b)]||{};return keyOf(b)+c.start+c.end+c.subs+c.minutes+c.game+(m.note??c.note)+m.cmd+k})));
+  const s=JSON.stringify([L,SUB,FREE].map(A=>A.map(([b,k])=>{const c=b.campaign||{},m=MANUAL[keyOf(b)]||{};return keyOf(b)+c.start+c.end+(m.subs??c.subs)+(m.minutes??c.minutes)+(m.game??c.game)+(m.note??c.note)+m.cmd+k})));
   if(s===sig) return; sig=s;
   document.getElementById("n1").textContent=L.length||"";
   document.getElementById("n2").textContent=SUB.length||"";
