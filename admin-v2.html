@@ -539,7 +539,7 @@ $("ovReset").onclick=()=>{OV=structuredClone(OV_DEFAULTS);ovFill();pvSendCfg();$
 
 /* 預覽：iframe 載入 overlay-v2.html?preview=1，用 postMessage 傳設定與待存檔的徽章資料 */
 let pvReady=false;
-function pvInit(){const f=$("pvFrame");if(!f.src)f.src=`${OVERLAY_PAGE}?preview=1&viewers=49`}
+function pvInit(){const f=$("pvFrame");if(!f.src)f.src=`${OVERLAY_PAGE}?preview=1`}
 addEventListener("message",e=>{if(e.source!==$("pvFrame").contentWindow)return;
   if(e.data?.type==="overlay-ready"){pvReady=true;$("pvPh").hidden=true;pvSendCfg();pvSendManual()}
   // 預覽裡拖曳分隔條後，記下新的欄寬

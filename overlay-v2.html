@@ -42,6 +42,7 @@ html.transparent #stage{background:none}
 .viewers{display:inline-flex;align-items:center;gap:9px;font-size:21px;line-height:1}
 .viewers i{width:13px;height:13px;border-radius:50%;background:var(--rec);animation:rec 2.4s ease-in-out infinite}
 .viewers.off{color:var(--dim)} .viewers.off i{background:var(--dim);animation:none}
+.me.off .avatar{box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--dim)} /* 沒開台時頭貼外框改成灰色 */
 @keyframes rec{0%,100%{opacity:1;box-shadow:0 0 10px 1px color-mix(in srgb,var(--rec) 65%,transparent)}50%{opacity:.25;box-shadow:none}}
 .legend{display:flex;justify-content:center;gap:26px;font-size:19px;color:var(--muted)}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:1px}
@@ -214,9 +215,23 @@ const fD=new Intl.DateTimeFormat("zh-TW",{month:"long",day:"numeric",weekday:"lo
 const tz=new Intl.DateTimeFormat("zh-TW",{timeZoneName:"short"}).formatToParts(new Date()).find(p=>p.type==="timeZoneName")?.value||"";
 function clock(){const d=new Date();document.getElementById("cDate").innerHTML=`<b>${esc(fD.format(d))}</b>${esc(tz)}`;flap(document.getElementById("cTime"),[{t:p2(d.getHours())},{s:":"},{t:p2(d.getMinutes())},{s:":"},{t:p2(d.getSeconds())}])}
 
-/* ---------- 觀眾數（測試版：假資料；正式版改向 Worker 讀取） ---------- */
-function setViewers(n){const v=document.getElementById("viewers");if(n==null||n==="off"){v.classList.add("off");document.getElementById("vc").textContent="離線"}else{v.classList.remove("off");document.getElementById("vc").textContent=Number(n).toLocaleString("en-US")}}
-setViewers(P.get("viewers")??49);
+/* ---------- 直播狀態、觀眾數、頭貼（每分鐘向 Worker 的 /channel 讀一次） ----------
+   網址參數 ?viewers=49 或 viewers=off 可以手動指定（測試用），指定時就不向 Worker 讀 */
+const CHANNEL_API=P.get("api")||"https://badge-notifier.lwldoge.workers.dev/channel";
+function setViewers(n){const v=document.getElementById("viewers"),off=n==null||n==="off";
+  v.classList.toggle("off",off); document.querySelector(".me").classList.toggle("off",off);
+  document.getElementById("vc").textContent=off?"離線":Number(n).toLocaleString("en-US")}
+async function loadChannel(){
+  try{
+    const r=await fetch(CHANNEL_API+"?t="+Date.now(),{cache:"no-store"}), j=await r.json();
+    if(!j.ok) return; // 讀不到時維持上一次的狀態
+    setViewers(j.live?j.viewers:null);
+    const a=document.getElementById("avatar");
+    if(j.avatar&&a.dataset.src!==j.avatar){const img=new Image();img.onload=()=>{a.src=j.avatar;a.dataset.src=j.avatar};img.src=j.avatar}
+  }catch(_){}
+}
+if(P.get("viewers")!=null) setViewers(P.get("viewers"));
+else { setViewers(null); loadChannel(); setInterval(loadChannel,60*1000); }
 
 /* ---------- 徽章類型 ----------
    控制台有設定 type 就用設定；留空時自動判斷（與控制台的 autoType 保持一致）
