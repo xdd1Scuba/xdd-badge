@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:43:47.626Z",
+ "updated_at": "2026-10-31T19:44:44.293Z",
  "count": 554,
  "badges": [
   {
@@ -4532,15 +4532,14 @@
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {
     "live": "2026-10-26T14:54:00Z"
    },
    "type": null,
-   "column": null,
-   "reviewed": false
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "hunt-white",
