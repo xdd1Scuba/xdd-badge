@@ -122,7 +122,9 @@
     "game": "Gray Zone Warfare",
     "start": "2026-10-22T16:00:00Z",
     "end": "2026-11-06T12:58:00Z",
-    "subs": 1
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "haunter/1": {
     "game": "Pokémon",
@@ -145,12 +147,18 @@
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
-    "minutes": 15
+    "minutes": 15,
+    "type": "free",
+    "column": "free",
+    "reviewed": true
   },
   "ivysaur/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
-    "end": "2027-01-30T07:59:00Z"
+    "end": "2027-01-30T07:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "modern-warfare-4/1": {
     "game": "Call of Duty Modern Warfare 4",
@@ -162,15 +170,20 @@
     "reviewed": true
   },
   "pikachu/1": {
-    "game": "Pokémon",
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "minutes": 20
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "qsmp2/1": {
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
-    "minutes": 60
+    "minutes": 60,
+    "type": "free",
+    "column": "free",
+    "reviewed": true
   },
   "seegson-synthetics/1": {
     "start": "2026-10-01T09:00:00Z",
@@ -195,7 +208,9 @@
     "game": "Cyberpunk 2077",
     "start": "2026-10-22T10:00:00Z",
     "end": "2026-11-13T17:59:00Z",
-    "subs": 1
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "thedragonsdogma/1": {
     "start": "2026-10-08T12:00:00Z",
@@ -205,7 +220,10 @@
     "game": "League of Legends",
     "start": "2026-10-27T16:00:00Z",
     "end": "2026-11-07T15:59:00Z",
-    "minutes": 30
+    "minutes": 30,
+    "type": "free",
+    "column": "free",
+    "reviewed": true
   },
   "twitchcon-2026---san-diego---beachball/1": {
     "game": "TwitchCon",
