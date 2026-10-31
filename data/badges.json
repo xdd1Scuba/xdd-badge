@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T20:52:00.134Z",
+ "updated_at": "2026-10-31T20:56:11.490Z",
  "count": 554,
  "badges": [
   {
@@ -1443,7 +1443,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -2018,7 +2018,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -2063,7 +2063,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -4199,7 +4199,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -4535,7 +4535,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -4795,7 +4795,7 @@
    },
    "type": "free",
    "column": "free",
-   "cmd": null,
+   "cmd": "!HUNT",
    "reviewed": true
   },
   {
@@ -4940,7 +4940,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -6652,7 +6652,7 @@
    },
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -10752,7 +10752,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
@@ -10937,7 +10937,7 @@
    "notified": {},
    "type": "sub",
    "column": "sub",
-   "cmd": null,
+   "cmd": "!POKEMON",
    "reviewed": true
   },
   {
