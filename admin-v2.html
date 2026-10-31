@@ -112,6 +112,11 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
 .pv{position:relative;width:100%;background:#000;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
 .pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .pv .ph{position:absolute;inset:0;display:grid;place-items:center;color:#aaa;font-size:14px;text-align:center;padding:20px}
+/* 存檔 */
+details.more{border-top:1px solid var(--line);padding-top:12px}
+details.more summary{cursor:pointer;font-size:14px;font-weight:700}
+.msg.bad{color:var(--warn)}
+.msg a{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -247,18 +252,45 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
   <section class="box">
     <h2>待存檔 <small id="pendCnt"></small></h2>
     <div class="pend" id="pend"></div>
-    <ol class="how">
-      <li>按「複製全部內容」</li>
-      <li>按「到 GitHub 編輯」，在編輯畫面按 Ctrl+A 全選，貼上覆蓋</li>
-      <li>按 Commit changes，約 1–2 分鐘後網站與 Overlay 自動更新</li>
-    </ol>
     <div class="row">
-      <button class="btn primary" id="copy">複製全部內容</button>
-      <a class="btn" id="ghLink" target="_blank" rel="noopener">到 GitHub 編輯</a>
+      <button class="btn primary" id="save">儲存到網站</button>
       <button class="btn ghost" id="reset">清空待存檔</button>
-      <span class="msg" id="copyMsg" aria-live="polite"></span>
+      <span class="msg" id="saveMsg" aria-live="polite"></span>
     </div>
-    <textarea id="out" readonly aria-label="campaigns.manual.json 內容" spellcheck="false"></textarea>
+    <p class="hint">按下後直接寫進 GitHub，約 1–2 分鐘後網站與 Overlay 自動更新。</p>
+
+    <details class="more" id="setBox">
+      <summary>存檔設定 <span class="hint" id="setState"></span></summary>
+      <div class="form" style="margin-top:10px">
+        <label class="f full" for="sWorker">Worker 網址
+          <input type="text" id="sWorker" placeholder="https://badge-notifier.你的帳號.workers.dev" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="f full" for="sPass">控制台密碼（Cloudflare 的 ADMIN_PASSWORD）
+          <input type="password" id="sPass" autocomplete="current-password">
+        </label>
+        <label class="chk full" for="sRemember"><input type="checkbox" id="sRemember" checked> 在這台電腦記住密碼</label>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="sTest">儲存設定並測試</button>
+        <span class="msg" id="sMsg" aria-live="polite"></span>
+      </div>
+      <p class="hint">設定只存在這個瀏覽器。在公用電腦上請取消「記住密碼」。</p>
+    </details>
+
+    <details class="more">
+      <summary>手動備用：複製到 GitHub</summary>
+      <ol class="how" style="margin-top:10px">
+        <li>按「複製全部內容」</li>
+        <li>按「到 GitHub 編輯」，在編輯畫面按 Ctrl+A 全選，貼上覆蓋</li>
+        <li>按 Commit changes，再按這裡的「清空待存檔」</li>
+      </ol>
+      <div class="row" style="margin:10px 0">
+        <button class="btn" id="copy">複製全部內容</button>
+        <a class="btn" id="ghLink" target="_blank" rel="noopener">到 GitHub 編輯</a>
+        <span class="msg" id="copyMsg" aria-live="polite"></span>
+      </div>
+      <textarea id="out" readonly aria-label="campaigns.manual.json 內容" spellcheck="false"></textarea>
+    </details>
   </section>
 </div>
 
@@ -315,10 +347,10 @@ function status(e){const n=Date.now(),s=e.start?Date.parse(e.start):null,x=e.end
 async function load(){
   const bust="?t="+Date.now();
   try{
-    const [a,m]=await Promise.all([fetch("data/badges.json"+bust,{cache:"no-store"}),fetch("data/campaigns.manual.json"+bust,{cache:"no-store"})]);
+    const [a,m]=await Promise.all([fetch("data/badges.json"+bust,{cache:"no-store"}),loadBase(bust)]);
     if(!a.ok) throw new Error("badges");
     BADGES=(await a.json()).badges.filter(b=>!b.removed_at);
-    BASE=m.ok?await m.json():{};
+    BASE=m;
   }catch(e){
     $("list").innerHTML=`<div class="empty">讀不到徽章資料。請確認網站已經成功執行過一次「更新徽章資料」。</div>`;
     return;
@@ -497,7 +529,56 @@ function renderPending(){
 $("pend").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b)return;delete pending[b.dataset.del];savePending();
   if(b.dataset.del==="_overlay"){OV=ovCurrent();ovFill();pvSendCfg()}
   renderAll();pvSendManual();if(cur)pick(K(cur))});
-$("reset").onclick=()=>{pending={};savePending();OV=ovCurrent();ovFill();pvSendCfg();renderAll();pvSendManual();if(cur)pick(K(cur));$("copyMsg").textContent="已清空"};
+$("reset").onclick=()=>{pending={};savePending();OV=ovCurrent();ovFill();pvSendCfg();renderAll();pvSendManual();if(cur)pick(K(cur));$("saveMsg").textContent="已清空"};
+
+/* ---------- 儲存到網站（經由 Cloudflare Worker 寫進 GitHub） ---------- */
+const LS={worker:"badge-admin-worker",pass:"badge-admin-pass"};
+const lsGet=k=>{try{return localStorage.getItem(k)||""}catch(_){return ""}};
+const lsSet=(k,v)=>{try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(_){}};
+let PASS=lsGet(LS.pass);
+const workerURL=()=>lsGet(LS.worker).replace(/\/+$/,"");
+/* 設了 Worker 時，直接從 GitHub 讀最新的手動資料（沒有網站部署的延遲）；失敗就退回讀網站上的檔案 */
+async function loadBase(bust){
+  const W=workerURL();
+  if(W){try{const r=await fetch(W+"/manual",{cache:"no-store"});const j=await r.json();if(j.ok)return j.manual}catch(_){}}
+  const m=await fetch("data/campaigns.manual.json"+bust,{cache:"no-store"});
+  return m.ok?await m.json():{};
+}
+function setState(){const ok=workerURL()&&PASS;$("setState").textContent=ok?"・已設定":"・尚未設定";if(!ok)$("setBox").open=true}
+$("sWorker").value=lsGet(LS.worker); $("sPass").value=PASS; $("sRemember").checked=!!PASS||!lsGet(LS.worker);
+setState();
+async function callWorker(path,body){
+  const W=workerURL(); if(!W) throw new Error("請先在「存檔設定」填 Worker 網址");
+  if(!PASS) throw new Error("請先在「存檔設定」填控制台密碼");
+  let r;
+  try{r=await fetch(W+path,{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Password":encodeURIComponent(PASS)},body:JSON.stringify(body||{})})}
+  catch(_){throw new Error("連不到 Worker。請確認網址正確，並且 Worker 已經部署新版程式。")}
+  const j=await r.json().catch(()=>({ok:false,error:`HTTP ${r.status}`}));
+  if(!j.ok) throw new Error(j.error||`HTTP ${r.status}`);
+  return j;
+}
+$("sTest").onclick=async()=>{
+  const m=$("sMsg"); m.className="msg"; m.textContent="測試中…";
+  lsSet(LS.worker,$("sWorker").value.trim()); PASS=$("sPass").value; lsSet(LS.pass,$("sRemember").checked?PASS:"");
+  try{await callWorker("/auth");m.textContent="連線成功，密碼正確";setState();BASE=await loadBase("?t="+Date.now());renderAll()}
+  catch(e){m.className="msg bad";m.textContent=e.message;setState()}
+};
+$("save").onclick=async()=>{
+  const m=$("saveMsg"), btn=$("save"), ks=Object.keys(pending);
+  m.className="msg";
+  if(!ks.length){m.textContent="沒有要儲存的修改";return}
+  const changes={...pending}; if(BASE["_說明"]!==DESC_DEFAULT) changes["_說明"]=DESC_DEFAULT;
+  const names=ks.map(k=>k==="_overlay"?"Overlay 外觀":(BADGES.find(b=>K(b)===k)?.title||k));
+  const summary=names.slice(0,3).join("、")+(names.length>3?` 等 ${names.length} 筆`:"");
+  btn.disabled=true; m.textContent="儲存中…";
+  try{
+    const j=await callWorker("/save",{changes,summary});
+    BASE=j.manual; pending={}; savePending();
+    OV=ovCurrent(); ovFill(); renderAll(); pvSendManual(); if(cur)pick(K(cur));
+    m.innerHTML=`已儲存 ${ks.length} 筆，約 1–2 分鐘後網站與 Overlay 更新。${j.commit?`<a href="${esc(j.commit)}" target="_blank" rel="noopener">查看這次修改</a>`:""}`;
+  }catch(e){m.className="msg bad";m.textContent="儲存失敗："+e.message+"（修改還在待存檔，不會遺失）"}
+  finally{btn.disabled=false}
+};
 $("copy").onclick=()=>{
   const ta=$("out"),msg=$("copyMsg");
   const fallback=()=>{ta.focus();ta.select();msg.textContent="已選取，請按 Ctrl+C 複製"};
