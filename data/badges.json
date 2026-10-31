@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T20:44:37.075Z",
+ "updated_at": "2026-10-31T20:52:00.134Z",
  "count": 554,
  "badges": [
   {
@@ -2501,16 +2501,15 @@
    "removed_at": null,
    "campaign": {
     "game": "Dead by Daylight",
-    "start": "2026-10-30T13:00:00Z",
-    "end": "2026-10-31T07:59:00Z",
-    "subs": 1,
+    "start": "2026-10-31T07:00:00Z",
+    "end": "2026-11-09T07:58:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "sub",
+   "column": "sub",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "dead-by-daylight-icon",
