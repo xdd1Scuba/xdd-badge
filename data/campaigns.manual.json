@@ -18,7 +18,6 @@
     "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "subs": 1,
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -27,7 +26,6 @@
     "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "subs": 1,
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -36,7 +34,6 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "note": "!pokemon",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -47,9 +44,12 @@
     "end": "2026-10-29T06:59:00Z"
   },
   "castlevania-belmonts-curse/1": {
-    "game": "Castlevania",
+    "game": "Castlevania: Belmont's Curse",
     "start": "2026-10-15T04:00:00Z",
-    "end": "2026-11-02T03:59:00Z"
+    "end": "2026-11-02T03:59:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "charizard/1": {
     "game": "*進化不需要訂閱／贈訂",
