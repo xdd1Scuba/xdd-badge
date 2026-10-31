@@ -191,8 +191,8 @@
   },
   "warrior-jar-alexander/1": {
     "game": "ELDEN RING",
-    "subs": 1,
-    "type": "sub",
+    "minutes": 1,
+    "type": "free",
     "reviewed": true
   },
   "wartortle/1": {
