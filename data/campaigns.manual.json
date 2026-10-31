@@ -74,9 +74,11 @@
   },
   "dbd-halloween-2026/1": {
     "game": "Dead by Daylight",
-    "start": "2026-10-30T13:00:00Z",
-    "end": "2026-10-31T07:59:00Z",
-    "subs": 1
+    "start": "2026-10-31T07:00:00Z",
+    "end": "2026-11-09T07:58:00Z",
+    "type": "sub",
+    "column": "sub",
+    "reviewed": true
   },
   "edgerunners-talia/1": {
     "game": "Cyberpunk 2077",
