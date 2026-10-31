@@ -85,13 +85,24 @@ html.transparent #stage{background:none}
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 28px),transparent)}
 .track{will-change:transform}
 .list{padding:10px 12px 4px;display:flex;flex-direction:column;gap:6px}
-.row{display:grid;grid-template-columns:calc(52px*var(--fs)) 1fr;grid-template-rows:auto auto;gap:3px 14px;align-items:center;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--tile) 45%,transparent)}
-.row .ic{grid-row:span 2;width:calc(52px*var(--fs));height:calc(52px*var(--fs))}
-.row .nm{font-size:calc(22px*var(--fs));line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 卡片：圖示｜內容（標題列〔標題＋指令欄〕→ 狀態列〔狀態、倒數、條件・分類〕→ 備註） */
+.row{display:flex;align-items:center;gap:14px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--tile) 45%,transparent)}
+.row .ic{width:calc(52px*var(--fs));height:calc(52px*var(--fs))}
+.row .bd{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.row .top{display:flex;align-items:center;gap:12px;min-width:0}
+.row .nm{flex:1;font-size:calc(22px*var(--fs));line-height:1.25}
+.row .cmd{flex:none;max-width:45%;font-size:var(--cmd-size,28px);line-height:1.1;color:var(--cmd);letter-spacing:.02em}
 .row .meta{display:flex;align-items:center;gap:12px;min-width:0}
+.row .note{font-size:calc(16px*var(--fs));color:var(--muted);line-height:1.35}
+/* 跑馬燈：放得下就不動；放不下時先停一下，慢慢捲到最後，再捲回來 */
+.mq{display:block;min-width:0;overflow:hidden;white-space:nowrap}
+.mq>span{display:inline-block}
+.mq.run{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent)}
+.mq.run>span{animation:mq var(--t,8s) ease-in-out infinite alternate}
+@keyframes mq{0%,12%{transform:translateX(0)}88%,100%{transform:translateX(var(--d,0))}}
 .row .st{font-size:calc(14px*var(--fs));letter-spacing:.08em;flex:none}
 .row .flap{font-size:calc(18px*var(--fs));flex:none}
-.row .cond{font-size:calc(16px*var(--fs));color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.row .cond{flex:1;font-size:calc(16px*var(--fs));color:var(--muted)}
 .row .cond em{font-style:normal;color:var(--text)}
 .row.last{background:color-mix(in srgb,var(--last) 9%,transparent);box-shadow:inset 3px 0 0 var(--last)}
 .row.soon{background:color-mix(in srgb,var(--soon) 8%,transparent);box-shadow:inset 3px 0 0 var(--soon)}
@@ -110,7 +121,7 @@ html.transparent #stage{background:none}
 .chat{background:color-mix(in srgb,var(--panel) 55%,transparent);border:1px dashed var(--line)}
 .chat .body{flex:1}
 html.transparent .chat{background:transparent}
-@media (prefers-reduced-motion:reduce){.flap i.flip{animation:none}.viewers i{animation:none}}
+@media (prefers-reduced-motion:reduce){.mq.run>span{animation:none}.flap i.flip{animation:none}.viewers i{animation:none}}
 </style>
 </head>
 <body>
@@ -161,8 +172,8 @@ html.transparent .chat{background:transparent}
    &transparent=1                   透明背景
    &viewers=49 / viewers=off        （測試用）觀眾人數
    ?preview=1                       給控制台的即時預覽用，接收 postMessage 設定 */
-const DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,transparent:false,
-  colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b"}};
+const DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,cmdSize:28,transparent:false,
+  colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b",cmd:"#ffffff"}};
 const P=new URLSearchParams(location.search), PREVIEW=P.get("preview")==="1";
 const DATA_URL="data/badges.json", MANUAL_URL="data/campaigns.manual.json", DAY=864e5, SOON_WINDOW=14*DAY;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -184,6 +195,7 @@ function applyCfg(){
   const st=document.getElementById("stage"), r=document.documentElement.style;
   for(const[k,v]of Object.entries(CFG.colors))r.setProperty("--"+k,v);
   r.setProperty("--fs",CFG.fontScale);
+  r.setProperty("--cmd-size",(+CFG.cmdSize||28)+"px");
   r.setProperty("--cols",CFG.cols.map(v=>v+"fr").join(" "));
   st.style.width=CFG.width+"px"; st.style.height=CFG.height+"px";
   st.classList.toggle("chat-none",CFG.chat==="none"); st.classList.toggle("chat-top",CFG.chat==="top");
@@ -251,11 +263,25 @@ const cond=b=>{const c=b.campaign||{},g=c.game&&c.game!=="任意分類"?`<span c
 const initials=s=>String(s).replace(/[^A-Za-z0-9 ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"?";
 const icon=b=>`<span class="ic"><img src="${esc(b.image_url_2x||b.image_url_4x||"")}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'fb',textContent:'${initials(b.title)}'}))"></span>`;
 const KIND_ZH={live:"可解鎖",last:"即將結束",soon:"即將開始",tbd:"時間未公布"};
+const mq=(cls,html)=>`<span class="mq ${cls}"><span>${html}</span></span>`;
 function rowHTML(b,k){
-  const c=b.campaign||{}, target=k==="soon"?c.start:c.end;
+  const c=b.campaign||{}, m=MANUAL[keyOf(b)]||{}, target=k==="soon"?c.start:c.end;
   const cd=k==="tbd"?"":`<span class="flap" data-t="${esc(target||"")}"></span>`;
-  return `<div class="row ${k==="live"?"":k}">${icon(b)}<div class="nm">${esc(b.title)}</div>
-    <div class="meta"><span class="st ${k}">${KIND_ZH[k]}</span>${cd}<span class="cond">${cond(b)}</span></div></div>`;
+  const cmd=m.cmd?mq("cmd",esc(m.cmd)):"";                       // 控制台勾選的指令欄（右上角）
+  const note=String(m.note??c.note??"").replace(/\s*\n\s*/g,"　").trim(); // 備註：換行改成空白，排成一行
+  const cd2=cond(b);
+  return `<div class="row ${k==="live"?"":k}">${icon(b)}<div class="bd">
+    <div class="top">${mq("nm",esc(b.title))}${cmd}</div>
+    <div class="meta"><span class="st ${k}">${KIND_ZH[k]}</span>${cd}${cd2?mq("cond",cd2):""}</div>
+    ${note?mq("note",esc(note)):""}</div></div>`;
+}
+/* 量每一段文字：超出寬度的才加上跑馬燈。速度約每秒 45px，前後各停一下 */
+function marquee(root){
+  root.querySelectorAll(".mq").forEach(el=>{
+    el.classList.remove("run");
+    const over=el.firstElementChild.scrollWidth-el.clientWidth;
+    if(over>2){el.style.setProperty("--d",-(over+20)+"px");el.style.setProperty("--t",Math.max(4,(over+20)/45/0.76)+"s");el.classList.add("run")}
+  });
 }
 
 /* ---------- 資料 ---------- */
@@ -293,7 +319,7 @@ function refresh(){
   const at=([b,k])=>k==="soon"?t(b.campaign.start):(t(b.campaign?.end)??Infinity);
   const sorter=(x,y)=>ORDER[x[1]]-ORDER[y[1]]||at(x)-at(y)||x[0].title.localeCompare(y[0].title);
   [L,SUB,FREE].forEach(A=>A.sort(sorter));
-  const s=JSON.stringify([L,SUB,FREE].map(A=>A.map(([b,k])=>{const c=b.campaign||{};return keyOf(b)+c.start+c.end+c.subs+c.minutes+c.game+k})));
+  const s=JSON.stringify([L,SUB,FREE].map(A=>A.map(([b,k])=>{const c=b.campaign||{},m=MANUAL[keyOf(b)]||{};return keyOf(b)+c.start+c.end+c.subs+c.minutes+c.game+(m.note??c.note)+m.cmd+k})));
   if(s===sig) return; sig=s;
   document.getElementById("n1").textContent=L.length||"";
   document.getElementById("n2").textContent=SUB.length||"";
@@ -301,7 +327,7 @@ function refresh(){
   fill(1,L.map(([b,k])=>rowHTML(b,k)),"目前沒有即將開始或即將結束的活動");
   fill(2,SUB.map(([b,k])=>rowHTML(b,k)),"目前沒有可解鎖的訂閱徽章");
   fill(3,FREE.map(([b,k])=>rowHTML(b,k)),"目前沒有可解鎖的免費徽章");
-  tick();
+  tick(); marquee(document.querySelector(".cols"));
 }
 
 /* ---------- 捲動 ---------- */
