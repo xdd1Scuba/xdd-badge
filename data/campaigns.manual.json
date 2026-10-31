@@ -33,6 +33,7 @@
     "reviewed": true
   },
   "blastoise/1": {
+    "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "!pokemon",
