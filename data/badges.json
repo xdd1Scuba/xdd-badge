@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:49:51.634Z",
+ "updated_at": "2026-10-31T20:10:32.862Z",
  "count": 554,
  "badges": [
   {
@@ -5388,7 +5388,6 @@
     "game": "Call of Duty Modern Warfare 4",
     "start": "2026-10-23T17:00:00Z",
     "end": "2026-11-13T17:59:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {},
@@ -10593,15 +10592,14 @@
     "game": "League of Legends",
     "start": "2026-10-14T07:00:00Z",
     "end": "2026-11-15T18:59:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {
     "live": "2026-10-14T07:00:00Z"
    },
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "wsci-2026",
