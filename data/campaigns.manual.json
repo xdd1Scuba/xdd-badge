@@ -198,7 +198,7 @@
   "qsmp2/1": {
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
-    "minutes": 60,
+    "note": "觀看 QSMP QuackityToo Quackity 任一頻道 60 分鐘解鎖",
     "type": "free",
     "column": "free",
     "reviewed": true
