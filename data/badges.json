@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T19:35:39.727Z",
+ "updated_at": "2026-10-31T19:37:22.113Z",
  "count": 554,
  "badges": [
   {
@@ -659,9 +659,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "believeinrichmond",
@@ -684,9 +684,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "big-walk",
@@ -5393,9 +5393,9 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "moments",
