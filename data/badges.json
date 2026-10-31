@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T20:14:01.026Z",
+ "updated_at": "2026-10-31T20:20:47.693Z",
  "count": 554,
  "badges": [
   {
@@ -655,7 +655,6 @@
     "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {},
@@ -680,7 +679,6 @@
     "game": "任意分類",
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
-    "subs": 1,
     "source": "manual"
    },
    "notified": {},
@@ -1370,7 +1368,6 @@
     "game": "*進化不需要訂閱／贈訂",
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
-    "note": "!pokemon",
     "source": "manual"
    },
    "notified": {},
@@ -1853,15 +1850,15 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "Castlevania",
+    "game": "Castlevania: Belmont's Curse",
     "start": "2026-10-15T04:00:00Z",
     "end": "2026-11-02T03:59:00Z",
     "source": "manual"
    },
    "notified": {},
-   "type": null,
-   "column": null,
-   "reviewed": false
+   "type": "sub",
+   "column": "sub",
+   "reviewed": true
   },
   {
    "set_id": "cdawg-cyclethon-5-badge",
