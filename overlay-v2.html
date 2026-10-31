@@ -121,7 +121,7 @@ html.transparent #stage{background:none}
 .chat{background:color-mix(in srgb,var(--panel) 55%,transparent);border:1px dashed var(--line)}
 .chat .body{flex:1}
 html.transparent .chat{background:transparent}
-@media (prefers-reduced-motion:reduce){.mq.run>span{animation:none}.flap i.flip{animation:none}.viewers i{animation:none}}
+/* 注意：這是直播畫面，不跟隨電腦的「減少動畫」設定（Windows 關閉動畫效果時，跑馬燈與紅點仍要動） */
 </style>
 </head>
 <body>
@@ -278,11 +278,18 @@ function rowHTML(b,k){
 /* 量每一段文字：超出寬度的才加上跑馬燈。速度約每秒 45px，前後各停一下 */
 function marquee(root){
   root.querySelectorAll(".mq").forEach(el=>{
-    el.classList.remove("run");
     const over=el.firstElementChild.scrollWidth-el.clientWidth;
-    if(over>2){el.style.setProperty("--d",-(over+20)+"px");el.style.setProperty("--t",Math.max(4,(over+20)/45/0.76)+"s");el.classList.add("run")}
+    if(over>2){
+      const d=-(over+20)+"px", t=Math.max(4,(over+20)/45/0.76).toFixed(1)+"s";
+      // 只有數值改變才重設，避免正在跑的跑馬燈跳回開頭
+      if(el.style.getPropertyValue("--d")!==d) el.style.setProperty("--d",d);
+      if(el.style.getPropertyValue("--t")!==t) el.style.setProperty("--t",t);
+      el.classList.add("run");
+    }else el.classList.remove("run");
   });
 }
+// 每 5 秒重新量一次（字型、圖片晚載入或畫面縮放後，寬度可能改變）
+setInterval(()=>marquee(document.querySelector(".cols")),5000);
 
 /* ---------- 資料 ---------- */
 let DB=null, sig="";
