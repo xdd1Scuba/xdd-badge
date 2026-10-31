@@ -260,7 +260,7 @@ if (drops) {
   console.log(`  已配對 ${used.size} 個徽章的活動時間`);
 }
 // 手動資料最優先：data/campaigns.manual.json 以 "set_id/版本" 為 key（"_" 開頭的 key 是說明與 Overlay 設定，不是徽章）
-// type（sub／free／other）與 reviewed（已確認）是徽章本身的屬性，放在徽章上，不混進 campaign
+// type（sub／free／other）、column（Overlay 位置）與 reviewed（已確認）是徽章本身的屬性，放在徽章上，不混進 campaign
 const CAMPAIGN_FIELDS = ["game", "start", "end", "minutes", "subs", "note"];
 for (const b of merged) {
   const m = manual[key(b.set_id, b.id)];
@@ -268,6 +268,7 @@ for (const b of merged) {
   if (b.campaign?.source === "manual") b.campaign = null;
   else if (b.campaign?.source === "drops+manual") b.campaign = { ...b.campaign, source: "drops" };
   b.type = m?.type || null;
+  b.column = m?.column || null;
   b.reviewed = !!m?.reviewed;
   const camp = Object.fromEntries(CAMPAIGN_FIELDS.filter(f => m?.[f] != null && m[f] !== "").map(f => [f, m[f]]));
   if (Object.keys(camp).length) b.campaign = { ...(b.campaign || {}), ...camp, source: b.campaign?.source === "drops" ? "drops+manual" : "manual" };
