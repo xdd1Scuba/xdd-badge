@@ -17,28 +17,7 @@
       "soon": "#389fff",
       "cmd": "#919191",
       "new": "#fcff38"
-    },
-    "widgets": [
-      {
-        "id": "m635v6q",
-        "show": true,
-        "title": "123",
-        "title2": "",
-        "to": "2026-11-03T11:51:00Z",
-        "end_mode": "zero",
-        "end_text": "",
-        "images": [
-          "https://static-cdn.jtvnw.net/badges/v1/0f60fb82-232f-4e16-a6a8-549866f99873/3"
-        ],
-        "layout": "auto",
-        "x": 1360,
-        "y": 740,
-        "w": 520,
-        "h": 300,
-        "colors": null,
-        "clear": false
-      }
-    ]
+    }
   },
   "ace-combat-8-nugget/1": {
     "game": "ACE COMBAT 8",
