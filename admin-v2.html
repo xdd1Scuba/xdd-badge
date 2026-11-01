@@ -211,8 +211,9 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
             </div>
             <span class="guess" id="colGuess"></span>
           </div>
-          <div class="f full" id="fTagsWrap">Game Overlay 自訂標籤
-            <div class="chips" id="fTags"></div>
+          <div class="f full" id="fTagsWrap">Game Overlay 標籤
+            <div class="seg" id="fTagMode"><button type="button" data-v="auto" aria-pressed="true">內建標籤自動判斷</button><button type="button" data-v="manual" aria-pressed="false">全部手動選擇</button></div>
+            <div class="chips" id="fTags" style="margin-top:6px"></div>
             <span class="hint" id="fTagsHint"></span>
           </div>
           <label class="f full" for="fGame">遊戲分類
@@ -638,7 +639,7 @@ function updateColGuess(){if(!cur)return;const el=$("colGuess");
   else m=(tyCol?`目前在${tyCol}`+(e&&Date.parse(e)-n<3*864e5?"，也在左欄（即將結束，剩不到 3 天）":""):"類型是其他，不會進訂閱欄或免費欄。");
   if(s&&n>=Date.parse(s)&&n-Date.parse(s)<3*864e5&&!(e&&n>=Date.parse(e))) m=m.replace(/。?$/,"。")+"開始不到 3 天，會用金色標示「新徽章」。";
   el.textContent="自動："+m}
-function updateGuess(){if(!cur)return;
+function updateGuess(){if(!cur)return;fTagsRender();
   const n=parseInt($("fNum").value,10), c=req==="subs"?{subs:n}:req==="minutes"?{minutes:n}:{};
   const g=autoType(cur,c);
   $("guess").textContent=type?"":`自動判斷目前是「${TYPE_ZH[g]}」${g==="other"?"，Overlay 的訂閱欄和免費欄都不會顯示":""}。依據：${c.subs?"條件是訂閱":c.minutes?"條件是觀看":"官方說明的文字"}。`}
@@ -657,19 +658,37 @@ function pick(k){
   else {$("fNum").value=15;setReq("other")}
   setType(e.type||""); setCol(e.column||"");
   setNote(!!(e.note||e.note_extra), e.note||"", e.note_extra||""); setCmd(!!e.cmd, e.cmd||"");
-  fTags=new Set(String(e.tags||"").split(",").filter(Boolean)); fTagsRender();
+  fTags=new Set(String(e.tags||"").split(",").filter(Boolean)); fTagManual=!!e.tags_manual; fTagsRender();
   $("err").hidden=true; $("fMsg").textContent="";
   renderList();
 }
 /* Game Overlay 的自訂標籤（存成 tags："c_xxx,c_yyy"） */
-let fTags=new Set();
+/* Game Overlay 標籤：列出所有標籤（內建＋自訂，順序同 Game Overlay 分頁）。
+   自動模式：內建標籤依時間與類型自動亮起（不能點），自訂標籤點選套用；手動模式：全部標籤都自己點。
+   存成 tags："soon,free,c_xxx"；手動模式另外存 tags_manual：true */
+let fTags=new Set(), fTagManual=false;
 const gmCustom=()=>(GM?.tags||[]).filter(x=>x.k.startsWith("c_"));
-function fTagsRender(){const L=gmCustom();
-  $("fTagsHint").innerHTML=L.length?"點一下＝套用到這個徽章（再點一下取消）。內建標籤（即將開始、即將結束、新徽章、免費…）會自動判斷，不用勾。"
-    :`還沒有自訂標籤。到 <a href="#" id="fTagsGo" style="color:var(--accent)">Game Overlay 分頁</a> 的「標籤」按「＋ 新增自訂標籤」，回來這裡就能套用。內建標籤會自動判斷，不用勾。`;
-  $("fTags").innerHTML=L.map(x=>`<button type="button" class="chip" data-k="${esc(x.k)}" aria-pressed="${fTags.has(x.k)}" style="${fTags.has(x.k)?`background:${esc(x.color)};border-color:${esc(x.color)};color:#111`:""}">${esc(x.zh||x.en||"未命名")}</button>`).join("")}
+const isBuiltin=k=>!k.startsWith("c_");
+/* 依表單目前的內容，算出內建標籤會不會亮（規則與 game-overlay.html 的 tagsOf 相同） */
+function autoTags(){if(!cur)return {};
+  const s=toISO($("fStart").value),e=toISO($("fEnd").value),n=Date.now(),S=s&&Date.parse(s),E=e&&Date.parse(e);
+  const nn=parseInt($("fNum").value,10),ty=type||autoType(cur,req==="subs"?{subs:nn}:req==="minutes"?{minutes:nn}:{});
+  const live=S&&n>=S&&!(E&&n>=E);
+  return {soon:!!S&&n<S,ending:!!(live&&E&&E-n<3*864e5),new:!!(live&&n-S<3*864e5),free:ty==="free",sub:ty==="sub",other:ty==="other"}}
+function fTagsRender(){if(!GM)return;const A=autoTags();
+  document.querySelectorAll("#fTagMode button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===(fTagManual?"manual":"auto")));
+  $("fTags").innerHTML=GM.tags.map(x=>{const auto=!fTagManual&&isBuiltin(x.k),on=auto?!!A[x.k]:fTags.has(x.k);
+    const st=on?`background:${esc(x.color)};border-color:${esc(x.color)};color:#111;`:"";
+    return `<button type="button" class="chip" data-k="${esc(x.k)}" aria-pressed="${on}" ${auto?'disabled title="自動判斷（要自己選請切到「全部手動選擇」）"':""} style="${st}${auto?"cursor:default;":""}${x.on?"":"opacity:.45;"}">${esc(x.zh||x.en||"未命名")}${auto?" ·自動":""}${x.on?"":"（已關閉）"}</button>`}).join("");
+  $("fTagsHint").innerHTML=(fTagManual?"全部手動：亮起的標籤就是這個徽章在 Game Overlay 顯示的標籤，不再自動判斷。":"內建標籤依時間與類型自動亮起；自訂標籤點一下套用、再點一下取消。")
+    +"「（已關閉）」的標籤在 Game Overlay 分頁整體關閉，不會顯示。"+(gmCustom().length?"":` 想要更多標籤：到 <a href="#" id="fTagsGo" style="color:var(--accent)">Game Overlay 分頁</a>按「＋ 新增自訂標籤」。`)}
+$("fTagMode").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const m=b.dataset.v==="manual";if(m===fTagManual)return;
+  // 切到手動時，先把目前自動判斷的結果帶進來，再讓你增減
+  if(m){const A=autoTags();for(const[k,v]of Object.entries(A))v?fTags.add(k):fTags.delete(k)}else for(const k of [...fTags])if(isBuiltin(k))fTags.delete(k);
+  fTagManual=m;fTagsRender()});
+["fStart","fEnd","fNum"].forEach(id=>$(id).addEventListener("input",fTagsRender));
 $("fTagsWrap").addEventListener("click",e=>{if(e.target.id==="fTagsGo"){e.preventDefault();setTab("game");$("gTagAdd").scrollIntoView({block:"center"})}});
-$("fTags").addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(!b)return;const k=b.dataset.k;fTags.has(k)?fTags.delete(k):fTags.add(k);fTagsRender()});
+$("fTags").addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(!b||b.disabled)return;const k=b.dataset.k;fTags.has(k)?fTags.delete(k):fTags.add(k);fTagsRender()});
 $("fReq").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setReq(b.dataset.v)});
 $("fType").addEventListener("click",e=>{const b=e.target.closest("button");if(b){setType(b.dataset.v);updateColGuess()}});
 $("fCol").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setCol(b.dataset.v)});
@@ -700,7 +719,8 @@ $("form").addEventListener("submit",e=>{
   if(noteOn&&note)o.note=note;
   if(noteOn&&note2)o.note_extra=note2;
   if(cmdOn&&cmd)o.cmd=cmd;
-  const tg=[...fTags].filter(k=>gmCustom().some(x=>x.k===k)); if(tg.length)o.tags=tg.join(",");
+  const tg=(GM?.tags||[]).map(x=>x.k).filter(k=>fTags.has(k)&&(fTagManual||!isBuiltin(k))); // 依標籤順序存
+  if(tg.length)o.tags=tg.join(","); if(fTagManual)o.tags_manual=true;
   if(type)o.type=type;
   if(column)o.column=column;
   if(reviewed)o.reviewed=true;
@@ -929,7 +949,7 @@ function renderPending(){
   $("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];
     if(k==="_overlay") return `<div><span>Overlay 外觀／倒數 Widget／Game Overlay・${v===null?"還原預設":"已修改"}${v?.widgets?.length?`（${v.widgets.length} 個 Widget）`:""}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`;
     const b=BADGES.find(x=>K(x)===k);
-    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",(v.note||v.note_extra)?"有備註":"",v.cmd?"指令 "+v.cmd:"",v.tags?"自訂標籤 "+v.tags.split(",").length+" 個":"",v.drop_id?(v.drop_src==="campaigns"?"活動 ID（掉寶頁）":"活動 ID（後台）"):"",v.column?"位置："+COL_ZH[v.column]:"",v.reviewed?"已確認":""].filter(Boolean);
+    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",(v.note||v.note_extra)?"有備註":"",v.cmd?"指令 "+v.cmd:"",v.tags_manual?"標籤手動 "+(v.tags?v.tags.split(",").length:0)+" 個":v.tags?"自訂標籤 "+v.tags.split(",").length+" 個":"",v.drop_id?(v.drop_src==="campaigns"?"活動 ID（掉寶頁）":"活動 ID（後台）"):"",v.column?"位置："+COL_ZH[v.column]:"",v.reviewed?"已確認":""].filter(Boolean);
     return `<div><span>${esc(b?.title||k)}・${esc(parts.join("・")||"空白")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
     :`<div><span style="color:var(--muted)">還沒有修改。</span></div>`;
   const out={}, m=merged();

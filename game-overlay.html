@@ -302,10 +302,11 @@ function kindOf(b,n){const c=b.campaign||{},s=t(c.start),e=t(c.end);
   if(!s)return "tbd"; if(n<s)return "soon"; if(e&&n>=e)return "ended"; return e&&e-n<ENDING_WINDOW?"last":"live"}
 const tagHTML=x=>`<span class="tg" style="--tc:${esc(x.color)}">${L2(x.zh,x.en)}</span>`;
 const tagColor=k=>CFG.tags.find(x=>x.k===k)?.color;
-/* 這個徽章有哪些標籤（照控制台排的順序，只顯示開啟的）。自訂標籤在控制台的徽章編輯裡勾選，存成 tags："c_xxx,c_yyy" */
-function tagsOf(b,k,n){const ty=typeOf(b),mine=String(MANUAL[keyOf(b)]?.tags||"").split(",").filter(Boolean);
+/* 這個徽章有哪些標籤（照控制台排的順序，只顯示整體有開啟的）。
+   徽章的 tags："soon,free,c_xxx"（逗號分隔）。tags_manual＝true：內建標籤也照 tags 手動指定；沒有＝內建標籤自動判斷，tags 只管自訂標籤 */
+function tagsOf(b,k,n){const m=MANUAL[keyOf(b)]||{},ty=typeOf(b),mine=String(m.tags||"").split(",").filter(Boolean);
   const has={soon:k==="soon",ending:k==="last",new:isNew(b,n),free:ty==="free",sub:ty==="sub",other:ty==="other"};
-  return CFG.tags.filter(x=>x.on&&(x.k in has?has[x.k]:mine.includes(x.k)))}
+  return CFG.tags.filter(x=>x.on&&(m.tags_manual||!(x.k in has)?mine.includes(x.k):has[x.k]))}
 const ST_ZH={live:"剩餘",last:"剩餘",soon:"距離開始",tbd:"時間未公布"}, ST_EN={live:"Ends in",last:"Ends in",soon:"Starts in",tbd:"TBA"};
 function rowHTML(b,k,n){
   const c=b.campaign||{}, m=MANUAL[keyOf(b)]||{}, target=k==="soon"?c.start:c.end;
