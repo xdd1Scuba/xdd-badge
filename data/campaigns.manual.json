@@ -14,8 +14,9 @@
     "fontScale": 1.1,
     "cmdSize": 17,
     "colors": {
-      "soon": "#8debf7",
-      "cmd": "#919191"
+      "soon": "#389fff",
+      "cmd": "#919191",
+      "new": "#fff824"
     }
   },
   "ace-combat-8-nugget/1": {
