@@ -239,6 +239,7 @@
     "game": "Cyberpunk 2077",
     "start": "2026-10-22T10:00:00Z",
     "end": "2026-11-13T17:59:00Z",
+    "drop_id": "a9c2f298-5a53-439a-9a8c-41b4d88937e1",
     "type": "sub",
     "column": "sub",
     "reviewed": true
