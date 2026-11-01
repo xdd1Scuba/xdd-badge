@@ -489,7 +489,7 @@ function openDetail(k){
       ${src?`<tr><td>活動資料</td><td>${esc(src)}</td></tr>`:""}
       ${b.click_url?`<tr><td>官方連結</td><td><a href="${esc(b.click_url)}" target="_blank" rel="noopener">${esc(b.click_url)}</a></td></tr>`:""}
     </tbody></table></div>
-    <div class="actions">${c?.drop_id?`<a class="btn" href="https://dashboard.twitch.tv/viewer-rewards/drops?id=${encodeURIComponent(c.drop_id)}" target="_blank" rel="noopener">打開這個掉寶活動</a>`:`<a class="btn" href="https://www.twitch.tv/drops/campaigns" target="_blank" rel="noopener">打開 Twitch Drops</a>`}<button class="btn primary" id="dCopy">複製連結</button><span class="toast-msg" id="dMsg" aria-live="polite"></span></div>`;
+    <div class="actions">${c?.drop_id?`<a class="btn" href="${c.drop_src==="campaigns"?`https://www.twitch.tv/drops/campaigns?dropID=${encodeURIComponent(c.drop_id)}`:`https://dashboard.twitch.tv/viewer-rewards/drops?id=${encodeURIComponent(c.drop_id)}`}" target="_blank" rel="noopener">打開這個掉寶活動</a>`:`<a class="btn" href="https://www.twitch.tv/drops/campaigns" target="_blank" rel="noopener">打開 Twitch Drops</a>`}<button class="btn primary" id="dCopy">複製連結</button><span class="toast-msg" id="dMsg" aria-live="polite"></span></div>`;
   scrim.hidden=false; tip.hidden=true; document.body.style.overflow="hidden"; tick();
   document.getElementById("dClose").onclick=()=>closeDetail();
   document.getElementById("dCopy").onclick=()=>{const url=location.href.split("#")[0]+"#b-"+k,m=document.getElementById("dMsg"),f=()=>{m.textContent=url};
