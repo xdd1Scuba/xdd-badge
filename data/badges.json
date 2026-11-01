@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-01T09:25:26.105Z",
+ "updated_at": "2026-11-01T09:47:16.278Z",
  "count": 554,
  "badges": [
   {
@@ -21,6 +21,7 @@
     "end": "2026-11-30T06:59:00Z",
     "note": "透過訂閱或贈送訂閱給 ELDEN RING 分類的實況主，即可獲得此徽章。",
     "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the ELDEN RING category.",
+    "drop_id": "882ccb61-0d4c-4fe6-a5c5-3156e8a033ab",
     "source": "manual"
    },
    "notified": {},
