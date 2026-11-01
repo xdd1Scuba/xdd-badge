@@ -451,7 +451,7 @@ function updateColGuess(){if(!cur)return;const el=$("colGuess");
   if(!s) m="目前不會顯示：沒有開始時間。想先放上 Overlay，請選一個欄位。";
   else if(n<Date.parse(s)) m=Date.parse(s)-n<14*864e5?"目前在左欄（即將開始），開始後移到"+(tyCol||"（類型是其他，不會進訂閱欄或免費欄）"):"開始前 14 天才會出現在左欄。";
   else if(e&&n>=Date.parse(e)) m="活動已結束，不會顯示。";
-  else m=tyCol?`目前在${tyCol}`+(e&&Date.parse(e)-n<864e5?"，也在左欄（即將結束）":""):"類型是其他，不會進訂閱欄或免費欄。";
+  else m=tyCol?`目前在${tyCol}`+(e&&Date.parse(e)-n<3*864e5?"，也在左欄（即將結束，剩不到 3 天）":""):"類型是其他，不會進訂閱欄或免費欄。";
   el.textContent="自動："+m}
 function updateGuess(){if(!cur)return;
   const n=parseInt($("fNum").value,10), c=req==="subs"?{subs:n}:req==="minutes"?{minutes:n}:{};

@@ -135,7 +135,7 @@ html.transparent .chat{background:transparent}
     </div>
     <div class="legend">
       <span><i style="background:var(--free)"></i>可解鎖</span>
-      <span><i style="background:var(--last)"></i>即將結束　24 小時內</span>
+      <span><i style="background:var(--last)"></i>即將結束　3 天內</span>
       <span><i style="background:var(--soon)"></i>即將開始</span>
     </div>
     <div class="clock"><div class="d" id="cDate"></div><div class="flap" id="cTime"></div></div>
@@ -174,7 +174,7 @@ html.transparent .chat{background:transparent}
 const DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,cmdSize:28,transparent:false,
   colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b",cmd:"#ffffff"}};
 const P=new URLSearchParams(location.search), PREVIEW=P.get("preview")==="1";
-const DATA_URL="data/badges.json", MANUAL_URL="data/campaigns.manual.json", DAY=864e5, SOON_WINDOW=14*DAY;
+const DATA_URL="data/badges.json", MANUAL_URL="data/campaigns.manual.json", DAY=864e5, SOON_WINDOW=14*DAY, ENDING_WINDOW=3*DAY; // 即將開始：開始前 14 天內；即將結束：剩不到 3 天
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const t=s=>s?Date.parse(s):null, now=()=>Date.now();
 
@@ -306,9 +306,9 @@ async function load(){
   if(!PREVIEW) CFG=urlOverrides(mergeCfg(DEFAULTS,MANUAL._overlay));
   applyCfg();
 }
-/* 狀態：soon 還沒開始｜last 剩不到 24 小時｜live 可解鎖｜tbd 沒有開始時間｜ended 已結束 */
+/* 狀態：soon 還沒開始｜last 剩不到 3 天｜live 可解鎖｜tbd 沒有開始時間｜ended 已結束 */
 function kindOf(b,n){const c=b.campaign||{},s=t(c.start),e=t(c.end);
-  if(!s)return "tbd"; if(n<s)return "soon"; if(e&&n>=e)return "ended"; return e&&e-n<DAY?"last":"live"}
+  if(!s)return "tbd"; if(n<s)return "soon"; if(e&&n>=e)return "ended"; return e&&e-n<ENDING_WINDOW?"last":"live"}
 function refresh(){
   const n=now(), L=[], SUB=[], FREE=[];
   for(const b of DB?.badges||[]){
