@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-01T01:57:52.170Z",
+ "updated_at": "2026-11-01T01:58:27.622Z",
  "count": 554,
  "badges": [
   {
@@ -3763,6 +3763,7 @@
     "start": "2026-10-30T15:01:00Z",
     "end": "2026-11-02T14:58:00Z",
     "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 2026\" 60 分鐘即可獲得此徽章。",
+    "note_extra": "Watch \"Fan Fest 2026\" on /finalfantasyxiv for 60 mins to earn this badge.",
     "source": "manual"
    },
    "notified": {},
