@@ -186,6 +186,10 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
             <input type="datetime-local" id="fEnd">
             <span class="hint">還沒公布可以留空</span>
           </label>
+          <label class="f full" for="fDrop">Drops 活動 ID
+            <input type="text" id="fDrop" placeholder="例如 882ccb61-0d4c-4fe6-a5c5-3156e8a033ab（貼整個網址也可以）" autocomplete="off" spellcheck="false">
+            <span class="hint" id="dropHint">從實況主後台的掉寶頁查到的活動 ID。網站與 Discord 通知會附上這個活動的連結。</span>
+          </label>
           <div class="f full">取得條件
             <div class="seg" id="fReq">
               <button type="button" data-v="minutes" aria-pressed="false">觀看</button>
@@ -331,7 +335,7 @@ const K=b=>`${b.set_id}/${b.id}`;
 const $=id=>document.getElementById(id);
 const TZ=Intl.DateTimeFormat().resolvedOptions().timeZone||"UTC";
 $("tz").textContent=TZ;
-const DESC_DEFAULT="Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。";
+const DESC_DEFAULT="Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。drop_id：Twitch 掉寶活動 ID。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。";
 
 /* Overlay 預設值（與 overlay-v2.html 的 DEFAULTS 保持一致） */
 const OV_DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,cmdSize:28,lang:"cycle",langSeconds:15,langViz:true,transparent:false,
@@ -476,6 +480,7 @@ function pick(k){
   $("fGame").value=e.game||"";
   $("fStart").value=toLocalInput(e.start);
   $("fEnd").value=toLocalInput(e.end);
+  $("fDrop").value=e.drop_id||""; dropOut();
   if(e.subs){$("fNum").value=e.subs;setReq("subs")}
   else if(e.minutes){$("fNum").value=e.minutes;setReq("minutes")}
   else {$("fNum").value=15;setReq("other")}
@@ -508,6 +513,8 @@ $("form").addEventListener("submit",e=>{
   const o={}; const g=$("fGame").value.trim();
   if(g)o.game=g;
   if(start)o.start=start; if(end)o.end=end;
+  const did=dropId($("fDrop").value); if($("fDrop").value.trim()&&!did) return fail("Drops 活動 ID 的格式不對，應該像 882ccb61-0d4c-4fe6-a5c5-3156e8a033ab。");
+  if(did)o.drop_id=did;
   if(req==="minutes")o.minutes=n; if(req==="subs")o.subs=n;
   if(noteOn&&note)o.note=note;
   if(noteOn&&note2)o.note_extra=note2;
@@ -581,7 +588,7 @@ function renderPending(){
   $("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];
     if(k==="_overlay") return `<div><span>Overlay 外觀設定・${v===null?"還原預設":"已修改"}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`;
     const b=BADGES.find(x=>K(x)===k);
-    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",(v.note||v.note_extra)?"有備註":"",v.cmd?"指令 "+v.cmd:"",v.column?"位置："+COL_ZH[v.column]:"",v.reviewed?"已確認":""].filter(Boolean);
+    const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",(v.note||v.note_extra)?"有備註":"",v.cmd?"指令 "+v.cmd:"",v.drop_id?"有活動 ID":"",v.column?"位置："+COL_ZH[v.column]:"",v.reviewed?"已確認":""].filter(Boolean);
     return `<div><span>${esc(b?.title||k)}・${esc(parts.join("・")||"空白")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")
     :`<div><span style="color:var(--muted)">還沒有修改。</span></div>`;
   const out={}, m=merged();
@@ -613,6 +620,16 @@ async function loadBase(bust){
 function setState(){const ok=workerURL()&&PASS;$("setState").textContent=ok?"・已設定":"・尚未設定";if(!ok)$("setBox").open=true}
 $("sWorker").value=lsGet(LS.worker); $("sPass").value=PASS; $("sRemember").checked=!!PASS||!lsGet(LS.worker);
 setState();
+/* ---------- Drops 活動 ID ---------- */
+const UUID_RE=/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+const dropId=v=>(String(v||"").match(UUID_RE)||[""])[0].toLowerCase();
+const dropUrl=id=>`https://dashboard.twitch.tv/viewer-rewards/drops?id=${encodeURIComponent(id)}`;
+function dropOut(){const id=dropId($("fDrop").value),h=$("dropHint");
+  h.innerHTML=id?`<a href="${esc(dropUrl(id))}" target="_blank" rel="noopener">在 Twitch 後台打開這個活動</a>`:($("fDrop").value.trim()?"格式不對：應該像 882ccb61-0d4c-4fe6-a5c5-3156e8a033ab":"從實況主後台的掉寶頁查到的活動 ID。網站與 Discord 通知會附上這個活動的連結。")}
+$("fDrop").addEventListener("input",dropOut);
+/* 貼整個網址時，離開欄位就只留下 ID */
+$("fDrop").addEventListener("change",()=>{const id=dropId($("fDrop").value);if(id)$("fDrop").value=id;dropOut()});
+
 async function callWorker(path,body){
   const W=workerURL(); if(!W) throw new Error("請先在「存檔設定」填 Worker 網址");
   if(!PASS) throw new Error("請先在「存檔設定」填控制台密碼");
