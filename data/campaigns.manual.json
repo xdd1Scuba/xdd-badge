@@ -1,5 +1,5 @@
 {
-  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。drop_id：Twitch 掉寶活動 ID。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。",
+  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。drop_id：Twitch 掉寶活動 ID。drop_src：活動放在哪一種頁面（dashboard＝實況主後台、campaigns＝觀眾掉寶頁）。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。",
   "_overlay": {
     "cols": [
       32.1,
@@ -17,7 +17,28 @@
       "soon": "#389fff",
       "cmd": "#919191",
       "new": "#fcff38"
-    }
+    },
+    "widgets": [
+      {
+        "id": "m635v6q",
+        "show": true,
+        "title": "123",
+        "title2": "",
+        "to": "2026-11-03T11:51:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/0f60fb82-232f-4e16-a6a8-549866f99873/3"
+        ],
+        "layout": "auto",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
+      }
+    ]
   },
   "ace-combat-8-nugget/1": {
     "game": "ACE COMBAT 8",
