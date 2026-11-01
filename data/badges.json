@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31T21:33:19.824Z",
+ "updated_at": "2026-11-01T00:59:28.777Z",
  "count": 554,
  "badges": [
   {
@@ -691,7 +691,7 @@
    },
    "notified": {},
    "type": "sub",
-   "column": "sub",
+   "column": "left",
    "cmd": null,
    "reviewed": true
   },
@@ -716,7 +716,7 @@
    },
    "notified": {},
    "type": "sub",
-   "column": "sub",
+   "column": "left",
    "cmd": null,
    "reviewed": true
   },
@@ -1951,7 +1951,7 @@
    },
    "notified": {},
    "type": "sub",
-   "column": "sub",
+   "column": "left",
    "cmd": null,
    "reviewed": true
   },
@@ -3738,7 +3738,7 @@
    },
    "notified": {},
    "type": null,
-   "column": "free",
+   "column": "left",
    "cmd": null,
    "reviewed": true
   },
@@ -3763,7 +3763,7 @@
    },
    "notified": {},
    "type": "free",
-   "column": "free",
+   "column": "left",
    "cmd": null,
    "reviewed": true
   },
