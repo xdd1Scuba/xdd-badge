@@ -100,6 +100,7 @@
     "start": "2026-10-30T15:00:00Z",
     "end": "2026-11-02T14:58:00Z",
     "note": "觀看 60 分鐘解鎖",
+    "note_extra": "Watch 60 mins to unlock.",
     "column": "left",
     "reviewed": true
   },
