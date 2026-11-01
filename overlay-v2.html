@@ -33,7 +33,7 @@ body{color:var(--text);font-family:var(--f);font-weight:700;font-variant-numeric
 html.transparent #stage{background:none}
 
 /* 標頭 */
-.head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 28px 0 18px}
+.head{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;gap:24px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 28px 0 18px}
 .me{display:flex;align-items:center;gap:18px}
 .avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;background:var(--tile);box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--rec)}
 .me .name{font-size:38px;letter-spacing:.03em;line-height:1}
@@ -44,12 +44,12 @@ html.transparent #stage{background:none}
 .viewers.off{color:var(--dim)} .viewers.off i{background:var(--dim);animation:none}
 .me.off .avatar{box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--dim)} /* 沒開台時頭貼外框改成灰色 */
 @keyframes rec{0%,100%{opacity:1;box-shadow:0 0 10px 1px color-mix(in srgb,var(--rec) 65%,transparent)}50%{opacity:.25;box-shadow:none}}
-.legend{display:flex;justify-content:center;gap:26px;font-size:19px;color:var(--muted)}
+.legend{display:grid;grid-template-columns:auto auto;justify-content:center;gap:6px 26px;font-size:17px;color:var(--muted);white-space:nowrap}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:1px}
-.clock{display:flex;align-items:center;gap:20px}
+.clock{display:flex;align-items:center;justify-content:flex-end;gap:16px;min-width:0}
 .clock .d{text-align:right;font-size:19px;color:var(--muted);line-height:1.35}
 .clock .d b{display:block;color:var(--text);font-size:21px}
-.clock .flap{font-size:40px}
+.clock .flap{font-size:38px}
 
 /* 翻牌字卡 */
 .flap{display:inline-flex;gap:4px;align-items:center}
@@ -128,6 +128,17 @@ html.lang-fade .zh, html.lang-fade .en, html.lang-fade #cDate, html.lang-fade #c
 .chat .body{flex:1}
 html.transparent .chat{background:transparent}
 /* 注意：這是直播畫面，不跟隨電腦的「減少動畫」設定（Windows 關閉動畫效果時，跑馬燈與紅點仍要動） */
+/* 中英切換倒數：語言膠囊。亮的那一格是目前語言，金色底色隨時間填滿，填滿就切換 */
+.langbox{display:flex;justify-content:center}
+.lchip{position:relative;display:inline-flex;height:52px;border-radius:999px;border:1.5px solid var(--line);background:var(--tile);overflow:hidden;font-size:21px;letter-spacing:.04em}
+.lchip span{position:relative;z-index:1;width:86px;display:grid;place-items:center;color:var(--dim);transition:color .35s}
+.lchip i{position:absolute;top:0;bottom:0;left:0;width:86px;border-radius:999px;background:color-mix(in srgb,var(--accent) 20%,transparent);transition:left .35s ease;overflow:hidden}
+.lchip i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:color-mix(in srgb,var(--accent) 50%,transparent)}
+html.lang-run .lchip i::after{animation:lfill var(--lsec,15s) linear forwards}
+@keyframes lfill{to{width:100%}}
+html.lang-en .lchip i{left:86px}
+html:not(.lang-en) .lchip .c-zh, html.lang-en .lchip .c-en{color:var(--text)}
+#stage.nolangviz .langbox{visibility:hidden}
 </style>
 </head>
 <body>
@@ -142,10 +153,11 @@ html.transparent .chat{background:transparent}
     </div>
     <div class="legend">
       <span><i style="background:var(--free)"></i><span class="zh">可解鎖</span><span class="en">Available</span></span>
-      <span><i style="background:var(--new)"></i><span class="zh">新徽章　開始 3 天內</span><span class="en">New · started within 3 days</span></span>
+      <span><i style="background:var(--new)"></i><span class="zh">新徽章　開始 3 天內</span><span class="en">New · within 3 days</span></span>
       <span><i style="background:var(--last)"></i><span class="zh">即將結束　3 天內</span><span class="en">Ending · within 3 days</span></span>
       <span><i style="background:var(--soon)"></i><span class="zh">即將開始</span><span class="en">Upcoming</span></span>
     </div>
+    <div class="langbox"><span class="lchip" title="中英切換倒數"><i></i><span class="c-zh">中文</span><span class="c-en">EN</span></span></div>
     <div class="clock"><div class="d" id="cDate"></div><div class="flap" id="cTime"></div></div>
   </header>
 
@@ -179,7 +191,7 @@ html.transparent .chat{background:transparent}
    &transparent=1                   透明背景
    &viewers=49 / viewers=off        （測試用）觀眾人數
    ?preview=1                       給控制台的即時預覽用，接收 postMessage 設定 */
-const DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,cmdSize:28,lang:"cycle",langSeconds:15,transparent:false,
+const DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,cmdSize:28,lang:"cycle",langSeconds:15,langViz:true,transparent:false,
   colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b",cmd:"#ffffff",new:"#ffd23f"}};
 const P=new URLSearchParams(location.search), PREVIEW=P.get("preview")==="1";
 const DATA_URL="data/badges.json", MANUAL_URL="data/campaigns.manual.json", DAY=864e5, SOON_WINDOW=14*DAY, ENDING_WINDOW=3*DAY, NEW_WINDOW=3*DAY; // 即將開始：開始前 14 天內；即將結束：剩不到 3 天；新徽章：開始 3 天內
@@ -207,7 +219,7 @@ function applyCfg(){
   r.setProperty("--cmd-size",(+CFG.cmdSize||28)+"px");
   r.setProperty("--cols",CFG.cols.map(v=>v+"fr").join(" "));
   st.style.width=CFG.width+"px"; st.style.height=CFG.height+"px";
-  st.classList.toggle("chat-none",CFG.chat==="none"); st.classList.toggle("chat-top",CFG.chat==="top");
+  st.classList.toggle("chat-none",CFG.chat==="none"); st.classList.toggle("nolangviz",CFG.langViz===false); st.classList.toggle("chat-top",CFG.chat==="top");
   document.getElementById("chatPanel").hidden=CFG.chat==="none";
   document.documentElement.classList.toggle("transparent",!!CFG.transparent);
   fit(); sig=""; if(DB) refresh(); placeSplits(); startLang();
@@ -287,13 +299,13 @@ function rowHTML(b,k){
   const cd=k==="tbd"?"":`<span class="flap" data-t="${esc(target||"")}"></span>`;
   const cmd=m.cmd?mq("cmd",esc(m.cmd)):"";                       // 控制台勾選的指令欄（右上角）
   const line=v=>String(v??"").replace(/\s*\n\s*/g,"　").trim();
-  const note=line(m.note??c.note), note2=line(m.note_extra??c.note_extra); // 備註、備註 2：各排成一行，備註 2 在下方
+  const note=line(m.note??c.note), note2=line(m.note_extra??c.note_extra); // 備註＝中文、備註 2＝英文；只填一個時兩種語言都用它
   const cd2=cond(b);
   const cls=k==="live"?(nw?"new":""):k;
   return `<div class="row ${cls}">${icon(b)}<div class="bd">
     <div class="top">${mq("nm",esc(b.title))}${nw?`<span class="tag">${L2("新徽章","NEW")}</span>`:""}${cmd}</div>
     <div class="meta"><span class="st ${k}">${L2(KIND_ZH[k],KIND_EN[k])}</span>${cd}${cd2?mq("cond",cd2):""}</div>
-    ${note?mq("note",esc(note)):""}${note2?mq("note",esc(note2)):""}</div></div>`;
+    ${note&&note2?mq("note",`<span class="zh">${esc(note)}</span><span class="en">${esc(note2)}</span>`):(note||note2)?mq("note",esc(note||note2)):""}</div></div>`;
 }
 /* 量每一段文字：超出寬度的才加上跑馬燈。速度約每秒 45px，前後各停一下 */
 function marquee(root){
@@ -416,14 +428,15 @@ var LANG="zh", langTimer=null, langKey="";
 function setLang(l,fade){
   if(l===LANG&&!fade)return;
   const apply=()=>{LANG=l;document.documentElement.classList.toggle("lang-en",l==="en");document.documentElement.lang=l==="en"?"en":"zh-Hant";
-    clock();tick();marquee(document.querySelector(".cols"));document.documentElement.classList.remove("lang-fade")};
+    clock();tick();marquee(document.querySelector(".cols"));document.documentElement.classList.remove("lang-fade");langFill()};
   if(fade){document.documentElement.classList.add("lang-fade");setTimeout(apply,350)}else apply();
 }
+function langFill(){const h=document.documentElement;h.style.setProperty("--lsec",Math.max(3,+CFG.langSeconds||15)+"s");h.classList.remove("lang-run");void h.offsetWidth;if(CFG.lang==="cycle")h.classList.add("lang-run")}
 function startLang(){
   const k=CFG.lang+"/"+CFG.langSeconds; if(k===langKey)return; langKey=k;
   clearInterval(langTimer); langTimer=null;
-  if(CFG.lang==="cycle"){langTimer=setInterval(()=>setLang(LANG==="en"?"zh":"en",true),Math.max(3,+CFG.langSeconds||15)*1000)}
-  else setLang(CFG.lang==="en"?"en":"zh",false);
+  if(CFG.lang==="cycle"){langTimer=setInterval(()=>setLang(LANG==="en"?"zh":"en",true),Math.max(3,+CFG.langSeconds||15)*1000);langFill()}
+  else {setLang(CFG.lang==="en"?"en":"zh",false);langFill()}
 }
 clock(); applyCfg(); load();
 setInterval(()=>{clock();tick()},1000);
