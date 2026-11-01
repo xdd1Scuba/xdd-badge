@@ -14,6 +14,7 @@
     "fontScale": 1.1,
     "cmdSize": 17,
     "colors": {
+      "soon": "#8debf7",
       "cmd": "#919191"
     }
   },
