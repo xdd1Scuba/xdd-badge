@@ -658,7 +658,7 @@ $("ovReset").onclick=()=>{OV=structuredClone(OV_DEFAULTS);ovFill();pvSendCfg();$
 
 /* 預覽：iframe 載入 overlay-v2.html?preview=1，用 postMessage 傳設定與待存檔的徽章資料 */
 const PV=[{f:"pvFrame",ph:"pvPh",ready:false,view:"overlay"},{f:"pvFrame2",ph:"pvPh2",ready:false,view:"widgets"}];
-function pvInit(){const p=PV.find(x=>x.view===tab);if(p&&!$(p.f).src)$(p.f).src=`${OVERLAY_PAGE}?preview=1`}
+function pvInit(){const p=PV.find(x=>x.view===tab);if(p&&!$(p.f).src)$(p.f).src=`${OVERLAY_PAGE}?preview=1&v=${Date.now()}`}
 addEventListener("message",e=>{const p=PV.find(x=>$(x.f).contentWindow===e.source);if(!p)return;
   if(e.data?.type==="overlay-ready"){p.ready=true;$(p.ph).hidden=true;pvSendCfg();pvSendManual();wgSelSend()}
   // 倒數 Widget：在預覽裡點選、拖曳後，更新控制台
