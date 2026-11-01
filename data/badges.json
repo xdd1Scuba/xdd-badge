@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-01T01:58:27.622Z",
+ "updated_at": "2026-11-01T09:01:35.795Z",
  "count": 554,
  "badges": [
   {
@@ -17,6 +17,9 @@
    "removed_at": null,
    "campaign": {
     "game": "ELDEN RING",
+    "start": "2026-11-02T07:00:00Z",
+    "end": "2026-11-30T06:59:00Z",
+    "note": "透過訂閱或贈送訂閱給 ELDEN RING 分類的實況主，即可獲得此徽章。",
     "source": "manual"
    },
    "notified": {},
