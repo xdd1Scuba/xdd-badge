@@ -261,7 +261,7 @@ if (drops) {
 }
 // 手動資料最優先：data/campaigns.manual.json 以 "set_id/版本" 為 key（"_" 開頭的 key 是說明與 Overlay 設定，不是徽章）
 // type（sub／free／other）、column（Overlay 位置）、cmd（Overlay 指令欄）與 reviewed（已確認）是徽章本身的屬性，放在徽章上，不混進 campaign
-const CAMPAIGN_FIELDS = ["game", "start", "end", "minutes", "subs", "note", "note_extra", "drop_id"];
+const CAMPAIGN_FIELDS = ["game", "start", "end", "minutes", "subs", "note", "note_extra", "drop_id", "drop_src"];
 for (const b of merged) {
   const m = manual[key(b.set_id, b.id)];
   // 上次由手動資料產生的活動先清掉再重新套用，控制台刪掉的欄位（或整筆刪除）才會真的消失
