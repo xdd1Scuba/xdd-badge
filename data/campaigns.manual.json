@@ -27,7 +27,7 @@
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
     "type": "sub",
-    "column": "sub",
+    "column": "left",
     "reviewed": true
   },
   "believeinrichmond/1": {
@@ -35,7 +35,7 @@
     "start": "2026-10-20T19:00:00Z",
     "end": "2026-11-03T07:59:00Z",
     "type": "sub",
-    "column": "sub",
+    "column": "left",
     "reviewed": true
   },
   "blastoise/1": {
@@ -57,7 +57,7 @@
     "start": "2026-10-15T04:00:00Z",
     "end": "2026-11-02T03:59:00Z",
     "type": "sub",
-    "column": "sub",
+    "column": "left",
     "reviewed": true
   },
   "charizard/1": {
@@ -97,7 +97,7 @@
     "start": "2026-10-30T15:00:00Z",
     "end": "2026-11-02T14:58:00Z",
     "note": "觀看 60 分鐘解鎖",
-    "column": "free",
+    "column": "left",
     "reviewed": true
   },
   "final-fantasy-xiv-fan-festival-2026-jp---quest-complete-chat/1": {
@@ -105,7 +105,7 @@
     "end": "2026-11-02T14:58:00Z",
     "note": "觀看 /finalfantasyxiv 頻道上的 \"Fan Fest 2026\" 60 分鐘即可獲得此徽章。",
     "type": "free",
-    "column": "free",
+    "column": "left",
     "reviewed": true
   },
   "flameborn-sigil/1": {
