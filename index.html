@@ -410,7 +410,7 @@ function showTip(el,x,y){
   const rem=st.k==="live"&&e?`剩餘 ${dur(e-n)}`:st.k==="soon"?`${dur(s-n)}後開始`:st.k==="ended"?"活動已結束":"結束時間未公布";
   tip.innerHTML=`<div class="t"><img src="${esc(b.image_url_2x)}" alt=""><div><b>${esc(b.title)}</b><small>${esc(c.game||"")}${req(c)?"・"+req(c):""}</small></div></div>
     <dl><dt>開始</dt><dd>${esc(full(c.start))}</dd><dt>結束</dt><dd>${c.end?esc(full(c.end)):"未公布"}</dd><dt>期間</dt><dd>${e?dur(e-s):"—"}</dd></dl>
-    <div class="rem" style="color:var(--${st.k==="live"?"live":st.k==="soon"?"soon":"ended"})">${rem}</div>${c.note?`<div style="margin-top:6px;opacity:.8">取得方式特殊，點擊看備註</div>`:""}`;
+    <div class="rem" style="color:var(--${st.k==="live"?"live":st.k==="soon"?"soon":"ended"})">${rem}</div>${(c.note||c.note_extra)?`<div style="margin-top:6px;opacity:.8">取得方式特殊，點擊看備註</div>`:""}`;
   tip.hidden=false; placeTip(x,y);
 }
 function placeTip(x,y){
@@ -476,10 +476,10 @@ function openDetail(k){
   const src={drops:"Twitch Drops（自動）",manual:"手動整理","drops+manual":"Twitch Drops＋手動修正"}[c?.source]||"";
   panel.innerHTML=`
     <button class="x" id="dClose" aria-label="關閉">×</button>
-    <div class="d-head">${pic(b)}<div><h3 id="dTitle">${esc(b.title)}</h3><div class="gm">${esc(c?.game||"")}${c?.game?"・":""}${esc(b.set_id)} v${esc(b.id)}</div><div class="d-pills">${pill(b)}${c?.note?`<span class="tag">有備註</span>`:""}${isNew(b)?`<span class="tag">新徽章</span>`:""}</div></div></div>
+    <div class="d-head">${pic(b)}<div><h3 id="dTitle">${esc(b.title)}</h3><div class="gm">${esc(c?.game||"")}${c?.game?"・":""}${esc(b.set_id)} v${esc(b.id)}</div><div class="d-pills">${pill(b)}${(c?.note||c?.note_extra)?`<span class="tag">有備註</span>`:""}${isNew(b)?`<span class="tag">新徽章</span>`:""}</div></div></div>
     <div class="sizes">${[1,2,4].map((n,i)=>`<figure>${pic(b,"s"+(i+1),n)}<figcaption>${18*(i+1)}px</figcaption></figure>`).join("")}</div>
     <div class="chatline"><span class="lbl">聊天室中的樣子</span><img src="${esc(b.image_url_1x)}" alt=""><span class="u">viewer</span>: GG</div>
-    ${c?.note?`<div class="block note-box"><h4>取得方式備註</h4><p>${linkify(c.note)}</p></div>`:""}
+    ${(c?.note||c?.note_extra)?`<div class="block note-box"><h4>取得方式備註</h4><p>${linkify([c.note,c.note_extra].filter(Boolean).join("\n"))}</p></div>`:""}
     <div class="block"><h4>官方說明</h4><p lang="en">${esc(b.description||"—")}</p></div>
     ${c?.start?`<div class="block"><h4>活動時間（${esc(TZ)}）</h4><dl class="timebox"><dt>開始</dt><dd>${esc(full(c.start))}</dd><dt>結束</dt><dd>${c.end?esc(full(c.end)):"未公布"}</dd>${req(c)?`<dt>條件</dt><dd>${esc(req(c))}</dd>`:""}${big}</dl></div>`:""}
     <div class="block"><h4>資料</h4><table class="raw"><tbody>
