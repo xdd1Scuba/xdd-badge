@@ -211,6 +211,10 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
             </div>
             <span class="guess" id="colGuess"></span>
           </div>
+          <div class="f full" id="fTagsWrap">Game Overlay 自訂標籤
+            <div class="chips" id="fTags"></div>
+            <span class="hint" id="fTagsHint"></span>
+          </div>
           <label class="f full" for="fGame">遊戲分類
             <input type="text" id="fGame" placeholder="例如 Hunt: Showdown 1896" list="games">
             <datalist id="games"></datalist>
@@ -246,10 +250,6 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
             <textarea id="fNote" rows="4" placeholder="備註（中文）：例如 需要先擁有 Pichu 徽章，在 Drops 面板裝備後，每天觀看 20 分鐘、累積 3 天即可進化。" hidden></textarea>
             <textarea id="fNote2" rows="2" placeholder="備註 2（英文）：例如 Equip the Pichu badge, then watch 20 min a day for 3 days." hidden></textarea>
             <span class="hint" id="noteHint" hidden>Overlay 顯示中文時用「備註」、顯示英文時用「備註 2」；只填一個的話，兩種語言都顯示那一個。網站徽章頁會兩段都顯示。網址會自動變成連結；Overlay 上換行會排成一行，太長時用跑馬燈。</span>
-          </div>
-          <div class="f full" id="fTagsWrap" hidden>Game Overlay 自訂標籤
-            <div class="chips" id="fTags"></div>
-            <span class="hint">在「Game Overlay」分頁新增的標籤，點一下＝套用到這個徽章。內建的標籤（即將開始、新徽章、免費…）會自動判斷，不用勾。</span>
           </div>
           <div class="f full">
             <label class="chk" for="fCmdOn"><input type="checkbox" id="fCmdOn"> 加上指令欄（Overlay 徽章卡片右上角）</label>
@@ -664,8 +664,11 @@ function pick(k){
 /* Game Overlay 的自訂標籤（存成 tags："c_xxx,c_yyy"） */
 let fTags=new Set();
 const gmCustom=()=>(GM?.tags||[]).filter(x=>x.k.startsWith("c_"));
-function fTagsRender(){const L=gmCustom();$("fTagsWrap").hidden=!L.length;
+function fTagsRender(){const L=gmCustom();
+  $("fTagsHint").innerHTML=L.length?"點一下＝套用到這個徽章（再點一下取消）。內建標籤（即將開始、即將結束、新徽章、免費…）會自動判斷，不用勾。"
+    :`還沒有自訂標籤。到 <a href="#" id="fTagsGo" style="color:var(--accent)">Game Overlay 分頁</a> 的「標籤」按「＋ 新增自訂標籤」，回來這裡就能套用。內建標籤會自動判斷，不用勾。`;
   $("fTags").innerHTML=L.map(x=>`<button type="button" class="chip" data-k="${esc(x.k)}" aria-pressed="${fTags.has(x.k)}" style="${fTags.has(x.k)?`background:${esc(x.color)};border-color:${esc(x.color)};color:#111`:""}">${esc(x.zh||x.en||"未命名")}</button>`).join("")}
+$("fTagsWrap").addEventListener("click",e=>{if(e.target.id==="fTagsGo"){e.preventDefault();setTab("game");$("gTagAdd").scrollIntoView({block:"center"})}});
 $("fTags").addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(!b)return;const k=b.dataset.k;fTags.has(k)?fTags.delete(k):fTags.add(k);fTagsRender()});
 $("fReq").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setReq(b.dataset.v)});
 $("fType").addEventListener("click",e=>{const b=e.target.closest("button");if(b){setType(b.dataset.v);updateColGuess()}});
