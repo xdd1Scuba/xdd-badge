@@ -326,8 +326,8 @@ const DESC_DEFAULT="Badge Info 控制台的存檔。key 是 set_id/版本，時�
 
 /* Overlay 預設值（與 overlay-v2.html 的 DEFAULTS 保持一致） */
 const OV_DEFAULTS={width:1920,height:1080,cols:[26,37,37],chat:"bottom",speed:[22,30,38],fontScale:1,cmdSize:28,transparent:false,
-  colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b",cmd:"#ffffff"}};
-const COLOR_ZH={bg:"背景",panel:"面板",text:"文字",accent:"強調（倒數、時鐘）",sub:"訂閱欄",free:"免費欄／可解鎖",soon:"即將開始",last:"即將結束",rec:"直播紅點",cmd:"指令欄文字"};
+  colors:{bg:"#0b0f15",panel:"#121822",text:"#f2ead8",accent:"#ffb547",sub:"#b79cff",free:"#5ce0a8",soon:"#79c2ff",last:"#ff6f5e",rec:"#ff3b3b",cmd:"#ffffff",new:"#ffd23f"}};
+const COLOR_ZH={bg:"背景",panel:"面板",text:"文字",accent:"強調（倒數、時鐘）",sub:"訂閱欄",free:"免費欄／可解鎖",soon:"即將開始",last:"即將結束",rec:"直播紅點",cmd:"指令欄文字",new:"新徽章（開始 3 天內）"};
 
 /* 類型自動判斷（與 overlay-v2.html 的 autoType 保持一致） */
 function autoType(b,c){c=c||{};const d=b.description||"";
@@ -451,7 +451,8 @@ function updateColGuess(){if(!cur)return;const el=$("colGuess");
   if(!s) m="目前不會顯示：沒有開始時間。想先放上 Overlay，請選一個欄位。";
   else if(n<Date.parse(s)) m=Date.parse(s)-n<14*864e5?"目前在左欄（即將開始），開始後移到"+(tyCol||"（類型是其他，不會進訂閱欄或免費欄）"):"開始前 14 天才會出現在左欄。";
   else if(e&&n>=Date.parse(e)) m="活動已結束，不會顯示。";
-  else m=tyCol?`目前在${tyCol}`+(e&&Date.parse(e)-n<3*864e5?"，也在左欄（即將結束，剩不到 3 天）":""):"類型是其他，不會進訂閱欄或免費欄。";
+  else m=(tyCol?`目前在${tyCol}`+(e&&Date.parse(e)-n<3*864e5?"，也在左欄（即將結束，剩不到 3 天）":""):"類型是其他，不會進訂閱欄或免費欄。");
+  if(s&&n>=Date.parse(s)&&n-Date.parse(s)<3*864e5&&!(e&&n>=Date.parse(e))) m=m.replace(/。?$/,"。")+"開始不到 3 天，會用金色標示「新徽章」。";
   el.textContent="自動："+m}
 function updateGuess(){if(!cur)return;
   const n=parseInt($("fNum").value,10), c=req==="subs"?{subs:n}:req==="minutes"?{minutes:n}:{};
