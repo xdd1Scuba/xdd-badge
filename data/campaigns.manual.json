@@ -252,9 +252,9 @@
     "reviewed": true
   },
   "twitchcon-2026---san-diego---taco/1": {
-    "game": "購買 TwitchCon 3日通行證解鎖",
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
+    "note": "購買 TwitchCon 3日通行證解鎖",
     "type": "sub",
     "column": "sub",
     "reviewed": true
