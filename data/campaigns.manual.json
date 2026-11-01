@@ -1,5 +1,5 @@
 {
-  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（顯示在備註下方）。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。",
+  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。",
   "_overlay": {
     "cols": [
       32.1,
@@ -42,6 +42,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -64,6 +65,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -73,6 +75,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -120,6 +123,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -143,6 +147,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -165,6 +170,7 @@
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
     "note": "觀看 15 分鐘解鎖",
+    "note_extra": "Watch 15 mins to unlock.",
     "type": "free",
     "column": "free",
     "reviewed": true
@@ -173,6 +179,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -190,6 +197,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -199,6 +207,7 @@
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
     "note": "觀看 QSMP、QuackityToo、Quackity 其中任一頻道 60 分鐘解鎖",
+    "note_extra": "Watch channel QSMP, QuackityToo, or Quackity for 60 mins to unlock.",
     "type": "free",
     "column": "free",
     "reviewed": true
@@ -239,6 +248,7 @@
     "start": "2026-10-27T16:00:00Z",
     "end": "2026-11-07T15:59:00Z",
     "note": "觀看 30 分鐘解鎖",
+    "note_extra": "Watch 30 mins to unlock.",
     "type": "free",
     "column": "free",
     "reviewed": true
@@ -246,7 +256,8 @@
   "twitchcon-2026---san-diego---beachball/1": {
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
-    "note": "購買 TwitchCon 1日通行證解鎖",
+    "note": "購買 \"TwitchCon San Diego 2026 - 1 日通行證\" 解鎖",
+    "note_extra": "This badge is given to anyone who purchased a 1-day ticket to TwitchCon San Diego 2026.",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -254,7 +265,8 @@
   "twitchcon-2026---san-diego---taco/1": {
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
-    "note": "購買 TwitchCon 3日通行證解鎖",
+    "note": "購買 \"TwitchCon San Diego 2026 - 3 日通行證\" 解鎖",
+    "note_extra": "This badge is given to anyone who purchased a 3-days ticket to TwitchCon San Diego 2026.",
     "type": "sub",
     "column": "sub",
     "reviewed": true
@@ -267,6 +279,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
@@ -282,6 +295,7 @@
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
     "note": "*進化不需要訂閱／贈訂",
+    "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
