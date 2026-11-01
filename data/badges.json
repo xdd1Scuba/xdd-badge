@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-01T01:38:52.365Z",
+ "updated_at": "2026-11-01T01:47:15.961Z",
  "count": 554,
  "badges": [
   {
@@ -10213,9 +10213,9 @@
    "baseline": true,
    "removed_at": null,
    "campaign": {
-    "game": "購買 TwitchCon 3日通行證解鎖",
     "start": "2026-07-22T18:00:00Z",
     "end": "2026-11-13T12:00:00Z",
+    "note": "購買 TwitchCon 3日通行證解鎖",
     "source": "manual"
    },
    "notified": {},
