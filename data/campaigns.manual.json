@@ -1,5 +1,5 @@
 {
-  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。drop_id：Twitch 掉寶活動 ID。drop_src：活動放在哪一種頁面（dashboard＝實況主後台、campaigns＝觀眾掉寶頁）。cmd：Overlay 指令欄文字。_overlay：Overlay 外觀設定。",
+  "_說明": "Badge Info 控制台的存檔。key 是 set_id/版本，時間用 UTC。這裡的資料會覆蓋自動抓到的資料。type：sub＝訂閱／贈訂、free＝免費、other＝其他，沒有 type 時自動判斷。reviewed：已確認。column：Overlay 位置（left＝左欄、sub＝訂閱欄、free＝免費欄、hide＝不顯示），沒有 column 時依時間與類型自動。note_extra：備註 2（英文版 Overlay 顯示這段）。drop_id：Twitch 掉寶活動 ID。drop_src：活動放在哪一種頁面（dashboard＝實況主後台、campaigns＝觀眾掉寶頁）。cmd：Overlay 指令欄文字。tags：Game Overlay 的自訂標籤（逗號分隔）。_overlay：Overlay 外觀設定（widgets＝倒數 Widget，game＝Game Overlay 設定）。",
   "_overlay": {
     "cols": [
       32.1,
@@ -38,7 +38,48 @@
         "colors": null,
         "clear": false
       }
-    ]
+    ],
+    "game": {
+      "boxes": {
+        "head": {
+          "x": 16,
+          "y": 16,
+          "w": 1888,
+          "h": 104,
+          "show": true
+        },
+        "badges": {
+          "x": 16,
+          "y": 136,
+          "w": 440,
+          "h": 520,
+          "show": true
+        },
+        "chat": {
+          "x": 16,
+          "y": 672,
+          "w": 440,
+          "h": 392,
+          "show": true
+        },
+        "game": {
+          "x": 471,
+          "y": 136,
+          "w": 1440,
+          "h": 810,
+          "show": true
+        }
+      },
+      "widgets": {
+        "q9rkpw3": {
+          "x": 1416,
+          "y": 960,
+          "w": 475,
+          "h": 103,
+          "show": true
+        }
+      }
+    }
   },
   "ace-combat-8-nugget/1": {
     "game": "ACE COMBAT 8",
