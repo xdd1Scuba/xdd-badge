@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap">
 <style>
 /* Game Overlay：玩遊戲時用。畫布（預設 1920×1080）上每個框都可以自由擺放：
-   標題列｜徽章欄（所有進行中與即將開始的徽章，分類改用標題旁的小標籤）｜聊天室｜遊戲畫面（16:9，中間是透明的）｜倒數 Widget。
+   標題列｜徽章欄（所有進行中與即將開始的徽章，分類改用標題旁的小標籤）｜聊天室｜遊戲畫面（16:9，中間是透明的）｜資訊 Widget。
    設定存在 data/campaigns.manual.json 的 "_overlay"."game"（由 Badge Info 控制台的「Game Overlay」分頁編輯），跟原本的 overlay-v2.html 互不影響。 */
 :root{
   color-scheme:dark;
@@ -123,7 +123,7 @@ html.lang-en .lchip i{left:86px}
 html:not(.lang-en) .lchip .c-zh, html.lang-en .lchip .c-en{color:var(--text)}
 .nolangviz .langbox{visibility:hidden}
 
-/* 倒數 Widget（內容在控制台「倒數 Widget」分頁編輯，位置在「Game Overlay」分頁另外設定） */
+/* 資訊 Widget（內容在控制台「資訊 Widget」分頁編輯，位置在「Game Overlay」分頁另外設定） */
 #wgLayer{position:absolute;inset:0;pointer-events:none;z-index:8}
 .wg{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:14px;color:var(--text)}
 .wg.clear{background:transparent}
@@ -139,6 +139,7 @@ html:not(.lang-en) .lchip .c-zh, html.lang-en .lchip .c-en{color:var(--text)}
 .wg .ttl::before{content:"";flex:none;width:.22em;height:1em;border-radius:.11em;background:var(--accent)}
 .wg .cd{margin-top:.28em;font-size:1.5em;white-space:nowrap}
 .wg .endt{margin-top:.28em;font-size:1.3em;white-space:nowrap;color:var(--accent)}
+.wg .nt{margin-top:.4em;font-size:.62em;line-height:1.4;white-space:pre-line;overflow-wrap:anywhere;width:100%;color:color-mix(in srgb,currentColor 78%,transparent)} /* 備註：會換行，跟標題、倒數一起縮放到放得進框 */
 
 /* 控制台預覽：每個框上面蓋一層編輯框，可以拖曳移動、拉紫色圓點改大小 */
 #edLayer{position:absolute;inset:0;z-index:20;display:none}
@@ -240,7 +241,7 @@ function applyCfg(){
   document.documentElement.classList.toggle("transparent",!!CFG.transparent);
   const T=CFG.titles; $("tBadges").innerHTML=L2(T.badges_zh,T.badges_en); $("tChat").innerHTML=L2(T.chat_zh,T.chat_en);
   $("legend").innerHTML=CFG.tags.filter(x=>x.on).map(tagHTML).join("");
-  fit(); placeBoxes(); sig=""; if(DB) refresh(); startLang(); renderWidgets(); edRender();
+  fit(); placeBoxes(); sig=""; if(DB) refresh(); startLang(); WG_SIG=""; renderWidgets(); edRender();
 }
 function fit(){const s=Math.min(innerWidth/CFG.width,innerHeight/CFG.height),st=$("stage");st.style.transform=`scale(${s})`;st.style.left=(innerWidth-CFG.width*s)/2+"px";st.style.top=(innerHeight-CFG.height*s)/2+"px"}
 addEventListener("resize",()=>{fit();sig="";if(DB)refresh()});
@@ -372,26 +373,36 @@ function frame(ts){const dt=lastTs?Math.min(0.1,(ts-lastTs)/1000):0;lastTs=ts;
   requestAnimationFrame(frame)}
 function tick(){const n=now();document.querySelectorAll(".row .flap[data-t]").forEach(el=>{const x=t(el.dataset.t);if(x)flap(el,cdParts(x-n))})}
 
-/* ---------- 倒數 Widget：內容沿用「倒數 Widget」分頁，位置與是否顯示用 game.widgets[id] = {show,x,y,w,h} ---------- */
+/* ---------- 資訊 Widget：內容沿用「資訊 Widget」分頁，位置與是否顯示用 game.widgets[id] = {show,x,y,w,h} ---------- */
 const wgLayer=$("wgLayer");
 let WG_SIG="";
 const wgList=()=>WDEF.filter(w=>w&&w.id&&CFG.widgets[w.id]?.show).map(w=>({...w,...CFG.widgets[w.id]}));
-function wgLayout(w){if(!(w.images||[]).length)return"none";if(w.layout==="v"||w.layout==="h")return w.layout;return w.w/w.h>=2.2?"h":"v"}
+/* 資訊 Widget：每個部分都可選（標題 2、倒數、備註 1、備註 2、圖片），可以連結一個徽章（badge＝set_id/版本）。
+   欄位：show_cd（預設顯示）、to_mode（time＝倒數到 to｜badge＝跟隨連結徽章：開始前倒數到開始，開始後倒數到結束）、
+   show_n1／show_n2（備註 1＝中文、備註 2＝英文；兩個都有時跟著中英切換）、note1／note2（留空＝用連結徽章的 note／note_extra）、show_img（預設顯示） */
+const wgBadge=w=>w.badge&&DB?(DB.badges||[]).find(b=>keyOf(b)===w.badge)||null:null;
+function wgNotes(w){const b=wgBadge(w),m=(w.badge&&MANUAL[w.badge])||{},c=b?.campaign||{},L=v=>String(v??"").trim();
+  return [w.show_n1?L(w.note1)||L(m.note??c.note):"", w.show_n2?L(w.note2)||L(m.note_extra??c.note_extra):""]}
+function wgNoteHTML(w){const[a,b]=wgNotes(w);if(!a&&!b)return"";return `<div class="nt">${a&&b?`<span class="zh">${esc(a)}</span><span class="en">${esc(b)}</span>`:esc(a||b)}</div>`}
+function wgTarget(w,n){if(w.show_cd===false)return null;
+  if(w.to_mode==="badge"){const b=wgBadge(w);if(!b)return null;const m=MANUAL[w.badge]||{},c=b.campaign||{},s=t(m.start??c.start),e=t(m.end??c.end);return s&&n<s?s:(e||null)}
+  return Date.parse(w.to)||null}
+function wgLayout(w){if(w.show_img===false||!(w.images||[]).length)return"none";if(w.layout==="v"||w.layout==="h")return w.layout;return w.w/w.h>=2.2?"h":"v"}
 function wgHTML(w){
   const L=wgLayout(w), c=w.colors||{};
   const st=`left:${+w.x||0}px;top:${+w.y||0}px;width:${+w.w||300}px;height:${+w.h||160}px;`+(c.bg?`--panel:${c.bg};`:"")+(c.fg?`--text:${c.fg};`:"")+(c.num?`--accent:${c.num};`:"");
   const imgs=L==="none"?"":`<div class="imgs">${w.images.map(u=>`<img src="${esc(u)}" alt="" onerror="this.style.visibility='hidden'">`).join("")}</div>`;
   return `<div class="wg ${w.clear?"clear":""}" data-id="${esc(w.id)}" style="${esc(st)}">
     <div class="wg-in ${L==="h"?"h":"v"}">${imgs}<div class="txt"><div class="ttl"><span class="zh">${esc(w.title||"")}</span><span class="en">${esc(w.title2||w.title||"")}</span></div>
-    <div class="cd flap"></div><div class="endt" hidden>${esc(w.end_text||"")}</div></div></div></div>`;
+    <div class="cd flap"></div><div class="endt" hidden>${esc(w.end_text||"")}</div>${wgNoteHTML(w)}</div></div></div>`;
 }
-function renderWidgets(){const list=wgList(),s=JSON.stringify(list);if(s===WG_SIG)return;WG_SIG=s;wgLayer.innerHTML=list.map(wgHTML).join("");wgTick(true)}
+function renderWidgets(){const list=wgList(),s=JSON.stringify([list,list.map(wgNotes),list.map(w=>!!wgBadge(w))]);if(s===WG_SIG)return;WG_SIG=s;wgLayer.innerHTML=list.map(wgHTML).join("");wgTick(true)}
 function wgTick(force){const n=now(),list=wgList();
   wgLayer.querySelectorAll(".wg").forEach(el=>{const w=list.find(x=>x.id===el.dataset.id);if(!w)return;
-    const ms=(Date.parse(w.to)||0)-n, txt=ms<=0&&w.end_mode==="text"&&(w.end_text||"").trim();
-    const cd=el.querySelector(".cd"), et=el.querySelector(".endt"); cd.hidden=!!txt; et.hidden=!txt;
-    if(!txt)flap(cd,cdParts(ms));
-    const k=txt?"t":String(cd.children.length); if(force||el.dataset.k!==k){el.dataset.k=k;wgFit(el)}})}
+    const T=wgTarget(w,n), ms=T==null?null:T-n, txt=ms!=null&&ms<=0&&w.end_mode==="text"&&(w.end_text||"").trim();
+    const cd=el.querySelector(".cd"), et=el.querySelector(".endt"); cd.hidden=ms==null||!!txt; et.hidden=!txt;
+    if(ms!=null&&!txt)flap(cd,cdParts(ms));
+    const k=txt?"t":ms==null?"n":String(cd.children.length); if(force||el.dataset.k!==k){el.dataset.k=k;wgFit(el)}})}
 function wgFit(el){const box=el.querySelector(".txt");if(!box)return;let lo=4,hi=400;
   for(let i=0;i<14;i++){const mid=(lo+hi)/2;box.style.fontSize=mid+"px";if(box.scrollWidth<=box.clientWidth+.5&&box.scrollHeight<=box.clientHeight+.5)lo=mid;else hi=mid}
   box.style.fontSize=lo+"px"}
@@ -402,7 +413,7 @@ const ED=$("edLayer"), NAMES={game:"遊戲畫面",head:"標題列",badges:"徽�
 let SEL=null;
 const rectOf=k=>k.startsWith("wg:")?CFG.widgets[k.slice(3)]:CFG.boxes[k];
 function edKeys(){return ["game","head","badges","chat"].filter(k=>CFG.boxes[k].show!==false).concat(wgList().map(w=>"wg:"+w.id))}
-function edName(k){if(k.startsWith("wg:")){const w=WDEF.find(x=>x.id===k.slice(3));return "倒數："+(w?.title||"未命名")}return NAMES[k]+(k==="game"&&CFG.lock169?" 16:9":"")}
+function edName(k){if(k.startsWith("wg:")){const w=WDEF.find(x=>x.id===k.slice(3));return "Widget："+(w?.title||"未命名")}return NAMES[k]+(k==="game"&&CFG.lock169?" 16:9":"")}
 let DRAG=false;
 function edRender(){if(!PREVIEW||DRAG)return;
   ED.innerHTML=edKeys().map(k=>{const r=rectOf(k);return `<div class="ef ${k===SEL?"sel":""}" data-k="${esc(k)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px"><span class="lb">${esc(edName(k))}　${r.w}×${r.h}</span>${["nw","n","ne","e","se","s","sw","w"].map(h=>`<span class="hd ${h}" data-h="${h}"></span>`).join("")}</div>`}).join("")}
@@ -438,7 +449,7 @@ if(PREVIEW){
   });
   addEventListener("message",e=>{const d=e.data;if(!d||typeof d!=="object")return;
     if(d.type==="game-config"){CFG=mergeCfg(d.config);if(d.lang)CFG.lang=d.lang;WDEF=Array.isArray(d.widgets)?d.widgets:[];applyCfg()}
-    if(d.type==="overlay-manual"){MANUAL=d.manual||{};sig="";if(DB)refresh()}
+    if(d.type==="overlay-manual"){MANUAL=d.manual||{};sig="";if(DB)refresh();renderWidgets()}
     if(d.type==="game-box-select"&&(d.key||null)!==SEL){SEL=d.key||null;edRender()}}); // 拖曳中收到自己選的框時不重畫，避免中斷拖曳
 }
 

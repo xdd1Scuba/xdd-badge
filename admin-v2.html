@@ -112,7 +112,7 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
 .pv{position:relative;width:100%;background:#000;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
 .pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .pv .ph{position:absolute;inset:0;display:grid;place-items:center;color:#aaa;font-size:14px;text-align:center;padding:20px}
-/* 倒數 Widget：Chrome 式分頁 */
+/* 資訊 Widget：Chrome 式分頁 */
 .tabbar{display:flex;align-items:flex-end;gap:2px;border-bottom:1px solid var(--line);overflow-x:auto;padding:0 2px;margin:-4px -4px 0}
 .wtab{display:flex;align-items:center;gap:6px;max-width:170px;height:36px;padding:0 6px 0 12px;border:1px solid transparent;border-bottom:0;border-radius:10px 10px 0 0;background:transparent;cursor:pointer;color:var(--muted);font-size:13px;flex:none;position:relative;top:1px}
 .wtab:hover{background:var(--sunk)}
@@ -133,6 +133,17 @@ ol.how{margin:0;padding-left:20px;font-size:13px;color:var(--muted);display:flex
 .picker button:hover{outline:2px solid var(--accent)}
 .picker img{width:100%;height:100%;object-fit:contain}
 .four{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#wgEd textarea{min-height:64px;font-family:var(--f-body);font-size:14px;background:var(--surface)}
+.parts{display:flex;flex-wrap:wrap;gap:6px 16px}
+.blist{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:9px;max-height:220px;overflow-y:auto}
+.blist:empty{display:none}
+.blist button{display:flex;gap:8px;align-items:center;border:0;border-bottom:1px solid var(--line);background:none;padding:6px 8px;text-align:left;cursor:pointer;font-size:13px}
+.blist button:last-child{border-bottom:0}
+.blist button:hover{background:var(--sunk)}
+.blist img{width:28px;height:28px;object-fit:contain;flex:none}
+.bcur{display:flex;gap:10px;align-items:center;background:var(--sunk);border-radius:9px;padding:8px 10px;font-size:13px}
+.bcur img{width:40px;height:40px;object-fit:contain;flex:none}
+.bcur span{flex:1;min-width:0}
 /* Game Overlay */
 .seg.wrap{flex-wrap:wrap}
 .seg.wrap button{flex:1 0 auto;border-top:1px solid var(--line);margin-top:-1px}
@@ -165,7 +176,7 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
     <button role="tab" data-tab="inbox" aria-selected="true">待確認 <span class="n" id="inboxN"></span></button>
     <button role="tab" data-tab="all" aria-selected="false">所有徽章</button>
     <button role="tab" data-tab="overlay" aria-selected="false">Overlay 外觀</button>
-    <button role="tab" data-tab="widgets" aria-selected="false">倒數 Widget</button>
+    <button role="tab" data-tab="widgets" aria-selected="false">資訊 Widget</button>
     <button role="tab" data-tab="game" aria-selected="false">Game Overlay</button>
   </nav>
 
@@ -269,22 +280,48 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
     </section>
   </div>
 
-  <!-- 倒數 Widget（獨立分頁，不跟 Overlay 外觀放在一起） -->
+  <!-- 資訊 Widget（原「倒數 Widget」；獨立分頁。倒數、備註、圖片、標題 2 都是可選的，可以連結一個徽章） -->
   <div class="cols ov" id="wgView" hidden>
     <section class="box">
       <div class="tabbar" id="wgTabs" role="tablist"></div>
-      <div id="wgEmpty" class="empty" hidden>還沒有倒數 Widget，按上面的 ＋ 新增一個。</div>
+      <div id="wgEmpty" class="empty" hidden>還沒有資訊 Widget，按上面的 ＋ 新增一個。</div>
       <div id="wgEd" style="display:flex;flex-direction:column;gap:12px">
         <label class="chk"><input type="checkbox" id="wShow"> 在 Overlay 顯示這個 Widget</label>
         <label class="f">標題（中文）<input type="text" id="wT1" maxlength="60"></label>
         <label class="f">標題 2（英文，選填）<input type="text" id="wT2" maxlength="80" placeholder="沒填的話，英文時也顯示中文標題"></label>
-        <label class="f">倒數到<input type="datetime-local" id="wTo"></label>
-        <p class="hint" style="margin:0">剩 1 天以上顯示「3 天 12:34:56」，不到 1 天只顯示「12:34:56」。跟 Overlay 同步每隔幾秒切換中英。</p>
-        <div class="f">時間到了之後
-          <div class="seg" id="wEnd"><button type="button" data-v="zero" aria-pressed="true">顯示 00:00:00</button><button type="button" data-v="text" aria-pressed="false">顯示自訂文字</button></div>
-          <input type="text" id="wEndText" maxlength="60" placeholder="例如：活動開始！" hidden>
+        <div class="grp">
+          <h3>連結徽章（選填）</h3>
+          <div id="wBadgeCur"></div>
+          <input type="search" id="wBadgeQ" placeholder="搜尋徽章名稱，連結後可以用它的備註與活動時間" autocomplete="off">
+          <div class="blist" id="wBadgeList"></div>
         </div>
         <div class="grp">
+          <h3>要顯示的內容</h3>
+          <div class="parts">
+            <label class="chk"><input type="checkbox" id="wShowCd"> 倒數</label>
+            <label class="chk"><input type="checkbox" id="wShowN1"> 備註 1（中文）</label>
+            <label class="chk"><input type="checkbox" id="wShowN2"> 備註 2（英文）</label>
+            <label class="chk"><input type="checkbox" id="wShowImg"> 圖片</label>
+          </div>
+          <span class="hint">標題 2 留空＝不用（英文時也顯示標題）。備註 1、2 都勾時跟著中英切換；只勾一個時兩種語言都顯示它。</span>
+        </div>
+        <div class="grp" id="wCdGrp">
+          <h3>倒數</h3>
+          <div class="seg" id="wToMode"><button type="button" data-v="time" aria-pressed="true">自訂時間</button><button type="button" data-v="badge" aria-pressed="false">跟隨連結徽章的活動時間</button></div>
+          <label class="f" id="wToWrap">倒數到<input type="datetime-local" id="wTo"></label>
+          <p class="hint" style="margin:0" id="wToHint">剩 1 天以上顯示「3 天 12:34:56」，不到 1 天只顯示「12:34:56」。</p>
+          <div class="f">時間到了之後
+            <div class="seg" id="wEnd"><button type="button" data-v="zero" aria-pressed="true">顯示 00:00:00</button><button type="button" data-v="text" aria-pressed="false">顯示自訂文字</button></div>
+            <input type="text" id="wEndText" maxlength="60" placeholder="例如：活動開始！" hidden>
+          </div>
+        </div>
+        <div class="grp" id="wNoteGrp">
+          <h3>備註</h3>
+          <label class="f" id="wN1Wrap">備註 1（中文）<textarea id="wN1" rows="3" maxlength="400"></textarea></label>
+          <label class="f" id="wN2Wrap">備註 2（英文）<textarea id="wN2" rows="2" maxlength="400"></textarea></label>
+          <span class="hint" id="wNoteHint"></span>
+        </div>
+        <div class="grp" id="wImgGrp">
           <h3>圖片 <span class="hint" id="wImgN"></span></h3>
           <div class="imgs-ed" id="wImgs"></div>
           <div class="row" style="flex-wrap:nowrap"><input type="text" id="wUrl" placeholder="貼圖片網址（例如 ImgBB 的圖片直接連結）" style="flex:1"><button class="btn" type="button" id="wAddUrl">加入</button></div>
@@ -320,7 +357,7 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
     <section class="box">
       <h2>即時預覽 <small>點 Widget 選取；拖曳移動；拉紫色圓點改大小</small></h2>
       <div class="seg" id="wgPvLang" style="max-width:320px"><button type="button" data-v="" aria-pressed="true">跟隨設定</button><button type="button" data-v="zh" aria-pressed="false">固定中文</button><button type="button" data-v="en" aria-pressed="false">固定英文</button></div>
-      <div class="pv" id="pv2"><div class="ph" id="pvPh2">預覽載入中…</div><iframe id="pvFrame2" title="倒數 Widget 預覽" loading="lazy"></iframe></div>
+      <div class="pv" id="pv2"><div class="ph" id="pvPh2">預覽載入中…</div><iframe id="pvFrame2" title="資訊 Widget 預覽" loading="lazy"></iframe></div>
     </section>
   </div>
 
@@ -356,9 +393,9 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
         <span class="hint">內建標籤自動判斷：即將開始（14 天內開始）、即將結束（剩不到 3 天）、新徽章（開始 3 天內）、免費／訂閱／其他（徽章類型）。自訂標籤要到「所有徽章」的徽章編輯裡勾選要套用的徽章。</span>
       </div>
       <div class="grp">
-        <h3>倒數 Widget</h3>
+        <h3>資訊 Widget</h3>
         <div id="gWg" style="display:flex;flex-direction:column;gap:6px"></div>
-        <span class="hint">內容（標題、時間、圖片、顏色）在「倒數 Widget」分頁編輯；這裡只決定 Game Overlay 要不要顯示、放在哪裡。</span>
+        <span class="hint">內容（標題、倒數、備註、圖片、顏色）在「資訊 Widget」分頁編輯；這裡只決定 Game Overlay 要不要顯示、放在哪裡。</span>
       </div>
       <div class="grp">
         <h3>語言</h3>
@@ -740,7 +777,7 @@ $("fClear").onclick=()=>{if(!cur)return;const k=K(cur);
 /* ---------- Overlay 外觀 ---------- */
 let OV=null;
 function ovCurrent(){const m=merged()._overlay||{};const c=structuredClone(OV_DEFAULTS);
-  WG=Array.isArray(m.widgets)?structuredClone(m.widgets):[]; // 倒數 Widget 存在 _overlay.widgets
+  WG=Array.isArray(m.widgets)?structuredClone(m.widgets):[]; // 資訊 Widget 存在 _overlay.widgets
   GM=gmMerge(m.game);                                          // Game Overlay 存在 _overlay.game
   for(const k of Object.keys(OV_DEFAULTS)){if(m[k]==null)continue;if(k==="colors")Object.assign(c.colors,m.colors);else c[k]=structuredClone(m[k])}
   // 舊設定 leftWidth（左欄 px）換算成百分比（與 overlay-v2.html 相同），下次存檔會改存 cols
@@ -769,7 +806,7 @@ $("ovPreset").addEventListener("click",e=>{const c=e.target.closest(".chip");if(
 function ovDiff(){const o={};for(const k of Object.keys(OV_DEFAULTS)){
   if(k==="colors"){const c={};for(const ck of Object.keys(OV_DEFAULTS.colors))if(OV.colors[ck].toLowerCase()!==OV_DEFAULTS.colors[ck])c[ck]=OV.colors[ck].toLowerCase();if(Object.keys(c).length)o.colors=c}
   else if(JSON.stringify(OV[k])!==JSON.stringify(OV_DEFAULTS[k]))o[k]=OV[k]}return o}
-/* _overlay＝外觀（只存與預設不同的）＋ widgets（倒數 Widget） */
+/* _overlay＝外觀（只存與預設不同的）＋ widgets（資訊 Widget）＋ game（Game Overlay） */
 function ovCompose(){const d=ovDiff();if(WG.length)d.widgets=WG;const g=gmDiff();if(Object.keys(g).length)d.game=g;return d}
 function ovStage(){const d=ovCompose();
   if(Object.keys(d).length)pending._overlay=d; else if(BASE._overlay)pending._overlay=null; else delete pending._overlay;
@@ -785,7 +822,7 @@ addEventListener("message",e=>{const p=PV.find(x=>$(x.f).contentWindow===e.sourc
   // Game Overlay：在預覽裡點選、拖曳後，更新控制台
   if(e.data?.type==="game-box-pick"){gmSel=e.data.key;gmBoxes()}
   if(e.data?.type==="game-box-move"){const r=gmRect(e.data.key);if(r){Object.assign(r,{x:e.data.x,y:e.data.y,w:e.data.w,h:e.data.h});gmSel=e.data.key;gmBoxes();gmDirty(false)}}
-  // 倒數 Widget：在預覽裡點選、拖曳後，更新控制台
+  // 資訊 Widget：在預覽裡點選、拖曳後，更新控制台
   if(e.data?.type==="overlay-widget-pick"){const i=WG.findIndex(w=>w.id===e.data.id);if(i>=0){wgCur=i;wgAll(false)}}
   if(e.data?.type==="overlay-widget-move"){const w=WG.find(x=>x.id===e.data.id);if(w){Object.assign(w,{x:e.data.x,y:e.data.y,w:e.data.w,h:e.data.h});wgFill();wgDirty()}}
   // 預覽裡拖曳分隔條後，記下新的欄寬
@@ -797,14 +834,14 @@ function pvSendCfg(){if(!OV)return;for(const p of PV)if(p.ready){
 function pvSendManual(){for(const p of PV)if(p.ready)$(p.f).contentWindow.postMessage({type:"overlay-manual",manual:merged()},"*")}
 function wgSelSend(){const p=PV[1];if(p.ready)$(p.f).contentWindow.postMessage({type:"overlay-widget-select",id:WG[wgCur]?.id||null},"*")}
 
-/* ---------- 倒數 Widget ---------- */
+/* ---------- 資訊 Widget（原「倒數 Widget」） ---------- */
 let WG=[], wgCur=0, wgPvLang="";
 const wgNew=n=>({id:Math.random().toString(36).slice(2,9),show:true,title:"活動倒數"+(n>1?" "+n:""),title2:"",to:new Date(Date.now()+2*864e5).toISOString().replace(/\.\d{3}Z$/,"Z"),
-  end_mode:"zero",end_text:"",images:[],layout:"auto",x:Math.round((OV?.width||1920)-560),y:Math.round((OV?.height||1080)-340),w:520,h:300,colors:null,clear:false});
+  end_mode:"zero",end_text:"",images:[],layout:"auto",show_cd:true,to_mode:"time",show_n1:false,show_n2:false,note1:"",note2:"",show_img:true,badge:"",x:Math.round((OV?.width||1920)-560),y:Math.round((OV?.height||1080)-340),w:520,h:300,colors:null,clear:false});
 function wgDirty(){$("wgMsg").className="msg";$("wgMsg").textContent="有修改，按「加入待存檔」保存";pvSendCfg();gmWgList()}
 function wgTabs(){
   $("wgTabs").innerHTML=WG.map((w,i)=>`<div class="wtab" role="tab" aria-selected="${i===wgCur}" data-i="${i}" title="${esc(w.title||"")}"><span class="dot ${w.show!==false?"on":""}"></span><span class="nm">${esc(w.title||"未命名")}</span><span class="x" data-x="${i}" title="刪除這個 Widget">×</span></div>`).join("")
-    +`<button type="button" class="addtab" id="wgAdd" title="新增倒數 Widget">＋</button>`;
+    +`<button type="button" class="addtab" id="wgAdd" title="新增資訊 Widget">＋</button>`;
   $("wgEmpty").hidden=WG.length>0; $("wgEd").hidden=!WG.length;
 }
 function wgFill(){const w=WG[wgCur];if(!w)return;
@@ -816,7 +853,34 @@ function wgFill(){const w=WG[wgCur];if(!w)return;
   const c=w.colors;$("wCustom").checked=!!c;$("wColors").hidden=!c;$("wBg").value=c?.bg||OV.colors.panel;$("wFg").value=c?.fg||OV.colors.text;$("wNum").value=c?.num||OV.colors.accent;$("wClear").checked=!!w.clear;
   $("wImgs").innerHTML=(w.images||[]).map((u,i)=>`<div class="it"><img src="${esc(u)}" alt="" onerror="this.style.visibility='hidden'"><button type="button" data-del="${i}" title="移除">×</button></div>`).join("")||`<span class="hint">還沒有圖片（沒有圖片時只顯示標題與倒數）</span>`;
   $("wImgN").textContent=(w.images||[]).length?`${w.images.length} 張`:"";
+  // 可選的部分
+  $("wShowCd").checked=w.show_cd!==false;$("wShowN1").checked=!!w.show_n1;$("wShowN2").checked=!!w.show_n2;$("wShowImg").checked=w.show_img!==false;
+  $("wCdGrp").hidden=w.show_cd===false;$("wImgGrp").hidden=w.show_img===false;$("wNoteGrp").hidden=!w.show_n1&&!w.show_n2;$("wN1Wrap").hidden=!w.show_n1;$("wN2Wrap").hidden=!w.show_n2;
+  $("wN1").value=w.note1||"";$("wN2").value=w.note2||"";
+  const b=w.badge?BADGES.find(x=>K(x)===w.badge):null, be=b?entryFor(b):{};
+  $("wBadgeCur").innerHTML=b?`<div class="bcur"><img src="${esc(b.image_url_2x)}" alt=""><span><b>${esc(b.title)}</b><br><span class="mono hint">${esc(w.badge)}</span></span><button type="button" class="btn ghost" id="wBadgeOff">取消連結</button></div>`
+    :w.badge?`<div class="bcur"><span>找不到 ${esc(w.badge)}</span><button type="button" class="btn ghost" id="wBadgeOff">取消連結</button></div>`:`<span class="hint">沒有連結。連結後，備註留空會自動用這個徽章的備註，倒數也可以跟隨它的活動時間。</span>`;
+  const tm=w.to_mode==="badge"&&w.badge?"badge":"time";
+  document.querySelectorAll("#wToMode button").forEach(x=>{x.setAttribute("aria-pressed",x.dataset.v===tm);if(x.dataset.v==="badge")x.disabled=!w.badge});
+  $("wToWrap").hidden=tm==="badge";
+  $("wToHint").textContent=tm==="badge"?(be.start?`開始前倒數到開始（${fmt.format(new Date(be.start))}），開始後倒數到結束${be.end?`（${fmt.format(new Date(be.end))}）`:"（還沒有結束時間，開始後不顯示倒數）"}。`:"這個徽章還沒有活動時間，暫時不顯示倒數。")
+    :"剩 1 天以上顯示「3 天 12:34:56」，不到 1 天只顯示「12:34:56」。";
+  $("wN1").placeholder=b?(be.note?"留空＝用徽章的備註："+be.note.slice(0,40):"徽章沒有中文備註，請在這裡輸入"):"例如：在 ELDEN RING 分類訂閱即可獲得";
+  $("wN2").placeholder=b?(be.note_extra?"留空＝用徽章的備註 2："+be.note_extra.slice(0,40):"徽章沒有英文備註，請在這裡輸入"):"e.g. Subscribe in the ELDEN RING category";
+  $("wNoteHint").textContent=b?"留空＝使用連結徽章的備註（徽章編輯裡填的），之後徽章備註改了這裡會自動跟著變。":"沒有連結徽章時，請直接輸入備註。";
 }
+function wgBadgeList(){const q=norm($("wBadgeQ").value);
+  $("wBadgeList").innerHTML=q?BADGES.filter(b=>norm(b.title).includes(q)||norm(K(b)).includes(q)).slice(0,10).map(b=>`<button type="button" data-bk="${esc(K(b))}"><img src="${esc(b.image_url_2x)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><span>${esc(b.title)}<br><span class="mono hint">${esc(K(b))}</span></span></button>`).join("")||`<span class="hint" style="padding:8px">沒有符合的徽章</span>`:""}
+$("wBadgeQ").addEventListener("input",wgBadgeList);
+/* 連結徽章：順便帶入標題、圖片，以及有內容的備註 */
+$("wBadgeList").addEventListener("click",e=>{const x=e.target.closest("[data-bk]");const w=WG[wgCur];if(!x||!w)return;
+  const b=BADGES.find(y=>K(y)===x.dataset.bk);if(!b)return;const be=entryFor(b);
+  w.badge=K(b); if(!w.title||/^活動倒數/.test(w.title))w.title=b.title;
+  if(!(w.images||[]).length)w.images=[b.image_url_4x];
+  if(!w.show_n1&&!w.show_n2){w.show_n1=!!be.note;w.show_n2=!!be.note_extra}
+  $("wBadgeQ").value="";wgBadgeList();wgTabs();wgFill();wgDirty()});
+$("wBadgeCur").addEventListener("click",e=>{if(e.target.id!=="wBadgeOff"||!WG[wgCur])return;const w=WG[wgCur];w.badge="";if(w.to_mode==="badge")w.to_mode="time";wgFill();wgDirty()});
+$("wToMode").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.disabled||!WG[wgCur])return;WG[wgCur].to_mode=b.dataset.v;wgFill();wgDirty()});
 function wgPicker(){const q=norm($("wPickQ").value);
   const L=q?BADGES.filter(b=>norm(b.title).includes(q)).slice(0,80):BADGES.filter(b=>{const st=status(entryFor(b));return st==="live"||st==="soon"});
   $("wPicker").innerHTML=L.map(b=>`<button type="button" data-u="${esc(b.image_url_4x)}" title="${esc(b.title)}"><img src="${esc(b.image_url_2x)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"></button>`).join("")||`<span class="hint">沒有符合的徽章</span>`}
@@ -826,8 +890,11 @@ function wgRead(){const w=WG[wgCur];if(!w)return;
   ["x","y","w","h"].forEach(k=>{const v=Math.round(+$("w"+k.toUpperCase()).value);if(Number.isFinite(v))w[k]=v});
   w.w=Math.max(120,Math.min(OV.width,w.w));w.h=Math.max(70,Math.min(OV.height,w.h));w.x=Math.max(0,Math.min(OV.width-w.w,w.x));w.y=Math.max(0,Math.min(OV.height-w.h,w.y));
   w.colors=$("wCustom").checked?{bg:$("wBg").value,fg:$("wFg").value,num:$("wNum").value}:null;$("wColors").hidden=!w.colors;w.clear=$("wClear").checked;
+  const parts=[w.show_cd,w.show_n1,w.show_n2,w.show_img].join();
+  w.show_cd=$("wShowCd").checked;w.show_n1=$("wShowN1").checked;w.show_n2=$("wShowN2").checked;w.show_img=$("wShowImg").checked;w.note1=$("wN1").value;w.note2=$("wN2").value;
+  if(parts!==[w.show_cd,w.show_n1,w.show_n2,w.show_img].join())wgFill(); // 勾選改變時，顯示或收起對應的設定
   wgTabs();wgDirty()}
-$("wgEd").addEventListener("input",e=>{if(e.target.matches("input:not(#wUrl):not(#wPickQ)"))wgRead()});
+$("wgEd").addEventListener("input",e=>{if(e.target.matches("input:not(#wUrl):not(#wPickQ):not(#wBadgeQ),textarea"))wgRead()});
 $("wgTabs").addEventListener("click",e=>{
   const x=e.target.closest("[data-x]");
   if(x){const i=+x.dataset.x;if(!confirm(`刪除「${WG[i].title||"未命名"}」？（按「加入待存檔」並存檔後才會從網站移除）`))return;WG.splice(i,1);if(wgCur>=WG.length)wgCur=WG.length-1;wgAll();wgDirty();return}
@@ -841,7 +908,10 @@ $("wAddUrl").onclick=()=>{const u=$("wUrl").value.trim();if(!/^https?:\/\/\S+$/i
 $("wPickQ").addEventListener("input",wgPicker);
 $("wPicker").addEventListener("click",e=>{const b=e.target.closest("[data-u]");if(!b||!WG[wgCur])return;(WG[wgCur].images||=[]).push(b.dataset.u);wgFill();wgDirty()});
 $("wgPvLang").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;wgPvLang=b.dataset.v;document.querySelectorAll("#wgPvLang button").forEach(x=>x.setAttribute("aria-pressed",x===b));pvSendCfg()});
-$("wgSave").onclick=()=>{for(const w of WG){if(!w.to||isNaN(Date.parse(w.to))){$("wgMsg").className="msg bad";$("wgMsg").textContent=`「${w.title||"未命名"}」還沒設定倒數時間`;return}}
+$("wgSave").onclick=()=>{for(const w of WG){const bad=m=>{$("wgMsg").className="msg bad";$("wgMsg").textContent=`「${w.title||"未命名"}」${m}`;return true};
+    if(w.show_cd!==false&&w.to_mode!=="badge"&&(!w.to||isNaN(Date.parse(w.to)))&&bad("還沒設定倒數時間"))return;
+    if(w.show_cd!==false&&w.to_mode==="badge"&&!w.badge&&bad("選了跟隨徽章時間，但沒有連結徽章"))return;
+    if(!w.badge&&((w.show_n1&&!String(w.note1||"").trim())||(w.show_n2&&!String(w.note2||"").trim()))&&bad("勾了備註但沒有內容（沒有連結徽章時要自己輸入）"))return}
   ovStage();$("wgMsg").className="msg";$("wgMsg").textContent="已加入待存檔，按下方「儲存到網站」才會上線"};
 
 /* ---------- Game Overlay ----------
@@ -883,7 +953,7 @@ function gmDirty(send=true){$("gmMsg").className="msg";$("gmMsg").textContent="�
 function gmSelSend(){const p=PV[2];if(p.ready)$(p.f).contentWindow.postMessage({type:"game-box-select",key:gmSel},"*")}
 /* 框：選擇要調整哪一個，顯示它的位置與大小 */
 function gmBoxes(){if(!GM)return;const ks=gmKeys();if(!ks.includes(gmSel))gmSel="game";
-  $("gmBox").innerHTML=ks.map(k=>`<button type="button" data-k="${esc(k)}" aria-pressed="${k===gmSel}">${esc(k.startsWith("wg:")?"倒數："+(WG.find(w=>w.id===k.slice(3))?.title||"未命名"):GM_BOX_ZH[k])}</button>`).join("");
+  $("gmBox").innerHTML=ks.map(k=>`<button type="button" data-k="${esc(k)}" aria-pressed="${k===gmSel}">${esc(k.startsWith("wg:")?"Widget："+(WG.find(w=>w.id===k.slice(3))?.title||"未命名"):GM_BOX_ZH[k])}</button>`).join("");
   const r=gmRect(gmSel);["x","y","w","h"].forEach(k=>$("g"+k.toUpperCase()).value=Math.round(r[k]));
   $("gShowWrap").hidden=!(gmSel==="head"||gmSel==="chat");$("gShow").checked=r.show!==false;$("gLock").checked=GM.lock169!==false;gmSelSend()}
 function gmBoxRead(id){const r=gmRect(gmSel);if(!r)return;const W0=GM.width,H0=GM.height;
@@ -905,13 +975,17 @@ $("gTags").addEventListener("click",e=>{const row=e.target.closest(".trow");if(!
   if(e.target.closest("[data-rm]")){const x=GM.tags[i];if(!confirm(`刪除自訂標籤「${x.zh||x.en||"未命名"}」？（已套用這個標籤的徽章會自動不顯示它）`))return;GM.tags.splice(i,1);gmTags();gmDirty();fTagsRender()}});
 $("gTagAdd").onclick=()=>{GM.tags.push({k:"c_"+Math.random().toString(36).replace(/[^a-z]/g,"").slice(0,6).padEnd(4,"x"),on:true,zh:"新標籤",en:"Tag",color:"#ff8ad8"});gmTags();gmDirty();fTagsRender();
   const ins=$("gTags").querySelectorAll('input[data-f="zh"]');ins[ins.length-1]?.select()};
-/* 倒數 Widget：勾選＝在 Game Overlay 顯示。第一次勾選時放在遊戲畫面下方的右邊（放不下就放在遊戲畫面裡的右下角） */
+/* 資訊 Widget：勾選＝在 Game Overlay 顯示。第一次勾選時放在遊戲畫面下方的右邊（放不下就放在遊戲畫面裡的右下角） */
 function gmWgList(){if(!GM)return;
-  $("gWg").innerHTML=WG.length?WG.map(w=>`<label class="chk"><input type="checkbox" data-wg="${esc(w.id)}" ${GM.widgets[w.id]?.show?"checked":""}> ${esc(w.title||"未命名")}</label>`).join(""):`<span class="hint">還沒有倒數 Widget，請先到「倒數 Widget」分頁新增。</span>`;
+  $("gWg").innerHTML=WG.length?WG.map(w=>`<label class="chk"><input type="checkbox" data-wg="${esc(w.id)}" ${GM.widgets[w.id]?.show?"checked":""}> ${esc(w.title||"未命名")}</label>`).join(""):`<span class="hint">還沒有資訊 Widget，請先到「資訊 Widget」分頁新增。</span>`;
   if(tab==="game")gmBoxes()}
 $("gWg").addEventListener("change",e=>{const id=e.target.dataset.wg;if(!id)return;
   if(e.target.checked){const g=GM.boxes.game,w=440,h=106;let r=GM.widgets[id];
-    if(!r){r={x:g.x+g.w-w,y:g.y+g.h+16,w,h};if(r.y+h>GM.height){r.x=g.x+g.w-w-24;r.y=g.y+g.h-h-24}GM.widgets[id]=r}
+    if(!r){r={x:g.x+g.w-w,y:g.y+g.h+16,w,h};if(r.y+h>GM.height){r.x=g.x+g.w-w-24;r.y=g.y+g.h-h-24}
+      // 已經有別的 Widget 在那裡時，往左排，不要疊在一起
+      const hit=q=>Object.entries(GM.widgets).some(([k,o])=>k!==id&&o.show&&q.x<o.x+o.w&&q.x+q.w>o.x&&q.y<o.y+o.h&&q.y+q.h>o.y);
+      for(let i=0;i<6&&hit(r)&&r.x-w-16>=0;i++)r.x-=w+16;
+      GM.widgets[id]=r}
     r.show=true;gmSel="wg:"+id}else if(GM.widgets[id])GM.widgets[id].show=false;
   gmBoxes();gmDirty()});
 function gmFill(){if(!GM)return;
@@ -939,7 +1013,7 @@ $("gmLayoutReset").onclick=()=>{GM.boxes=structuredClone(GM_DEFAULTS.boxes);GM.l
 $("gmPvLang").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;gmPvLang=b.dataset.v;document.querySelectorAll("#gmPvLang button").forEach(x=>x.setAttribute("aria-pressed",x===b));pvSendCfg()});
 $("gmCopy").onclick=()=>{const u=$("gmUrl").textContent;try{navigator.clipboard.writeText(u).then(()=>{$("gmMsg").className="msg";$("gmMsg").textContent="已複製 OBS 網址"})}catch(_){}};
 $("gmSave").onclick=()=>{ovStage();$("gmMsg").className="msg";$("gmMsg").textContent="已加入待存檔，按下方「儲存到網站」才會上線"};
-$("gmReset").onclick=()=>{const w=GM.widgets;GM=structuredClone(GM_DEFAULTS);GM.widgets=w;gmFill();gmDirty();fTagsRender();$("gmMsg").textContent="已還原（倒數 Widget 的位置保留），按「加入待存檔」才會保存"};
+$("gmReset").onclick=()=>{const w=GM.widgets;GM=structuredClone(GM_DEFAULTS);GM.widgets=w;gmFill();gmDirty();fTagsRender();$("gmMsg").textContent="已還原（資訊 Widget 的位置保留），按「加入待存檔」才會保存"};
 function gmAll(){gmFill();pvSendCfg()}
 
 /* ---------- 待存檔 ---------- */
@@ -947,7 +1021,7 @@ function renderPending(){
   const ks=Object.keys(pending);
   $("pendCnt").textContent=ks.length?`${ks.length} 筆`:"";
   $("pend").innerHTML=ks.length?ks.map(k=>{const v=pending[k];
-    if(k==="_overlay") return `<div><span>Overlay 外觀／倒數 Widget／Game Overlay・${v===null?"還原預設":"已修改"}${v?.widgets?.length?`（${v.widgets.length} 個 Widget）`:""}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`;
+    if(k==="_overlay") return `<div><span>Overlay 外觀／資訊 Widget／Game Overlay・${v===null?"還原預設":"已修改"}${v?.widgets?.length?`（${v.widgets.length} 個 Widget）`:""}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`;
     const b=BADGES.find(x=>K(x)===k);
     const parts=v===null?["刪除"]:[v.type?TYPE_ZH[v.type]:"",v.game||"",v.start?fmt.format(new Date(v.start))+(v.end?" → "+fmt.format(new Date(v.end)):""):"",(v.note||v.note_extra)?"有備註":"",v.cmd?"指令 "+v.cmd:"",v.tags_manual?"標籤手動 "+(v.tags?v.tags.split(",").length:0)+" 個":v.tags?"自訂標籤 "+v.tags.split(",").length+" 個":"",v.drop_id?(v.drop_src==="campaigns"?"活動 ID（掉寶頁）":"活動 ID（後台）"):"",v.column?"位置："+COL_ZH[v.column]:"",v.reviewed?"已確認":""].filter(Boolean);
     return `<div><span>${esc(b?.title||k)}・${esc(parts.join("・")||"空白")}</span><button data-del="${esc(k)}" aria-label="移除">✕</button></div>`}).join("")

@@ -155,6 +155,7 @@ html:not(.lang-en) .lchip .c-zh, html.lang-en .lchip .c-en{color:var(--text)}
 .wg .ttl::before{content:"";flex:none;width:.22em;height:1em;border-radius:.11em;background:var(--accent)} /* 跟欄位標題一樣的直線 */
 .wg .cd{margin-top:.28em;font-size:1.5em;white-space:nowrap}
 .wg .endt{margin-top:.28em;font-size:1.3em;white-space:nowrap;color:var(--accent)}
+.wg .nt{margin-top:.4em;font-size:.62em;line-height:1.4;white-space:pre-line;overflow-wrap:anywhere;width:100%;color:color-mix(in srgb,currentColor 78%,transparent)} /* 備註：會換行，跟標題、倒數一起縮放到放得進框 */
 /* 控制台預覽：可拖曳、可拉把改大小 */
 html.pv-edit .wg{cursor:move}
 html.pv-edit .wg.off{opacity:.35}
@@ -250,7 +251,7 @@ function applyCfg(){
   st.classList.toggle("chat-none",CFG.chat==="none"); st.classList.toggle("nolangviz",CFG.langViz===false); st.classList.toggle("chat-top",CFG.chat==="top");
   document.getElementById("chatPanel").hidden=CFG.chat==="none";
   document.documentElement.classList.toggle("transparent",!!CFG.transparent);
-  fit(); sig=""; if(DB) refresh(); placeSplits(); startLang(); renderWidgets();
+  fit(); sig=""; if(DB) refresh(); placeSplits(); startLang(); WG_SIG=""; renderWidgets();
 }
 function fit(){const s=Math.min(innerWidth/CFG.width,innerHeight/CFG.height),st=document.getElementById("stage");st.style.transform=`scale(${s})`;st.style.left=(innerWidth-CFG.width*s)/2+"px";st.style.top=(innerHeight-CFG.height*s)/2+"px"}
 addEventListener("resize",()=>{fit();sig="";if(DB)refresh()});
@@ -445,7 +446,7 @@ if(PREVIEW){
   addEventListener("resize",placeSplits); document.fonts?.ready.then(placeSplits);
 }
 
-/* ---------- 倒數 Widget ----------
+/* ---------- 資訊 Widget（原「倒數 Widget」） ----------
    設定在 _overlay.widgets：[{id, show, title, title2, to, end_mode("zero"|"text"), end_text, images[], layout("auto"|"v"|"h"),
    x, y, w, h（畫布 px）, colors{bg,fg,num}（沒有＝跟隨 overlay）, clear（透明背景）}]
    倒數到 to：剩 1 天以上顯示「N 天 HH:MM:SS」，不到 1 天顯示「HH:MM:SS」；時間到了顯示 00:00:00 或自訂文字。
@@ -453,7 +454,17 @@ if(PREVIEW){
 const wgLayer=document.getElementById("wgLayer");
 let WG_SIG="", WG_SEL=null;
 const wgList=()=>(CFG.widgets||[]).filter(w=>w&&w.id&&(PREVIEW||w.show!==false));
-function wgLayout(w){if(!(w.images||[]).length)return"none";if(w.layout==="v"||w.layout==="h")return w.layout;return w.w/w.h>=2.2?"h":"v"}
+/* 資訊 Widget：每個部分都可選（標題 2、倒數、備註 1、備註 2、圖片），可以連結一個徽章（badge＝set_id/版本）。
+   欄位：show_cd（預設顯示）、to_mode（time＝倒數到 to｜badge＝跟隨連結徽章：開始前倒數到開始，開始後倒數到結束）、
+   show_n1／show_n2（備註 1＝中文、備註 2＝英文；兩個都有時跟著中英切換）、note1／note2（留空＝用連結徽章的 note／note_extra）、show_img（預設顯示） */
+const wgBadge=w=>w.badge&&DB?(DB.badges||[]).find(b=>keyOf(b)===w.badge)||null:null;
+function wgNotes(w){const b=wgBadge(w),m=(w.badge&&MANUAL[w.badge])||{},c=b?.campaign||{},L=v=>String(v??"").trim();
+  return [w.show_n1?L(w.note1)||L(m.note??c.note):"", w.show_n2?L(w.note2)||L(m.note_extra??c.note_extra):""]}
+function wgNoteHTML(w){const[a,b]=wgNotes(w);if(!a&&!b)return"";return `<div class="nt">${a&&b?`<span class="zh">${esc(a)}</span><span class="en">${esc(b)}</span>`:esc(a||b)}</div>`}
+function wgTarget(w,n){if(w.show_cd===false)return null;
+  if(w.to_mode==="badge"){const b=wgBadge(w);if(!b)return null;const m=MANUAL[w.badge]||{},c=b.campaign||{},s=t(m.start??c.start),e=t(m.end??c.end);return s&&n<s?s:(e||null)}
+  return Date.parse(w.to)||null}
+function wgLayout(w){if(w.show_img===false||!(w.images||[]).length)return"none";if(w.layout==="v"||w.layout==="h")return w.layout;return w.w/w.h>=2.2?"h":"v"}
 function wgHTML(w){
   const L=wgLayout(w), c=w.colors||{};
   const st=`left:${+w.x||0}px;top:${+w.y||0}px;width:${+w.w||300}px;height:${+w.h||160}px;`+(c.bg?`--panel:${c.bg};`:"")+(c.fg?`--text:${c.fg};`:"")+(c.num?`--accent:${c.num};`:"");
@@ -461,10 +472,10 @@ function wgHTML(w){
   const handles=PREVIEW?["nw","n","ne","e","se","s","sw","w"].map(h=>`<span class="hd ${h}" data-h="${h}"></span>`).join("")+`<span class="sz"></span>`:"";
   return `<div class="wg ${w.clear?"clear":""} ${w.show===false?"off":""} ${PREVIEW&&w.id===WG_SEL?"sel":""}" data-id="${esc(w.id)}" style="${esc(st)}">
     <div class="wg-in ${L==="h"?"h":"v"}">${imgs}<div class="txt"><div class="ttl"><span class="zh">${esc(w.title||"")}</span><span class="en">${esc(w.title2||w.title||"")}</span></div>
-    <div class="cd flap"></div><div class="endt" hidden>${esc(w.end_text||"")}</div></div></div>${handles}</div>`;
+    <div class="cd flap"></div><div class="endt" hidden>${esc(w.end_text||"")}</div>${wgNoteHTML(w)}</div></div>${handles}</div>`;
 }
 function renderWidgets(){
-  const list=wgList(), s=JSON.stringify([list,WG_SEL]);
+  const list=wgList(), s=JSON.stringify([list,WG_SEL,list.map(wgNotes),list.map(w=>!!wgBadge(w))]);
   if(s===WG_SIG) return; WG_SIG=s;
   wgLayer.innerHTML=list.map(wgHTML).join(""); wgTick(true);
 }
@@ -473,11 +484,11 @@ function wgTick(force){
   const n=now();
   wgLayer.querySelectorAll(".wg").forEach(el=>{
     const w=(CFG.widgets||[]).find(x=>x.id===el.dataset.id); if(!w) return;
-    const ms=(Date.parse(w.to)||0)-n, txt=ms<=0&&w.end_mode==="text"&&(w.end_text||"").trim();
+    const T=wgTarget(w,n), ms=T==null?null:T-n, txt=ms!=null&&ms<=0&&w.end_mode==="text"&&(w.end_text||"").trim();
     const cd=el.querySelector(".cd"), et=el.querySelector(".endt");
-    cd.hidden=!!txt; et.hidden=!txt;
-    if(!txt) flap(cd,cdParts(ms));
-    const k=txt?"t":String(cd.children.length);
+    cd.hidden=ms==null||!!txt; et.hidden=!txt;
+    if(ms!=null&&!txt) flap(cd,cdParts(ms));
+    const k=txt?"t":ms==null?"n":String(cd.children.length);
     if(force||el.dataset.k!==k){el.dataset.k=k;wgFit(el)}
   });
 }
@@ -514,7 +525,7 @@ if(PREVIEW){
 /* ---------- 控制台即時預覽 ---------- */
 if(PREVIEW) addEventListener("message",e=>{const d=e.data;if(!d||typeof d!=="object")return;
   if(d.type==="overlay-config"){CFG=mergeCfg(DEFAULTS,d.config);applyCfg()}
-  if(d.type==="overlay-manual"){MANUAL=d.manual||{};sig="";if(DB)refresh()}
+  if(d.type==="overlay-manual"){MANUAL=d.manual||{};sig="";if(DB)refresh();renderWidgets()}
   if(d.type==="overlay-widget-select"){WG_SEL=d.id||null;renderWidgets()}});
 
 /* ---------- 中英切換 ----------
