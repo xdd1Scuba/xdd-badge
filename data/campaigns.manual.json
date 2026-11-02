@@ -59,6 +59,7 @@
       }
     ],
     "game": {
+      "fontScale": 1.05,
       "boxes": {
         "head": {
           "x": 16,
