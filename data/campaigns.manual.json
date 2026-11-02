@@ -37,25 +37,6 @@
         "h": 314,
         "colors": null,
         "clear": false
-      },
-      {
-        "id": "axmd5qa",
-        "show": true,
-        "title": "Ends In:",
-        "title2": "",
-        "to": "2026-11-02T03:59:00Z",
-        "end_mode": "text",
-        "end_text": "已結束",
-        "images": [
-          "https://static-cdn.jtvnw.net/badges/v1/e073c4ac-2d87-4f4b-8239-a2081f4a06e1/3"
-        ],
-        "layout": "auto",
-        "x": 1342,
-        "y": 747,
-        "w": 520,
-        "h": 300,
-        "colors": null,
-        "clear": false
       }
     ],
     "game": {
@@ -96,13 +77,6 @@
           "y": 960,
           "w": 475,
           "h": 103,
-          "show": true
-        },
-        "axmd5qa": {
-          "x": 911,
-          "y": 959,
-          "w": 475,
-          "h": 106,
           "show": true
         }
       }
