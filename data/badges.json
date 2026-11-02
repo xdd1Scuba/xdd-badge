@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-02T18:27:21.386Z",
+ "updated_at": "2026-11-02T18:43:22.439Z",
  "count": 556,
  "badges": [
   {
@@ -15,12 +15,17 @@
    "first_seen": "2026-11-02T18:27:21.386Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "World of Warcraft",
+    "note": "為了聯盟！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
+    "note_extra": "FOR THE ALLIANCE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "horde",
