@@ -366,7 +366,7 @@
     "tags": "soon,sub",
     "tags_manual": true,
     "type": "sub",
-    "column": "left",
+    "column": "hide",
     "reviewed": true
   },
   "warrior-jar-alexander/1": {
