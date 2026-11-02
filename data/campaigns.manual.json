@@ -50,8 +50,8 @@
           "https://static-cdn.jtvnw.net/badges/v1/e073c4ac-2d87-4f4b-8239-a2081f4a06e1/3"
         ],
         "layout": "auto",
-        "x": 1360,
-        "y": 740,
+        "x": 1342,
+        "y": 747,
         "w": 520,
         "h": 300,
         "colors": null,
@@ -95,6 +95,13 @@
           "y": 960,
           "w": 475,
           "h": 103,
+          "show": true
+        },
+        "axmd5qa": {
+          "x": 944,
+          "y": 960,
+          "w": 475,
+          "h": 106,
           "show": true
         }
       }
