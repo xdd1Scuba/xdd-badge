@@ -359,6 +359,16 @@
     "column": "sub",
     "reviewed": true
   },
+  "warcraft/horde": {
+    "game": "World of Warcraft",
+    "note": "為了部落！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
+    "note_extra": "FOR THE HORDE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+    "tags": "soon,sub",
+    "tags_manual": true,
+    "type": "sub",
+    "column": "left",
+    "reviewed": true
+  },
   "warrior-jar-alexander/1": {
     "game": "ELDEN RING",
     "start": "2026-11-02T07:00:00Z",
