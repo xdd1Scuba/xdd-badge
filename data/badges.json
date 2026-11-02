@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-02T16:14:51.858Z",
+ "updated_at": "2026-11-02T18:25:43.606Z",
  "count": 554,
  "badges": [
   {
@@ -10888,12 +10888,17 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "World of Warcraft",
+    "note": "為了部落！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
+    "note_extra": "FOR THE HORDE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "sub",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "wardog",
