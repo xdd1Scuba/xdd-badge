@@ -240,6 +240,15 @@
     "start": "2026-10-14T16:00:00Z",
     "end": "2026-10-27T15:59:00Z"
   },
+  "horde/1": {
+    "game": "World of Warcraft",
+    "note": "為了部落！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
+    "note_extra": "FOR THE HORDE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+    "tags": "soon,sub",
+    "tags_manual": true,
+    "column": "left",
+    "reviewed": true
+  },
   "hunt-red/1": {
     "game": "Hunt: Showdown 1896",
     "start": "2026-10-26T14:54:00Z",
