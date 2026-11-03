@@ -22,7 +22,7 @@
       {
         "id": "q9rkpw3",
         "show": true,
-        "title": "SUB/GIFT",
+        "title": "Warrior Jar",
         "title2": "",
         "to": "2026-11-03T08:30:00Z",
         "end_mode": "zero",
@@ -38,8 +38,8 @@
         "colors": null,
         "clear": false,
         "show_cd": false,
-        "show_n1": false,
-        "show_n2": false,
+        "show_n1": true,
+        "show_n2": true,
         "show_img": true,
         "note1": "訂閱/贈訂解鎖",
         "note2": "SUB/GIFT TO UNLOCK"
