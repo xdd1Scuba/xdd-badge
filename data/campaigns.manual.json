@@ -22,8 +22,8 @@
       {
         "id": "q9rkpw3",
         "show": true,
-        "title": "換 Elden Ring 分類",
-        "title2": "Switching to Elden Ring Category",
+        "title": "訂閱/贈訂解鎖",
+        "title2": "SUB/GIFT",
         "to": "2026-11-03T08:30:00Z",
         "end_mode": "zero",
         "end_text": "",
@@ -37,9 +37,9 @@
         "h": 314,
         "colors": null,
         "clear": false,
-        "show_cd": true,
-        "show_n1": false,
-        "show_n2": false,
+        "show_cd": false,
+        "show_n1": true,
+        "show_n2": true,
         "show_img": true,
         "note1": "訂閱/贈訂解鎖",
         "note2": "SUB/GIFT TO UNLOCK"
