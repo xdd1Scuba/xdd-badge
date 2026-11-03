@@ -21,7 +21,7 @@
     "widgets": [
       {
         "id": "q9rkpw3",
-        "show": false,
+        "show": true,
         "title": "換 Elden Ring 分類",
         "title2": "Switching to Elden Ring",
         "to": "2026-11-03T08:30:00Z",
@@ -46,7 +46,6 @@
       }
     ],
     "game": {
-      "fontScale": 1.05,
       "boxes": {
         "head": {
           "x": 16,
