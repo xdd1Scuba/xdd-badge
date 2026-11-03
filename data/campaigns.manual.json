@@ -243,6 +243,8 @@
   },
   "horde/1": {
     "game": "World of Warcraft",
+    "start": "2026-11-04T16:00:00Z",
+    "end": "2026-12-01T07:58:00Z",
     "note": "為了部落！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
     "note_extra": "FOR THE HORDE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
     "tags": "soon,sub",
