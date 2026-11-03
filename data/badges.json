@@ -1,7 +1,27 @@
 {
- "updated_at": "2026-11-03T14:25:43.751Z",
- "count": 559,
+ "updated_at": "2026-11-03T14:34:00.703Z",
+ "count": 560,
  "badges": [
+  {
+   "set_id": "joy",
+   "id": "1",
+   "title": "Joy",
+   "description": "This badge was earned by subscribing or gifting a sub to a streamer in the Payday 3 category for 90 minutes",
+   "click_action": null,
+   "click_url": null,
+   "image_url_1x": "https://static-cdn.jtvnw.net/badges/v1/e8ff781d-a445-4ed3-9790-9514a2eb45f0/1",
+   "image_url_2x": "https://static-cdn.jtvnw.net/badges/v1/e8ff781d-a445-4ed3-9790-9514a2eb45f0/2",
+   "image_url_4x": "https://static-cdn.jtvnw.net/badges/v1/e8ff781d-a445-4ed3-9790-9514a2eb45f0/3",
+   "first_seen": "2026-11-03T14:34:00.703Z",
+   "baseline": false,
+   "removed_at": null,
+   "campaign": null,
+   "notified": {},
+   "type": null,
+   "column": null,
+   "cmd": null,
+   "reviewed": false
+  },
   {
    "set_id": "clover",
    "id": "1",
