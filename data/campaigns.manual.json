@@ -22,8 +22,8 @@
       {
         "id": "q9rkpw3",
         "show": true,
-        "title": "訂閱/贈訂解鎖",
-        "title2": "SUB/GIFT",
+        "title": "",
+        "title2": "",
         "to": "2026-11-03T08:30:00Z",
         "end_mode": "zero",
         "end_text": "",
@@ -82,7 +82,7 @@
           "y": 960,
           "w": 475,
           "h": 103,
-          "show": false
+          "show": true
         }
       }
     }
