@@ -94,6 +94,8 @@
   },
   "alliance/1": {
     "game": "World of Warcraft",
+    "start": "2026-11-04T16:00:00Z",
+    "end": "2026-12-01T07:58:00Z",
     "drop_id": "3e27da93-de21-4977-91db-e889991c7ff1",
     "drop_src": "dashboard",
     "note": "為了聯盟！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
