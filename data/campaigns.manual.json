@@ -57,7 +57,7 @@
           "https://static-cdn.jtvnw.net/badges/v1/8dfb6f30-1ec1-497a-91e4-028a704b4f57/3"
         ],
         "layout": "auto",
-        "show_cd": true,
+        "show_cd": false,
         "to_mode": "time",
         "show_n1": false,
         "show_n2": true,
