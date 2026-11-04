@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-04T07:37:16.003Z",
+ "updated_at": "2026-11-04T07:37:45.120Z",
  "count": 560,
  "badges": [
   {
@@ -38,12 +38,15 @@
    "first_seen": "2026-11-03T14:25:43.751Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Payday 3",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "free",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "kawaiidozer",
