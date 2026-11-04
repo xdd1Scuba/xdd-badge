@@ -294,7 +294,8 @@
     "note_extra": "FOR THE HORDE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
     "tags": "soon,sub",
     "tags_manual": true,
-    "column": "left",
+    "type": "sub",
+    "column": "sub",
     "reviewed": true
   },
   "hunt-red/1": {
