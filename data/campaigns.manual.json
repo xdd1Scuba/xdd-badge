@@ -43,6 +43,34 @@
         "show_img": true,
         "note1": "訂閱/贈訂解鎖",
         "note2": "SUB/GIFT TO UNLOCK"
+      },
+      {
+        "id": "zxswxlx",
+        "show": true,
+        "title": "Alliance & Horde",
+        "title2": "",
+        "to": "2026-11-04T16:00:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/59d5bb2e-0d62-4116-a6bc-79cd5afe9246/3",
+          "https://static-cdn.jtvnw.net/badges/v1/8dfb6f30-1ec1-497a-91e4-028a704b4f57/3"
+        ],
+        "layout": "auto",
+        "show_cd": true,
+        "to_mode": "time",
+        "show_n1": true,
+        "show_n2": true,
+        "note1": "在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
+        "note2": "This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+        "show_img": true,
+        "badge": "alliance/1",
+        "x": 1305,
+        "y": 659,
+        "w": 572,
+        "h": 350,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
