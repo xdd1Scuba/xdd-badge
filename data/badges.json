@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-04T07:40:16.406Z",
+ "updated_at": "2026-11-04T07:41:18.249Z",
  "count": 560,
  "badges": [
   {
@@ -67,6 +67,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Payday 3",
+    "note": "透過訂閱或贈送訂閱給 Payday 3 分類的實況主，即可獲得此徽章。",
+    "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the Payday 3 category",
     "source": "manual"
    },
    "notified": {},
