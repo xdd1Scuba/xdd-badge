@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-04T07:38:23.048Z",
+ "updated_at": "2026-11-04T07:39:29.190Z",
  "count": 560,
  "badges": [
   {
@@ -42,6 +42,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Payday 3",
+    "note": "觀看 30 分鐘解鎖",
+    "note_extra": "Watch for 30 minutes to unlock",
     "source": "manual"
    },
    "notified": {},
@@ -86,7 +88,11 @@
    "first_seen": "2026-11-03T14:25:43.751Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "note": "觀看 60 分鐘解鎖",
+    "note_extra": "Watch for 60 minutes to unlock",
+    "source": "manual"
+   },
    "notified": {},
    "type": "free",
    "column": "left",
