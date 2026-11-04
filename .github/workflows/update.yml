@@ -12,6 +12,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  deployments: read   # 改動：讀取 github-pages 的部署紀錄，用來找出卡住的部署
 
 concurrency:
   group: update-badges
@@ -22,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -81,4 +82,24 @@ jobs:
 
       - id: deploy
         if: steps.commit.outputs.changed == 'true' || github.event_name != 'schedule'
+        continue-on-error: true   # 改動：失敗時先處理卡住的部署，再試一次
+        uses: actions/deploy-pages@v4
+
+      # 改動：GitHub Pages 有時會留下一個一直「進行中」的舊部署，之後的部署都會被擋下
+      #（Deployment request failed ... due to in progress deployment）。這時把其他還沒結束的部署取消，再部署一次。
+      - name: 部署被卡住時，取消卡住的部署
+        if: steps.deploy.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          ME: ${{ github.sha }}
+        run: |
+          for sha in $(gh api "repos/$REPO/deployments?environment=github-pages&per_page=30" --jq '.[].sha' | sort -u); do
+            [ "$sha" = "$ME" ] && continue
+            if gh api -X POST "repos/$REPO/pages/deployments/$sha/cancel" >/dev/null 2>&1; then echo "已取消卡住的部署 $sha"; fi
+          done
+          sleep 10
+
+      - id: deploy2
+        if: steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@v4
