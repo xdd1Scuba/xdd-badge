@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-04T07:36:20.672Z",
+ "updated_at": "2026-11-04T07:37:16.003Z",
  "count": 560,
  "badges": [
   {
@@ -58,12 +58,15 @@
    "first_seen": "2026-11-03T14:25:43.751Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Payday 3",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "sub",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "pearl",
@@ -80,10 +83,10 @@
    "removed_at": null,
    "campaign": null,
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "free",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "alliance",
