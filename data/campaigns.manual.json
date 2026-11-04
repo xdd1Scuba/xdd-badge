@@ -194,6 +194,8 @@
   },
   "clover/1": {
     "game": "Payday 3",
+    "note": "觀看 30 分鐘解鎖",
+    "note_extra": "Watch for 30 minutes to unlock",
     "type": "free",
     "column": "left",
     "reviewed": true
@@ -338,6 +340,8 @@
     "reviewed": true
   },
   "pearl/1": {
+    "note": "觀看 60 分鐘解鎖",
+    "note_extra": "Watch for 60 minutes to unlock",
     "type": "free",
     "column": "left",
     "reviewed": true
