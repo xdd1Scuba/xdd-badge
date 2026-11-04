@@ -192,6 +192,11 @@
     "column": "sub",
     "reviewed": true
   },
+  "clover/1": {
+    "type": "free",
+    "column": "left",
+    "reviewed": true
+  },
   "dbd-halloween-2026/1": {
     "game": "Dead by Daylight",
     "start": "2026-10-31T07:00:00Z",
