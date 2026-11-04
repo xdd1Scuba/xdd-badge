@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-03T16:05:21.466Z",
+ "updated_at": "2026-11-04T07:36:20.672Z",
  "count": 560,
  "badges": [
   {
@@ -15,12 +15,15 @@
    "first_seen": "2026-11-03T14:34:00.703Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Payday 3",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "free",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "clover",
