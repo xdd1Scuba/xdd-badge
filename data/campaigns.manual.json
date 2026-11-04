@@ -317,6 +317,8 @@
   },
   "joy/1": {
     "game": "Payday 3",
+    "note": "觀看 90 分鐘解鎖",
+    "note_extra": "Watch 90 mins to unlock",
     "type": "free",
     "column": "left",
     "reviewed": true
