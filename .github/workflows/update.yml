@@ -25,6 +25,8 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # 改動：一律從最新的 main 開始（排隊中的工作原本會拿觸發當下的舊版本，跟前一次更新的 badges.json 衝突）
 
       - uses: actions/setup-node@v4
         with:
@@ -51,7 +53,15 @@ jobs:
             # 改動：執行期間如果有人上傳檔案或控制台存檔，先把新的 commit 接上再推，最多試 3 次
             for i in 1 2 3; do
               if git pull --rebase origin main && git push; then pushed=1; break; fi
-              echo "推送失敗，5 秒後重試（第 $i 次）"; sleep 5
+              # 改動：badges.json 是自動產生的，衝突時不手動合併：放棄這次的版本，回到最新的 main 重新產生一次再推
+              echo "推送失敗，改用最新版本重新產生（第 $i 次）"
+              git rebase --abort 2>/dev/null || true
+              git fetch origin main && git reset --hard origin/main
+              DISCORD_WEBHOOK_URL="" node scripts/update.mjs   # 重新產生時不重複發 Discord 通知
+              git add data/badges.json
+              if git diff --cached --quiet; then echo "最新版本已經是一樣的內容，不用再推"; pushed=1; break; fi
+              git commit -m "更新徽章資料 $(date -u +%Y-%m-%dT%H:%MZ)"
+              sleep 3
             done
             [ "$pushed" = 1 ] || { echo "重試 3 次仍然失敗"; exit 1; }
             echo "changed=true" >> "$GITHUB_OUTPUT"
