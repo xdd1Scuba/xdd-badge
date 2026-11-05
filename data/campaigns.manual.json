@@ -203,6 +203,8 @@
     "game": "Payday 3",
     "start": "2026-11-06T12:00:00Z",
     "end": "2026-11-27T11:59:00Z",
+    "drop_id": "7fd0b5de-69c5-4f30-924e-59adaa29a362",
+    "drop_src": "dashboard",
     "note": "觀看 30 分鐘解鎖",
     "note_extra": "Watch for 30 minutes to unlock",
     "type": "free",
@@ -330,6 +332,8 @@
     "game": "Payday 3",
     "start": "2026-11-06T12:00:00Z",
     "end": "2026-11-27T11:59:00Z",
+    "drop_id": "7fd0b5de-69c5-4f30-924e-59adaa29a362",
+    "drop_src": "dashboard",
     "note": "觀看 90 分鐘解鎖",
     "note_extra": "Watch 90 mins to unlock",
     "type": "free",
@@ -355,6 +359,7 @@
     "reviewed": true
   },
   "pearl/1": {
+    "game": "https://dashboard.twitch.tv/viewer-rewards/drops?id=7fd0b5de-69c5-4f30-924e-59adaa29a362",
     "start": "2026-11-06T12:00:00Z",
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 60 分鐘解鎖",
