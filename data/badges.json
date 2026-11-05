@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T16:49:17.715Z",
+ "updated_at": "2026-11-05T16:49:51.591Z",
  "count": 560,
  "badges": [
   {
@@ -7540,7 +7540,7 @@
    "notified": {},
    "type": "free",
    "column": "free",
-   "cmd": null,
+   "cmd": "!QSMP",
    "reviewed": true
   },
   {
