@@ -207,7 +207,7 @@
     "drop_src": "dashboard",
     "note": "觀看 30 分鐘解鎖",
     "note_extra": "Watch for 30 minutes to unlock",
-    "cmd": "!Clover",
+    "cmd": "!CLOVER",
     "type": "free",
     "column": "left",
     "reviewed": true
@@ -337,7 +337,7 @@
     "drop_src": "dashboard",
     "note": "觀看 90 分鐘解鎖",
     "note_extra": "Watch 90 mins to unlock",
-    "cmd": "!joy",
+    "cmd": "!JOY",
     "type": "free",
     "column": "left",
     "reviewed": true
@@ -348,7 +348,7 @@
     "end": "2026-11-27T11:59:00Z",
     "note": "透過訂閱或贈送訂閱給 Payday 3 分類的實況主，即可獲得此徽章。",
     "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the Payday 3 category",
-    "cmd": "!Kawaii",
+    "cmd": "!KAWAII",
     "type": "sub",
     "column": "left",
     "reviewed": true
@@ -367,7 +367,7 @@
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 60 分鐘解鎖",
     "note_extra": "Watch for 60 minutes to unlock",
-    "cmd": "!Pearl",
+    "cmd": "!PEARL",
     "type": "free",
     "column": "left",
     "reviewed": true
