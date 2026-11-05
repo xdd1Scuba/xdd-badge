@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T16:39:44.440Z",
+ "updated_at": "2026-11-05T16:40:16.206Z",
  "count": 560,
  "badges": [
   {
@@ -44,6 +44,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Payday 3",
+    "start": "2026-11-06T12:00:00Z",
+    "end": "2026-11-27T11:59:00Z",
     "note": "觀看 30 分鐘解鎖",
     "note_extra": "Watch for 30 minutes to unlock",
     "source": "manual"
