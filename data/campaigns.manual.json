@@ -317,6 +317,7 @@
     "end": "2026-11-09T13:59:00Z",
     "note": "觀看 15 分鐘解鎖",
     "note_extra": "Watch for 15 minutes to unlock.",
+    "cmd": "!HUNTW",
     "type": "free",
     "column": "free",
     "reviewed": true
