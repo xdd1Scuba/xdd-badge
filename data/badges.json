@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T16:40:16.206Z",
+ "updated_at": "2026-11-05T16:40:45.721Z",
  "count": 560,
  "badges": [
   {
@@ -71,6 +71,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Payday 3",
+    "start": "2026-11-06T12:00:00Z",
+    "end": "2026-11-27T11:59:00Z",
     "note": "透過訂閱或贈送訂閱給 Payday 3 分類的實況主，即可獲得此徽章。",
     "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the Payday 3 category",
     "source": "manual"
@@ -95,6 +97,8 @@
    "baseline": false,
    "removed_at": null,
    "campaign": {
+    "start": "2026-11-06T12:00:00Z",
+    "end": "2026-11-27T11:59:00Z",
     "note": "觀看 60 分鐘解鎖",
     "note_extra": "Watch for 60 minutes to unlock",
     "source": "manual"
