@@ -207,6 +207,7 @@
     "drop_src": "dashboard",
     "note": "觀看 30 分鐘解鎖",
     "note_extra": "Watch for 30 minutes to unlock",
+    "cmd": "!Clover",
     "type": "free",
     "column": "left",
     "reviewed": true
@@ -336,6 +337,7 @@
     "drop_src": "dashboard",
     "note": "觀看 90 分鐘解鎖",
     "note_extra": "Watch 90 mins to unlock",
+    "cmd": "!joy",
     "type": "free",
     "column": "left",
     "reviewed": true
