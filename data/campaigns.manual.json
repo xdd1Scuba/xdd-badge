@@ -110,14 +110,14 @@
           "y": 960,
           "w": 475,
           "h": 103,
-          "show": true
+          "show": false
         },
         "zxswxlx": {
           "x": 1495,
           "y": 960,
           "w": 398,
           "h": 103,
-          "show": false
+          "show": true
         }
       }
     }
