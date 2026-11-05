@@ -367,6 +367,7 @@
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 60 分鐘解鎖",
     "note_extra": "Watch for 60 minutes to unlock",
+    "cmd": "!Pearl",
     "type": "free",
     "column": "left",
     "reviewed": true
