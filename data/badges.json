@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T16:40:45.721Z",
+ "updated_at": "2026-11-05T16:42:32.236Z",
  "count": 560,
  "badges": [
   {
@@ -21,6 +21,8 @@
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 90 分鐘解鎖",
     "note_extra": "Watch 90 mins to unlock",
+    "drop_id": "7fd0b5de-69c5-4f30-924e-59adaa29a362",
+    "drop_src": "dashboard",
     "source": "manual"
    },
    "notified": {},
@@ -48,6 +50,8 @@
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 30 分鐘解鎖",
     "note_extra": "Watch for 30 minutes to unlock",
+    "drop_id": "7fd0b5de-69c5-4f30-924e-59adaa29a362",
+    "drop_src": "dashboard",
     "source": "manual"
    },
    "notified": {},
@@ -97,6 +101,7 @@
    "baseline": false,
    "removed_at": null,
    "campaign": {
+    "game": "https://dashboard.twitch.tv/viewer-rewards/drops?id=7fd0b5de-69c5-4f30-924e-59adaa29a362",
     "start": "2026-11-06T12:00:00Z",
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 60 分鐘解鎖",
