@@ -348,6 +348,7 @@
     "end": "2026-11-27T11:59:00Z",
     "note": "透過訂閱或贈送訂閱給 Payday 3 分類的實況主，即可獲得此徽章。",
     "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the Payday 3 category",
+    "cmd": "!Kawaii",
     "type": "sub",
     "column": "left",
     "reviewed": true
