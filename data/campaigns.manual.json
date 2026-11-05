@@ -432,6 +432,7 @@
     "end": "2026-11-07T15:59:00Z",
     "note": "觀看 30 分鐘解鎖",
     "note_extra": "Watch for 30 minutes to unlock.",
+    "cmd": "!TRUE",
     "reviewed": true
   },
   "twitchcon-2026---san-diego---beachball/1": {
