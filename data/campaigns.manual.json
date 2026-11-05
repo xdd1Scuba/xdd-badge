@@ -481,6 +481,7 @@
     "drop_src": "dashboard",
     "note": "透過訂閱或贈送訂閱給 ELDEN RING 分類的實況主，即可獲得此徽章。",
     "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the ELDEN RING category.",
+    "cmd": "!JAR",
     "type": "sub",
     "column": "sub",
     "reviewed": true
