@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T16:46:24.484Z",
+ "updated_at": "2026-11-05T16:49:17.715Z",
  "count": 560,
  "badges": [
   {
@@ -132,7 +132,7 @@
     "start": "2026-11-04T16:00:00Z",
     "end": "2026-12-01T07:58:00Z",
     "note": "為了聯盟！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
-    "note_extra": "FOR THE ALLIANCE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+    "note_extra": "This badge was unlocked by subscribing or gifting a sub to a streamer in the World of Warcraft category during the launch of WoW: Forever.",
     "drop_id": "3e27da93-de21-4977-91db-e889991c7ff1",
     "drop_src": "dashboard",
     "source": "manual"
@@ -140,7 +140,7 @@
    "notified": {},
    "type": null,
    "column": "sub",
-   "cmd": null,
+   "cmd": "!ALLIANCE",
    "reviewed": true
   },
   {
@@ -161,13 +161,13 @@
     "start": "2026-11-04T16:00:00Z",
     "end": "2026-12-01T07:58:00Z",
     "note": "為了部落！在 WoW: Forever 上線期間，訂閱或贈送訂閱給實況主即可解鎖此徽章。",
-    "note_extra": "FOR THE HORDE! This badge was unlocked by subscribing or gifting a sub to a streamer during the launch of WoW: Forever.",
+    "note_extra": "This badge was unlocked by subscribing or gifting a sub to a streamer in the World of Warcraft category during the launch of WoW: Forever.",
     "source": "manual"
    },
    "notified": {},
    "type": null,
    "column": "sub",
-   "cmd": null,
+   "cmd": "!HORDE",
    "reviewed": true
   },
   {
