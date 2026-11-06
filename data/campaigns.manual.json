@@ -155,6 +155,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "ti8x811",
+        "show": false,
+        "title": "Clover",
+        "title2": "",
+        "to": "2026-11-08T11:46:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/1495822f-a2a6-46f7-8e0b-48db278621d9/3"
+        ],
+        "layout": "auto",
+        "show_cd": true,
+        "to_mode": "time",
+        "show_n1": true,
+        "show_n2": true,
+        "note1": "",
+        "note2": "",
+        "show_img": true,
+        "badge": "clover/1",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
@@ -188,6 +215,12 @@
           "show": true
         }
       },
+      "titles": {
+        "badges_zh": "現在可解鎖",
+        "badges_en": "ACTIVE",
+        "chat_zh": "聊天室",
+        "chat_en": "Chat"
+      },
       "widgets": {
         "q9rkpw3": {
           "x": 1416,
@@ -218,8 +251,8 @@
           "show": true
         },
         "xo7r4eu": {
-          "x": 1003,
-          "y": 963,
+          "x": 1039,
+          "y": 959,
           "w": 440,
           "h": 106,
           "show": true
