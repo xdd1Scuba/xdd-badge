@@ -168,12 +168,12 @@
           "https://static-cdn.jtvnw.net/badges/v1/1495822f-a2a6-46f7-8e0b-48db278621d9/3"
         ],
         "layout": "auto",
-        "show_cd": true,
+        "show_cd": false,
         "to_mode": "time",
         "show_n1": true,
         "show_n2": true,
-        "note1": "",
-        "note2": "",
+        "note1": "看 30 分鐘解鎖",
+        "note2": "30 MINS",
         "show_img": true,
         "badge": "clover/1",
         "x": 1360,
@@ -253,6 +253,13 @@
         "xo7r4eu": {
           "x": 1039,
           "y": 959,
+          "w": 440,
+          "h": 106,
+          "show": true
+        },
+        "ti8x811": {
+          "x": 559,
+          "y": 962,
           "w": 440,
           "h": 106,
           "show": true
