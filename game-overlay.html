@@ -130,11 +130,18 @@ html:not(.lang-en) .lchip .c-zh, html.lang-en .lchip .c-en{color:var(--text)}
 .wg-in{position:absolute;inset:6%;overflow:hidden;display:flex;gap:5%;align-items:center;justify-content:center}
 .wg-in.v{flex-direction:column}
 .wg .imgs{display:flex;gap:6%;align-items:center;justify-content:center;flex:none;min-width:0;min-height:0}
-.wg-in.v .imgs{width:100%;height:40%}
-.wg-in.h .imgs{height:100%;width:36%}
+.wg-in.v .imgs{width:100%;height:var(--img,40%)}
+.wg-in.h .imgs{height:100%;width:var(--img,36%)}
 .wg .imgs img{flex:1 1 0;min-width:0;min-height:0;width:100%;height:100%;object-fit:contain}
 .wg .txt{flex:1;min-width:0;min-height:0;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;text-align:center}
-.wg-in.h .txt{align-items:flex-start;text-align:left}
+.wg-in.h .txt{align-items:flex-start;text-align:left;align-self:stretch} /* 左右排版時文字區也要有固定高度，自動縮放才知道有沒有超出 */
+/* 自訂文字大小（控制台 Game Overlay 分頁選「自訂文字大小」）：不自動縮放，放不下的那一行用跑馬燈 */
+.wg.man .txt{font-size:16px}
+.wg.man .txt>*{max-width:100%}
+.wg.man .ttl{font-size:var(--tpx,28px)}
+.wg.man .ttl .mq{flex:0 1 auto}
+.wg.man .cd,.wg.man .endt{font-size:var(--cpx,32px)}
+.wg.man .nt{font-size:var(--npx,18px);white-space:nowrap;line-height:1.3}
 .wg .ttl{display:flex;align-items:center;gap:.4em;white-space:nowrap;line-height:1.2;letter-spacing:.04em}
 .wg .ttl::before{content:"";flex:none;width:.22em;height:1em;border-radius:.11em;background:var(--accent)}
 .wg .cd{margin-top:.28em;font-size:1.5em;white-space:nowrap}
@@ -143,6 +150,11 @@ html:not(.lang-en) .lchip .c-zh, html.lang-en .lchip .c-en{color:var(--text)}
 
 /* 控制台預覽：每個框上面蓋一層編輯框，可以拖曳移動、拉紫色圓點改大小 */
 #edLayer{position:absolute;inset:0;z-index:20;display:none}
+/* 自動對齊的參考線（像 PPT）：拖曳時對齊到其他框或畫布的邊緣、中線就會出現 */
+#guides{position:absolute;inset:0;pointer-events:none;z-index:21}
+.gd{position:absolute;background:#ff3fa4;box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.gd.v{top:0;bottom:0;width:2px;margin-left:-1px}
+.gd.h{left:0;right:0;height:2px;margin-top:-1px}
 html.pv-edit #edLayer{display:block}
 .ef{position:absolute;cursor:move;outline:1px dashed rgba(166,117,255,.55);outline-offset:-1px;border-radius:6px}
 .ef:hover{outline-color:#a675ff;background:rgba(166,117,255,.06)}
@@ -185,6 +197,7 @@ html.pv-edit #edLayer{display:block}
 
   <div id="wgLayer"></div>
   <div id="edLayer"></div>
+  <div id="guides"></div>
 </div>
 
 <script>
@@ -373,7 +386,8 @@ function frame(ts){const dt=lastTs?Math.min(0.1,(ts-lastTs)/1000):0;lastTs=ts;
   requestAnimationFrame(frame)}
 function tick(){const n=now();document.querySelectorAll(".row .flap[data-t]").forEach(el=>{const x=t(el.dataset.t);if(x)flap(el,cdParts(x-n))})}
 
-/* ---------- 資訊 Widget：內容沿用「資訊 Widget」分頁，位置與是否顯示用 game.widgets[id] = {show,x,y,w,h} ---------- */
+/* ---------- 資訊 Widget：內容沿用「資訊 Widget」分頁，Game Overlay 自己的設定在 game.widgets[id]：
+   {show,x,y,w,h, img（圖片大小 %，沒有＝預設：左右排 36%、上下排 40%）, fit（"manual"＝自訂文字大小）, tpx／cpx／npx（標題／倒數／備註字級 px）} ---------- */
 const wgLayer=$("wgLayer");
 let WG_SIG="";
 const wgList=()=>WDEF.filter(w=>w&&w.id&&CFG.widgets[w.id]?.show).map(w=>({...w,...CFG.widgets[w.id]}));
@@ -383,18 +397,21 @@ const wgList=()=>WDEF.filter(w=>w&&w.id&&CFG.widgets[w.id]?.show).map(w=>({...w,
 const wgBadge=w=>w.badge&&DB?(DB.badges||[]).find(b=>keyOf(b)===w.badge)||null:null;
 function wgNotes(w){const b=wgBadge(w),m=(w.badge&&MANUAL[w.badge])||{},c=b?.campaign||{},L=v=>String(v??"").trim();
   return [w.show_n1?L(w.note1)||L(m.note??c.note):"", w.show_n2?L(w.note2)||L(m.note_extra??c.note_extra):""]}
-function wgNoteHTML(w){const[a,b]=wgNotes(w);if(!a&&!b)return"";return `<div class="nt">${a&&b?`<span class="zh">${esc(a)}</span><span class="en">${esc(b)}</span>`:esc(a||b)}</div>`}
+function wgNoteHTML(w,man){const[a,b]=wgNotes(w);if(!a&&!b)return"";const x=a&&b?`<span class="zh">${esc(a)}</span><span class="en">${esc(b)}</span>`:esc(a||b);
+  return man?`<div class="nt mq"><span>${x}</span></div>`:`<div class="nt">${x}</div>`}
 function wgTarget(w,n){if(w.show_cd===false)return null;
   if(w.to_mode==="badge"){const b=wgBadge(w);if(!b)return null;const m=MANUAL[w.badge]||{},c=b.campaign||{},s=t(m.start??c.start),e=t(m.end??c.end);return s&&n<s?s:(e||null)}
   return Date.parse(w.to)||null}
 function wgLayout(w){if(w.show_img===false||!(w.images||[]).length)return"none";if(w.layout==="v"||w.layout==="h")return w.layout;return w.w/w.h>=2.2?"h":"v"}
 function wgHTML(w){
-  const L=wgLayout(w), c=w.colors||{};
-  const st=`left:${+w.x||0}px;top:${+w.y||0}px;width:${+w.w||300}px;height:${+w.h||160}px;`+(c.bg?`--panel:${c.bg};`:"")+(c.fg?`--text:${c.fg};`:"")+(c.num?`--accent:${c.num};`:"");
+  const L=wgLayout(w), c=w.colors||{}, man=w.fit==="manual", px=v=>Math.max(6,Math.min(300,+v||0));
+  const st=`left:${+w.x||0}px;top:${+w.y||0}px;width:${+w.w||300}px;height:${+w.h||160}px;`+(c.bg?`--panel:${c.bg};`:"")+(c.fg?`--text:${c.fg};`:"")+(c.num?`--accent:${c.num};`:"")
+    +(+w.img>0?`--img:${Math.max(5,Math.min(90,+w.img))}%;`:"")+(man?(w.tpx?`--tpx:${px(w.tpx)}px;`:"")+(w.cpx?`--cpx:${px(w.cpx)}px;`:"")+(w.npx?`--npx:${px(w.npx)}px;`:""):"");
   const imgs=L==="none"?"":`<div class="imgs">${w.images.map(u=>`<img src="${esc(u)}" alt="" onerror="this.style.visibility='hidden'">`).join("")}</div>`;
-  return `<div class="wg ${w.clear?"clear":""}" data-id="${esc(w.id)}" style="${esc(st)}">
-    <div class="wg-in ${L==="h"?"h":"v"}">${imgs}<div class="txt"><div class="ttl"><span class="zh">${esc(w.title||"")}</span><span class="en">${esc(w.title2||w.title||"")}</span></div>
-    <div class="cd flap"></div><div class="endt" hidden>${esc(w.end_text||"")}</div>${wgNoteHTML(w)}</div></div></div>`;
+  const ttl=`<span class="zh">${esc(w.title||"")}</span><span class="en">${esc(w.title2||w.title||"")}</span>`;
+  return `<div class="wg ${w.clear?"clear":""} ${man?"man":""}" data-id="${esc(w.id)}" style="${esc(st)}">
+    <div class="wg-in ${L==="h"?"h":"v"}">${imgs}<div class="txt"><div class="ttl">${man?`<span class="mq"><span>${ttl}</span></span>`:ttl}</div>
+    <div class="cd flap"></div>${man?`<div class="endt mq" hidden><span>${esc(w.end_text||"")}</span></div>`:`<div class="endt" hidden>${esc(w.end_text||"")}</div>`}${wgNoteHTML(w,man)}</div></div></div>`;
 }
 function renderWidgets(){const list=wgList(),s=JSON.stringify([list,list.map(wgNotes),list.map(w=>!!wgBadge(w))]);if(s===WG_SIG)return;WG_SIG=s;wgLayer.innerHTML=list.map(wgHTML).join("");wgTick(true)}
 function wgTick(force){const n=now(),list=wgList();
@@ -403,7 +420,9 @@ function wgTick(force){const n=now(),list=wgList();
     const cd=el.querySelector(".cd"), et=el.querySelector(".endt"); cd.hidden=ms==null||!!txt; et.hidden=!txt;
     if(ms!=null&&!txt)flap(cd,cdParts(ms));
     const k=txt?"t":ms==null?"n":String(cd.children.length); if(force||el.dataset.k!==k){el.dataset.k=k;wgFit(el)}})}
-function wgFit(el){const box=el.querySelector(".txt");if(!box)return;let lo=4,hi=400;
+function wgFit(el){const box=el.querySelector(".txt");if(!box)return;
+  if(el.classList.contains("man")){marquee(el);return} // 自訂文字大小：不縮放，超出的那一行跑馬燈
+  let lo=4,hi=400;
   for(let i=0;i<14;i++){const mid=(lo+hi)/2;box.style.fontSize=mid+"px";if(box.scrollWidth<=box.clientWidth+.5&&box.scrollHeight<=box.clientHeight+.5)lo=mid;else hi=mid}
   box.style.fontSize=lo+"px"}
 const wgFitAll=()=>wgLayer.querySelectorAll(".wg").forEach(wgFit);
@@ -418,6 +437,13 @@ let DRAG=false;
 function edRender(){if(!PREVIEW||DRAG)return;
   ED.innerHTML=edKeys().map(k=>{const r=rectOf(k);return `<div class="ef ${k===SEL?"sel":""}" data-k="${esc(k)}" style="left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px"><span class="lb">${esc(edName(k))}　${r.w}×${r.h}</span>${["nw","n","ne","e","se","s","sw","w"].map(h=>`<span class="hd ${h}" data-h="${h}"></span>`).join("")}</div>`}).join("")}
 const MIN={head:[300,40],badges:[160,120],chat:[120,70],game:[320,180]};
+/* 自動對齊（像 PPT）：拖曳或改大小時，邊緣與中線靠近其他框、畫布邊緣或畫布中線 10px 內就吸過去，並畫出參考線。按住 Alt 可以暫時不吸附 */
+const SNAP=10, GD=$("guides");
+function snapLines(k){const xs=[0,CFG.width/2,CFG.width],ys=[0,CFG.height/2,CFG.height];
+  for(const q of edKeys()){if(q===k)continue;const o=rectOf(q);if(!o)continue;xs.push(o.x,o.x+o.w/2,o.x+o.w);ys.push(o.y,o.y+o.h/2,o.y+o.h)}
+  return {xs,ys}}
+function nearest(ps,lines){let best=null;for(const p of ps)for(const L of lines){const d=L-p;if(Math.abs(d)<=SNAP&&(!best||Math.abs(d)<Math.abs(best.d)))best={d,L}}return best}
+function guides(gx,gy){GD.innerHTML=(gx!=null?`<i class="gd v" style="left:${gx}px"></i>`:"")+(gy!=null?`<i class="gd h" style="top:${gy}px"></i>`:"")}
 if(PREVIEW){
   document.documentElement.classList.add("pv-edit");
   ED.addEventListener("pointerdown",e=>{
@@ -437,12 +463,24 @@ if(PREVIEW){
           if(r.h>H0){r.h=H0;r.w=r.h*16/9} if(r.w>W0){r.w=W0;r.h=r.w*9/16}}
         if(h.includes("w"))r.x=o.x+o.w-r.w; if(h.includes("n"))r.y=o.y+o.h-r.h;
         if(lock&&(h==="n"||h==="s"))r.x=o.x+(o.w-r.w)/2; if(lock&&(h==="e"||h==="w"))r.y=o.y+(o.h-r.h)/2}
+      let gx=null,gy=null;
+      if(!ev.altKey){const S=snapLines(k);
+        if(h==="move"){
+          const bx=nearest([r.x,r.x+r.w/2,r.x+r.w],S.xs); if(bx){r.x+=bx.d;gx=bx.L}
+          const by=nearest([r.y,r.y+r.h/2,r.y+r.h],S.ys); if(by){r.y+=by.d;gy=by.L}
+        }else if(!lock){ // 改大小時只吸附正在拉的那一邊（遊戲畫面鎖 16:9 時不吸附，避免比例跑掉）
+          if(h.includes("e")){const b=nearest([r.x+r.w],S.xs);if(b&&r.w+b.d>=mw){r.w+=b.d;gx=b.L}}
+          if(h.includes("w")){const b=nearest([r.x],S.xs);if(b&&r.w-b.d>=mw){r.x+=b.d;r.w-=b.d;gx=b.L}}
+          if(h.includes("s")){const b=nearest([r.y+r.h],S.ys);if(b&&r.h+b.d>=mh){r.h+=b.d;gy=b.L}}
+          if(h.includes("n")){const b=nearest([r.y],S.ys);if(b&&r.h-b.d>=mh){r.y+=b.d;r.h-=b.d;gy=b.L}}
+        }}
+      guides(gx,gy);
       r.x=Math.max(0,Math.min(W0-r.w,r.x)); r.y=Math.max(0,Math.min(H0-r.h,r.y));
       Object.assign(R,{x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.w),h:Math.round(r.h)});
       Object.assign(el.style,{left:R.x+"px",top:R.y+"px",width:R.w+"px",height:R.h+"px"}); lb.textContent=`${edName(k)}　${R.w}×${R.h}`;
       if(k.startsWith("wg:")){const w=wgLayer.querySelector(`.wg[data-id="${CSS.escape(k.slice(3))}"]`);if(w){Object.assign(w.style,{left:R.x+"px",top:R.y+"px",width:R.w+"px",height:R.h+"px"});if(h!=="move")wgFit(w)}}
       else placeBoxes()};
-    const up=()=>{DRAG=false;el.classList.remove("drag");el.removeEventListener("pointermove",move);el.removeEventListener("pointerup",up);el.removeEventListener("pointercancel",up);
+    const up=()=>{DRAG=false;guides(null,null);el.classList.remove("drag");el.removeEventListener("pointermove",move);el.removeEventListener("pointerup",up);el.removeEventListener("pointercancel",up);
       WG_SIG="";renderWidgets();sig="";if(DB)refresh();
       parent.postMessage({type:"game-box-move",key:k,x:R.x,y:R.y,w:R.w,h:R.h},"*")};
     el.addEventListener("pointermove",move);el.addEventListener("pointerup",up);el.addEventListener("pointercancel",up);

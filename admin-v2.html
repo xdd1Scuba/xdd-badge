@@ -376,8 +376,19 @@ details.more summary{cursor:pointer;font-size:14px;font-weight:700}
         </div>
         <label class="chk" id="gShowWrap"><input type="checkbox" id="gShow"> 顯示這個框</label>
         <label class="chk"><input type="checkbox" id="gLock"> 遊戲畫面固定 16:9</label>
+        <div class="grp" id="gWgSize" hidden style="border-top:1px dashed var(--line);padding-top:10px">
+          <h3>這個 Widget 在 Game Overlay 的大小</h3>
+          <label class="f">圖片大小（佔 Widget 的 %）<div class="rng"><input type="range" id="gwImg" min="10" max="80" step="1"><output id="gwImgV"></output></div></label>
+          <div class="seg" id="gwFit"><button type="button" data-v="auto" aria-pressed="true">文字自動縮放</button><button type="button" data-v="manual" aria-pressed="false">自訂文字大小</button></div>
+          <div id="gwMan" hidden>
+            <label class="f">標題字級（px）<div class="rng"><input type="range" id="gwT" min="10" max="120" step="1"><output id="gwTV"></output></div></label>
+            <label class="f">倒數字級（px）<div class="rng"><input type="range" id="gwC" min="10" max="140" step="1"><output id="gwCV"></output></div></label>
+            <label class="f">備註字級（px）<div class="rng"><input type="range" id="gwN" min="8" max="100" step="1"><output id="gwNV"></output></div></label>
+          </div>
+          <span class="hint">自訂文字大小時，放不下的那一行（標題、備註）會自動變成跑馬燈。這裡的設定只影響 Game Overlay，原本的 Overlay 不變。</span>
+        </div>
         <div class="row"><button class="btn ghost" type="button" id="gmLayoutReset">還原預設排版</button></div>
-        <span class="hint">也可以直接在右邊預覽點選、拖曳移動、拉紫色圓點改大小。遊戲畫面中間是透明的，在 OBS 把遊戲擷取放在這個 Overlay 下面、對齊這個框。</span>
+        <span class="hint">也可以直接在右邊預覽點選、拖曳移動、拉紫色圓點改大小；靠近其他框或畫布的邊緣、中線時會自動對齊（粉紅色參考線），按住 Alt 可以暫時不對齊。遊戲畫面中間是透明的，在 OBS 把遊戲擷取放在這個 Overlay 下面、對齊這個框。</span>
       </div>
       <div class="grp">
         <h3>標題</h3>
@@ -955,7 +966,23 @@ function gmSelSend(){const p=PV[2];if(p.ready)$(p.f).contentWindow.postMessage({
 function gmBoxes(){if(!GM)return;const ks=gmKeys();if(!ks.includes(gmSel))gmSel="game";
   $("gmBox").innerHTML=ks.map(k=>`<button type="button" data-k="${esc(k)}" aria-pressed="${k===gmSel}">${esc(k.startsWith("wg:")?"Widget："+(WG.find(w=>w.id===k.slice(3))?.title||"未命名"):GM_BOX_ZH[k])}</button>`).join("");
   const r=gmRect(gmSel);["x","y","w","h"].forEach(k=>$("g"+k.toUpperCase()).value=Math.round(r[k]));
-  $("gShowWrap").hidden=!(gmSel==="head"||gmSel==="chat");$("gShow").checked=r.show!==false;$("gLock").checked=GM.lock169!==false;gmSelSend()}
+  $("gShowWrap").hidden=!(gmSel==="head"||gmSel==="chat");$("gShow").checked=r.show!==false;$("gLock").checked=GM.lock169!==false;gmWgSize();gmSelSend()}
+/* 選到 Widget 時：圖片大小、文字自動縮放或自訂字級（存在 game.widgets[id] 的 img、fit、tpx、cpx、npx） */
+function gmWgSize(){const isW=gmSel.startsWith("wg:"),r=isW&&gmRect(gmSel);$("gWgSize").hidden=!r;if(!r)return;
+  const def=r.w/r.h>=2.2?36:40, man=r.fit==="manual";
+  $("gwImg").value=r.img||def;$("gwImgV").textContent=(r.img||def)+"%"+(r.img?"":"（預設）");
+  document.querySelectorAll("#gwFit button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===(man?"manual":"auto")));
+  $("gwMan").hidden=!man;
+  for(const[id,k]of[["gwT","tpx"],["gwC","cpx"],["gwN","npx"]]){$(id).value=r[k]||"";$(id+"V").textContent=r[k]||""}}
+$("gWgSize").addEventListener("input",e=>{const r=gmRect(gmSel);if(!r)return;const v=+e.target.value;
+  if(e.target.id==="gwImg"){r.img=v;$("gwImgV").textContent=v+"%"}
+  const k={gwT:"tpx",gwC:"cpx",gwN:"npx"}[e.target.id];if(k){r[k]=v;$(e.target.id+"V").textContent=v}
+  gmDirty()});
+$("gwFit").addEventListener("click",e=>{const b=e.target.closest("button");const r=gmRect(gmSel);if(!b||!r)return;
+  if(b.dataset.v==="manual"){r.fit="manual"; // 第一次切到自訂時，依 Widget 高度給一組起始字級
+    if(!r.tpx)r.tpx=Math.max(12,Math.round(r.h*.24));if(!r.cpx)r.cpx=Math.max(12,Math.round(r.h*.3));if(!r.npx)r.npx=Math.max(10,Math.round(r.h*.16))}
+  else delete r.fit;
+  gmWgSize();gmDirty()});
 function gmBoxRead(id){const r=gmRect(gmSel);if(!r)return;const W0=GM.width,H0=GM.height;
   ["x","y","w","h"].forEach(k=>{const v=Math.round(+$("g"+k.toUpperCase()).value);if(Number.isFinite(v))r[k]=v});
   if(gmSel==="game"&&GM.lock169!==false){if(id==="gH")r.w=Math.round(r.h*16/9);else r.h=Math.round(r.w*9/16)}
@@ -1003,7 +1030,7 @@ function gmRead(){const T=GM.titles;T.badges_zh=$("gTb1").value;T.badges_en=$("g
   document.querySelectorAll("#gColors input").forEach(x=>GM.colors[x.dataset.gc]=x.value.toLowerCase());
   gmOut();gmDirty()}
 $("gmView").addEventListener("input",e=>{const id=e.target.id;
-  if(e.target.closest("#gTags")||e.target.closest("#gWg"))return;
+  if(e.target.closest("#gTags")||e.target.closest("#gWg")||e.target.closest("#gWgSize"))return;
   if(["gX","gY","gW","gH"].includes(id))return gmBoxRead(id);
   if(id==="gShow"){const r=gmRect(gmSel);if(r){r.show=e.target.checked;gmDirty()}return}
   if(id==="gLock"){GM.lock169=e.target.checked;if(GM.lock169){const g=GM.boxes.game;g.h=Math.round(g.w*9/16);if(g.y+g.h>GM.height){g.h=GM.height-g.y;g.w=Math.round(g.h*16/9)}}gmBoxes();gmDirty();return}
