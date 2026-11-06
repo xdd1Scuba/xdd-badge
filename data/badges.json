@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-06T06:49:17.246Z",
+ "updated_at": "2026-11-06T06:49:40.505Z",
  "count": 560,
  "badges": [
   {
@@ -27,7 +27,7 @@
    },
    "notified": {},
    "type": "free",
-   "column": "left",
+   "column": null,
    "cmd": "!JOY",
    "reviewed": true
   },
@@ -56,7 +56,7 @@
    },
    "notified": {},
    "type": "free",
-   "column": "left",
+   "column": null,
    "cmd": "!CLOVER",
    "reviewed": true
   },
@@ -83,7 +83,7 @@
    },
    "notified": {},
    "type": "sub",
-   "column": "left",
+   "column": null,
    "cmd": "!KAWAII",
    "reviewed": true
   },
@@ -110,7 +110,7 @@
    },
    "notified": {},
    "type": "free",
-   "column": "left",
+   "column": null,
    "cmd": "!PEARL",
    "reviewed": true
   },
