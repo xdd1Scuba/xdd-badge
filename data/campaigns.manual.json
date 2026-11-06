@@ -128,6 +128,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "xo7r4eu",
+        "show": false,
+        "title": "Pearl",
+        "title2": "",
+        "to": "2026-11-08T11:34:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/8346da26-6494-4edb-945d-63a50a6e416b/3"
+        ],
+        "layout": "auto",
+        "show_cd": false,
+        "to_mode": "time",
+        "show_n1": true,
+        "show_n2": true,
+        "note1": "",
+        "note2": "",
+        "show_img": true,
+        "badge": "pearl/1",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
