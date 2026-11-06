@@ -182,6 +182,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "ge003te",
+        "show": false,
+        "title": "Joy",
+        "title2": "",
+        "to": "2026-11-08T11:48:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/e8ff781d-a445-4ed3-9790-9514a2eb45f0/3"
+        ],
+        "layout": "auto",
+        "show_cd": false,
+        "to_mode": "time",
+        "show_n1": true,
+        "show_n2": true,
+        "note1": "觀看 90 分鐘解鎖",
+        "note2": "90 MINS",
+        "show_img": true,
+        "badge": "joy/1",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
