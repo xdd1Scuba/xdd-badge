@@ -71,6 +71,36 @@
         "h": 350,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "54cy2q1",
+        "show": true,
+        "title": "Payday 3 Badges",
+        "title2": "",
+        "to": "2026-11-08T06:38:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/e8ff781d-a445-4ed3-9790-9514a2eb45f0/3",
+          "https://static-cdn.jtvnw.net/badges/v1/1495822f-a2a6-46f7-8e0b-48db278621d9/3",
+          "https://static-cdn.jtvnw.net/badges/v1/a1bf84a7-cebc-496b-acf2-411938b18d9f/3",
+          "https://static-cdn.jtvnw.net/badges/v1/8346da26-6494-4edb-945d-63a50a6e416b/3"
+        ],
+        "layout": "auto",
+        "show_cd": true,
+        "to_mode": "badge",
+        "show_n1": false,
+        "show_n2": false,
+        "note1": "",
+        "note2": "",
+        "show_img": true,
+        "badge": "pearl/1",
+        "x": 1331,
+        "y": 688,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
