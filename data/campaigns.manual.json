@@ -101,6 +101,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "z1i0dm7",
+        "show": false,
+        "title": "KawaiiDozer",
+        "title2": "",
+        "to": "2026-11-08T11:32:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/a1bf84a7-cebc-496b-acf2-411938b18d9f/3"
+        ],
+        "layout": "auto",
+        "show_cd": false,
+        "to_mode": "time",
+        "show_n1": true,
+        "show_n2": true,
+        "note1": "訂閱/贈訂",
+        "note2": "SUB/GIFT ",
+        "show_img": true,
+        "badge": "kawaiidozer/1",
+        "x": 964,
+        "y": 658,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
