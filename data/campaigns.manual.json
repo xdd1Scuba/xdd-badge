@@ -247,7 +247,6 @@
     "note_extra": "Watch for 30 minutes to unlock",
     "cmd": "!CLOVER",
     "type": "free",
-    "column": "left",
     "reviewed": true
   },
   "dbd-halloween-2026/1": {
@@ -379,7 +378,6 @@
     "note_extra": "Watch 90 mins to unlock",
     "cmd": "!JOY",
     "type": "free",
-    "column": "left",
     "reviewed": true
   },
   "kawaiidozer/1": {
@@ -390,7 +388,6 @@
     "note_extra": "This badge was earned by subscribing or gifting a sub to a streamer in the Payday 3 category",
     "cmd": "!KAWAII",
     "type": "sub",
-    "column": "left",
     "reviewed": true
   },
   "modern-warfare-4/1": {
@@ -409,7 +406,6 @@
     "note_extra": "Watch for 60 minutes to unlock",
     "cmd": "!PEARL",
     "type": "free",
-    "column": "left",
     "reviewed": true
   },
   "pikachu/1": {
