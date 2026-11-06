@@ -145,12 +145,12 @@
         "to_mode": "time",
         "show_n1": true,
         "show_n2": true,
-        "note1": "",
-        "note2": "",
+        "note1": "看60分鐘解鎖",
+        "note2": "60 MINS",
         "show_img": true,
         "badge": "pearl/1",
-        "x": 1360,
-        "y": 740,
+        "x": 1234,
+        "y": 684,
         "w": 520,
         "h": 300,
         "colors": null,
@@ -213,6 +213,13 @@
         "z1i0dm7": {
           "x": 1463,
           "y": 959,
+          "w": 440,
+          "h": 106,
+          "show": true
+        },
+        "xo7r4eu": {
+          "x": 1007,
+          "y": 962,
           "w": 440,
           "h": 106,
           "show": true
