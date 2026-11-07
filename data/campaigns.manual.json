@@ -505,7 +505,6 @@
     "note_extra": "Watch for 15 minutes to unlock.",
     "cmd": "!HUNTW",
     "type": "free",
-    "column": "free",
     "reviewed": true
   },
   "ivysaur/1": {
