@@ -396,7 +396,6 @@
     "start": "2026-10-31T07:00:00Z",
     "end": "2026-11-09T07:58:00Z",
     "type": "sub",
-    "column": "sub",
     "reviewed": true
   },
   "doom-the-dark-ages/1": {
@@ -494,7 +493,6 @@
     "start": "2026-10-26T14:54:00Z",
     "end": "2026-11-09T13:59:00Z",
     "cmd": "!HUNTR",
-    "column": "sub",
     "reviewed": true
   },
   "hunt-white/1": {
