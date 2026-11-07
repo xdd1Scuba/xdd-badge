@@ -399,6 +399,7 @@
     "reviewed": true
   },
   "doom-the-dark-ages/1": {
+    "game": "DOOM: The Dark Ages",
     "column": "left",
     "reviewed": true
   },
@@ -435,6 +436,7 @@
     "end": "2026-10-31T10:58:00Z"
   },
   "gallica/1": {
+    "game": "Metaphor: ReFantazio",
     "column": "left",
     "reviewed": true
   },
