@@ -557,6 +557,11 @@
     "type": "free",
     "reviewed": true
   },
+  "pentakill-fan/1": {
+    "start": "2026-11-07T16:00:00Z",
+    "end": "2026-11-13T15:59:00Z",
+    "reviewed": true
+  },
   "pikachu/1": {
     "start": "2026-10-16T17:00:00Z",
     "end": "2027-01-30T07:59:00Z",
