@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-07T02:21:38.820Z",
+ "updated_at": "2026-11-07T02:22:04.084Z",
  "count": 562,
  "badges": [
   {
@@ -141,7 +141,7 @@
    "baseline": false,
    "removed_at": null,
    "campaign": {
-    "game": "https://dashboard.twitch.tv/viewer-rewards/drops?id=7fd0b5de-69c5-4f30-924e-59adaa29a362",
+    "game": "Payday 3",
     "start": "2026-11-06T12:00:00Z",
     "end": "2026-11-27T11:59:00Z",
     "note": "觀看 60 分鐘解鎖",
