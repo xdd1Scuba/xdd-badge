@@ -600,7 +600,7 @@ function status(e){const n=Date.now(),s=e.start?Date.parse(e.start):null,x=e.end
 async function load(){
   const bust="?t="+Date.now();
   try{
-    const [a,m]=await Promise.all([fetch("data/badges.json"+bust,{cache:"no-store"}),loadBase(bust)]);
+    const [a,m]=await Promise.all([loadBadges(bust),loadBase(bust)]);
     if(!a.ok) throw new Error("badges");
     BADGES=(await a.json()).badges.filter(b=>!b.removed_at);
     BASE=m;
@@ -1073,6 +1073,12 @@ let PASS=lsGet(LS.pass);
 const fixURL=u=>{u=String(u||"").trim().replace(/\/+$/,"");return u&&!/^https?:\/\//i.test(u)?"https://"+u:u};
 const workerURL=()=>fixURL(lsGet(LS.worker));
 /* 設了 Worker 時，直接從 GitHub 讀最新的手動資料（沒有網站部署的延遲）；失敗就退回讀網站上的檔案 */
+/* 徽章資料：有設定 Worker 時，先透過 Worker 的 /site/ 直接讀 GitHub 上最新的 badges.json（不用等 GitHub Pages 部署），讀不到再用網站上的 */
+async function loadBadges(bust){
+  const W=workerURL();
+  if(W){try{const r=await fetch(W+"/site/data/badges.json"+bust,{cache:"no-store"});if(r.ok)return r}catch(_){}}
+  return fetch("data/badges.json"+bust,{cache:"no-store"});
+}
 async function loadBase(bust){
   const W=workerURL();
   if(W){try{const r=await fetch(W+"/manual",{cache:"no-store"});const j=await r.json();if(j.ok)return j.manual}catch(_){}}
