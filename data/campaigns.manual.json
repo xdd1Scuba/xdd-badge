@@ -560,6 +560,8 @@
   "pentakill-fan/1": {
     "start": "2026-11-07T16:00:00Z",
     "end": "2026-11-13T15:59:00Z",
+    "note": "觀看 30 分鐘解鎖",
+    "note_extra": "Watch for 30 minutes to unlock.",
     "reviewed": true
   },
   "pikachu/1": {
