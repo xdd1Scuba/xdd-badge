@@ -399,6 +399,10 @@
     "column": "sub",
     "reviewed": true
   },
+  "doom-the-dark-ages/1": {
+    "column": "left",
+    "reviewed": true
+  },
   "edgerunners-talia/1": {
     "game": "Cyberpunk 2077",
     "start": "2026-10-19T22:01:00Z",
@@ -430,6 +434,10 @@
   "frekifriend/1": {
     "start": "2026-10-08T12:00:00Z",
     "end": "2026-10-31T10:58:00Z"
+  },
+  "gallica/1": {
+    "column": "left",
+    "reviewed": true
   },
   "gengar/1": {
     "start": "2026-10-16T17:00:00Z",
