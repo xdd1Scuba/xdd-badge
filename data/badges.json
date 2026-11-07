@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-07T08:01:08.355Z",
+ "updated_at": "2026-11-07T16:03:23.949Z",
  "count": 562,
  "badges": [
   {
@@ -6808,12 +6808,16 @@
    "first_seen": "2026-10-28T23:38:11.382Z",
    "baseline": true,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "start": "2026-11-07T16:00:00Z",
+    "end": "2026-11-13T15:59:00Z",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
    "column": null,
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "perlica",
