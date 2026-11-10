@@ -517,6 +517,10 @@
     "column": "sub",
     "reviewed": true
   },
+  "jordan-x-space-jam/1": {
+    "column": "left",
+    "reviewed": true
+  },
   "joy/1": {
     "game": "Payday 3",
     "start": "2026-11-06T12:00:00Z",
