@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-10T19:44:35.221Z",
+ "updated_at": "2026-11-10T20:17:52.587Z",
  "count": 563,
  "badges": [
   {
@@ -18,9 +18,9 @@
    "campaign": null,
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "doom-the-dark-ages",
