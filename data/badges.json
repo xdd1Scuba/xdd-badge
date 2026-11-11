@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-11T03:04:09.377Z",
+ "updated_at": "2026-11-11T03:04:34.286Z",
  "count": 563,
  "badges": [
   {
@@ -9832,13 +9832,14 @@
     "start": "2026-10-22T10:00:00Z",
     "end": "2026-11-13T17:59:00Z",
     "drop_id": "a9c2f298-5a53-439a-9a8c-41b4d88937e1",
+    "drop_src": "dashboard",
     "source": "manual"
    },
    "notified": {
     "live": "2026-10-22T10:00:00Z"
    },
    "type": "sub",
-   "column": "sub",
+   "column": null,
    "cmd": null,
    "reviewed": true
   },
