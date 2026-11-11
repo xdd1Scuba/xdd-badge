@@ -634,7 +634,6 @@
     "note": "購買 \"TwitchCon San Diego 2026 - 1 日通行證\" 解鎖",
     "note_extra": "This badge is given to anyone who purchased a 1-day ticket to TwitchCon San Diego 2026.",
     "type": "sub",
-    "column": "sub",
     "reviewed": true
   },
   "twitchcon-2026---san-diego---taco/1": {
@@ -643,7 +642,6 @@
     "note": "購買 \"TwitchCon San Diego 2026 - 3 日通行證\" 解鎖",
     "note_extra": "This badge is given to anyone who purchased a 3-day ticket to TwitchCon San Diego 2026.",
     "type": "sub",
-    "column": "sub",
     "reviewed": true
   },
   "ultramarine/1": {
