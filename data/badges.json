@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-12T17:47:36.963Z",
+ "updated_at": "2026-11-12T17:54:32.868Z",
  "count": 563,
  "badges": [
   {
@@ -8622,7 +8622,7 @@
    "campaign": {
     "game": "The Streamer Awards",
     "start": "2026-11-12T17:00:00Z",
-    "end": "2026-11-14T07:59:00Z",
+    "end": "2026-11-13T07:59:00Z",
     "minutes": 15,
     "source": "manual"
    },
