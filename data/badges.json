@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-12T00:05:11.717Z",
+ "updated_at": "2026-11-12T17:47:36.963Z",
  "count": 563,
  "badges": [
   {
@@ -8621,16 +8621,16 @@
    "removed_at": null,
    "campaign": {
     "game": "The Streamer Awards",
-    "start": "2026-10-16T17:00:00Z",
-    "end": "2026-10-17T04:59:00Z",
-    "minutes": 20,
+    "start": "2026-11-12T17:00:00Z",
+    "end": "2026-11-14T07:59:00Z",
+    "minutes": 15,
     "source": "manual"
    },
    "notified": {},
    "type": null,
    "column": null,
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "streamer-awards-tux",
