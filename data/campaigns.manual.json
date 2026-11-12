@@ -598,9 +598,10 @@
   },
   "streamer-awards-2026-vote/1": {
     "game": "The Streamer Awards",
-    "start": "2026-10-16T17:00:00Z",
-    "end": "2026-10-17T04:59:00Z",
-    "minutes": 20
+    "start": "2026-11-12T17:00:00Z",
+    "end": "2026-11-14T07:59:00Z",
+    "minutes": 15,
+    "reviewed": true
   },
   "subtember-2026/1": {
     "game": "Twitch",
