@@ -570,7 +570,7 @@
     "note": "收集所有 GTAVI 發行期間的表情符號、徽章來獲得此徽章",
     "note_extra": "This badge was earned by securing all the Emotes and Badges from the GTAVI launch.",
     "cmd": "!GTAVI",
-    "tags": "soon",
+    "tags": "soon,sub",
     "tags_manual": true,
     "type": "sub",
     "column": "sub",
