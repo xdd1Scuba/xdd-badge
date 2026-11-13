@@ -381,7 +381,6 @@
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "cmd": "!GTAVI",
     "type": "sub",
-    "column": "left",
     "reviewed": true
   },
   "bloody-finger-elden-ring/1": {
