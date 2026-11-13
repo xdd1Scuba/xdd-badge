@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T22:03:29.192Z",
+ "updated_at": "2026-11-13T22:03:53.334Z",
  "count": 574,
  "badges": [
   {
@@ -97,13 +97,15 @@
    "baseline": false,
    "removed_at": null,
    "campaign": {
+    "start": "2026-11-18T11:00:00Z",
+    "end": "2026-12-01T07:59:00Z",
     "note": "透過在發行期間觀看 GTAVI 實況 4 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 4 days of GTAVI during launch week.",
     "source": "manual"
    },
    "notified": {},
    "type": null,
-   "column": "left",
+   "column": null,
    "cmd": "!GTAVI",
    "reviewed": true
   },
