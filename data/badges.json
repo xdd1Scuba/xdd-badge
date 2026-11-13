@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T03:07:34.609Z",
+ "updated_at": "2026-11-13T03:08:03.945Z",
  "count": 564,
  "badges": [
   {
@@ -16,6 +16,7 @@
    "baseline": false,
    "removed_at": null,
    "campaign": {
+    "game": "/qtcinderella",
     "start": "2026-11-13T03:00:00Z",
     "end": "2026-11-13T05:59:00Z",
     "note": "觀看 15 分鐘 「The Streamer Awards 2026」 即可解鎖 The Minecraft Golden Frog 徽章",
