@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T16:09:40.804Z",
+ "updated_at": "2026-11-13T16:10:29.045Z",
  "count": 564,
  "badges": [
   {
@@ -5357,6 +5357,8 @@
     "game": "League of Legends",
     "start": "2026-11-13T16:00:00Z",
     "end": "2026-11-15T15:59:00Z",
+    "note": "觀看 30 分鐘解鎖",
+    "note_extra": "Watch 30 mins to unlock",
     "source": "manual"
    },
    "notified": {},
