@@ -572,6 +572,7 @@
     "cmd": "!GTAVI",
     "tags": "soon",
     "tags_manual": true,
+    "type": "sub",
     "column": "sub",
     "reviewed": true
   },
