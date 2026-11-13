@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T22:08:16.163Z",
+ "updated_at": "2026-11-13T22:09:11.358Z",
  "count": 574,
  "badges": [
   {
@@ -205,13 +205,15 @@
    "removed_at": null,
    "campaign": {
     "game": "Grand Theft Auto VI",
+    "start": "2026-11-18T11:00:00Z",
+    "end": "2026-12-01T07:59:00Z",
     "note": "透過在發行期間訂閱分類為 GTAVI 的實況主來獲得此徽章",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "source": "manual"
    },
    "notified": {},
    "type": "sub",
-   "column": "left",
+   "column": "sub",
    "cmd": "!GTAVI",
    "reviewed": true
   },
@@ -230,13 +232,15 @@
    "removed_at": null,
    "campaign": {
     "game": "Grand Theft Auto VI",
+    "start": "2026-11-18T11:00:00Z",
+    "end": "2026-12-01T07:59:00Z",
     "note": "透過在發行期間觀看 GTAVI 實況 3 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 3 days of GTAVI during launch week.",
     "source": "manual"
    },
    "notified": {},
    "type": null,
-   "column": "left",
+   "column": null,
    "cmd": "!GTAVI",
    "reviewed": true
   },
@@ -255,6 +259,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Grand Theft Auto VI",
+    "start": "2026-11-18T11:00:00Z",
+    "end": "2026-12-01T07:59:00Z",
     "note": "透過在發行期間訂閱分類為 GTAVI 的實況主來獲得此徽章",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "source": "manual"
