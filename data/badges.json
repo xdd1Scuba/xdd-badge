@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T18:12:16.323Z",
+ "updated_at": "2026-11-13T18:13:13.321Z",
  "count": 574,
  "badges": [
   {
@@ -326,6 +326,8 @@
    "removed_at": null,
    "campaign": {
     "game": "Metaphor: ReFantazio",
+    "start": "2026-11-14T18:00:00Z",
+    "end": "2026-12-12T17:59:00Z",
     "source": "manual"
    },
    "notified": {},
