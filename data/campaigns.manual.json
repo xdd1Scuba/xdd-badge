@@ -275,6 +275,50 @@
         "chat_zh": "聊天室",
         "chat_en": "Chat"
       },
+      "tags": [
+        {
+          "k": "soon",
+          "on": true,
+          "zh": "即將開始",
+          "en": "Upcoming",
+          "color": "#79c2ff"
+        },
+        {
+          "k": "ending",
+          "on": true,
+          "zh": "即將結束",
+          "en": "Ending",
+          "color": "#ff6f5e"
+        },
+        {
+          "k": "new",
+          "on": true,
+          "zh": "新徽章",
+          "en": "NEW",
+          "color": "#ffd23f"
+        },
+        {
+          "k": "free",
+          "on": true,
+          "zh": "免費",
+          "en": "Free",
+          "color": "#5ce0a8"
+        },
+        {
+          "k": "sub",
+          "on": true,
+          "zh": "訂閱",
+          "en": "Sub",
+          "color": "#b79cff"
+        },
+        {
+          "k": "other",
+          "on": false,
+          "zh": "其他",
+          "en": "Other",
+          "color": "#9aa4b2"
+        }
+      ],
       "widgets": {
         "q9rkpw3": {
           "x": 1416,
