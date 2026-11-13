@@ -375,6 +375,7 @@
   },
   "bleed-miami/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間訂閱分類為 GTAVI 的實況主來獲得此徽章",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "cmd": "!GTAVI",
     "type": "sub",
@@ -388,6 +389,7 @@
   },
   "bronze-chain/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間觀看 GTAVI 實況 2 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 2 days of GTAVI during launch week.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -442,6 +444,7 @@
   },
   "diamond-chain/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間觀看 GTAVI 實況 5 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 5 days of GTAVI during launch week.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -502,6 +505,7 @@
     "reviewed": true
   },
   "gold-chain/1": {
+    "note": "透過在發行期間觀看 GTAVI 實況 4 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 4 days of GTAVI during launch week.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -515,6 +519,7 @@
   },
   "golden-iguana/1": {
     "game": "Grand Theft Auto VI",
+    "note": "收集所有 GTAVI 發行期間的表情符號、徽章來獲得此徽章",
     "note_extra": "This badge was earned by securing all the Emotes and Badges from the GTAVI launch.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -617,6 +622,7 @@
   },
   "miami-chain/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間觀看 GTAVI 實況 6 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 6 days of GTAVI during launch week.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -666,6 +672,7 @@
   },
   "purple-chain/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間觀看 GTAVI 實況 1 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 1 day of GTAVI during launch week.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -683,6 +690,7 @@
   },
   "scored-big/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間訂閱分類為 GTAVI 的實況主來獲得此徽章",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "cmd": "!GTAVI",
     "type": "sub",
@@ -699,6 +707,7 @@
   },
   "silver-chain/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間觀看 GTAVI 實況 3 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 3 days of GTAVI during launch week.",
     "cmd": "!GTAVI",
     "column": "left",
@@ -803,6 +812,7 @@
   },
   "welcome-2-miami/1": {
     "game": "Grand Theft Auto VI",
+    "note": "透過在發行期間訂閱分類為 GTAVI 的實況主來獲得此徽章",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "cmd": "!GTAVI",
     "type": "sub",
