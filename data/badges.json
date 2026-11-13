@@ -1,7 +1,27 @@
 {
- "updated_at": "2026-11-12T17:54:32.868Z",
- "count": 563,
+ "updated_at": "2026-11-13T02:49:42.402Z",
+ "count": 564,
  "badges": [
+  {
+   "set_id": "minecraft-golden-frog",
+   "id": "1",
+   "title": "Minecraft Golden Frog",
+   "description": "The Minecraft Golden Frog badge was earned by watching 15 minutes of The Streamer Awards 2026!",
+   "click_action": null,
+   "click_url": null,
+   "image_url_1x": "https://static-cdn.jtvnw.net/badges/v1/8d2de51b-76ac-4680-89c8-89e710663b09/1",
+   "image_url_2x": "https://static-cdn.jtvnw.net/badges/v1/8d2de51b-76ac-4680-89c8-89e710663b09/2",
+   "image_url_4x": "https://static-cdn.jtvnw.net/badges/v1/8d2de51b-76ac-4680-89c8-89e710663b09/3",
+   "first_seen": "2026-11-13T02:49:42.402Z",
+   "baseline": false,
+   "removed_at": null,
+   "campaign": null,
+   "notified": {},
+   "type": null,
+   "column": null,
+   "cmd": null,
+   "reviewed": false
+  },
   {
    "set_id": "jordan-x-space-jam",
    "id": "1",
