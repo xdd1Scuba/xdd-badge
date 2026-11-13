@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T22:09:11.358Z",
+ "updated_at": "2026-11-13T22:38:47.836Z",
  "count": 574,
  "badges": [
   {
@@ -21,6 +21,8 @@
     "end": "2026-12-01T07:59:00Z",
     "note": "透過在發行期間訂閱分類為 GTAVI 的實況主來獲得此徽章",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "drop_id": "b7669f9e-c69c-4a9b-a3b2-36266c1bdfc0",
+    "drop_src": "campaigns",
     "source": "manual"
    },
    "notified": {},
