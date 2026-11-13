@@ -672,10 +672,11 @@
   },
   "miami-chain/1": {
     "game": "Grand Theft Auto VI",
+    "start": "2026-11-18T11:00:00Z",
+    "end": "2026-12-01T07:59:00Z",
     "note": "透過在發行期間觀看 GTAVI 實況 6 天來獲得此徽章",
     "note_extra": "This badge was earned for watching 6 days of GTAVI during launch week.",
     "cmd": "!GTAVI",
-    "column": "left",
     "reviewed": true
   },
   "minecraft-golden-frog/1": {
