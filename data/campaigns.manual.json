@@ -376,6 +376,7 @@
   "bleed-miami/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "cmd": "!GTAVI",
     "type": "sub",
     "column": "left",
     "reviewed": true
@@ -388,6 +389,7 @@
   "bronze-chain/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned for watching 2 days of GTAVI during launch week.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -441,6 +443,7 @@
   "diamond-chain/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned for watching 5 days of GTAVI during launch week.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -500,6 +503,7 @@
   },
   "gold-chain/1": {
     "note_extra": "This badge was earned for watching 4 days of GTAVI during launch week.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -512,6 +516,7 @@
   "golden-iguana/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned by securing all the Emotes and Badges from the GTAVI launch.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -613,6 +618,7 @@
   "miami-chain/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned for watching 6 days of GTAVI during launch week.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -661,6 +667,7 @@
   "purple-chain/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned for watching 1 day of GTAVI during launch week.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -677,6 +684,7 @@
   "scored-big/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "cmd": "!GTAVI",
     "type": "sub",
     "column": "left",
     "reviewed": true
@@ -692,6 +700,7 @@
   "silver-chain/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned for watching 3 days of GTAVI during launch week.",
+    "cmd": "!GTAVI",
     "column": "left",
     "reviewed": true
   },
@@ -795,6 +804,7 @@
   "welcome-2-miami/1": {
     "game": "Grand Theft Auto VI",
     "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "cmd": "!GTAVI",
     "type": "sub",
     "reviewed": true
   },
