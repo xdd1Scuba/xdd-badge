@@ -209,6 +209,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "z2p9z5d",
+        "show": false,
+        "title": "",
+        "title2": "",
+        "to": "2026-11-15T09:11:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/1b9b6fbf-9100-4b2c-9bdf-8be0f1456ff9/3"
+        ],
+        "layout": "auto",
+        "show_cd": true,
+        "to_mode": "time",
+        "show_n1": true,
+        "show_n2": true,
+        "note1": "即將結束",
+        "note2": "Ending Soon",
+        "show_img": true,
+        "badge": "the-mox/1",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
@@ -275,28 +302,28 @@
           "y": 962,
           "w": 300,
           "h": 106,
-          "show": true
+          "show": false
         },
         "xo7r4eu": {
           "x": 937,
           "y": 962,
           "w": 300,
           "h": 106,
-          "show": true
+          "show": false
         },
         "ti8x811": {
           "x": 608,
           "y": 962,
           "w": 300,
           "h": 106,
-          "show": true
+          "show": false
         },
         "ge003te": {
           "x": 1260,
           "y": 962,
           "w": 300,
           "h": 106,
-          "show": true
+          "show": false
         }
       }
     }
