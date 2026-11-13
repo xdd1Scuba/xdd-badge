@@ -480,6 +480,8 @@
   },
   "gallica/1": {
     "game": "Metaphor: ReFantazio",
+    "start": "2026-11-14T18:00:00Z",
+    "end": "2026-12-12T17:59:00Z",
     "column": "left",
     "reviewed": true
   },
