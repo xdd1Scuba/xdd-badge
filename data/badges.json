@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T18:26:49.686Z",
+ "updated_at": "2026-11-13T19:02:09.693Z",
  "count": 574,
  "badges": [
   {
@@ -23,7 +23,7 @@
    "notified": {},
    "type": "sub",
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -47,7 +47,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -71,7 +71,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -94,7 +94,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -118,7 +118,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -142,7 +142,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -166,7 +166,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -190,7 +190,7 @@
    "notified": {},
    "type": "sub",
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -214,7 +214,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
@@ -238,7 +238,7 @@
    "notified": {},
    "type": "sub",
    "column": null,
-   "cmd": null,
+   "cmd": "!GTAVI",
    "reviewed": true
   },
   {
