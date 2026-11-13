@@ -544,6 +544,12 @@
     "type": "sub",
     "reviewed": true
   },
+  "minecraft-golden-frog/1": {
+    "note": "觀看 15 分鐘 「The Streamer Awards 2026」 即可解鎖 The Minecraft Golden Frog 徽章",
+    "note_extra": "The Minecraft Golden Frog badge was earned by watching 15 minutes of The Streamer Awards 2026!",
+    "column": "left",
+    "reviewed": true
+  },
   "modern-warfare-4/1": {
     "game": "Call of Duty Modern Warfare 4",
     "start": "2026-10-23T17:00:00Z",
