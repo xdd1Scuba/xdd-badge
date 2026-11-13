@@ -387,7 +387,7 @@
   },
   "bronze-chain/1": {
     "game": "Grand Theft Auto VI",
-    "cmd": "This badge was earned for watching 2 day",
+    "note_extra": "This badge was earned for watching 2 days of GTAVI during launch week.",
     "column": "left",
     "reviewed": true
   },
