@@ -373,10 +373,21 @@
     "column": "sub",
     "reviewed": true
   },
+  "bleed-miami/1": {
+    "game": "Grand Theft Auto VI",
+    "type": "sub",
+    "column": "left",
+    "reviewed": true
+  },
   "bloody-finger-elden-ring/1": {
     "game": "ELDEN RING",
     "start": "2026-10-01T07:00:00Z",
     "end": "2026-10-29T06:59:00Z"
+  },
+  "bronze-chain/1": {
+    "game": "Grand Theft Auto VI",
+    "column": "left",
+    "reviewed": true
   },
   "castlevania-belmonts-curse/1": {
     "game": "Castlevania: Belmont's Curse",
@@ -423,6 +434,11 @@
     "start": "2026-10-31T07:00:00Z",
     "end": "2026-11-09T07:58:00Z",
     "type": "sub",
+    "reviewed": true
+  },
+  "diamond-chain/1": {
+    "game": "Grand Theft Auto VI",
+    "column": "left",
     "reviewed": true
   },
   "doom-the-dark-ages/1": {
@@ -477,11 +493,22 @@
     "column": "sub",
     "reviewed": true
   },
+  "gold-chain/1": {
+    "note_extra": "This badge was earned for watching 4 days of GTAVI during launch week.",
+    "column": "left",
+    "reviewed": true
+  },
   "gold-stamp/1": {
     "game": "Witchspire",
     "start": "2026-10-21T16:00:00Z",
     "end": "2026-10-31T07:59:00Z",
     "minutes": 240
+  },
+  "golden-iguana/1": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by securing all the Emotes and Badges from the GTAVI launch.",
+    "column": "left",
+    "reviewed": true
   },
   "gray-zone-warfare-gold/1": {
     "game": "Gray Zone Warfare",
@@ -579,6 +606,12 @@
     "note_extra": "Watch 30 mins to unlock",
     "reviewed": true
   },
+  "miami-chain/1": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 6 days of GTAVI during launch week.",
+    "column": "left",
+    "reviewed": true
+  },
   "minecraft-golden-frog/1": {
     "game": "/qtcinderella",
     "start": "2026-11-13T03:00:00Z",
@@ -621,6 +654,12 @@
     "column": "sub",
     "reviewed": true
   },
+  "purple-chain/1": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 1 day of GTAVI during launch week.",
+    "column": "left",
+    "reviewed": true
+  },
   "qsmp2/1": {
     "start": "2026-10-21T21:00:00Z",
     "end": "2026-11-18T00:59:00Z",
@@ -631,6 +670,13 @@
     "column": "free",
     "reviewed": true
   },
+  "scored-big/1": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "type": "sub",
+    "column": "left",
+    "reviewed": true
+  },
   "seegson-synthetics/1": {
     "start": "2026-10-01T09:00:00Z",
     "end": "2026-10-29T08:58:00Z"
@@ -638,6 +684,12 @@
   "sevastopol-station/1": {
     "start": "2026-10-01T09:00:00Z",
     "end": "2026-10-29T08:58:00Z"
+  },
+  "silver-chain/1": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 3 days of GTAVI during launch week.",
+    "column": "left",
+    "reviewed": true
   },
   "streamer-awards-2026-vote/1": {
     "game": "The Streamer Awards",
@@ -734,6 +786,12 @@
     "cmd": "!POKEMON",
     "type": "sub",
     "column": "sub",
+    "reviewed": true
+  },
+  "welcome-2-miami/1": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "type": "sub",
     "reviewed": true
   },
   "witch-hat/1": {
