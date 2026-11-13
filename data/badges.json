@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T22:05:43.846Z",
+ "updated_at": "2026-11-13T22:06:34.092Z",
  "count": 574,
  "badges": [
   {
@@ -131,7 +131,7 @@
     "source": "manual"
    },
    "notified": {},
-   "type": null,
+   "type": "sub",
    "column": "sub",
    "cmd": "!GTAVI",
    "reviewed": true
