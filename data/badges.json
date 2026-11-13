@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T18:13:13.321Z",
+ "updated_at": "2026-11-13T18:17:14.670Z",
  "count": 574,
  "badges": [
   {
@@ -278,10 +278,7 @@
    "first_seen": "2026-11-10T19:44:35.221Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": {
-    "note": "11/13 - 11/15",
-    "source": "manual"
-   },
+   "campaign": null,
    "notified": {},
    "type": null,
    "column": "left",
