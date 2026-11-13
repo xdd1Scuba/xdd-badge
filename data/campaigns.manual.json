@@ -313,8 +313,8 @@
         },
         {
           "k": "other",
-          "on": false,
-          "zh": "其他",
+          "on": true,
+          "zh": "全收集",
           "en": "Other",
           "color": "#9aa4b2"
         }
