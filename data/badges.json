@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T18:03:43.618Z",
+ "updated_at": "2026-11-13T18:12:16.323Z",
  "count": 574,
  "badges": [
   {
@@ -15,12 +15,15 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "sub",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "bronze-chain",
@@ -35,12 +38,15 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "diamond-chain",
@@ -55,12 +61,15 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "gold-chain",
@@ -75,12 +84,15 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "note_extra": "This badge was earned for watching 4 days of GTAVI during launch week.",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "golden-iguana",
@@ -95,12 +107,16 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by securing all the Emotes and Badges from the GTAVI launch.",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "miami-chain",
@@ -115,12 +131,16 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 6 days of GTAVI during launch week.",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "purple-chain",
@@ -135,12 +155,16 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 1 day of GTAVI during launch week.",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "scored-big",
@@ -155,12 +179,16 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "sub",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "silver-chain",
@@ -175,12 +203,16 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 3 days of GTAVI during launch week.",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "welcome-2-miami",
@@ -195,12 +227,16 @@
    "first_seen": "2026-11-13T18:03:43.618Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
+   "type": "sub",
    "column": null,
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "minecraft-golden-frog",
