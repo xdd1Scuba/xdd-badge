@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T02:49:42.402Z",
+ "updated_at": "2026-11-13T02:57:54.379Z",
  "count": 564,
  "badges": [
   {
@@ -15,12 +15,16 @@
    "first_seen": "2026-11-13T02:49:42.402Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "note": "觀看 15 分鐘 「The Streamer Awards 2026」 即可解鎖 The Minecraft Golden Frog 徽章",
+    "note_extra": "The Minecraft Golden Frog badge was earned by watching 15 minutes of The Streamer Awards 2026!",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
-   "column": null,
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "jordan-x-space-jam",
