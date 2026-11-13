@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T18:25:08.993Z",
+ "updated_at": "2026-11-13T18:25:37.375Z",
  "count": 574,
  "badges": [
   {
@@ -46,7 +46,7 @@
    "notified": {},
    "type": null,
    "column": "left",
-   "cmd": null,
+   "cmd": "This badge was earned for watching 2 day",
    "reviewed": true
   },
   {
@@ -64,6 +64,7 @@
    "removed_at": null,
    "campaign": {
     "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned for watching 5 days of GTAVI during launch week.",
     "source": "manual"
    },
    "notified": {},
