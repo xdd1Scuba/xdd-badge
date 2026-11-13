@@ -575,6 +575,8 @@
     "game": "League of Legends",
     "start": "2026-11-13T16:00:00Z",
     "end": "2026-11-15T15:59:00Z",
+    "note": "觀看 30 分鐘解鎖",
+    "note_extra": "Watch 30 mins to unlock",
     "reviewed": true
   },
   "minecraft-golden-frog/1": {
