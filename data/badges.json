@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T18:17:14.670Z",
+ "updated_at": "2026-11-13T18:25:08.993Z",
  "count": 574,
  "badges": [
   {
@@ -17,6 +17,7 @@
    "removed_at": null,
    "campaign": {
     "game": "Grand Theft Auto VI",
+    "note_extra": "This badge was earned by subbing to a GTAVI streamer during launch.",
     "source": "manual"
    },
    "notified": {},
