@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-13T02:57:54.379Z",
+ "updated_at": "2026-11-13T03:02:38.142Z",
  "count": 564,
  "badges": [
   {
@@ -16,6 +16,8 @@
    "baseline": false,
    "removed_at": null,
    "campaign": {
+    "start": "2026-11-12T17:00:00Z",
+    "end": "2026-11-13T05:59:00Z",
     "note": "觀看 15 分鐘 「The Streamer Awards 2026」 即可解鎖 The Minecraft Golden Frog 徽章",
     "note_extra": "The Minecraft Golden Frog badge was earned by watching 15 minutes of The Streamer Awards 2026!",
     "source": "manual"
