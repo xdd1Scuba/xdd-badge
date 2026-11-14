@@ -549,6 +549,8 @@
     "game": "Metaphor: ReFantazio",
     "start": "2026-11-14T18:00:00Z",
     "end": "2026-12-12T17:59:00Z",
+    "drop_id": "a1fbeb48-f98d-49d4-845c-9591328aae55",
+    "drop_src": "campaigns",
     "reviewed": true
   },
   "gengar/1": {
