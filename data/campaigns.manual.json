@@ -453,7 +453,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "bleed-miami/1": {
@@ -499,7 +499,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "charmeleon/1": {
@@ -509,7 +509,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "clover/1": {
@@ -598,7 +598,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "gold-chain/1": {
@@ -646,7 +646,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "heartsteel-fan/1": {
@@ -688,7 +688,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "jordan-x-space-jam/1": {
@@ -777,7 +777,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "purple-chain/1": {
@@ -894,7 +894,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "warcraft/horde": {
@@ -927,7 +927,7 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "sub",
+    "column": "hide",
     "reviewed": true
   },
   "welcome-2-miami/1": {
