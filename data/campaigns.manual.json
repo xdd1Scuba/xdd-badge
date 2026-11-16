@@ -184,8 +184,8 @@
       {
         "id": "tomtm4w",
         "show": false,
-        "title": "GTA 6 Badges",
-        "title2": "",
+        "title": "!GTAVI",
+        "title2": "10 Badges 3 Emotes",
         "to": "2026-11-18T19:12:00Z",
         "end_mode": "zero",
         "end_text": "",
@@ -195,9 +195,9 @@
         "layout": "auto",
         "show_cd": true,
         "to_mode": "badge",
-        "show_n1": true,
+        "show_n1": false,
         "show_n2": false,
-        "note1": "!GTAVI",
+        "note1": "",
         "note2": "",
         "show_img": true,
         "badge": "golden-iguana/1",
@@ -328,6 +328,13 @@
         },
         "31gmvs3": {
           "x": 1471,
+          "y": 962,
+          "w": 440,
+          "h": 106,
+          "show": true
+        },
+        "tomtm4w": {
+          "x": 1015,
           "y": 962,
           "w": 440,
           "h": 106,
