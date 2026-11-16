@@ -541,6 +541,7 @@
     "end": "2026-12-11T16:59:00Z",
     "drop_id": "5acbe8a4-35f3-45c8-afaa-3f0483fd17bb",
     "drop_src": "dashboard",
+    "cmd": "!DOOM",
     "reviewed": true
   },
   "edgerunners-talia/1": {
