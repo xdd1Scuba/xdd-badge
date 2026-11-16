@@ -212,7 +212,7 @@
       },
       {
         "id": "xyhzkhd",
-        "show": true,
+        "show": false,
         "title": "Gallica",
         "title2": "",
         "to": "2026-11-16T17:42:00Z",
@@ -234,6 +234,33 @@
         "y": 859,
         "w": 318,
         "h": 173,
+        "colors": null,
+        "clear": false
+      },
+      {
+        "id": "31gmvs3",
+        "show": true,
+        "title": "DOOM: The Dark Ages",
+        "title2": "",
+        "to": "2026-11-18T05:08:14Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/80e404b7-673b-4ca8-ab69-1779f9685eec/3"
+        ],
+        "layout": "auto",
+        "show_cd": true,
+        "to_mode": "badge",
+        "show_n1": false,
+        "show_n2": false,
+        "note1": "",
+        "note2": "",
+        "show_img": true,
+        "badge": "doom-the-dark-ages/1",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
         "colors": null,
         "clear": false
       }
