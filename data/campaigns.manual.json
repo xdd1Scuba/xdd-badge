@@ -510,6 +510,8 @@
   },
   "doom-the-dark-ages/1": {
     "game": "DOOM: The Dark Ages",
+    "start": "2026-11-16T17:00:00Z",
+    "end": "2026-12-11T16:59:00Z",
     "column": "left",
     "reviewed": true
   },
