@@ -777,7 +777,6 @@
     "note_extra": "No sub/gift sub needed to evolve.",
     "cmd": "!POKEMON",
     "type": "sub",
-    "column": "hide",
     "reviewed": true
   },
   "purple-chain/1": {
