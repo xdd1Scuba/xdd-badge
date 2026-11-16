@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-14T18:50:28.072Z",
+ "updated_at": "2026-11-16T05:06:37.316Z",
  "count": 574,
  "badges": [
   {
@@ -357,11 +357,13 @@
    "removed_at": null,
    "campaign": {
     "game": "DOOM: The Dark Ages",
+    "start": "2026-11-16T17:00:00Z",
+    "end": "2026-12-11T16:59:00Z",
     "source": "manual"
    },
    "notified": {},
    "type": null,
-   "column": "left",
+   "column": null,
    "cmd": null,
    "reviewed": true
   },
