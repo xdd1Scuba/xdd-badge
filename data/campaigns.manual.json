@@ -20,89 +20,6 @@
     },
     "widgets": [
       {
-        "id": "q9rkpw3",
-        "show": false,
-        "title": "Warrior Jar",
-        "title2": "",
-        "to": "2026-11-03T08:30:00Z",
-        "end_mode": "zero",
-        "end_text": "",
-        "images": [
-          "https://static-cdn.jtvnw.net/badges/v1/a080167b-6264-404b-b9b1-e5a68348299f/3"
-        ],
-        "layout": "auto",
-        "x": 1346,
-        "y": 682,
-        "w": 485,
-        "h": 314,
-        "colors": null,
-        "clear": false,
-        "show_cd": false,
-        "show_n1": true,
-        "show_n2": true,
-        "show_img": true,
-        "note1": "訂閱/贈訂解鎖",
-        "note2": "SUB/GIFT TO UNLOCK"
-      },
-      {
-        "id": "zxswxlx",
-        "show": false,
-        "title": "Alliance & Horde",
-        "title2": "",
-        "to": "2026-11-04T16:00:00Z",
-        "end_mode": "zero",
-        "end_text": "",
-        "images": [
-          "https://static-cdn.jtvnw.net/badges/v1/59d5bb2e-0d62-4116-a6bc-79cd5afe9246/3",
-          "https://static-cdn.jtvnw.net/badges/v1/8dfb6f30-1ec1-497a-91e4-028a704b4f57/3"
-        ],
-        "layout": "auto",
-        "show_cd": false,
-        "to_mode": "time",
-        "show_n1": true,
-        "show_n2": true,
-        "note1": "訂閱/贈訂解鎖兩個徽章",
-        "note2": "SUB/GIFT = 2 Badges",
-        "show_img": true,
-        "badge": "alliance/1",
-        "x": 1305,
-        "y": 659,
-        "w": 572,
-        "h": 350,
-        "colors": null,
-        "clear": false
-      },
-      {
-        "id": "54cy2q1",
-        "show": false,
-        "title": "Payday 3 Badges",
-        "title2": "",
-        "to": "2026-11-08T06:38:00Z",
-        "end_mode": "zero",
-        "end_text": "",
-        "images": [
-          "https://static-cdn.jtvnw.net/badges/v1/e8ff781d-a445-4ed3-9790-9514a2eb45f0/3",
-          "https://static-cdn.jtvnw.net/badges/v1/1495822f-a2a6-46f7-8e0b-48db278621d9/3",
-          "https://static-cdn.jtvnw.net/badges/v1/a1bf84a7-cebc-496b-acf2-411938b18d9f/3",
-          "https://static-cdn.jtvnw.net/badges/v1/8346da26-6494-4edb-945d-63a50a6e416b/3"
-        ],
-        "layout": "auto",
-        "show_cd": true,
-        "to_mode": "badge",
-        "show_n1": false,
-        "show_n2": false,
-        "note1": "",
-        "note2": "",
-        "show_img": true,
-        "badge": "pearl/1",
-        "x": 1331,
-        "y": 688,
-        "w": 520,
-        "h": 300,
-        "colors": null,
-        "clear": false
-      },
-      {
         "id": "z1i0dm7",
         "show": false,
         "title": "KawaiiDozer",
@@ -263,6 +180,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "tomtm4w",
+        "show": false,
+        "title": "GTA 6 Badges",
+        "title2": "",
+        "to": "2026-11-18T19:12:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/62c3816a-87d6-4ca0-bce0-fca6bcfa719f/3"
+        ],
+        "layout": "auto",
+        "show_cd": true,
+        "to_mode": "badge",
+        "show_n1": true,
+        "show_n2": false,
+        "note1": "!GTAVI",
+        "note2": "",
+        "show_img": true,
+        "badge": "golden-iguana/1",
+        "x": 361,
+        "y": 661,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
@@ -347,27 +291,6 @@
         }
       ],
       "widgets": {
-        "q9rkpw3": {
-          "x": 1416,
-          "y": 960,
-          "w": 475,
-          "h": 103,
-          "show": false
-        },
-        "zxswxlx": {
-          "x": 1495,
-          "y": 960,
-          "w": 398,
-          "h": 103,
-          "show": false
-        },
-        "54cy2q1": {
-          "x": 827,
-          "y": 962,
-          "w": 628,
-          "h": 106,
-          "show": false
-        },
         "z1i0dm7": {
           "x": 1590,
           "y": 962,
