@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-16T05:06:37.316Z",
+ "updated_at": "2026-11-16T13:28:11.983Z",
  "count": 574,
  "badges": [
   {
@@ -359,12 +359,14 @@
     "game": "DOOM: The Dark Ages",
     "start": "2026-11-16T17:00:00Z",
     "end": "2026-12-11T16:59:00Z",
+    "drop_id": "5acbe8a4-35f3-45c8-afaa-3f0483fd17bb",
+    "drop_src": "dashboard",
     "source": "manual"
    },
    "notified": {},
    "type": null,
    "column": null,
-   "cmd": null,
+   "cmd": "!DOOM",
    "reviewed": true
   },
   {
