@@ -156,7 +156,7 @@
       },
       {
         "id": "31gmvs3",
-        "show": true,
+        "show": false,
         "title": "!DOOM",
         "title2": "",
         "to": "2026-11-18T05:08:00Z",
@@ -183,7 +183,7 @@
       },
       {
         "id": "tomtm4w",
-        "show": false,
+        "show": true,
         "title": "!GTAVI",
         "title2": "10 Badges 3 Emotes",
         "to": "2026-11-18T19:12:00Z",
@@ -201,8 +201,8 @@
         "note2": "",
         "show_img": true,
         "badge": "golden-iguana/1",
-        "x": 361,
-        "y": 661,
+        "x": 1319,
+        "y": 737,
         "w": 520,
         "h": 300,
         "colors": null,
