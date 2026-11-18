@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-18T13:10:36.206Z",
+ "updated_at": "2026-11-18T13:21:40.362Z",
  "count": 579,
  "badges": [
   {
@@ -61,12 +61,14 @@
    "removed_at": null,
    "campaign": {
     "game": "Old School RuneScape",
+    "start": "2026-11-18T13:04:00Z",
+    "end": "2026-11-30T23:59:00Z",
     "note_extra": "Subscribe or Gift 1 sub to any channel streaming in the Old School RuneScape category.",
     "source": "manual"
    },
    "notified": {},
    "type": "sub",
-   "column": "left",
+   "column": null,
    "cmd": null,
    "reviewed": true
   },
