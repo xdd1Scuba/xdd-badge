@@ -193,7 +193,7 @@
           "https://static-cdn.jtvnw.net/badges/v1/62c3816a-87d6-4ca0-bce0-fca6bcfa719f/3"
         ],
         "layout": "auto",
-        "show_cd": true,
+        "show_cd": false,
         "to_mode": "badge",
         "show_n1": false,
         "show_n2": false,
