@@ -1,7 +1,27 @@
 {
- "updated_at": "2026-11-18T13:08:40.288Z",
- "count": 578,
+ "updated_at": "2026-11-18T13:09:51.321Z",
+ "count": 579,
  "badges": [
+  {
+   "set_id": "runescape-santa-hat",
+   "id": "1",
+   "title": "RuneScape Santa Hat",
+   "description": "Watch 60 minutes of any channel streaming in the Old School RuneScape category during December 2026.",
+   "click_action": null,
+   "click_url": null,
+   "image_url_1x": "https://static-cdn.jtvnw.net/badges/v1/2bee9264-647c-4bdc-921f-cb5e651b1c64/1",
+   "image_url_2x": "https://static-cdn.jtvnw.net/badges/v1/2bee9264-647c-4bdc-921f-cb5e651b1c64/2",
+   "image_url_4x": "https://static-cdn.jtvnw.net/badges/v1/2bee9264-647c-4bdc-921f-cb5e651b1c64/3",
+   "first_seen": "2026-11-18T13:09:51.321Z",
+   "baseline": false,
+   "removed_at": null,
+   "campaign": null,
+   "notified": {},
+   "type": null,
+   "column": null,
+   "cmd": null,
+   "reviewed": false
+  },
   {
    "set_id": "runescape-bones",
    "id": "1",
@@ -15,12 +35,16 @@
    "first_seen": "2026-11-18T13:08:40.288Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Old School RuneScape",
+    "note_extra": "Watch 60 minutes of any channel streaming in the Old School RuneScape category.",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "free",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "runescape-gnome-plush",
