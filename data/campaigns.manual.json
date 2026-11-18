@@ -730,6 +730,13 @@
     "column": "free",
     "reviewed": true
   },
+  "runescape-bones/1": {
+    "game": "Old School RuneScape",
+    "note_extra": "Watch 60 minutes of any channel streaming in the Old School RuneScape category.",
+    "type": "free",
+    "column": "left",
+    "reviewed": true
+  },
   "scored-big/1": {
     "game": "Grand Theft Auto VI",
     "start": "2026-11-18T11:00:00Z",
