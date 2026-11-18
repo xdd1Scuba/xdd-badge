@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-18T13:10:14.135Z",
+ "updated_at": "2026-11-18T13:10:36.206Z",
  "count": 579,
  "badges": [
   {
@@ -107,12 +107,16 @@
    "first_seen": "2026-11-18T13:08:40.288Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Old School RuneScape",
+    "note_extra": "Watch 60 minutes of any channel streaming in the Old School RuneScape category during December 2026.",
+    "source": "manual"
+   },
    "notified": {},
-   "type": null,
-   "column": null,
+   "type": "free",
+   "column": "left",
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "bleed-miami",
