@@ -222,8 +222,8 @@
         "layout": "auto",
         "show_cd": false,
         "to_mode": "time",
-        "show_n1": true,
-        "show_n2": true,
+        "show_n1": false,
+        "show_n2": false,
         "note1": "",
         "note2": "",
         "show_img": true,
@@ -366,6 +366,13 @@
           "w": 440,
           "h": 106,
           "show": false
+        },
+        "wpnfgbq": {
+          "x": 1471,
+          "y": 962,
+          "w": 440,
+          "h": 106,
+          "show": true
         }
       }
     }
