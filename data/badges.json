@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-18T13:22:15.404Z",
+ "updated_at": "2026-11-19T10:37:45.395Z",
  "count": 579,
  "badges": [
   {
@@ -15,12 +15,15 @@
    "first_seen": "2026-11-18T13:09:51.321Z",
    "baseline": false,
    "removed_at": null,
-   "campaign": null,
+   "campaign": {
+    "game": "Old School RuneScape",
+    "source": "manual"
+   },
    "notified": {},
    "type": null,
    "column": null,
    "cmd": null,
-   "reviewed": false
+   "reviewed": true
   },
   {
    "set_id": "runescape-bones",
