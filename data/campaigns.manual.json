@@ -234,6 +234,33 @@
         "h": 300,
         "colors": null,
         "clear": false
+      },
+      {
+        "id": "pz2uqyd",
+        "show": true,
+        "title": "SUB/GIFT",
+        "title2": "訂閱/贈訂解鎖",
+        "to": "2026-11-21T08:33:00Z",
+        "end_mode": "zero",
+        "end_text": "",
+        "images": [
+          "https://static-cdn.jtvnw.net/badges/v1/8b5bf6d2-3f89-4c24-a6c2-c5eda04ce1e6/3"
+        ],
+        "layout": "auto",
+        "show_cd": false,
+        "to_mode": "time",
+        "show_n1": false,
+        "show_n2": false,
+        "note1": "",
+        "note2": "",
+        "show_img": true,
+        "badge": "runescape-gnome-plush/1",
+        "x": 1360,
+        "y": 740,
+        "w": 520,
+        "h": 300,
+        "colors": null,
+        "clear": false
       }
     ],
     "game": {
