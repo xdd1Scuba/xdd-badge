@@ -419,28 +419,28 @@
           "y": 958,
           "w": 440,
           "h": 106,
-          "show": false
+          "show": true
         },
         "wpnfgbq": {
           "x": 1054,
           "y": 958,
           "w": 440,
           "h": 106,
-          "show": false
+          "show": true
         },
         "pz2uqyd": {
           "x": 1464,
           "y": 958,
           "w": 440,
           "h": 106,
-          "show": true
+          "show": false
         },
         "ih7pbqs": {
           "x": 1006,
           "y": 958,
           "w": 440,
           "h": 106,
-          "show": true
+          "show": false
         }
       }
     }
